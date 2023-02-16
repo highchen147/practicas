@@ -7,6 +7,6 @@ do for [i=0:300] {
     
     # pause 0.1
     pause -1
-    print i
+    print i*0.025+0.01
 
 }

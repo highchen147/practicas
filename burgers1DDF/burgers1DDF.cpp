@@ -18,10 +18,12 @@ double RK4( double y, double h, double (*derivada)( double));
 int main()
 {
     // Parámetros temporales
-    double t_total = 0.8;               // Tiempo total en segundos
+    double t_total = 1.2;               // Tiempo total en segundos
+
     double dt = 0.001;                   // Tamaño de paso temporal
     int Niter = floor(t_total/dt);      // Número total de iteraciones
     double tiempo = 0.0;                // Variable que almacena el tiempo en la simulación
+    double num_outs;                    // Número de gráficas de instantes temporales
     double vel_x;
 
     // Parámetros espaciales
@@ -34,9 +36,11 @@ int main()
     ofstream outfile;                   // Archivo donde se guarda la función solución u
     ofstream out_surf;                  // Archivo donde se guarda la función como superficie
     ofstream out_curves;                // Archivo donde se guardan curvas de velocidad
+    ofstream gplotmain;                 // Archivo de gnuplot para graficar la función u(x,t)
     outfile.open("sol-burgers1D.dat", ios::out );
     out_surf.open("sol-burgers1Dsurf.dat", ios::out);
-    out_curves.open("curves-vel.dat", ios::out);
+    out_curves.open("curves.gp", ios::out);
+    gplotmain.open("burgers1DDF.gp", ios::out);
     bool superficie = false;
 
     // Arreglos
@@ -60,7 +64,10 @@ int main()
     u[Nx-1] = 0.0;
 
     // Se imprimen los datos correspondientes al tiempo inicial de la simulación
-    if(not superficie) salida(outfile, u, x, tiempo, Nx);
+    if(not superficie) {
+        salida(outfile, u, x, tiempo, Nx);
+        num_outs += 1;
+        }
     else salida_surf(out_surf, u, x, tiempo, Nx);
     // Comienza a correr el tiempo antes de entrar al ciclo principal
     tiempo += dt;
@@ -85,7 +92,10 @@ int main()
         
         // Se imprime la solución de la iteración
         if (j % out_cada == 0)
-            if (not superficie) {salida(outfile, u, x, tiempo, Nx);}
+            if (not superficie) {
+                salida(outfile, u, x, tiempo, Nx);
+                num_outs += 1;
+                }
             else salida_surf(out_surf, u, x, tiempo, Nx);
         
         // Actualizamos el tiempo
@@ -94,29 +104,53 @@ int main()
     
     // Ciclo para producir curvas correspondientes a la evolución independiente
     // de la velocidad
-    int num_curvas = 20;
-    t_total = 6e-5;
-    dt = t_total/100;
-    for (int i = 0; i <= num_curvas; i++)
-    {
-        tiempo = 0.0;
-        // x(0) = condicion inicial para x
-        double min_x = 40;
-        double max_x = 60;
-        double intervalo = (max_x-min_x)/(num_curvas-1);
-        vel_x = f_cond_inicial(min_x + i*intervalo);
-        out_curves << vel_x + min_x + i*intervalo << "\t" << tiempo << endl;
-        for (int j = 0; j < 10; j++)
-        {
-            // double h = 1;
-            vel_x += RK4(vel_x, dt, f_cond_inicial);
-            // vel_x = f_cond_inicial(vel_x)*dt;
-            tiempo += dt;
-            out_curves << vel_x + min_x + i*intervalo << "\t" << tiempo << endl;
-        }
-        out_curves << endl << endl;
-    }
+    // int num_curvas = 20;
+    // t_total = 6e-5;
+    // dt = t_total/100;
+    // for (int i = 0; i <= num_curvas; i++)
+    // {
+    //     tiempo = 0.0;
+    //     // x(0) = condicion inicial para x
+    //     double min_x = 40;
+    //     double max_x = 60;
+    //     double intervalo = (max_x-min_x)/(num_curvas-1);
+    //     vel_x = f_cond_inicial(min_x + i*intervalo);
+    //     // out_curves << vel_x + min_x + i*intervalo << "\t" << tiempo << endl;
+    //     for (int j = 0; j < 10; j++)
+    //     {
+    //         // double h = 1;
+    //         vel_x += RK4(vel_x, dt, f_cond_inicial);
+    //         // vel_x = f_cond_inicial(vel_x)*dt;
+    //         tiempo += dt;
+    //         out_curves << vel_x + min_x + i*intervalo << "\t" << tiempo << endl;
+    //     }
+    //     out_curves << endl << endl;
+    // }
     
+    // Se escribe el archivo .gp para generar la solución animada de la evolución temporal
+    gplotmain << "set xrange[0:" << L << "]" << endl;
+    gplotmain << "set yrange[-1:15]" << endl;
+    gplotmain << endl;
+    gplotmain << "do for [i=0:" << num_outs - 1 << "] {" << endl;
+    gplotmain << "plot 'sol-burgers1D.dat' index i u 2:3 w lp" << endl;
+    gplotmain << "pause -1" << endl;
+    gplotmain << "print i" << endl;
+    gplotmain << "}";
+
+    // out_curves << "set xrange [0:" << t_total << "]" << endl;
+    // out_curves << "set yrange [0:" << L << "]" << endl;
+    // out_curves << "set xlabel \"t\"" << endl;
+    // out_curves << "set ylabel \"U\"" << endl;
+    // int n_curves = 21;  
+    // out_curves << "do for [i=0:" << L << ":" << L/(n_curves-1) << "] {" << endl;
+    // out_curves << "A = 3.5" << endl;
+    // out_curves << "mu = 50" << endl;
+    // out_curves << "b = 0.05" << endl;
+    // out_curves << "xo = i" << endl;
+    // out_curves << "u = A*exp(-b*(xo-mu)**2)"<< endl;
+    // out_curves << "f(x) = u*x + xo" << endl;
+    // out_curves << "plot f(x)" << endl;
+    // out_curves << "}";
     
 }
 
