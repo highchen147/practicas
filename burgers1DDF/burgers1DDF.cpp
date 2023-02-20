@@ -18,13 +18,14 @@ double RK4( double y, double h, double (*derivada)( double));
 int main()
 {
     // Parámetros temporales
-    double t_total = 1.2;               // Tiempo total en segundos
-
-    double dt = 0.001;                   // Tamaño de paso temporal
+    const double t_total = 1.2;         // Tiempo total en segundos
+    const double dt = 0.000001;            // Tamaño de paso temporal
     int Niter = floor(t_total/dt);      // Número total de iteraciones
+    const int num_outs = 48;            // Número de gráficas de instantes temporales
+    int out_cada = floor(Niter / num_outs);                  // Cada out_cada veces se imprimen los valores
+    
+
     double tiempo = 0.0;                // Variable que almacena el tiempo en la simulación
-    double num_outs;                    // Número de gráficas de instantes temporales
-    double vel_x;
 
     // Parámetros espaciales
     int Nx = 500;                       // Número de puntos en el eje x
@@ -32,7 +33,6 @@ int main()
     double dx = L/(Nx-1);               // Tamaño de paso en el eje x
 
     // Variables y archivos de salida
-    int out_cada = 25;                  // Cada out_cada veces se imprimen los valores
     ofstream outfile;                   // Archivo donde se guarda la función solución u
     ofstream out_surf;                  // Archivo donde se guarda la función como superficie
     ofstream out_curves;                // Archivo donde se guardan curvas de velocidad
@@ -66,7 +66,7 @@ int main()
     // Se imprimen los datos correspondientes al tiempo inicial de la simulación
     if(not superficie) {
         salida(outfile, u, x, tiempo, Nx);
-        num_outs += 1;
+        // num_outs += 1;
         }
     else salida_surf(out_surf, u, x, tiempo, Nx);
     // Comienza a correr el tiempo antes de entrar al ciclo principal
@@ -94,40 +94,20 @@ int main()
         if (j % out_cada == 0)
             if (not superficie) {
                 salida(outfile, u, x, tiempo, Nx);
-                num_outs += 1;
+                // num_outs += 1;
                 }
             else salida_surf(out_surf, u, x, tiempo, Nx);
         
+        
+        // cout << round(1000*tiempo/t_total)/10 << " %" << endl;
         // Actualizamos el tiempo
-        tiempo += dt;
+        tiempo += dt;        
     }
     
-    // Ciclo para producir curvas correspondientes a la evolución independiente
-    // de la velocidad
-    // int num_curvas = 20;
-    // t_total = 6e-5;
-    // dt = t_total/100;
-    // for (int i = 0; i <= num_curvas; i++)
-    // {
-    //     tiempo = 0.0;
-    //     // x(0) = condicion inicial para x
-    //     double min_x = 40;
-    //     double max_x = 60;
-    //     double intervalo = (max_x-min_x)/(num_curvas-1);
-    //     vel_x = f_cond_inicial(min_x + i*intervalo);
-    //     // out_curves << vel_x + min_x + i*intervalo << "\t" << tiempo << endl;
-    //     for (int j = 0; j < 10; j++)
-    //     {
-    //         // double h = 1;
-    //         vel_x += RK4(vel_x, dt, f_cond_inicial);
-    //         // vel_x = f_cond_inicial(vel_x)*dt;
-    //         tiempo += dt;
-    //         out_curves << vel_x + min_x + i*intervalo << "\t" << tiempo << endl;
-    //     }
-    //     out_curves << endl << endl;
-    // }
+    cout << "N_outs = " << num_outs << endl;
     
     // Se escribe el archivo .gp para generar la solución animada de la evolución temporal
+    gplotmain << "# Animación de evolución temporal de Burgers1DDF" << endl;
     gplotmain << "set xrange[0:" << L << "]" << endl;
     gplotmain << "set yrange[-1:15]" << endl;
     gplotmain << endl;
@@ -136,22 +116,7 @@ int main()
     gplotmain << "pause -1" << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
-
-    // out_curves << "set xrange [0:" << t_total << "]" << endl;
-    // out_curves << "set yrange [0:" << L << "]" << endl;
-    // out_curves << "set xlabel \"t\"" << endl;
-    // out_curves << "set ylabel \"U\"" << endl;
-    // int n_curves = 21;  
-    // out_curves << "do for [i=0:" << L << ":" << L/(n_curves-1) << "] {" << endl;
-    // out_curves << "A = 3.5" << endl;
-    // out_curves << "mu = 50" << endl;
-    // out_curves << "b = 0.05" << endl;
-    // out_curves << "xo = i" << endl;
-    // out_curves << "u = A*exp(-b*(xo-mu)**2)"<< endl;
-    // out_curves << "f(x) = u*x + xo" << endl;
-    // out_curves << "plot f(x)" << endl;
-    // out_curves << "}";
-    
+  
 }
 
 double f_cond_inicial(double x)
