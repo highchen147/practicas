@@ -39,7 +39,7 @@ int main()
     ofstream gplotmain;                 // Archivo de gnuplot para graficar la función u(x,t)
     outfile.open("sol-burgers1D.dat", ios::out );
     out_surf.open("sol-burgers1Dsurf.dat", ios::out);
-    out_curves.open("curves.gp", ios::out);
+    // out_curves.open("curves.gp", ios::out);
     gplotmain.open("burgers1DDF.gp", ios::out);
     bool superficie = false;
 
@@ -125,10 +125,6 @@ double f_cond_inicial(double x)
     double mu = 50;
     double A = 3.5;
     return A*exp(-b*pow(x - mu,2));
-    // if (x < 50)
-    // {
-    //     return(0.0);
-    // }else return(1.0);
 }
 
 void salida(ofstream &of, double *u, double *x, double t, int N)
@@ -145,31 +141,4 @@ void salida_surf(ofstream &of, double *u, double *x, double t, int N)
     {
         of << t << "\t" << x[i] << "\t" << u[i] << endl;
     }
-}
-
-double velocidad(double y, const double t, double (*funcion)(double))
-{
-    return (*funcion)(y);
-}
-
-double RK4( double y, 
-          double h, 
-          double (*derivada)( double)
-)
-{
-    double k0;
-    double k1;
-    double k2;
-    double k3;
-    double z;
-
-    k0 = (*derivada)(y);
-    z =  y + 0.5*k0*h;
-    k1 = (*derivada)(z);
-    z = y + 0.5*k1*h;
-    k2 = (*derivada)(z);
-    z = y + k2*h;
-    k3 = (*derivada)(z);
-    z = y + h * (k0 + 2*k1 + 2*k2 + k3)/6.0;
-    return z;
 }
