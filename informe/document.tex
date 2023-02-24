@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage[paper=letterpaper,margin=2cm]{geometry}
+\usepackage{amsmath, array}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+% \usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titling}
+% \usepackage{graphicx}
+\usepackage[spanish]{babel}
+\decimalpoint
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{listingsutf8}
+\usepackage[pdftex]{graphicx}
+% \usepackage[export]{adjustbox}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{biblatex}
+\usepackage{physics}
+\usepackage[table,xcdraw]{xcolor}
+\addbibresource{ref.bib}
+\usepackage{tocloft}
+\hypersetup{linkcolor=blue}
+\newcommand{\m}{\text{m}}
+\pagestyle{fancy}
+\fancyhf{}
+
+\title{Plantilla prácticas}
+\author{Rodrigo Rafael Castillo Chong}
+\date{\today}
+\begin{document}
+	
+	\thispagestyle{empty}
+	
+	\begin{figure}[ht]
+		\minipage{0.7\textwidth}
+		\includegraphics[width=4cm]{images/usaclogo.png}
+		\label{EscudoUSAC}
+		\endminipage
+		\minipage{0.32\textwidth}
+		\includegraphics[height = 4cm ,width=4cm]{images/logoecfmplain.png}
+		\label{EscudoECFM}
+		\endminipage
+	\end{figure}
+	
+	\begin{center}
+		\vspace{0.8cm}
+		\LARGE
+		UNIVERSIDAD DE SAN CARLOS DE GUATEMALA
+		
+		\vspace{0.8cm}
+		\LARGE
+		ESCUELA DE CIENCIAS FÍSICAS Y MATEMÁTICAS
+		
+		\vspace{1.7cm}	
+		\Large
+		\textbf{Informe final de prácticas}
+		
+		\vspace{1.7cm}
+		\Large
+		\textbf{Evaluación de distintos métodos numéricos para resolver ecuaciones particulares de la mecánica de fluidos}
+		
+		
+		\vspace{1.3cm}
+		\normalsize	
+		POR \\
+		\vspace{.3cm}
+		\large
+		\textbf{Rodrigo Rafael Castillo Chong \\ 201804566}
+		
+		\vspace{1.3cm}
+		\normalsize	
+		ASESORADO POR \\
+		\vspace{.3cm}
+		\large
+		\textbf{Enrique Pazos, Ph.D.}
+		
+		
+		
+		\vspace{1.3cm}
+		\today
+	\end{center}
+	
+	\newpage
+	\tableofcontents
+	\clearpage
+	
+	\section{Método de diferencias finitas}
+	El método de diferencias finitas para resolver ecuaciones diferenciales numéricamente consiste en discretizar la ecuación utilizando series de potencias, para luego resolver algebraica e iterativamente. Un ejemplo de discretización es el siguiente: la segunda derivada respecto a $x$ de una función $u = u(x,t)$ se puede aproximar expandiendo la función en dos series de Taylor centradas en diferentes valores de $x$:
+	\[u(x + \Delta x,t) \approx u(x,t) + \Delta x\pdv{u}{x}+ \frac{(\Delta x)^{2}}{2}\pdv{^{2}u}{x^2} \]
+	\[u(x - \Delta x,t) \approx u(x,t) - \Delta x\pdv{u}{x}+\frac{(\Delta x)^{2}}{2}\pdv{^{2}u}{x^2} \]	
+	Sumando ambas aproximaciones se obtiene:
+	\[(\Delta x)^2 \pdv{^{2}u}{x^2}\approx u(x + \Delta x,t) + u(x - \Delta x,t) - 2 u(x,t)\]
+	\[\pdv{^{2}u}{x^2}\approx \frac{u(x + \Delta x,t) + u(x - \Delta x,t) - 2 u(x,t)}{(\Delta x)^2}\]
+	Por tanto, podemos aproximar una derivada de segundo orden en términos de valores conocidos, puesto que $u(x + \Delta x,t)$ y $u(x - \Delta x,t)$ corresponden a valores que toma la función en un dominio discretizado, en donde la distancia entre los puntos de la grilla es siempre $\Delta x$. Podemos escribir la función en forma discreta:
+	\[u_{i+1} := u(x + \Delta x,t)\]
+	\[u_{i-1} := u(x - \Delta x,t)\]
+	
+	
+	
+	En general, el cambio temporal de la función también se discretiza y se despeja la función que está valuada en el instante temporal más futuro y se nombra como 'nueva' o estado nuevo.
+	\[u(x,t+\Delta t)\approx u(x,t) + \Delta t \pdv{u}{t}\]
+	\[\pdv{u}{t} \approx \frac{u(x,t+\Delta t) - u(x,t)}{\Delta t}\]
+	\[\pdv{u}{t} \approx \frac{u_{i, \text{nueva}} - u_{i}}{\Delta t}\]
+	
+	Posteriormente se reemplazan las discretizaciones aproximadas en la ecuación diferencial a resolver y se itera sobre las variables dependientes de acuerdo al tamaño del dominio discretizado. 
+	
+	\subsection{Ecuación de Burgers no viscosa, en una dimensión}
+	La ecuación de Burgers no viscosa en una dimensión espacial es una ecuación diferencial parcial de primer orden que expresa la evolución temporal de la cantidad $u = u(x,t)$, la cual puede ser interpretada como la componente en $x$ de la \textbf{velocidad} de un fluido o gas. La ecuación tiene la siguiente forma:
+	\begin{equation}
+		\pdv{u}{t}+u\pdv{u}{x}=0
+	\end{equation}
+	
+	Se resolvió esta ecuación en un dominio espacial dado por $x \in [0,\text{L}]$ y sujeta a las siguientes condiciones iniciales:\\
+	\begin{equation}
+		u(0,0)=0
+	\end{equation}
+	\begin{equation}
+		u(L,0)= 0
+	\end{equation}
+	Estas condiciones pueden interpretarse como el modelado de un fluido sin presión ni viscosidad, o un gas, que se mueve en una dimensión cuyos extremos simulan un tope o frontera que impide que el fluido o gas en cuestión salga. %Se tomó $\text{L}=100\m$ como el largo del dominio.
+	
+	Como condición inicial se eligió una distribución gaussiana de velocidad. Esta se puede interpretar como un pulso centrado en el centro del dominio. Es común utilizar pulsos gaussianos como condiciones iniciales, para así visualizar su desplazamiento a lo largo de la simulación\footnote{En las ecuaciones se mantuvieron los nombres de las variables utilizadas en el código de la integración numérica de la ecuación, salvo por $\mu$ que se escribió como \texttt{mu}.}
+	\begin{equation}
+		u(x,0) = A\exp(-b(x-\mu)^{2})
+	\end{equation}
+	
+	\subsubsection*{Aplicación del método}
+
+	
+	\clearpage
+	\section{Introducción}
+	\section{Marco Teórico}
+	\section{Resultados}
+	
+\end{document}
