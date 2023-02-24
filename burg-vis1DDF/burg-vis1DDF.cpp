@@ -44,7 +44,7 @@ int main()
     bool superficie = false;
 
     // Arreglos y constantes
-    const double nu = 4;                // Parámetro de viscosidad
+    const double nu = 0.5;                // Parámetro de viscosidad
     double *u = new double[Nx];         // Función de velocidad en el tiempo actual: u{x, t}
     double *u_nueva = new double[Nx];   // Función de velocidad en el tiempo dt después u{x, t+dt}
     double *x = new double[Nx];         // Función de distancia sobre el eje x
