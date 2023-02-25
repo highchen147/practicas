@@ -88,16 +88,23 @@
 	\clearpage
 	
 	\section{Método de diferencias finitas}
-	El método de diferencias finitas para resolver ecuaciones diferenciales numéricamente consiste en discretizar la ecuación utilizando series de potencias, para luego resolver algebraica e iterativamente. Un ejemplo de discretización es el siguiente: la segunda derivada respecto a $x$ de una función $u = u(x,t)$ se puede aproximar expandiendo la función en dos series de Taylor centradas en diferentes valores en el eje $x$ pero equidistantes a $x$:
+	El método de diferencias finitas para resolver ecuaciones diferenciales numéricamente consiste en discretizar la ecuación utilizando series de potencias, para luego resolver algebraica e iterativamente. Un ejemplo de discretización es el siguiente: la segunda derivada respecto a $x$ de una función $u = u(x,t)$ se puede aproximar expandiendo la función en dos series de Taylor centradas en diferentes valores en el eje $x$, pero equidistantes a $x$:
 	\[u(x + \Delta x,t) \approx u(x,t) + \Delta x\pdv{u}{x}+ \frac{(\Delta x)^{2}}{2}\pdv{^{2}u}{x^2} \]
 	\[u(x - \Delta x,t) \approx u(x,t) - \Delta x\pdv{u}{x}+\frac{(\Delta x)^{2}}{2}\pdv{^{2}u}{x^2} \]	
 	Sumando ambas aproximaciones se obtiene:
 	\[(\Delta x)^2 \pdv{^{2}u}{x^2}\approx u(x + \Delta x,t) + u(x - \Delta x,t) - 2 u(x,t)\]
 	\[\pdv{^{2}u}{x^2}\approx \frac{u(x + \Delta x,t) + u(x - \Delta x,t) - 2 u(x,t)}{(\Delta x)^2}\]
-	Por tanto, podemos aproximar una derivada de segundo orden en términos de valores conocidos, puesto que $u(x + \Delta x,t)$ y $u(x - \Delta x,t)$ corresponden a valores que toma la función en un dominio discretizado, en donde la distancia entre los puntos de la grilla es siempre $\Delta x$. Podemos escribir la función en forma discreta:
+	Por tanto, podemos aproximar una derivada de segundo orden en términos de valores conocidos, puesto que $u(x + \Delta x,t)$ y $u(x - \Delta x,t)$ corresponden a valores que toma la función en un dominio discretizado, en donde la distancia entre los puntos de la grilla es siempre $\Delta x$. Podemos escribir la función valuada en forma discreta:
+	\[u_{i} := u(x,t)\]
 	\[u_{i+1} := u(x + \Delta x,t)\]
 	\[u_{i-1} := u(x - \Delta x,t)\]
+	También se puede representar gráficamente la discretización:
 	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[scale=0.8]{images/grilla.pdf}
+		\caption{Discretización del dominio espacial}
+	\end{figure}
 	
 	
 	En general, el cambio temporal de la función también se discretiza y se despeja la función que está valuada en el instante temporal más futuro y se nombra como 'nueva' o estado nuevo.
