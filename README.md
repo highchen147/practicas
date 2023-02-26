@@ -15,3 +15,7 @@
 $$
 \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}=0
 $$
+<p>Ecuación de Burgers viscosa</p>
+$$
+\frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}+\nu\frac{\partial^{2} u}{\partial x^{2}}=0
+$$
