@@ -10,12 +10,12 @@
   <li>Método de elementos finitos</li>
 </ul>
 
-<p><strong>Ecuación de Burgers</strong></p>
+<p><strong>Ecuación de Burgers, con y sin viscosidad</strong></p>
 
 $$
 \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}=0
 $$
-<p><strong>Ecuación de Burgers viscosa</strong></p>
+
 $$
 \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}+\nu\frac{\partial^{2} u}{\partial x^{2}}=0
 $$
