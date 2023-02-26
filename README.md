@@ -15,7 +15,7 @@
 $$
 E = mc^2
 $$
-<p>Ecuación de Burgers viscosa</p>
+
 $$
 \frac{d}{dx} \left( \int_{a}^{x} f(t) dt \right) = f(x)
 $$
