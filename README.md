@@ -13,10 +13,5 @@
 <p>Ecuación de Burgers</p>
 
 $$
-E = mc^2
-y = f(x)
-$$
-
-$$
-\frac{d}{dx} \left( \int_{a}^{x} f(t) dt \right) = f(x)
+\frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}=0
 $$
