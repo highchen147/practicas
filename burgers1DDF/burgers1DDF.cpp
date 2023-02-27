@@ -39,9 +39,9 @@ int main()
     gplotmain.open("burgers1DDF.gp", ios::out);
 
     // Arreglos
-    // Función de velocidad en el tiempo actual: u{x, t}
+    // Función de velocidad en el tiempo actual: u{x, t} = u_i
     double *u = new double[Nx]; 
-    // Función de velocidad en el tiempo dt después u{x, t+dt}
+    // Función de velocidad en el tiempo dt después u{x, t+dt} = u_i+1
     double *u_nueva = new double[Nx]; 
     // Función de distancia sobre el eje x
     double *x = new double[Nx]; 
