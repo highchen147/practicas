@@ -18,7 +18,7 @@ int main()
 {
     // Parámetros temporales
     const double t_total = 1.2; // Tiempo total en segundos
-    const double dt = 0.000001; // Tamaño de paso temporal
+    const double dt = 0.000001; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
     const int num_outs = 48; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
