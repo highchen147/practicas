@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
 \usepackage[paper=letterpaper,margin=2cm]{geometry}
 \usepackage{amsmath, array}
 \usepackage{amssymb}
@@ -19,11 +20,13 @@
 \usepackage{multirow}
 \usepackage{biblatex}
 \usepackage{physics}
+\usepackage{siunitx}
 \usepackage[table,xcdraw]{xcolor}
 \addbibresource{ref.bib}
 \usepackage{tocloft}
 \hypersetup{linkcolor=blue}
 \newcommand{\m}{\text{m}}
+\newcommand{\mpers}{\unit[per-mode = symbol]{\metre\per\second}}
 \pagestyle{fancy}
 \fancyhf{}
 
@@ -88,7 +91,7 @@
 	\clearpage
 	
 	\section{Método de diferencias finitas}
-	El \textbf{método de diferencias finitas} o \textbf{método DF} es un método numérico que sirve para resolver ecuaciones diferenciales. El método consiste en discretizar el dominio de la ecuación en un conjunto finito de puntos llamado \textbf{grilla}; donde cada punto debe estar a la misma distancia de cada uno de sus vecinos. Posteriormente se deben aproximar las derivadas de la función con ecuaciones de diferencias utilizando series de potencias, para poder resolver la ecuación diferencial algebraica e iterativamente. 
+	El \textbf{método de diferencias finitas} o \textbf{método DF} es un método numérico que sirve para resolver ecuaciones diferenciales. El método consiste en discretizar el dominio de la ecuación en un conjunto finito de puntos llamado \textbf{grilla}; donde cada punto debe estar a la misma distancia de cada uno de sus vecinos. Posteriormente se deben aproximar las derivadas de la función con ecuaciones de diferencias utilizando series de potencias, para poder resolver la ecuación diferencial algebraica e iterativamente \cite[1]{devries2011first}
 	
 	Un ejemplo de discretización que se usa al aplicar el método DF es el siguiente: la segunda derivada parcial respecto a $x$ de una función $u = u(x,t)$ valuada en $(x,t)$ se puede aproximar expandiendo la función en dos series de Taylor centradas en dos diferentes valores sobre el eje $x$ que corresponden a los dos puntos vecinos a $x$, separándose de este punto por una distancia $\Delta x$; también llamada \textbf{tamaño de paso} en $x$. 
 	
@@ -98,7 +101,7 @@
 	Sumando ambas aproximaciones se obtiene:
 	\[(\Delta x)^2 \pdv{^{2}u}{x^2}\approx u(x + \Delta x,t) + u(x - \Delta x,t) - 2 u(x,t)\]
 	\[\pdv{^{2}u}{x^2}\approx \frac{u(x + \Delta x,t) + u(x - \Delta x,t) - 2 u(x,t)}{(\Delta x)^2}\]
-	Por tanto, podemos aproximar una derivada de segundo orden en términos de valores conocidos, puesto que $u(x + \Delta x,t)$ y $u(x - \Delta x,t)$ corresponden a valores que toma la función en un dominio discretizado, en donde la distancia entre los puntos de la grilla es siempre $\Delta x$. Podemos escribir la función valuada en forma discreta:
+	Por tanto, podemos aproximar una derivada de segundo orden en términos de valores conocidos, puesto que $u(x + \Delta x,t)$ y $u(x - \Delta x,t)$ corresponden a valores que toma la función en un dominio discretizado, en donde la distancia entre los puntos de la grilla es siempre $\Delta x$. Se puede escribir la función valuada en forma discreta:
 	\[u_{i} := u(x,t)\]
 	\[u_{i+1} := u(x + \Delta x,t)\]
 	\[u_{i-1} := u(x - \Delta x,t)\]
@@ -112,7 +115,7 @@
 	\end{figure}
 	
 	
-	En general, el dominio temporal de la función también se discretiza, tomando intervalos de tiempo consecutivos separados por un intervalo de tiempo $\Delta t$ (tamaño de paso en $t$). 
+	En general, el dominio temporal de la función también se discretiza, tomando intervalos de tiempo consecutivos separados por un intervalo de tiempo $\Delta t$ o también llamado tamaño de paso en $t$. 
 	
 	Para aproximar la primera derivada parcial en $t$ de $u$ se expande la función en una serie de Taylor centrada en $\Delta t$ y el término donde la función está valuada en el instante temporal más futuro se renombra como $u_{\text{nueva}}$.
 	
@@ -122,17 +125,20 @@
 	
 	Posteriormente se reemplazan las discretizaciones aproximadas en la ecuación diferencial a resolver y se itera sobre las variables dependientes de acuerdo al tamaño del dominio discretizado. 
 	
-	Como se mostró, el método DF funciona aproximando y adaptando las derivadas de primer y segundo orden a ecuaciones de diferencias que dependen de los valores que la función devuelve cuando esta se valúa en los puntos de la grilla, o bien, en instantes discretos de tiempo.
+	En resumen, el método DF funciona aproximando y adaptando las derivadas de primer y segundo orden a ecuaciones de diferencias que dependen de los valores que la función devuelve cuando esta se valúa en los puntos de la grilla, o bien, en instantes discretos de tiempo.\\
 	
+	
+	A continuación se describen los problemas resueltos con el método de diferencias finitas y los resultados conseguidos con este.
 
 	
 	\subsection{Ecuación de Burgers no viscosa, en una dimensión}
 	La ecuación de Burgers no viscosa en una dimensión espacial es una ecuación diferencial parcial de primer orden que expresa la evolución temporal de la cantidad $u = u(x,t)$, la cual puede ser interpretada como la componente en $x$ de la \textbf{velocidad} de un fluido o gas. La ecuación tiene la siguiente forma:
 	\begin{equation}
 		\pdv{u}{t}+u\pdv{u}{x}=0
+		\label{eq:burgers1d}
 	\end{equation}
 	
-	Se resolvió esta ecuación en un dominio espacial dado por $x \in [0,\text{L}]$ y sujeta a las siguientes condiciones iniciales:\\
+	Se resolvió esta ecuación en un dominio espacial dado por $x \in [0,\text{L}]$, donde $\text{L} = 100 \unit{\meter}$, y sujeta a las siguientes condiciones iniciales:\\
 	\begin{equation}
 		u(0,0)=0
 	\end{equation}
@@ -141,17 +147,43 @@
 	\end{equation}
 	Estas condiciones pueden interpretarse como el modelado de un fluido sin presión ni viscosidad, o un gas, que se mueve en una dimensión cuyos extremos simulan un tope o frontera que impide que el fluido o gas en cuestión salga. %Se tomó $\text{L}=100\m$ como el largo del dominio.
 	
-	Como condición inicial se eligió una distribución gaussiana de velocidad. Esta se puede interpretar como un pulso centrado en el centro del dominio. Es común utilizar pulsos gaussianos como condiciones iniciales, para así visualizar su desplazamiento a lo largo de la simulación\footnote{En las ecuaciones se mantuvieron los nombres de las variables utilizadas en el código de la integración numérica de la ecuación, salvo por $\mu$ que se escribió como \texttt{mu}.}
+	Como condición inicial se eligió una distribución gaussiana de velocidad. Esta se puede interpretar como un pulso centrado en el centro del dominio. Es común utilizar pulsos gaussianos como condiciones iniciales, para así visualizar su desplazamiento a lo largo de la simulación\footnote{En las ecuaciones se mantuvieron los nombres de las variables utilizadas en el código de la integración numérica de la ecuación, salvo por $\mu$ que se escribió como \texttt{mu}.}.
 	\begin{equation}
 		u(x,0) = A\exp(-b(x-\mu)^{2})
 	\end{equation}
-	
+	\\
+	Donde:
+	\begin{itemize}
+		\item $A=3.5\mpers$
+		\item $b=0.05$
+		\item $\mu=L/2=50\unit{\meter}$
+	\end{itemize}
 	\subsubsection*{Aplicación del método}
-
-	
+	Para resolver numéricamente la ecuación \ref{eq:burgers1d} utilizando el método DF, primero se debe discretizar la ecuación aproximando las derivadas parciales. Esto es:
+	\begin{equation}
+		\pdv{u}{x} \approx \frac{u(x+\Delta x,t)-u(x,t)}{\Delta x}
+	\end{equation}
+	\begin{equation}
+		\pdv{u}{x} \approx \frac{u_{i+1}-u_{i}}{\Delta x}
+	\end{equation}
+	\begin{equation}
+		\pdv{u}{t} \approx \frac{u_{\text{nueva},i}-u_{i}}{\Delta t}
+	\end{equation}
+	Donde $\Delta x$ y $\Delta t$ son los tamaños de paso en la dimensión espacial y temporal respectivamente\footnote{En el código, estas cantidades fueron nombradas como \texttt{dx} y \texttt{dt} respectivamente}. Sustituyendo las anteriores aproximaciones en \ref{eq:burgers1d}, obtenemos
+	\begin{equation}
+		\frac{u_{\text{nueva},i}-u_{i}}{\Delta t}+u_{i}\left( \frac{u_{i+1}-u_{i}}{\Delta x}\right) =0
+	\end{equation}
+	Luego se despeja $u_{\text{nueva},i}$
+	\begin{equation}
+		u_{\text{nueva,}i} = u_{i}\left[ 1 + \frac{\Delta t}{\Delta x}(u_{i}-u_{i+1}) \right]
+		\label{eq:burgdiscr}
+	\end{equation}
+	De esta forma, el valor de la función $u$ en el i-ésimo elemento de la grilla, en un instante $t + \Delta t$, está dado por el miembro derecho de la ecuación \ref{eq:burgdiscr}, que toma valores de $u$ en un mismo instante $t$. Esta es una relación de recurrencia sobre la cual se puede iterar para construir la solución general de la ecuación.
 	\clearpage
-	\section{Introducción}
-	\section{Marco Teórico}
-	\section{Resultados}
+	\section{Método de volúmenes finitos}
+	\section{Método de elementos finitos}
+	\section{Conclusiones}
+	
+	\printbibliography
 	
 \end{document}
