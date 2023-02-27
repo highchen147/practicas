@@ -36,9 +36,7 @@ int main()
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
     outfile.open("sol-burgers1D.dat", ios::out );
-    // out_curves.open("curves.gp", ios::out);
     gplotmain.open("burgers1DDF.gp", ios::out);
-    bool superficie = false;
 
     // Arreglos
     // Función de velocidad en el tiempo actual: u{x, t}
