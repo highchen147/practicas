@@ -10,10 +10,9 @@
 #include <fstream>
 using namespace std;
 
+// Declaración de funciones
 double f_cond_inicial(double x);
 void salida(ofstream &of, double *u, double *x, double t, int N);
-void salida_surf(ofstream &of, double *u, double *x, double t, int N);
-double RK4( double y, double h, double (*derivada)( double));
 
 int main()
 {
@@ -26,7 +25,7 @@ int main()
                                             // imprimen los valores
     
 
-    double tiempo = 0.0; // Variable que almacena el tiempo en la simulación
+    double tiempo = 0.0; // Variable de tiempo en la simulación
 
     // Parámetros espaciales
     int Nx = 500; // Número de puntos en el eje x
@@ -35,11 +34,9 @@ int main()
 
     // Variables y archivos de salida
     ofstream outfile; // Archivo donde se guarda la función solución u
-    ofstream out_surf; // Archivo donde se guarda la función como superficie
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
     outfile.open("sol-burgers1D.dat", ios::out );
-    out_surf.open("sol-burgers1Dsurf.dat", ios::out);
     // out_curves.open("curves.gp", ios::out);
     gplotmain.open("burgers1DDF.gp", ios::out);
     bool superficie = false;
@@ -68,11 +65,8 @@ int main()
 
     // Se imprimen los datos correspondientes al tiempo inicial
     // de la simulación
-    if(not superficie) {
-        salida(outfile, u, x, tiempo, Nx);
-        // num_outs += 1;
-        }
-    else salida_surf(out_surf, u, x, tiempo, Nx);
+    salida(outfile, u, x, tiempo, Nx);
+        
     // Comienza a correr el tiempo antes de entrar al ciclo principal
     tiempo += dt;
     
@@ -96,11 +90,7 @@ int main()
         
         // Se imprime la solución de la iteración
         if (j % out_cada == 0)
-            if (not superficie) {
-                salida(outfile, u, x, tiempo, Nx);
-                // num_outs += 1;
-                }
-            else salida_surf(out_surf, u, x, tiempo, Nx);
+            salida(outfile, u, x, tiempo, Nx);
         
         
         // cout << round(1000*tiempo/t_total)/10 << " %" << endl;
@@ -110,7 +100,8 @@ int main()
     
     cout << "N_outs = " << num_outs << endl;
     
-    // Se escribe el archivo .gp para generar la solución animada de la evolución temporal
+    // Se escribe el archivo .gp para generar la solución de
+    // la evolución temporal
     gplotmain << "# Animación de evolución temporal de Burgers1DDF" << endl;
     gplotmain << "set xrange[0:" << L << "]" << endl;
     gplotmain << "set yrange[-1:15]" << endl;
@@ -138,11 +129,4 @@ void salida(ofstream &of, double *u, double *x, double t, int N)
         of << t << "\t" << x[i] << "\t" << u[i] << endl;
     }
     of << endl << endl;
-}
-void salida_surf(ofstream &of, double *u, double *x, double t, int N)
-{
-    for (int i = 0; i < N; i++)
-    {
-        of << t << "\t" << x[i] << "\t" << u[i] << endl;
-    }
 }
