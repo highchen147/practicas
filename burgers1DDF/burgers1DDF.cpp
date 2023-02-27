@@ -24,7 +24,6 @@ int main()
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
-
     double tiempo = 0.0; // Variable de tiempo en la simulación
 
     // Parámetros espaciales
