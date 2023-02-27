@@ -18,25 +18,26 @@ double RK4( double y, double h, double (*derivada)( double));
 int main()
 {
     // Parámetros temporales
-    const double t_total = 1.2;         // Tiempo total en segundos
-    const double dt = 0.000001;            // Tamaño de paso temporal
-    int Niter = floor(t_total/dt);      // Número total de iteraciones
-    const int num_outs = 48;            // Número de gráficas de instantes temporales
-    int out_cada = floor(Niter / num_outs);                  // Cada out_cada veces se imprimen los valores
+    const double t_total = 1.2; // Tiempo total en segundos
+    const double dt = 0.000001; // Tamaño de paso temporal
+    int Niter = floor(t_total/dt); // Número total de iteraciones
+    const int num_outs = 48; // Número de gráficas de instantes temporales
+    int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
+                                            // imprimen los valores
     
 
-    double tiempo = 0.0;                // Variable que almacena el tiempo en la simulación
+    double tiempo = 0.0; // Variable que almacena el tiempo en la simulación
 
     // Parámetros espaciales
-    int Nx = 500;                       // Número de puntos en el eje x
-    double L = 100.0;                   // Largo del dominio en metros
-    double dx = L/(Nx-1);               // Tamaño de paso en el eje x
+    int Nx = 500; // Número de puntos en el eje x
+    double L = 100.0; // Largo del dominio en metros
+    double dx = L/(Nx-1); // Tamaño de paso en el eje x
 
     // Variables y archivos de salida
-    ofstream outfile;                   // Archivo donde se guarda la función solución u
-    ofstream out_surf;                  // Archivo donde se guarda la función como superficie
-    ofstream out_curves;                // Archivo donde se guardan curvas de velocidad
-    ofstream gplotmain;                 // Archivo de gnuplot para graficar la función u(x,t)
+    ofstream outfile; // Archivo donde se guarda la función solución u
+    ofstream out_surf; // Archivo donde se guarda la función como superficie
+    ofstream out_curves; // Archivo donde se guardan curvas de velocidad
+    ofstream gplotmain; // Archivo de gnuplot para graficar la función
     outfile.open("sol-burgers1D.dat", ios::out );
     out_surf.open("sol-burgers1Dsurf.dat", ios::out);
     // out_curves.open("curves.gp", ios::out);
@@ -44,10 +45,12 @@ int main()
     bool superficie = false;
 
     // Arreglos
-    double *u = new double[Nx];         // Función de velocidad en el tiempo actual: u{x, t}
-    double *u_nueva = new double[Nx];   // Función de velocidad en el tiempo dt después u{x, t+dt}
-    double *x = new double[Nx];         // Función de distancia sobre el eje x
-    // double *y;
+    // Función de velocidad en el tiempo actual: u{x, t}
+    double *u = new double[Nx]; 
+    // Función de velocidad en el tiempo dt después u{x, t+dt}
+    double *u_nueva = new double[Nx]; 
+    // Función de distancia sobre el eje x
+    double *x = new double[Nx]; 
 
     // Inicialización de arreglos
     for (int i = 0; i < Nx; i++)
@@ -63,7 +66,8 @@ int main()
     u[0] = 0.0;
     u[Nx-1] = 0.0;
 
-    // Se imprimen los datos correspondientes al tiempo inicial de la simulación
+    // Se imprimen los datos correspondientes al tiempo inicial
+    // de la simulación
     if(not superficie) {
         salida(outfile, u, x, tiempo, Nx);
         // num_outs += 1;
