@@ -43,7 +43,7 @@ int main()
     double *u = new double[Nx]; 
     // Función de velocidad en el tiempo dt después u{x, t+dt} = u_i+1
     double *u_nueva = new double[Nx]; 
-    // Función de distancia sobre el eje x
+    // Puntos sobre el eje x
     double *x = new double[Nx]; 
 
     // Inicialización de arreglos
