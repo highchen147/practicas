@@ -88,9 +88,7 @@ int main()
         // Se imprime la solución de la iteración
         if (j % out_cada == 0)
             salida(outfile, u, x, tiempo, Nx);
-        
-        
-        // cout << round(1000*tiempo/t_total)/10 << " %" << endl;
+
         // Actualizamos el tiempo
         tiempo += dt;        
     }
