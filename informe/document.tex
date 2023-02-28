@@ -28,6 +28,7 @@
 \hypersetup{linkcolor=blue}
 \newcommand{\m}{\text{m}}
 \newcommand{\mpers}{\unit[per-mode = symbol]{\metre\per\second}}
+\definecolor{codegreen}{rgb}{0,0.5,0}
 \pagestyle{fancy}
 \fancyhf{}
 
@@ -36,6 +37,12 @@
 \date{\today}
 \begin{document}
 \lstset{inputencoding=utf8/latin1}
+\lstdefinestyle{myStyle}{
+	keywordstyle=\color{blue},
+	commentstyle=\color{codegreen},
+	backgroundcolor=\color{gray!10!white},
+}
+\lstset{style=myStyle}
 	\thispagestyle{empty}
 	
 	\begin{figure}[ht]
@@ -183,6 +190,7 @@
 	\lstinputlisting[title = Valores de los parámetros para discretización del dominio espacial, language = C++,
 	firstline=31,
 	lastline=33,
+	commentstyle=\color{codegreen},
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 	
 	Es destacable que el denominador de la fracción que define a \texttt{dx} es $\texttt{Nx}-1$ dado que el intervalo contiene esta cantidad de veces la distancia \texttt{dx.} 
@@ -196,7 +204,8 @@
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 	
 	\lstinputlisting[title = Implementación de la ecuación \ref{eq:condinicial}, 
-	language = C++, 
+	language = C++,
+	firstnumber = 114,
 	firstline=114,
 	lastline=120,
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
@@ -209,7 +218,7 @@
 	lastline=27, 
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 	
-	%la ecuación aproximando las derivadas parciales. Esto es:
+	El siguiente paso para implementar el método consiste en aproximar las derivadas utilizando las discretizaciones disponibles, esto es:
 	\begin{equation}
 		\pdv{u}{x} \approx \frac{u(x+\Delta x,t)-u(x,t)}{\Delta x}
 	\end{equation}
@@ -228,7 +237,8 @@
 		u_{\text{nueva,}i} = u_{i}\left[ 1 + \frac{\Delta t}{\Delta x}(u_{i}-u_{i+1}) \right]
 		\label{eq:burgdiscr}
 	\end{equation}
-	De esta forma, el valor de la función $u$ en el i-ésimo elemento de la grilla, en un instante $t + \Delta t$, está dado por el miembro derecho de la ecuación \ref{eq:burgdiscr}, que toma valores de $u$ en un mismo instante $t$. Esta es una relación de recurrencia sobre la cual se puede iterar para construir la solución general de la ecuación.
+	De esta forma, el valor de la función $u$ en el i-ésimo elemento de la grilla, en un instante $t + \Delta t$, está dado por el miembro derecho de la ecuación \ref{eq:burgdiscr}, cuyos términos son valores de $u$ en el mismo instante $t$. Esta es una relación de recurrencia sobre la cual se puede iterar para construir la solución general de la ecuación.
+	
 	\clearpage
 	\section{Método de volúmenes finitos}
 	\section{Método de elementos finitos}
