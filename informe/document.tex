@@ -249,13 +249,13 @@
 	
 	Se puede notar que para realizar la integración numérica de la ecuación se necesitan anidar dos ciclos \texttt{\color{blue}{for}}, uno para iterar sobre el dominio temporal y otro para el dominio espacial. En la quinta línea se puede apreciar la implementación de la ecuación \ref{eq:burgdiscr} en código y en las líneas consecuentes se observa la asignación de las condiciones de frontera.
 	
-	Se utilizó una función especial llamada \texttt{salida} que toma como argumento una variable de tipo \texttt{ofstream} que sirve para enviar datos al archivo deseado.
+	Se utilizó una función especial llamada \texttt{salida} que toma como argumento una variable de tipo \texttt{ofstream} la cual sirve para enviar datos al archivo deseado.
 	\lstinputlisting[title = Definición de función de salida de datos, 
 	language = C++,
 	firstline=120,
 	lastline=1127,
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
-	
+	\subsubsection{Resultados}
 	\clearpage
 	\section{Método de volúmenes finitos}
 	\section{Método de elementos finitos}
