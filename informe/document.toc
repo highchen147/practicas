@@ -1,6 +1,6 @@
 \babel@toc {spanish}{}\relax 
 \contentsline {section}{\numberline {1}Método de diferencias finitas}{3}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Ecuación de Burgers no viscosa, en una dimensión}{4}{subsection.1.1}%
-\contentsline {section}{\numberline {2}Método de volúmenes finitos}{8}{section.2}%
-\contentsline {section}{\numberline {3}Método de elementos finitos}{8}{section.3}%
-\contentsline {section}{\numberline {4}Conclusiones}{8}{section.4}%
+\contentsline {section}{\numberline {2}Método de volúmenes finitos}{9}{section.2}%
+\contentsline {section}{\numberline {3}Método de elementos finitos}{9}{section.3}%
+\contentsline {section}{\numberline {4}Conclusiones}{9}{section.4}%

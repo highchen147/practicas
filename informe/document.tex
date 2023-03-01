@@ -218,7 +218,7 @@
 	lastline=27, 
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 	
-	El siguiente paso para implementar el método consiste en aproximar las derivadas utilizando las discretizaciones disponibles, esto es:
+	El siguiente paso para implementar el método consistió en aproximar las derivadas utilizando las discretizaciones disponibles, esto es:
 	\begin{equation}
 		\pdv{u}{x} \approx \frac{u(x+\Delta x,t)-u(x,t)}{\Delta x}
 	\end{equation}
@@ -238,6 +238,23 @@
 		\label{eq:burgdiscr}
 	\end{equation}
 	De esta forma, el valor de la función $u$ en el i-ésimo elemento de la grilla, en un instante $t + \Delta t$, está dado por el miembro derecho de la ecuación \ref{eq:burgdiscr}, cuyos términos son valores de $u$ en el mismo instante $t$. Esta es una relación de recurrencia sobre la cual se puede iterar para construir la solución general de la ecuación.
+	
+	A continuación se muestra el ciclo principal de integración numérica de la ecuación de Burgers
+	\lstinputlisting[title = Ciclo principal de integración, 
+	language = C++,
+	firstnumber = 71,
+	firstline=71,
+	lastline=94,
+	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
+	
+	Se puede notar que para realizar la integración numérica de la ecuación se necesitan anidar dos ciclos \texttt{\color{blue}{for}}, uno para iterar sobre el dominio temporal y otro para el dominio espacial. En la quinta línea se puede apreciar la implementación de la ecuación \ref{eq:burgdiscr} en código y en las líneas consecuentes se observa la asignación de las condiciones de frontera.
+	
+	Se utilizó una función especial llamada \texttt{salida} que toma como argumento una variable de tipo \texttt{ofstream} que sirve para enviar datos al archivo deseado.
+	\lstinputlisting[title = Definición de función de salida de datos, 
+	language = C++,
+	firstline=120,
+	lastline=1127,
+	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 	
 	\clearpage
 	\section{Método de volúmenes finitos}
