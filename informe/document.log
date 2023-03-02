@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  28 FEB 2023 19:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  1 MAR 2023 21:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -809,24 +809,24 @@ LaTeX Info: Redefining \% on input line 23.
 )
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -862,9 +862,9 @@ LaTeX Font Info:    ... okay on input line 38.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \. on input line 38.
-LaTeX Info: Redefining \% on input line 38.
-Package hyperref Info: Link coloring ON on input line 38.
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
+Package hyperref Info: Link coloring ON on input line 35.
 (document.out) (document.out)
 \@outlinefile=\write4
 \openout4 = `document.out'.
@@ -913,8 +913,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'document.bbl' found.
  (document.bbl)
-Package biblatex Info: Reference section=0 on input line 38.
-Package biblatex Info: Reference segment=0 on input line 38.
+Package biblatex Info: Reference section=0 on input line 35.
+Package biblatex Info: Reference segment=0 on input line 35.
 
 
 Package siunitx Warning: Detected the "physics" package:
@@ -934,31 +934,31 @@ File: translations-basic-dictionary-spanish.trsl (spanish translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `spanish'. on input line 38.
-<images/usaclogo.png, id=23, 501.875pt x 501.875pt>
+or `spanish'. on input line 35.
+<images/usaclogo.png, id=39, 501.875pt x 501.875pt>
 File: images/usaclogo.png Graphic file (type png)
 <use images/usaclogo.png>
-Package pdftex.def Info: images/usaclogo.png  used on input line 50.
+Package pdftex.def Info: images/usaclogo.png  used on input line 47.
 (pdftex.def)             Requested size: 113.81102pt x 113.80533pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 49.
 
 
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
 
 
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<images/logoecfmplain.png, id=25, 401.5pt x 401.5pt>
+<images/logoecfmplain.png, id=41, 401.5pt x 401.5pt>
 File: images/logoecfmplain.png Graphic file (type png)
 <use images/logoecfmplain.png>
-Package pdftex.def Info: images/logoecfmplain.png  used on input line 54.
+Package pdftex.def Info: images/logoecfmplain.png  used on input line 51.
 (pdftex.def)             Requested size: 113.80992pt x 113.80992pt.
 
-Overfull \hbox (10.01181pt too wide) in paragraph at lines 49--57
+Overfull \hbox (10.01181pt too wide) in paragraph at lines 46--54
 []$[]$$[]$ 
  []
 
@@ -977,20 +977,20 @@ LaTeX Info: Redefining \% on input line 1.
 
 pdfTeX warning: pdflatex.exe (file ./images/grilla.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<images/grilla.pdf, id=48, 497.86pt x 162.6075pt>
+<images/grilla.pdf, id=68, 497.86pt x 162.6075pt>
 File: images/grilla.pdf Graphic file (type pdf)
 <use images/grilla.pdf>
-Package pdftex.def Info: images/grilla.pdf  used on input line 135.
+Package pdftex.def Info: images/grilla.pdf  used on input line 132.
 (pdftex.def)             Requested size: 398.28853pt x 130.08617pt.
 [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
 
  []
 
@@ -1057,7 +1057,64 @@ consecutive:
 File: latin1.def 2021/02/14 v1.3d Input encoding file
 )
 consecutive:
-[8] [9
+<../burgers1DDF/results/frame001.pdf, id=200, 361.35pt x 216.81pt>
+File: ../burgers1DDF/results/frame001.pdf Graphic file (type pdf)
+<use ../burgers1DDF/results/frame001.pdf>
+Package pdftex.def Info: ../burgers1DDF/results/frame001.pdf  used on input lin
+e 270.
+(pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
+<../burgers1DDF/results/frame026.pdf, id=201, 361.35pt x 216.81pt>
+File: ../burgers1DDF/results/frame026.pdf Graphic file (type pdf)
+<use ../burgers1DDF/results/frame026.pdf>
+Package pdftex.def Info: ../burgers1DDF/results/frame026.pdf  used on input lin
+e 276.
+(pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
+<../burgers1DDF/results/frame037.pdf, id=202, 361.35pt x 216.81pt>
+File: ../burgers1DDF/results/frame037.pdf Graphic file (type pdf)
+<use ../burgers1DDF/results/frame037.pdf>
+Package pdftex.def Info: ../burgers1DDF/results/frame037.pdf  used on input lin
+e 282.
+(pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
+<../burgers1DDF/results/frame040.pdf, id=203, 361.35pt x 216.81pt>
+File: ../burgers1DDF/results/frame040.pdf Graphic file (type pdf)
+<use ../burgers1DDF/results/frame040.pdf>
+Package pdftex.def Info: ../burgers1DDF/results/frame040.pdf  used on input lin
+e 288.
+(pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
+<../burgers1DDF/results/frame044.pdf, id=204, 361.35pt x 216.81pt>
+File: ../burgers1DDF/results/frame044.pdf Graphic file (type pdf)
+<use ../burgers1DDF/results/frame044.pdf>
+Package pdftex.def Info: ../burgers1DDF/results/frame044.pdf  used on input lin
+e 294.
+(pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
+<../burgers1DDF/results/frame045.pdf, id=205, 361.35pt x 216.81pt>
+File: ../burgers1DDF/results/frame045.pdf Graphic file (type pdf)
+<use ../burgers1DDF/results/frame045.pdf>
+Package pdftex.def Info: ../burgers1DDF/results/frame045.pdf  used on input lin
+e 300.
+(pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
+[8] [9 <../burgers1DDF/results/frame001.pdf> <../burgers1DDF/results/frame026.p
+df
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame026.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+> <../burgers1DDF/results/frame037.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame037.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+> <../burgers1DDF/results/frame040.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame040.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+> <../burgers1DDF/results/frame044.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame044.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+> <../burgers1DDF/results/frame045.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame045.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+>] [10
 
 ] (document.aux
 LaTeX Info: Redefining \sptext on input line 23.
@@ -1065,17 +1122,17 @@ LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: AE8C17D2E41471B01FD13DFA365F893C;1010.
+(rerunfilecheck)             Checksum: 1C2C1EE90F7CFD6D65CC2CDE65F9C44F;1820.
 Package logreq Info: Writing requests to 'document.run.xml'.
 \openout1 = `document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 28177 strings out of 476339
- 531759 string characters out of 5787175
- 1895340 words of memory out of 5000000
- 48157 multiletter control sequences out of 15000+600000
- 522106 words of font info for 71 fonts, out of 8000000 for 9000
+ 28256 strings out of 476339
+ 534067 string characters out of 5787175
+ 1896340 words of memory out of 5000000
+ 48224 multiletter control sequences out of 15000+600000
+ 523654 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,76p,899b,2870s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Rodrigo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
@@ -1098,9 +1155,9 @@ rigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C
 :/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 tt10.pfb><C:/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmtt12.pfb>
-Output written on document.pdf (9 pages, 510399 bytes).
+Output written on document.pdf (10 pages, 566876 bytes).
 PDF statistics:
- 298 PDF objects out of 1000 (max. 8388607)
- 113 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 374 PDF objects out of 1000 (max. 8388607)
+ 118 named destinations out of 1000 (max. 500000)
+ 118 words of extra memory for PDF output out of 10000 (max. 10000000)
 
