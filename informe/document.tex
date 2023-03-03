@@ -4,16 +4,13 @@
 \usepackage{amsmath, array}
 \usepackage{amssymb}
 \usepackage{amsfonts}
-% \usepackage[margin=2.5cm]{geometry}
 \usepackage{enumitem}
 \usepackage{titling}
-% \usepackage{graphicx}
 \usepackage[spanish]{babel}
 \decimalpoint
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{listingsutf8}
 \usepackage[pdftex]{graphicx}
-% \usepackage[export]{adjustbox}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{fancyhdr}
@@ -21,7 +18,7 @@
 \usepackage{biblatex}
 \usepackage{physics}
 \usepackage{siunitx}
-%\usepackage[dvipsnames]{xcolor}
+
 \usepackage[table,xcdraw,dvipsnames]{xcolor}
 \addbibresource{ref.bib}
 \usepackage{tocloft}
@@ -156,6 +153,7 @@
 
 	
 	\subsection{Ecuación de Burgers no viscosa, en una dimensión}
+	\subsubsection{Descripción del problema}
 	La ecuación de Burgers no viscosa en una dimensión espacial es una ecuación diferencial parcial de primer orden que expresa la evolución temporal de la cantidad $u = u(x,t)$, la cual puede ser interpretada como la componente en $x$ de la \textbf{velocidad} de un fluido o gas. La ecuación tiene la siguiente forma:
 	\begin{equation}
 		\pdv{u}{t}+u\pdv{u}{x}=0
@@ -183,13 +181,16 @@
 		\item $b=0.05$
 		\item $\mu=L/2=50\unit{\meter}$
 	\end{itemize}
-	\subsubsection*{Aplicación del método y código implementado \footnote{Código completo disponible en el siguiente \href{https://github.com/highchen147/practicas/blob/main/burgers1DDF/burgers1DDF.cpp}{enlace}}}
+
+	\subsubsection{Aplicación del método y código implementado}
+	Se utilizó el lenguaje \texttt{C++} para resolver el problema numérico utilizando el método de diferencias finitas. El código completo está disponible en el siguiente \href{https://github.com/highchen147/practicas/blob/main/burgers1DDF/burgers1DDF.cpp}{enlace.}
+	
 	
 	Para resolver numéricamente la ecuación \ref{eq:burgers1d} utilizando el método DF, primero se debe discretizar el dominio en el que esta se define. Para la simulación se definió un conjunto de \texttt{Nx} puntos sobre el eje $x$ de tal manera que cada par de puntos vecinos estuvieran separados por una distancia \texttt{dx}, la cual equivale a $\Delta x$ en la simbología algebraica de este documento.
 	
 	\lstinputlisting[title = Valores de los parámetros para discretización del dominio espacial, language = C++,
-	firstline=31,
-	lastline=33,
+	firstline=30,
+	lastline=32,
 	commentstyle=\color{codegreen},
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 	
@@ -205,9 +206,9 @@
 	
 	\lstinputlisting[title = Implementación de la ecuación \ref{eq:condinicial}, 
 	language = C++,
-	firstnumber = 114,
-	firstline=114,
-	lastline=120,
+	firstnumber = 112,
+	firstline=112,
+	lastline=118,
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 		
 	
@@ -253,9 +254,60 @@
 	\lstinputlisting[title = Definición de función de salida de datos, 
 	language = C++,
 	firstline=120,
-	lastline=1127,
+	lastline=127,
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 	\subsubsection{Resultados}
+	Se graficó una animación de la simulación numérica en \textbf{Gnuplot}, una herramienta de visualización de datos ampliamente utilizada en el ámbito científico. Se encontró que después de un tiempo de simulación de $1.2\unit{\second}$, los resultados comenzaron a presentar un considerable error numérico y a perder significado físico. Sin embargo, se pudo explicar la razón de este fenómeno investigando sobre la ecuación de Burgers. En la sección \ref{sec:discusion} se discutirá con más detalle el tema del error numérico de la solución.
+	
+
+	
+	En la figura \ref{fig:instantesB1DDF} se muestran seis instantes de la evolución temporal. La animación de la simulación completa se encuentra disponible en el siguiente \href{google.com}{enlace.}
+	
+	\begin{figure}[ht]
+		\centering
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame001.pdf}
+			\caption*{Gráfica de $u(x,t=0.026\unit{\second})$}
+			\label{fig:b1ddf1}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame026.pdf}
+			\caption*{Gráfica de $u(x,t=0.664\unit{\second})$}
+			\label{fig:b1ddf2}
+		\end{subfigure}\par
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame037.pdf}
+			\caption*{Gráfica de $u(x,t=0.945\unit{\second})$}
+			\label{fig:b1ddf3}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame040.pdf}
+			\caption*{Gráfica de $u(x,t=1.021\unit{\second})$}
+			\label{fig:b1ddf4}
+		\end{subfigure}\par
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame044.pdf}
+			\caption*{Gráfica de $u(x,t=1.123\unit{\second})$}
+			\label{fig:b1ddf5}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame045.pdf}
+			\caption*{Gráfica de $u(x,t=1.149\unit{\second})$}
+			\label{fig:b1ddf6}
+		\end{subfigure}
+		\caption{Seis instantes de tiempo de la evolución temporal de la ecuación de Burgers no viscosa con diferencias finitas.}
+		\label{fig:instantesB1DDF}
+	\end{figure}
+	
+	
+	\subsubsection{Discusión de resultados}
+	\label{sec:discusion}
 	\clearpage
 	\section{Método de volúmenes finitos}
 	\section{Método de elementos finitos}
