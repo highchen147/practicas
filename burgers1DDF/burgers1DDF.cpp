@@ -1,6 +1,6 @@
 // 
 //
-// Ecuacion de Burgers en una dimensión
+// Ecuacion de Burgers en una dimensión en forma conservativa
 // Resuelta con diferencias finitas 
 // 
 // 
