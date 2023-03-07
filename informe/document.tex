@@ -307,10 +307,37 @@
 	
 	
 	\subsubsection{Discusión de resultados}
-	La ecuación de Burgers resuelta con el método de diferencias finitas mostró algunas irregularidades, principalmente la pérdida de continuidad en varias partes de la solución a partir del segundo $1.021$ de la simulación. Este fenómeno es causado gracias al efecto de \textbf{onda de choque}  (o \textbf{shockwave} en inglés) que la ecuación de Burgers presenta. Una onda de choque se define como una discontinuidad en la velocidad de propagación de una onda y dado que la ecuación de Burgers representa la velocidad del fluido modelado, la discontinuidad se manifiesta en la solución de la ecuación.
-	
-	
 	\label{sec:discusion}
+	La ecuación de Burgers resuelta con el método de diferencias finitas mostró algunas irregularidades, principalmente la pérdida de continuidad en varias partes de la solución a partir del segundo $1.021$ de la simulación. Este fenómeno es causado gracias al efecto de \textbf{onda de choque}  (o \textbf{shockwave} en inglés) que la ecuación de Burgers presenta. Una onda de choque se define como una discontinuidad en la velocidad de propagación de una onda y dado que la ecuación de Burgers representa la velocidad del fluido modelado, la discontinuidad se manifiesta en la función solución de la ecuación.
+	
+	Para explicar el fenómeno de onda de choque que se produce en la ec. de Burgers se puede utilizar el \textbf{método de características} para la resolución de la ecuación misma. El método de características consiste en transformar el dominio de la ecuación tal que, en éste, la ecuación diferencial parcial se pueda escribir como un sistema de ecuaciones diferenciales ordinarias, llamadas \textbf{ecuaciones características}. Las curvas del dominio en donde al valuar la ecuación esta se puede escribir como un sistema de ecuaciones diferenciales ordinarias se llaman \textbf{curvas características.}
+	Para encontrar las curvas características de la ec. de Burgers se necesitan resolver las ecuaciones características: 
+	\begin{equation}
+		\dv{x}{t} = u(x,t)
+		\label{eq:dxdt}
+	\end{equation}
+	\begin{equation}
+		\dv{u}{t} = \pdv{u}{t} + \dv{x}{t}\pdv{u}{x} = \pdv{u}{t}+u\pdv{u}{x} = 0
+		\label{eq:parcialu}
+	\end{equation}
+	Notamos en la ecuación \ref{eq:parcialu} que $u$ es constante en el tiempo a lo largo de cualquier curva característica, por lo que resolviendo la ecuación \ref{eq:dxdt} obtenemos:
+	\begin{equation}
+		x-x_{0} = ut
+	\end{equation}
+	\begin{equation}
+		x(t) = x_{0} + u_{0}(x_0)t
+		\label{eq:caracteristica}
+	\end{equation}
+	Donde $u_0(x) = u(x,0)$
+	
+	Notamos que las curvas características son rectas en el plano $x-t$ que parten de un punto $(x_{n}, 0)$ y poseen pendiente $u_{0}(x_n)$. Entonces se puede demostrar que estas curvas se intersectarán en un tiempo finito; supongamos que las dos características $x(t) = x_{1}+u_{0}(x_1)t$ y $x(t) = x_{2}+u_{0}(x_2)t$ llegan a intersectarse en un tiempo $t_{int}$.
+	\begin{equation}
+		x_{1}+u_{0}(x_1)t_{int} = x_{2}+u_{0}(x_2)t_{int}
+	\end{equation}
+
+	\begin{equation}
+		t_{int} = -\frac{x_2-x_1}{u_{0}(x_2) - u_{0}(x_1)}
+	\end{equation}
 	\clearpage
 	\section{Método de volúmenes finitos}
 	\section{Método de elementos finitos}

@@ -1,16 +1,14 @@
-This is BibTeX, Version 0.99d
-Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: document.[2266] Biber.pm:418> INFO - Reading './document.bcf'
-[2837] Biber.pm:978> INFO - Found 1 citekeys in bib section 0
-[2899] Biber.pm:4401> INFO - Processing section 0
-[2950] Biber.pm:4592> INFO - Looking for bibtex file 'ref.bib' for section 0
-[3576] bibtex.pm:1713> INFO - LaTeX decoding ...
-[4139] bibtex.pm:1518> INFO - Found BibTeX data source 'ref.bib'
-[4381] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[4382] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[4382] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'es-ES'
-[4412] bbl.pm:654> INFO - Writing 'document.bbl' with encoding 'UTF-8'
-[4416] bbl.pm:757> INFO - Output to document.bbl
- -- 0
-write$ -- 0
-(There were 3 error messages)
+[0] Config.pm:306> INFO - This is Biber 2.18
+[0] Config.pm:309> INFO - Logfile is 'document.blg'
+[235] biber-MSWIN64:340> INFO - === 
+[320] Biber.pm:418> INFO - Reading 'document.bcf'
+[538] Biber.pm:978> INFO - Found 1 citekeys in bib section 0
+[564] Biber.pm:4401> INFO - Processing section 0
+[586] Biber.pm:4592> INFO - Looking for bibtex file 'ref.bib' for section 0
+[720] bibtex.pm:1713> INFO - LaTeX decoding ...
+[799] bibtex.pm:1518> INFO - Found BibTeX data source 'ref.bib'
+[902] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[902] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[902] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'es-ES'
+[912] bbl.pm:654> INFO - Writing 'document.bbl' with encoding 'UTF-8'
+[914] bbl.pm:757> INFO - Output to document.bbl
