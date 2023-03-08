@@ -86,8 +86,11 @@ int main()
         }
         
         // Se imprime la solución de la iteración
-        if (j % out_cada == 0)
+        if (j % out_cada == 0){
             salida(outfile, u, x, tiempo, Nx);
+            cout << tiempo << endl;
+        }
+            
 
         // Actualizamos el tiempo
         tiempo += dt;        
