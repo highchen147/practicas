@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  6 MAR 2023 21:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  7 MAR 2023 21:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -990,7 +990,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--150
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
@@ -1061,40 +1061,43 @@ consecutive:
 File: ../burgers1DDF/results/frame001.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame001.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame001.pdf  used on input lin
-e 270.
+e 267.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
 <../burgers1DDF/results/frame026.pdf, id=201, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame026.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame026.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame026.pdf  used on input lin
-e 276.
+e 273.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
 <../burgers1DDF/results/frame037.pdf, id=202, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame037.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame037.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame037.pdf  used on input lin
-e 282.
+e 279.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
 <../burgers1DDF/results/frame040.pdf, id=203, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame040.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame040.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame040.pdf  used on input lin
-e 288.
+e 285.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
 <../burgers1DDF/results/frame044.pdf, id=204, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame044.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame044.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame044.pdf  used on input lin
-e 294.
+e 291.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
 <../burgers1DDF/results/frame045.pdf, id=205, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame045.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame045.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame045.pdf  used on input lin
-e 300.
+e 297.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
-[8] [9] [10 <../burgers1DDF/results/frame001.pdf> <../burgers1DDF/results/frame
-026.pdf
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8] [9] [10] [11 <../burgers1DDF/results/frame001.pdf> <../burgers1DDF/results/
+frame026.pdf
 
 pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame026.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
@@ -1114,7 +1117,7 @@ clusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame045.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
->] [11
+>] [12
 
 ] (document.aux
 LaTeX Info: Redefining \sptext on input line 23.
@@ -1128,13 +1131,13 @@ Package logreq Info: Writing requests to 'document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 28265 strings out of 476339
- 534180 string characters out of 5787175
+ 28278 strings out of 476339
+ 534364 string characters out of 5787175
  1896340 words of memory out of 5000000
- 48227 multiletter control sequences out of 15000+600000
+ 48234 multiletter control sequences out of 15000+600000
  523654 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,76p,899b,2870s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,76p,910b,2870s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Rodrigo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1200.pk><C:/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx12.pfb><C:/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type
@@ -1155,9 +1158,9 @@ rigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C
 :/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 tt10.pfb><C:/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmtt12.pfb>
-Output written on document.pdf (11 pages, 572286 bytes).
+Output written on document.pdf (12 pages, 577462 bytes).
 PDF statistics:
- 386 PDF objects out of 1000 (max. 8388607)
- 124 named destinations out of 1000 (max. 500000)
+ 399 PDF objects out of 1000 (max. 8388607)
+ 130 named destinations out of 1000 (max. 500000)
  118 words of extra memory for PDF output out of 10000 (max. 10000000)
 

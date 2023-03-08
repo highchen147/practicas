@@ -148,7 +148,6 @@
 	
 	En resumen, el método DF funciona aproximando y adaptando las derivadas de primer y segundo orden a ecuaciones de diferencias que dependen de los valores que la función devuelve cuando esta se valúa en los puntos de la grilla, o bien, en instantes discretos de tiempo.\\
 	
-	
 	A continuación se describen los problemas resueltos con el método de diferencias finitas y los resultados conseguidos con este.
 
 	
@@ -194,9 +193,9 @@
 	commentstyle=\color{codegreen},
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 	
-	Es destacable que el denominador de la fracción que define a \texttt{dx} es $\texttt{Nx}-1$ dado que el intervalo contiene esta cantidad de veces la distancia \texttt{dx.} 
+	Es destacable que el denominador de la fracción que define a \texttt{dx} es $\texttt{Nx-1}$ dado que el intervalo contiene esta cantidad de veces la distancia \texttt{dx.} 
 
-	Para almacenar los valores de la función $u$ se utilizaron punteros a arreglos dinámicos de tipo \texttt{\color{blue}{double}}, al igual que para almacenar el conjunto de puntos que conforma el dominio discretizado en el eje $x$. Estos también fueron inicializados dependiendo de su definición. En el caso de $u$, se aplicó la condición inicial del problema y las condiciones de frontera.	
+	Para almacenar los valores de la función $u$ se utilizaron punteros a arreglos dinámicos de tipo \texttt{\color{blue}{double}}, al igual que para almacenar el conjunto de puntos que conforma el dominio discretizado en el eje $x$. Estos también fueron inicializados dependiendo de su definición; en el caso de $u$, se aplicó la condición inicial del problema y las condiciones de frontera.	
 	
 	\lstinputlisting[title = Definición e inicialización de arreglos dinámicos, 
 	language = C++, 
@@ -212,7 +211,7 @@
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 		
 	
-	Para discretizar el dominio temporal se tomó \texttt{t\_total} como la variable que almacena el tiempo total a simular y \texttt{dt} como el tamaño de paso temporal; por tanto, el número de iteraciones necesarias para simular el tiempo completo se obtiene dividiendo \texttt{t\_total} entre \texttt{dt}. Sin embargo, puede que el resultado de esta división no sea un número entero, por lo que se le aplicó la función \texttt{floor()} para garantizarlo. La variable \texttt{num\_outs} es un número entero que indica cuántos instantes temporales serán impresos en el archivo de datos; esta cantidad es importante ya que la velocidad de simulación depende de qué tantas veces se imprimen los datos. Las variables de tipo \texttt{const} pueden ser cambiadas a voluntad del usuario siempre y cuando el cambio sea en la declaración de las mismas.
+	Para discretizar el dominio temporal se tomó \texttt{t\_total} como la variable que almacena el tiempo total a simular y \texttt{dt} como el tamaño de paso temporal; por tanto, el número de iteraciones necesarias para simular el tiempo completo se obtiene dividiendo \texttt{t\_total} entre \texttt{dt}. Sin embargo, puede que el resultado de esta división no sea un número entero, por lo que se le aplicó la función \texttt{floor()} para garantizarlo. La variable \texttt{num\_outs} es un número entero que indica cuántos instantes temporales serán impresos en el archivo de datos; esta cantidad es importante ya que la velocidad de simulación depende de qué tantas veces se imprimen los datos. Las variables de tipo \texttt{const} pueden ser cambiadas a voluntad del usuario, siempre y cuando el cambio sea efectuado en la declaración de las mismas.
 	
 	\lstinputlisting[title = Valores de los parámetros para discretización del dominio temporal, language = C++, 
 	firstline=19, 
@@ -259,11 +258,9 @@
 	\subsubsection{Resultados}
 	Se graficó una animación de la simulación numérica en \textbf{Gnuplot}, una herramienta de visualización de datos ampliamente utilizada en el ámbito científico. Se encontró que después de un tiempo de simulación de $1.2\unit{\second}$, los resultados comenzaron a presentar un considerable error numérico y a perder significado físico. Sin embargo, se pudo explicar la razón de este fenómeno investigando sobre la ecuación de Burgers. En la sección \ref{sec:discusion} se discutirá con más detalle el tema del error numérico de la solución.
 	
-
-	
 	En la figura \ref{fig:instantesB1DDF} se muestran seis instantes de la evolución temporal. La animación de la simulación completa se encuentra disponible en el siguiente \href{google.com}{enlace.}
 	
-	\begin{figure}[ht]
+	\begin{figure}[h]
 		\centering
 		\begin{subfigure}{0.5\textwidth}
 			\centering
@@ -330,14 +327,36 @@
 	\end{equation}
 	Donde $u_0(x) = u(x,0)$
 	
-	Notamos que las curvas características son rectas en el plano $x-t$ que parten de un punto $(x_{n}, 0)$ y poseen pendiente $u_{0}(x_n)$. Entonces se puede demostrar que estas curvas se intersectarán en un tiempo finito; supongamos que las dos características $x(t) = x_{1}+u_{0}(x_1)t$ y $x(t) = x_{2}+u_{0}(x_2)t$ llegan a intersectarse en un tiempo $t_{int}$.
+	Notamos que las curvas características son rectas en el plano $x-t$ que parten de un punto $(x_{n}, 0)$ y poseen pendiente $u_{0}(x_n)$, donde $x_n$ es un punto que pertenece al dominio espacial. Consecuentemente se puede demostrar que estas curvas se intersectarán en un tiempo finito si $u'_{0}(x) < 0$ para algún $x$. Supongamos que las dos características $x(t) = x_{1}+u_{0}(x_1)t$ y $x(t) = x_{2}+u_{0}(x_2)t$ llegan a intersectarse en un tiempo $t_{int}$.
 	\begin{equation}
 		x_{1}+u_{0}(x_1)t_{int} = x_{2}+u_{0}(x_2)t_{int}
 	\end{equation}
-
 	\begin{equation}
 		t_{int} = -\frac{x_2-x_1}{u_{0}(x_2) - u_{0}(x_1)}
 	\end{equation}
+	\begin{equation}
+		t_{int} = -\dfrac{1}{\dfrac{u_{0}(x_2) - u_{0}(x_1)}{x_2-x_1}}
+	\end{equation}
+	\begin{equation}
+		t_{int} = -\dfrac{1}{\dfrac{u_{0}(x_2) - u_{0}(x_1)}{x_2-x_1}}
+	\end{equation}
+	Por el teorema del valor medio, podemos asumir que para un $x_0$ tal que $x_1 < x_0 < x_2$ existe $u'(x_0)=\dfrac{u_{0}(x_2) - u_{0}(x_1)}{x_2-x_1}$ y entonces, $u'$ sí es negativa en algún punto, por lo tanto, el tiempo $t_{int}$ es positivo y las características se intersectan.
+	
+	Cuando las características se intersectan la onda viajera se rompe ya que según la ecuación diferencial que la rige esta debería seguir siendo constante en dos puntos distintos y esto produce la discontinuidad. El método numérico de diferencias finitas reacciona erróneamente ante la discontinuidad que se presenta en la solución, puesto que el término $u_{i}-u_{i+1}$ es una cantidad que crece cada vez más en cada iteración y el error numérico ya no se puede despreciar, por lo que la solución pierde el significado físico.
+	\\
+	La segunda irregularidad presentada por los resultados tiene relación con la forma de la ecuación de Burgers, dado que al investigar sobre la resolución numérica se encontró que la ecuación \ref{eq:burgers1d} no es la adecuada para implementar en métodos numéricos, sino la forma conservativa de la misma:
+	\begin{equation}
+		\pdv{u}{t} + \frac{1}{2}\pdv{u^2}{x} = 0
+		\label{eq:conservativa}
+	\end{equation}
+	Con esta ecuación se puede obtener la ecuación \ref{eq:burgers1d} utilizando la regla de la cadena, al igual que calculando la derivada material de $u$; pero esta transformación es válida solamente si la ecuación es diferenciable en todo el dominio, lo cual no sucede en la ecuación de Burgers por el efecto de onda de choque previamente explicado. Por esta razón, es recomendable usar la versión conservativa (ecuación \ref{eq:conservativa}) para resolver la ecuación de Burgers.
+	
+	Se utilizó esta versión de la ecuación en una simulación usando la discretización siguiente:
+	\begin{equation}
+		u_{\text{nueva,}i} = u_{i}\left[ 1 + \frac{\Delta t}{2\Delta x}(u_{i}^{2}-u_{i+1}^{2}) \right]
+		\label{eq:burgers-conserv-discreta}
+	\end{equation}
+	En la figura se muestran cuatro instantes de la solución usando la versión conservativa de la ecuación de Burgers. Se puede notar que en esta solución la onda se propaga mucho más rápido que la onda de la solución de la ecuación de Burgers tradicional, pero también pierde significado físico a causa de la onda de choque. Por tanto el método de diferencias finitas es muy débil para simular la ecuación de Burgers.
 	\clearpage
 	\section{Método de volúmenes finitos}
 	\section{Método de elementos finitos}
