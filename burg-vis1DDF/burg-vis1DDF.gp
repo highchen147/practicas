@@ -4,7 +4,7 @@ set yrange[-1:15]
 
 pause -1
 do for [i=0:399] {
-plot 'sol-burg-vis1DDF.dat' index i u 2:3 w lp
+plot sol-burg-vis1DDF-nu-0.50.dat index i u 2:3 w l
 pause 0.05
 print i
 }

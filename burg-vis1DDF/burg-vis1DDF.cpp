@@ -3,7 +3,11 @@
 // Ecuacion de Burgers viscosa en una dimensión
 // Resuelta con diferencias finitas 
 // 
-// 
+// Para eliminar todos los archivos de solución
+// rm sol-burg-vis1DDF-nu-*
+// Para eliminar todos los archivos de gráfica
+// rm burg-vis1DDF-nu-*
+
 #include <iostream>
 #include <cmath>
 #include <iomanip>
@@ -12,13 +16,12 @@ using namespace std;
 
 double f_cond_inicial(double x);
 void salida(ofstream &of, double *u, double *x, double t, int N);
-void salida_surf(ofstream &of, double *u, double *x, double t, int N);
 
 
 int main()
 {
     // Parámetros temporales
-    const double t_total = 20;         // Tiempo total en segundos
+    const double t_total = 15;         // Tiempo total en segundos
     const double dt = 0.001;            // Tamaño de paso temporal
     int Niter = floor(t_total/dt);      // Número total de iteraciones
     const int num_outs = 400;            // Número de gráficas de instantes temporales
@@ -32,23 +35,26 @@ int main()
     double L = 100.0;                   // Largo del dominio en metros
     double dx = L/(Nx-1);               // Tamaño de paso en el eje x
 
-    // Variables y archivos de salida
-    ofstream outfile;                   // Archivo donde se guarda la función solución u
-    ofstream out_surf;                  // Archivo donde se guarda la función como superficie
-    ofstream out_curves;                // Archivo donde se guardan curvas de velocidad
-    ofstream gplotmain;                 // Archivo de gnuplot para graficar la función u(x,t)
-    outfile.open("sol-burg-vis1DDF.dat", ios::out );
-    out_surf.open("sol-burgers1Dsurf.dat", ios::out);
-    // out_curves.open("curves.gp", ios::out);
-    gplotmain.open("burg-vis1DDF.gp", ios::out);
-    bool superficie = false;
-
     // Arreglos y constantes
-    const double nu = 0.5;                // Parámetro de viscosidad
+    const double nu = 1.70;                // Parámetro de viscosidad
     double *u = new double[Nx];         // Función de velocidad en el tiempo actual: u{x, t}
     double *u_nueva = new double[Nx];   // Función de velocidad en el tiempo dt después u{x, t+dt}
     double *x = new double[Nx];         // Función de distancia sobre el eje x
-    // double *y;
+
+    // Variables y archivos de salida
+    // Archivo donde se guarda la función solución u
+    ofstream outfile;
+    // Archivo de gnuplot para graficar la función u(x,t)
+    ofstream gplotmain;
+    // Nombres de los archivos de datos y de gráficas
+    char name_datafile[31];
+    char name_gplotmain[28];
+    sprintf(name_datafile, "sol-burg-vis1DDF-nu-%.2f.dat", nu);
+    sprintf(name_gplotmain, "burg-vis1DDF-nu-%.2f.gp", nu);
+    // Se crean los archivos de datos y gráficas
+    outfile.open(name_datafile, ios::out );
+    gplotmain.open(name_gplotmain, ios::out);
+
 
     // Inicialización de arreglos
     for (int i = 0; i < Nx; i++)
@@ -65,11 +71,11 @@ int main()
     u[Nx-1] = 0.0;
 
     // Se imprimen los datos correspondientes al tiempo inicial de la simulación
-    if(not superficie) {
+ 
         salida(outfile, u, x, tiempo, Nx);
         // num_outs += 1;
-        }
-    // else salida_surf(out_surf, u, x, tiempo, Nx);
+        
+        
     // Comienza a correr el tiempo antes de entrar al ciclo principal
     tiempo += dt;
     
@@ -78,8 +84,11 @@ int main()
     {
         for (int i = 1; i < Nx-1; i++)
         {
-            u_nueva[i] = u[i]*(1 + (dt/dx)*(u[i]-u[i+1])) + 
-            nu*(dt/dx)*(u[i+1]-2*u[i]+u[i-1])/dx;
+            // u_nueva[i] = u[i]*(1 + (dt/dx)*(u[i]-u[i+1]))
+            // + nu*(dt/dx)*(u[i+1]-2*u[i]+u[i-1])/dx;
+
+            u_nueva[i] = u[i]*(1 + 0.5*(dt/dx)*(pow(u[i], 2)-pow(u[i+1], 2)))
+            + nu*(dt/dx)*(u[i+1]-2*u[i]+u[i-1])/dx;
         }
         
         // Condiciones de frontera
@@ -94,14 +103,10 @@ int main()
         
         // Se imprime la solución de la iteración
         if (j % out_cada == 0)
-            if (not superficie) {
-                salida(outfile, u, x, tiempo, Nx);
-                // num_outs += 1;
-                }
-            // else salida_surf(out_surf, u, x, tiempo, Nx);
         
-        
-        // cout << round(1000*tiempo/t_total)/10 << " %" << endl;
+            salida(outfile, u, x, tiempo, Nx);
+
+
         // Actualizamos el tiempo
         tiempo += dt;        
     }
@@ -115,7 +120,7 @@ int main()
     gplotmain << endl;
     gplotmain << "pause -1" << endl;
     gplotmain << "do for [i=0:" << num_outs - 1 << "] {" << endl;
-    gplotmain << "plot 'sol-burg-vis1DDF.dat' index i u 2:3 w lp" << endl;
+    gplotmain << "plot '" << name_datafile << "' index i u 2:3 w l" << endl;
     gplotmain << "pause " << t_total/num_outs << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
@@ -137,11 +142,4 @@ void salida(ofstream &of, double *u, double *x, double t, int N)
         of << t << "\t" << x[i] << "\t" << u[i] << endl;
     }
     of << endl << endl;
-}
-void salida_surf(ofstream &of, double *u, double *x, double t, int N)
-{
-    for (int i = 0; i < N; i++)
-    {
-        of << t << "\t" << x[i] << "\t" << u[i] << endl;
-    }
 }
