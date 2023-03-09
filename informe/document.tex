@@ -258,41 +258,41 @@
 	\subsubsection{Resultados}
 	Se graficó una animación de la simulación numérica en \textbf{Gnuplot}, una herramienta de visualización de datos ampliamente utilizada en el ámbito científico. Se encontró que después de un tiempo de simulación de $1.2\unit{\second}$, los resultados comenzaron a presentar un considerable error numérico y a perder significado físico. Sin embargo, se pudo explicar la razón de este fenómeno investigando sobre la ecuación de Burgers. En la sección \ref{sec:discusion} se discutirá con más detalle el tema del error numérico de la solución.
 	
-	En la figura \ref{fig:instantesB1DDF} se muestran seis instantes de la evolución temporal. La animación de la simulación completa se encuentra disponible en el siguiente \href{google.com}{enlace.}
+	En la figura \ref{fig:instantesB1DDF} se muestran seis instantes de la evolución temporal. La animación de la simulación completa se encuentra disponible en el siguiente \href{https://github.com/highchen147/practicas/blob/main/burgers1DDF/results/simu.mp4}{enlace.}
 	
-	\begin{figure}[h]
+	\begin{figure}[ht]
 		\centering
-		\begin{subfigure}{0.5\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame001.pdf}
 			\caption*{Gráfica de $u(x,t=0.026\unit{\second})$}
 			\label{fig:b1ddf1}
 		\end{subfigure}\hfill
-		\begin{subfigure}{0.5\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame026.pdf}
 			\caption*{Gráfica de $u(x,t=0.664\unit{\second})$}
 			\label{fig:b1ddf2}
 		\end{subfigure}\par
-		\begin{subfigure}{0.5\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame037.pdf}
 			\caption*{Gráfica de $u(x,t=0.945\unit{\second})$}
 			\label{fig:b1ddf3}
 		\end{subfigure}\hfill
-		\begin{subfigure}{0.5\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame040.pdf}
 			\caption*{Gráfica de $u(x,t=1.021\unit{\second})$}
 			\label{fig:b1ddf4}
 		\end{subfigure}\par
-		\begin{subfigure}{0.5\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame044.pdf}
 			\caption*{Gráfica de $u(x,t=1.123\unit{\second})$}
 			\label{fig:b1ddf5}
 		\end{subfigure}\hfill
-		\begin{subfigure}{0.5\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{../burgers1DDF/results/frame045.pdf}
 			\caption*{Gráfica de $u(x,t=1.149\unit{\second})$}
@@ -307,7 +307,7 @@
 	\label{sec:discusion}
 	La ecuación de Burgers resuelta con el método de diferencias finitas mostró algunas irregularidades, principalmente la pérdida de continuidad en varias partes de la solución a partir del segundo $1.021$ de la simulación. Este fenómeno es causado gracias al efecto de \textbf{onda de choque}  (o \textbf{shockwave} en inglés) que la ecuación de Burgers presenta. Una onda de choque se define como una discontinuidad en la velocidad de propagación de una onda y dado que la ecuación de Burgers representa la velocidad del fluido modelado, la discontinuidad se manifiesta en la función solución de la ecuación.
 	
-	Para explicar el fenómeno de onda de choque que se produce en la ec. de Burgers se puede utilizar el \textbf{método de características} para la resolución de la ecuación misma. El método de características consiste en transformar el dominio de la ecuación tal que, en éste, la ecuación diferencial parcial se pueda escribir como un sistema de ecuaciones diferenciales ordinarias, llamadas \textbf{ecuaciones características}. Las curvas del dominio en donde al valuar la ecuación esta se puede escribir como un sistema de ecuaciones diferenciales ordinarias se llaman \textbf{curvas características.}
+	Para explicar el fenómeno de onda de choque que se produce en la ec. de Burgers se puede utilizar el \textbf{método de características} para la resolución de la ecuación misma. El método de características consiste en transformar el dominio de la ecuación tal que, en éste, la ecuación diferencial parcial se pueda escribir como un sistema de ecuaciones diferenciales ordinarias, llamadas \textbf{ecuaciones características}. Las curvas del dominio en donde al valuar la ecuación esta se puede escribir como un sistema de ecuaciones diferenciales ordinarias se llaman \textbf{curvas características.}\\
 	Para encontrar las curvas características de la ec. de Burgers se necesitan resolver las ecuaciones características: 
 	\begin{equation}
 		\dv{x}{t} = u(x,t)
@@ -346,7 +346,7 @@
 	\\
 	La segunda irregularidad presentada por los resultados tiene relación con la forma de la ecuación de Burgers, dado que al investigar sobre la resolución numérica se encontró que la ecuación \ref{eq:burgers1d} no es la adecuada para implementar en métodos numéricos, sino la forma conservativa de la misma:
 	\begin{equation}
-		\pdv{u}{t} + \frac{1}{2}\pdv{u^2}{x} = 0
+		\pdv{u}{t} + \frac{1}{2}\pdv{(u^2)}{x} = 0
 		\label{eq:conservativa}
 	\end{equation}
 	Con esta ecuación se puede obtener la ecuación \ref{eq:burgers1d} utilizando la regla de la cadena, al igual que calculando la derivada material de $u$; pero esta transformación es válida solamente si la ecuación es diferenciable en todo el dominio, lo cual no sucede en la ecuación de Burgers por el efecto de onda de choque previamente explicado. Por esta razón, es recomendable usar la versión conservativa (ecuación \ref{eq:conservativa}) para resolver la ecuación de Burgers.
@@ -356,8 +356,57 @@
 		u_{\text{nueva,}i} = u_{i}\left[ 1 + \frac{\Delta t}{2\Delta x}(u_{i}^{2}-u_{i+1}^{2}) \right]
 		\label{eq:burgers-conserv-discreta}
 	\end{equation}
-	En la figura se muestran cuatro instantes de la solución usando la versión conservativa de la ecuación de Burgers. Se puede notar que en esta solución la onda se propaga mucho más rápido que la onda de la solución de la ecuación de Burgers tradicional, pero también pierde significado físico a causa de la onda de choque. Por tanto el método de diferencias finitas es muy débil para simular la ecuación de Burgers.
-	\clearpage
+	En la figura \ref{fig:instantes-conservativa} se muestran cuatro instantes de la solución usando la versión conservativa de la ecuación de Burgers. Se puede notar que en esta solución la onda se propaga mucho más rápido que la onda de la solución de la ecuación de Burgers tradicional, pero también pierde significado físico a causa de la onda de choque. Por tanto el método de diferencias finitas es muy débil para simular la ecuación de Burgers.
+%	\begin{figure}[ht]
+%	
+%		\centering
+%		\includegraphics[width=0.4\textwidth]{../burgers1DDF/resultados-conservativa/frame000.pdf}\hfill
+%		\caption*{Gráfica de $u(x,t=0.0\unit{\second})$}
+%		\label{fig:burgcons1}
+%		
+%		\includegraphics[width=0.4\textwidth]{../burgers1DDF/resultados-conservativa/frame016.pdf}\par
+%		\caption*{Gráfica de $u(x,t=0.08\unit{\second})$}
+%		\label{fig:burgcons2}
+%		
+%		\includegraphics[width=0.4\textwidth]{../burgers1DDF/resultados-conservativa/frame032.pdf}\hfill
+%		\caption*{Gráfica de $u(x,t=0.016\unit{\second})$}
+%		\label{fig:burgcons3}
+%		
+%		\includegraphics[width=0.4\textwidth]{../burgers1DDF/resultados-conservativa/frame047.pdf}
+%		\caption*{Gráfica de $u(x,t=0.0235\unit{\second})$}
+%		\label{fig:burgcons4}
+%		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers en su versión conservativa, con diferencias finitas.}
+%		\label{fig:instantes-conservativa}
+%	\end{figure}
+	\begin{figure}[ht]
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DDF/resultados-conservativa/frame000.pdf}
+			\caption*{Gráfica de $u(x,t=0.0\unit{\second})$}
+			\label{fig:image1}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DDF/resultados-conservativa/frame016.pdf}
+			\caption*{Gráfica de $u(x,t=0.08\unit{\second})$}
+			\label{fig:image2}
+		\end{subfigure}
+		\par\medskip
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DDF/resultados-conservativa/frame032.pdf}
+			\caption*{Gráfica de $u(x,t=0.016\unit{\second})$}
+			\label{fig:image3}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DDF/resultados-conservativa/frame047.pdf}
+			\caption*{Gráfica de $u(x,t=0.0235\unit{\second})$}
+			\label{fig:image4}
+		\end{subfigure}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers en su versión conservativa, con diferencias finitas.}
+		\label{fig:four_images}
+	\end{figure}
+	
 	\section{Método de volúmenes finitos}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
