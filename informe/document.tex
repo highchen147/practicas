@@ -153,7 +153,7 @@
 	
 	\subsection{Ecuación de Burgers no viscosa, en una dimensión}
 	\subsubsection{Descripción del problema}
-	La ecuación de Burgers no viscosa en una dimensión espacial es una ecuación diferencial parcial de primer orden que expresa la evolución temporal de la cantidad $u = u(x,t)$, la cual puede ser interpretada como la componente en $x$ de la \textbf{velocidad} de un fluido o gas. La ecuación tiene la siguiente forma:
+	La ecuación de Burgers no viscosa en una dimensión espacial es una ecuación diferencial parcial de primer orden que expresa la evolución temporal de la cantidad $u = u(x,t)$, la cual se interpreta como la componente en $x$ de la \textbf{velocidad} de un fluido o gas. La ecuación tiene la siguiente forma:
 	\begin{equation}
 		\pdv{u}{t}+u\pdv{u}{x}=0
 		\label{eq:burgers1d}
@@ -211,7 +211,7 @@
 	keywordstyle=\color{blue}]{../burgers1DDF/burgers1DDF.cpp}
 		
 	
-	Para discretizar el dominio temporal se tomó \texttt{t\_total} como la variable que almacena el tiempo total a simular y \texttt{dt} como el tamaño de paso temporal; por tanto, el número de iteraciones necesarias para simular el tiempo completo se obtiene dividiendo \texttt{t\_total} entre \texttt{dt}. Sin embargo, puede que el resultado de esta división no sea un número entero, por lo que se le aplicó la función \texttt{floor()} para garantizarlo. La variable \texttt{num\_outs} es un número entero que indica cuántos instantes temporales serán impresos en el archivo de datos; esta cantidad es importante ya que la velocidad de simulación depende de qué tantas veces se imprimen los datos. Las variables de tipo \texttt{const} pueden ser cambiadas a voluntad del usuario, siempre y cuando el cambio sea efectuado en la declaración de las mismas.
+	Para discretizar el dominio temporal se tomó \texttt{t\_total} como la variable que almacena el tiempo total a simular y \texttt{dt} como el tamaño de paso temporal. Por tanto, el número de iteraciones necesarias para simular el tiempo completo se obtiene dividiendo \texttt{t\_total} entre \texttt{dt}. Sin embargo, puede que el resultado de esta división no sea un número entero, por lo que se le aplica la función \texttt{floor()} para garantizarlo. La variable \texttt{num\_outs} es un número entero que indica cuántos instantes temporales serán impresos en el archivo de datos; esta cantidad es importante ya que la velocidad de simulación depende de qué tantas veces se imprimen los datos. Las variables de tipo \texttt{const} pueden ser cambiadas a voluntad del usuario, siempre y cuando el cambio sea efectuado en la declaración de las mismas.
 	
 	\lstinputlisting[title = Valores de los parámetros para discretización del dominio temporal, language = C++, 
 	firstline=19, 
