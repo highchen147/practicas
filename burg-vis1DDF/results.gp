@@ -1,4 +1,4 @@
-set terminal latex
+set terminal pdf
 set xrange[0:100]
 set yrange[-1:7]
 set xlabel "x (m)"
@@ -12,9 +12,9 @@ print dt
 instantes = "0 16 30 50 90 190"
 do for [n in instantes] {
 i = real(n)
-set output sprintf("results/frame%03d.tex", i)
+set output sprintf("results/frame%03d.pdf", i)
 set title sprintf("t = %0.3f s", i*dt)
-plot 'sol-burg-vis1DDF-nu-1.60.dat' index i u 2:3 w l title "$\\nu = 1.60$", 'sol-burg-vis1DDF-nu-3.00.dat' index i u 2:3 w l title "$\\nu = 3.00$", 'sol-burg-vis1DDF-nu-6.00.dat' index i u 2:3 w l title "$\\nu = 6.00$"
+plot 'sol-burg-vis1DDF-nu-1.60.dat' index i u 2:3 w l title "nu = 1.60", 'sol-burg-vis1DDF-nu-3.00.dat' index i u 2:3 w l title "nu = 3.00", 'sol-burg-vis1DDF-nu-6.00.dat' index i u 2:3 w l title "nu = 6.00"
 # pause 0.02
 # pause -1
 print i
