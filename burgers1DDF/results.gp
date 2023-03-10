@@ -1,4 +1,5 @@
-set term pngcairo size 800,600 enhanced font "Verdana,12"
+# set term pngcairo size 800,600 enhanced font "Verdana,12"
+set term pdf
 unset key
 set xrange[0:100]
 set yrange[-1:7]
