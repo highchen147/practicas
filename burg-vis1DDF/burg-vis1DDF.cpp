@@ -81,7 +81,7 @@ int main()
     // Se imprimen los datos correspondientes al tiempo inicial de la simulación
  
         salida(outfile, u, x, tiempo, Nx);
-        // num_outs += 1;
+        
         
         
     // Comienza a correr el tiempo antes de entrar al ciclo principal
@@ -92,9 +92,6 @@ int main()
     {
         for (int i = 1; i < Nx-1; i++)
         {
-            // u_nueva[i] = u[i]*(1 + (dt/dx)*(u[i]-u[i+1]))
-            // + nu*(dt/dx)*(u[i+1]-2*u[i]+u[i-1])/dx;
-
             u_nueva[i] = u[i]*(1 + 0.5*(dt/dx)*(pow(u[i], 2)-pow(u[i+1], 2)))
             + nu*(dt/dx)*(u[i+1]-2*u[i]+u[i-1])/dx;
         }
