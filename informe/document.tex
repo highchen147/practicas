@@ -124,6 +124,7 @@
 	De tal forma que la aproximación de la segunda derivada parcial se puede representar de manera compacta
 	\begin{equation}
 		\pdv{^{2}u}{x^2} \approx \frac{u_{i+1}-2u_{i}+u_{i-1}}{(\Delta x)^{2}}
+		\label{eq:segunda-derivada-discreta}
 	\end{equation}
 	En la figura \ref{fig:discretizacion} se observa la representación gráfica de esta discretización.
 	
@@ -152,6 +153,7 @@
 
 	
 	\subsection{Ecuación de Burgers no viscosa, en una dimensión}
+	\label{sec:burgers1ddf}
 	\subsubsection{Descripción del problema}
 	La ecuación de Burgers no viscosa en una dimensión espacial es una ecuación diferencial parcial de primer orden que expresa la evolución temporal de la cantidad $u = u(x,t)$, la cual se interpreta como la componente en $x$ de la \textbf{velocidad} de un fluido o gas. La ecuación tiene la siguiente forma:
 	\begin{equation}
@@ -353,31 +355,11 @@
 	
 	Se utilizó esta versión de la ecuación en una simulación usando la discretización siguiente:
 	\begin{equation}
-		u_{\text{nueva,}i} = u_{i}\left[ 1 + \frac{\Delta t}{2\Delta x}(u_{i}^{2}-u_{i+1}^{2}) \right]
+		u_{\text{nueva,}i} = u_{i} + \frac{\Delta t}{2\Delta x}(u_{i}^{2}-u_{i+1}^{2}) 
 		\label{eq:burgers-conserv-discreta}
 	\end{equation}
-	En la figura \ref{fig:instantes-conservativa} se muestran cuatro instantes de la solución usando la versión conservativa de la ecuación de Burgers. Se puede notar que en esta solución la onda se propaga mucho más rápido que la onda de la solución de la ecuación de Burgers tradicional, pero también pierde significado físico a causa de la onda de choque. Por tanto el método de diferencias finitas es muy débil para simular la ecuación de Burgers.
-%	\begin{figure}[ht]
-%	
-%		\centering
-%		\includegraphics[width=0.4\textwidth]{../burgers1DDF/resultados-conservativa/frame000.pdf}\hfill
-%		\caption*{Gráfica de $u(x,t=0.0\unit{\second})$}
-%		\label{fig:burgcons1}
-%		
-%		\includegraphics[width=0.4\textwidth]{../burgers1DDF/resultados-conservativa/frame016.pdf}\par
-%		\caption*{Gráfica de $u(x,t=0.08\unit{\second})$}
-%		\label{fig:burgcons2}
-%		
-%		\includegraphics[width=0.4\textwidth]{../burgers1DDF/resultados-conservativa/frame032.pdf}\hfill
-%		\caption*{Gráfica de $u(x,t=0.016\unit{\second})$}
-%		\label{fig:burgcons3}
-%		
-%		\includegraphics[width=0.4\textwidth]{../burgers1DDF/resultados-conservativa/frame047.pdf}
-%		\caption*{Gráfica de $u(x,t=0.0235\unit{\second})$}
-%		\label{fig:burgcons4}
-%		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers en su versión conservativa, con diferencias finitas.}
-%		\label{fig:instantes-conservativa}
-%	\end{figure}
+	En la figura \ref{fig:instantes-conservativa} se muestran cuatro instantes de la solución usando la versión conservativa de la ecuación de Burgers. Se puede notar que en esta solución la onda se propaga mucho más rápido que la onda de la solución de la ecuación de Burgers tradicional, pero también pierde significado físico a causa de la onda de choque. Por tanto el método de diferencias finitas es muy débil para simular la ecuación de Burgers no viscosa.
+
 	\begin{figure}[ht]
 		\centering
 		\begin{subfigure}[b]{0.4\textwidth}
@@ -404,11 +386,64 @@
 			\label{fig:image4}
 		\end{subfigure}
 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers en su versión conservativa, con diferencias finitas.}
-		\label{fig:four_images}
+		\label{fig:instantes-conservativa}
 	\end{figure}
+	
+	\newpage
 	\subsection{Ecuación de Burgers viscosa, en una dimensión}
+	\label{sec:burg-vis1ddf}
+	\subsubsection{Descripción del problema}
+	La ecuación de Burgers viscosa es una ecuación diferencial parcial no lineal de \textbf{segundo orden,} que se utiliza para modelar la velocidad de gases o fluidos con viscosidad considerable. La ecuación tiene la siguiente forma:
+	\begin{equation}
+		\pdv{u}{t}+u\pdv{u}{x}=\nu \pdv{^2 u}{x^2}
+		\label{eq:burg-vis}
+	\end{equation}
+	Donde $\nu$ es el coeficiente de viscosidad del medio modelado. Cabe destacar que $\nu$ es el inverso del \textbf{número de Reynolds} $Re$, una cantidad adimensional que sirve para medir la proporción entre fuerzas inerciales y viscosas. 
+
+	En consecuencia de haber obtenido distintos resultados en la sección \ref{sec:burgers1ddf} al utilizar la versión conservativa (\ref{eq:conservativa}) y no conservativa (\ref{eq:burgers1d}) de la ecuación de Burgers no viscosa, para este problema se optó por resolver la versión conservativa con el término de viscosidad incluido.
+	\begin{equation}
+		\pdv{u}{t}+\frac{1}{2}\pdv{(u^2)}{x}=\nu \pdv{^2 u}{x^2}
+		\label{eq:burg-vis-con}
+	\end{equation}
 	
+ 	La ecuación \ref{eq:burg-vis-con} se resolvió en el mismo dominio espacial $I$ y bajo las mismas condiciones iniciales y de frontera que la versión no viscosa de la sección \ref{sec:burgers1ddf}. 
+ 	\begin{equation}
+ 		u(0,0)=0
+ 	\end{equation}
+ 	\begin{equation}
+ 		u(\text{L},0)= 0
+ 	\end{equation}
+	\begin{equation}
+		u(x,0) = A\exp(-b(x-\mu)^{2})
+		\label{eq:condinicial-vis}
+	\end{equation}
+	\\
+	Donde:
+	\begin{itemize}
+		\item $L = 100\unit{\meter}$
+		\item $A=3.5\mpers$
+		\item $b=0.05$
+		\item $\mu=L/2=50\unit{\meter}$
+	\end{itemize}
 	
+	Se resolvieron tres ecuaciones con un coeficiente de viscosidad $\nu$ distinto para cada una: $1.60\unit{m^{2}\per s}$, $3.0\unit{m^{2}\per s}$ y $6.0\unit{m^{2} \per s}$
+	\subsubsection{Aplicación del método y código implementado}
+	Para este problema se utilizó como código base el programa de la solución no viscosa, haciendo algunos cambios; por ejemplo, el del tiempo de simulación total y la impresión de datos.
+	\lstinputlisting[title = Variables generales de la simulación,
+	language = C++,
+	firstline=24,
+	lastline=64,
+	keywordstyle=\color{blue}]{../burg-vis1DDF/burg-vis1DDF.cpp}
+	Como puede notarse en el código presentado, los archivos \texttt{.dat} y \texttt{.gp} están nombrados de acuerdo al coeficiente de viscosidad utilizado en la solución que representan.
+	
+	Se aplicó la discretización de la ecuación \ref{eq:segunda-derivada-discreta} para tratar la derivada de segundo orden de la ecuación de Burgers viscosa. Aplicando las discretizaciones en la ecuación \ref{eq:burg-vis-con} obtenemos:
+	
+	\begin{equation}
+		\frac{u_{\text{nueva},i}-u_{i}}{\Delta t} +  \frac{1}{2} \left(\frac{u^{2}_{i+1}-u^{2}_{i}}{\Delta x}\right)  -  \nu \left( \frac{u_{i+1}-2u_{i}+u_{i-1}}{(\Delta x)^{2}} \right) =0
+	\end{equation}
+	\begin{equation}
+		u_{\text{nueva},i} = u_{i} + \frac{\Delta t}{2 \Delta x} \left( u^{2}_{i}-u^{2}_{i+1} \right)  + \nu \frac{\Delta t}{(\Delta x)^2}\left( u_{i+1}-2u_{i}+u_{i-1} \right) 
+	\end{equation}
 	\section{Método de volúmenes finitos}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
