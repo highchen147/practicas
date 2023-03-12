@@ -17,7 +17,7 @@ void salida(ofstream &of, double *u, double *x, double t, int N);
 int main()
 {
     // Parámetros temporales
-    const double t_total = 0.24; // Tiempo total en segundos
+    const double t_total = 1.2; // Tiempo total en segundos
     const double dt = 0.000001; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
     const int num_outs = 48; // Número de gráficas de instantes temporales
@@ -36,7 +36,7 @@ int main()
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
     outfile.open("sol-burgers1DCON.dat", ios::out );
-    gplotmain.open("burgers1DDFCON.gp", ios::out);
+    gplotmain.open("grafica-burgers1DDFCON.gp", ios::out);
 
     // Arreglos
     // Función de velocidad en el tiempo actual: u{x, t} = u_i
@@ -72,7 +72,7 @@ int main()
     {
         for (int i = 1; i < Nx-1; i++)
         {
-            u_nueva[i] = u[i]*(1 + 0.5*(dt/dx)*(pow(u[i], 2)-pow(u[i+1], 2)));
+            u_nueva[i] = u[i] + 0.5*(dt/dx)*(pow(u[i], 2)-pow(u[i+1], 2));
         }
         
         // Condiciones de frontera
