@@ -21,14 +21,18 @@ void salida(ofstream &of, double *u, double *x, double t, int N);
 int main()
 {
     // Parámetros temporales
-    const double t_total = 8;         // Tiempo total en segundos
-    const double dt = 0.001;            // Tamaño de paso temporal
-    int Niter = floor(t_total/dt);      // Número total de iteraciones
-    const int num_outs = 400;            // Número de gráficas de instantes temporales
-    int out_cada = floor(Niter / num_outs);                  // Cada out_cada veces se imprimen los valores
-    
-
-    double tiempo = 0.0;                // Variable que almacena el tiempo en la simulación
+    // Tiempo total en segundos
+    const double t_total = 8;
+    // Tamaño de paso temporal
+    const double dt = 0.001;
+    // Número total de iteraciones
+    int Niter = floor(t_total/dt);
+    // Número de gráficas de instantes temporales
+    const int num_outs = 400;
+    // Cada out_cada veces se imprimen los valores
+    int out_cada = floor(Niter / num_outs);
+    // Variable de tiempo en la simulación
+    double tiempo = 0.0;
 
     // Parámetros espaciales
     int Nx = 500;                       // Número de puntos en el eje x
@@ -36,10 +40,14 @@ int main()
     double dx = L/(Nx-1);               // Tamaño de paso en el eje x
 
     // Arreglos y constantes
-    const double nu = 3;                // Parámetro de viscosidad
-    double *u = new double[Nx];         // Función de velocidad en el tiempo actual: u{x, t}
-    double *u_nueva = new double[Nx];   // Función de velocidad en el tiempo dt después u{x, t+dt}
-    double *x = new double[Nx];         // Función de distancia sobre el eje x
+    // Parámetro de viscosidad
+    const double nu = 3;
+    // Función de velocidad en el tiempo actual: u{x, t}
+    double *u = new double[Nx];
+    // Función de velocidad en el tiempo dt después u{x, t+dt}
+    double *u_nueva = new double[Nx];
+    // Función de distancia sobre el eje x
+    double *x = new double[Nx];
 
     // Variables y archivos de salida
     // Archivo donde se guarda la función solución u
