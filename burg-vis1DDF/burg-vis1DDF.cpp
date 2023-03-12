@@ -108,10 +108,7 @@ int main()
         
         // Se imprime la solución de la iteración
         if (j % out_cada == 0)
-        
             salida(outfile, u, x, tiempo, Nx);
-
-
         // Actualizamos el tiempo
         tiempo += dt;        
     }
