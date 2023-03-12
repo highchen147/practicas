@@ -35,9 +35,9 @@ int main()
     double tiempo = 0.0;
 
     // Parámetros espaciales
-    int Nx = 500;                       // Número de puntos en el eje x
-    double L = 100.0;                   // Largo del dominio en metros
-    double dx = L/(Nx-1);               // Tamaño de paso en el eje x
+    int Nx = 500;       // Número de puntos en el eje x
+    double L = 100.0;   // Largo del dominio en metros
+    double dx = L/(Nx-1);   // Tamaño de paso en el eje x
 
     // Arreglos y constantes
     // Parámetro de viscosidad
