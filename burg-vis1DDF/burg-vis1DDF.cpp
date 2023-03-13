@@ -41,7 +41,7 @@ int main()
 
     // Arreglos y constantes
     // Parámetro de viscosidad
-    const double nu = 0.3;
+    const double nu = 0.5;
     // Función de velocidad en el tiempo actual: u{x, t}
     double *u = new double[Nx];
     // Función de velocidad en el tiempo dt después u{x, t+dt}
