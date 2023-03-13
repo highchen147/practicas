@@ -14,7 +14,7 @@ do for [n in instantes] {
 i = real(n)
 set output sprintf("results/frame%03d.pdf", i)
 set title sprintf("t = %0.3f s", i*dt)
-plot 'sol-burg-vis1DDF-nu-1.60.dat' index i u 2:3 w l title "nu = 1.60", 'sol-burg-vis1DDF-nu-3.00.dat' index i u 2:3 w l title "nu = 3.00", 'sol-burg-vis1DDF-nu-6.00.dat' index i u 2:3 w l title "nu = 6.00"
+plot 'sol-burg-vis1DDF-nu-0.50.dat' index i u 2:3 w l title "nu = 0.50", 'sol-burg-vis1DDF-nu-1.60.dat' index i u 2:3 w l title "nu = 1.60", 'sol-burg-vis1DDF-nu-3.00.dat' index i u 2:3 w l title "nu = 3.00"
 # pause 0.02
 # pause -1
 print i
