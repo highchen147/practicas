@@ -4,7 +4,7 @@ set xrange[0:100]
 set yrange[-1:7]
 set xlabel "x (m)"
 set ylabel "u (m/s)"
-
+unset key
 
 instantes = "0 67 82 107"
 dt = 0.02
