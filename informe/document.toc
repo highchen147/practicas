@@ -9,6 +9,7 @@
 \contentsline {subsubsection}{\numberline {1.2.1}Descripción del problema}{11}{subsubsection.1.2.1}%
 \contentsline {subsubsection}{\numberline {1.2.2}Aplicación del método y código implementado}{12}{subsubsection.1.2.2}%
 \contentsline {subsubsection}{\numberline {1.2.3}Resultados}{14}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Discusión de resultados}{15}{subsubsection.1.2.4}%
 \contentsline {section}{\numberline {2}Método de volúmenes finitos}{15}{section.2}%
 \contentsline {section}{\numberline {3}Método de elementos finitos}{15}{section.3}%
 \contentsline {section}{\numberline {4}Conclusiones}{15}{section.4}%
