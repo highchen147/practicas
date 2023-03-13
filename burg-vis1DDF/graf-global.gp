@@ -1,4 +1,6 @@
 # Animación de evolución temporal de Burgers viscosa
+set xlabel "x (m)"
+set ylabel "u (m/s)"
 set xrange[0:100]
 set yrange[-1:7]
 
