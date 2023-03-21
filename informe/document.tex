@@ -426,7 +426,7 @@
 		\item $\mu=L/2=50\unit{\meter}$
 	\end{itemize}
 	
-	Se resolvieron tres ecuaciones con un coeficiente de viscosidad $\nu$ distinto para cada una: $1.60\unit{m^{2}\per s}$, $3.0\unit{m^{2}\per s}$ y $6.0\unit{m^{2} \per s}$
+	Se resolvieron tres ecuaciones con un coeficiente de viscosidad $\nu$ distinto para cada una:$0.50\unit{m^{2}\per s}$, $1.60\unit{m^{2}\per s}$ y $3.0\unit{m^{2}\per s}$.
 	\subsubsection{Aplicación del método y código implementado}
 	Para este problema se utilizó como código base el programa de la solución no viscosa, haciendo algunos cambios; por ejemplo, el del tiempo de simulación total y la impresión de datos.
 	\lstinputlisting[title = Variables generales de la simulación,
@@ -444,6 +444,62 @@
 	\begin{equation}
 		u_{\text{nueva},i} = u_{i} + \frac{\Delta t}{2 \Delta x} \left( u^{2}_{i}-u^{2}_{i+1} \right)  + \nu \frac{\Delta t}{(\Delta x)^2}\left( u_{i+1}-2u_{i}+u_{i-1} \right) 
 	\end{equation}
+	A continuación se muestra el ciclo principal de integración numérica de la ecuación de Burgers viscosa
+	
+	\lstinputlisting[title = Ciclo principal de integración,
+	language = C++,
+	firstline = 91,
+	lastline = 114,
+	keywordstyle = \color{blue}]{../burg-vis1DDF/burg-vis1DDF.cpp}
+	
+	\subsubsection{Resultados}
+	Se graficaron las tres soluciones obtenidas con los diferentes coeficientes de viscosidad considerados \footnote{En la viñeta de cada gráfica, $\nu$ esta escrito como \textbf{nu}}. Se muestran en la figura \ref{fig:instantesvis1DDF} las gráficas para seis instantes de tiempo en orden ascendente. La animación completa de la simulación está disponible en el siguiente \href{https://github.com/highchen147/practicas/blob/main/burg-vis1DDF/results/simulacion.mp4}{enlace.}
+	
+	\begin{figure}[ht]
+		\centering
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frame000.pdf}
+			\caption*{Gráficas para $t=0.00\unit{\second}$}
+			\label{fig:vis1ddf1}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frame016.pdf}
+			\caption*{Gráficas para $t=0.032\unit{\second}$}
+			\label{fig:vis1ddf2}
+		\end{subfigure}\par
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frame030.pdf}
+			\caption*{Gráfica de $u(x,t=0.32\unit{\second})$}
+			\label{fig:vis1ddf3}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frame050.pdf}
+			\caption*{Gráfica de $u(x,t=1.0\unit{\second})$}
+			\label{fig:vis1ddf4}
+		\end{subfigure}\par
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frame090.pdf}
+			\caption*{Gráfica de $u(x,t=1.8\unit{\second})$}
+			\label{fig:vis1ddf5}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frame190.pdf}
+			\caption*{Gráfica de $u(x,t=3.8\unit{\second})$}
+			\label{fig:vis1ddf6}
+		\end{subfigure}
+		\caption{Seis instantes de tiempo de la evolución temporal de tres versiones de la ecuación de Burgers viscosa para diferentes coeficientes de viscosidad, con diferencias finitas.}
+		\label{fig:instantesvis1DDF}
+	\end{figure}
+	\subsubsection{Discusión de resultados}
+	La solución numérica de la ecuación de Burgers viscosa proporciona una comprensión más coherente de la evolución temporal de la velocidad de un fluido modelado en comparación con la ecuación de Burgers no viscosa. Esto se debe a que la solución numérica no presenta irregularidades considerables o efectos que hagan perder el significado físico del sistema. Según lo investigado, los métodos más frecuentes utilizados para resolver la ecuación de Burgers suelen incluir un término viscoso para calibrar y afinar la solución que se desea analizar. Esto es lógico, ya que en la dinámica de un gas o fluido real siempre estará presente algún nivel de viscosidad.
+	
+	Al resolver este problema se consideraron varios valores para el coeficiente de viscosidad $\nu$, como se puede ver en la figura \ref{fig:instantesvis1DDF}. Cabe destacar que $\nu = 0.5$ fue el valor mínimo que este pudo tener sin que la solución perdiera significado físico. Por lo tanto, el método de diferencias finitas está limitado a resolver la ecuación viscosa de Burgers con $\nu > 0.5$; no obstante, el método es mucho más útil al resolver la versión viscosa que la versión no viscosa de la ecuación de Burgers, ya que hay soluciones sin error numérico considerable. En la figura \ref{label} se pueden observar cuatro instantes de tiempo de la solución de la ecuación viscosa con $\nu = 0.3$ utilizando diferencias finitas.
 	\section{Método de volúmenes finitos}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
