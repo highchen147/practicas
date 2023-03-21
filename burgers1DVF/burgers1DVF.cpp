@@ -12,6 +12,7 @@ using namespace std;
 
 // Declaración de funciones
 double f_cond_inicial(double x);
+double step_func(double x);
 void salida(ofstream &of, double *u, double *x, double t, int N);
 double u_prima(double u, double v);
 double Flujo(double u, double v);
@@ -56,11 +57,13 @@ int main()
     // Aplicar condición inicial a u
     for (int i = 0; i < Nx; i++)
     {
-        u[i] = f_cond_inicial(x[i]);
+        u[i] = step_func(x[i]);
     }
     // Condiciones de frontera
-    u[0] = 0.0;
-    u[Nx-1] = 0.0;
+    double u_0 = 5.0;
+    double u_L = 0.0;
+    u[0] = u_0;
+    u[Nx-1] = u_L;
 
     // Se imprimen los datos correspondientes al tiempo inicial
     // de la simulación
@@ -79,8 +82,8 @@ int main()
         }
         
         // Condiciones de frontera
-        u_nueva[0] = 0.0;
-        u_nueva[Nx-1] = 0.0;
+        u_nueva[0] = u_0;
+        u_nueva[Nx-1] = u_L;
 
         // Actualizar u
         for (int i = 0; i < Nx; i++)
@@ -104,6 +107,8 @@ int main()
     gplotmain << "# Animación de evolución temporal de Burgers1DV F" << endl;
     gplotmain << "set xrange[0:" << L << "]" << endl;
     gplotmain << "set yrange[-1:7]" << endl;
+    gplotmain << "print 'Presione Enter'" << endl;
+    gplotmain << "pause -1" << endl;
     gplotmain << endl;
     gplotmain << "do for [i=0:" << num_outs - 1 << "] {" << endl;
     gplotmain << "plot 'sol-burgers1DVFG.dat' index i u 2:3 w l" << endl;
@@ -119,6 +124,20 @@ double f_cond_inicial(double x)
     double mu = 50;
     double A = 3.5;
     return A*exp(-b*pow(x - mu,2));
+}
+
+double step_func(double x)
+{
+    double L = 100;
+    if (x < L/2)
+    {
+        return 5.0;        
+    }
+    else
+    {
+        return 0.0;
+    }
+    
 }
 
 void salida(ofstream &of, double *u, double *x, double t, int N)
