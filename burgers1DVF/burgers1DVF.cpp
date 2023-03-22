@@ -13,6 +13,7 @@ using namespace std;
 // Declaración de funciones
 double f_cond_inicial(double x);
 double step_func(double x);
+double gauss_impar(double x);
 void salida(ofstream &of, double *u, double *x, double t, int N);
 double u_prima(double u, double v);
 double Flujo(double u, double v);
@@ -20,10 +21,10 @@ double Flujo(double u, double v);
 int main()
 {
     // Parámetros temporales
-    const double t_total = 8; // Tiempo total en segundos
-    const double dt = 0.001; // Tamaño de paso temporal en segundos
+    const double t_total = 80; // Tiempo total en segundos
+    const double dt = 0.01; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 200; // Número de gráficas de instantes temporales
+    const int num_outs = 500; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
@@ -38,8 +39,14 @@ int main()
     ofstream outfile; // Archivo donde se guarda la función solución u
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
-    outfile.open("sol-burgers1DVFG.dat", ios::out );
-    gplotmain.open("grafica-burgers1DVFG.gp", ios::out);
+    // Nombres de los archivos de datos y de gráficas
+    const char *nombre = "gaussiana";
+    char name_datafile[20];
+    char name_gplotmain[30];
+    sprintf(name_datafile, "%s.dat", nombre);
+    sprintf(name_gplotmain, "grafica-%s.gp", nombre);
+    outfile.open(name_datafile, ios::out );
+    gplotmain.open(name_gplotmain, ios::out);
 
     // Arreglos
     // Función de velocidad en el tiempo actual: u{x, t} = u_i
@@ -57,10 +64,10 @@ int main()
     // Aplicar condición inicial a u
     for (int i = 0; i < Nx; i++)
     {
-        u[i] = step_func(x[i]);
+        u[i] = f_cond_inicial(x[i]);
     }
     // Condiciones de frontera
-    double u_0 = 5.0;
+    double u_0 = 0.0;
     double u_L = 0.0;
     u[0] = u_0;
     u[Nx-1] = u_L;
@@ -111,7 +118,7 @@ int main()
     gplotmain << "pause -1" << endl;
     gplotmain << endl;
     gplotmain << "do for [i=0:" << num_outs - 1 << "] {" << endl;
-    gplotmain << "plot 'sol-burgers1DVFG.dat' index i u 2:3 w l" << endl;
+    gplotmain << "plot '" << name_datafile << "' index i u 2:3 w l" << endl;
     gplotmain << "pause 0.05" << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
@@ -120,7 +127,7 @@ int main()
 
 double f_cond_inicial(double x)
 {
-    double b = 0.05;
+    double b = 0.03;
     double mu = 50;
     double A = 3.5;
     return A*exp(-b*pow(x - mu,2));
@@ -137,7 +144,13 @@ double step_func(double x)
     {
         return 0.0;
     }
-    
+}
+
+double gauss_impar(double x)
+{
+    double a = 0.4;
+    double L = 100;
+    return a*(x-L/2)*f_cond_inicial(x);
 }
 
 void salida(ofstream &of, double *u, double *x, double t, int N)
