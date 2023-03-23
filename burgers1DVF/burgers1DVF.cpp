@@ -5,6 +5,7 @@
 // 
 // 
 #include <iostream>
+#include <cstring>
 #include <cmath>
 #include <iomanip>
 #include <fstream>
@@ -15,16 +16,18 @@ double f_cond_inicial(double x);
 double step_func(double x);
 double gauss_impar(double x);
 void salida(ofstream &of, double *u, double *x, double t, int N);
+void cond_frontera_periodica(double *u, double *u_nueva, int N, 
+                             double dt, double dx);
 double u_prima(double u, double v);
 double Flujo(double u, double v);
 
 int main()
 {
     // Parámetros temporales
-    const double t_total = 80; // Tiempo total en segundos
+    const double t_total = 100; // Tiempo total en segundos
     const double dt = 0.01; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 500; // Número de gráficas de instantes temporales
+    const int num_outs = 1000; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
@@ -40,9 +43,9 @@ int main()
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
     // Nombres de los archivos de datos y de gráficas
-    const char *nombre = "gaussiana";
-    char name_datafile[20];
-    char name_gplotmain[30];
+    const char *nombre = "periodica-gaussiana";
+    char name_datafile[strlen(nombre) + 4];
+    char name_gplotmain[strlen(nombre) + 11];
     sprintf(name_datafile, "%s.dat", nombre);
     sprintf(name_gplotmain, "grafica-%s.gp", nombre);
     outfile.open(name_datafile, ios::out );
@@ -67,10 +70,10 @@ int main()
         u[i] = f_cond_inicial(x[i]);
     }
     // Condiciones de frontera
-    double u_0 = 0.0;
-    double u_L = 0.0;
-    u[0] = u_0;
-    u[Nx-1] = u_L;
+    // double u_0 = 0.0;
+    // double u_L = 0.0;
+    // u[0] = u_0;
+    // u[Nx-1] = u_L;
 
     // Se imprimen los datos correspondientes al tiempo inicial
     // de la simulación
@@ -89,8 +92,7 @@ int main()
         }
         
         // Condiciones de frontera
-        u_nueva[0] = u_0;
-        u_nueva[Nx-1] = u_L;
+        cond_frontera_periodica(u, u_nueva, Nx, dt, dx);
 
         // Actualizar u
         for (int i = 0; i < Nx; i++)
@@ -119,10 +121,30 @@ int main()
     gplotmain << endl;
     gplotmain << "do for [i=0:" << num_outs - 1 << "] {" << endl;
     gplotmain << "plot '" << name_datafile << "' index i u 2:3 w l" << endl;
-    gplotmain << "pause 0.05" << endl;
+    gplotmain << "pause " << dt*out_cada << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
   
+}
+
+/**
+ * @brief Aplica condiciones de frontera a la función u pasada como puntero
+ * 
+ * @param u Puntero al arreglo con los valores que toma la función u
+ * @param u_nueva Puntero al arreglo con los valores de la función u 
+ * en un instante dt después
+ * @param N Tamaño del arreglo u
+ * @param dt Tamaño de paso en t
+ * @param dx Tamaño de paso en x
+ */
+void cond_frontera_periodica(double *u, double *u_nueva, int N, 
+                             double dt, double dx)
+{
+    u_nueva[0] = u[0] -(dt/dx)*
+            (Flujo(u[0], u[1])-Flujo(u[N-1], u[0]));
+
+    u_nueva[N-1] = u[N-1] -(dt/dx)*
+            (Flujo(u[N-1], u[0])-Flujo(u[N-2], u[N-1]));
 }
 
 double f_cond_inicial(double x)
@@ -153,6 +175,16 @@ double gauss_impar(double x)
     return a*(x-L/2)*f_cond_inicial(x);
 }
 
+/**
+ * @brief Envía los datos de la función u correspondientes a un instante
+ * de tiempo
+ * 
+ * @param of Archivo de datos
+ * @param u Puntero al arreglo que contiene los valores que toma u
+ * @param x Puntero al arreglo del dominio espacial
+ * @param t Instante temporal en cuestión
+ * @param N Tamaño de los arreglos u y x
+ */
 void salida(ofstream &of, double *u, double *x, double t, int N)
 {
     for (int i = 0; i < N; i++)
@@ -162,6 +194,13 @@ void salida(ofstream &of, double *u, double *x, double t, int N)
     of << endl << endl;
 }
 
+/**
+ * @brief Retorna la velocidad adecuada según el marco de Gudonov
+ * 
+ * @param u Velocidad a la izquierda de la interfaz
+ * @param v Velocidad a la derecha de la interfaz
+ * @return double: Velocidad a tomar en cuenta para el flujo
+ */
 double u_prima(double u, double v)
 {
     if (u >= v)
@@ -188,6 +227,13 @@ double u_prima(double u, double v)
     }
 }
 
+/**
+ * @brief Calcula el flujo según la ec. de Burgers
+ * 
+ * @param u Velocidad a la izquierda de la interfaz
+ * @param v Velocidad a la derecha de la interfaz
+ * @return double: Velocidad a usar, según marco de Gudonov 
+ */
 double Flujo(double u, double v)
 {
     return 0.5*pow(u_prima(u,v), 2);
