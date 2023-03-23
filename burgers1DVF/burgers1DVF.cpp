@@ -43,7 +43,7 @@ int main()
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
     // Nombres de los archivos de datos y de gráficas
-    const char *nombre = "periodica-gaussiana";
+    const char *nombre = "periodica-step";
     char name_datafile[strlen(nombre) + 4];
     char name_gplotmain[strlen(nombre) + 11];
     sprintf(name_datafile, "%s.dat", nombre);
@@ -67,13 +67,8 @@ int main()
     // Aplicar condición inicial a u
     for (int i = 0; i < Nx; i++)
     {
-        u[i] = f_cond_inicial(x[i]);
+        u[i] = step_func(x[i]);
     }
-    // Condiciones de frontera
-    // double u_0 = 0.0;
-    // double u_L = 0.0;
-    // u[0] = u_0;
-    // u[Nx-1] = u_L;
 
     // Se imprimen los datos correspondientes al tiempo inicial
     // de la simulación
@@ -121,7 +116,7 @@ int main()
     gplotmain << endl;
     gplotmain << "do for [i=0:" << num_outs - 1 << "] {" << endl;
     gplotmain << "plot '" << name_datafile << "' index i u 2:3 w l" << endl;
-    gplotmain << "pause " << dt*out_cada << endl;
+    gplotmain << "pause " << 0.02 << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
   
