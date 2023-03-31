@@ -19,15 +19,16 @@ void salida(ofstream &of, double *u, double *x, double t, int N);
 void cond_frontera_periodica(double *u, double *u_nueva, int N, 
                              double dt, double dx);
 double u_prima(double u, double v);
+double uPrime(double u, double v);
 double Flujo(double u, double v);
 
 int main()
 {
     // Parámetros temporales
-    const double t_total = 100; // Tiempo total en segundos
-    const double dt = 0.01; // Tamaño de paso temporal en segundos
+    const double t_total = 10; // Tiempo total en segundos
+    const double dt = 0.001; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 1000; // Número de gráficas de instantes temporales
+    const int num_outs = 400; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
@@ -43,7 +44,7 @@ int main()
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
     // Nombres de los archivos de datos y de gráficas
-    const char *nombre = "periodica-step";
+    const char *nombre = "step-gudonov2";
     char name_datafile[strlen(nombre) + 4];
     char name_gplotmain[strlen(nombre) + 11];
     sprintf(name_datafile, "%s.dat", nombre);
@@ -57,7 +58,10 @@ int main()
     // Función de velocidad en el tiempo dt después u{x, t+dt} = u_i+1
     double *u_nueva = new double[Nx]; 
     // Puntos sobre el eje x
-    double *x = new double[Nx]; 
+    double *x = new double[Nx];
+    // Variables de control
+    double umax = 0;
+    double umin = 0;
 
     // Inicialización de arreglos
     for (int i = 0; i < Nx; i++)
@@ -68,6 +72,9 @@ int main()
     for (int i = 0; i < Nx; i++)
     {
         u[i] = step_func(x[i]);
+        // Encontrar el máximo y mínimo valor de u
+        if (u[i] > umax) umax = u[i];
+        if (u[i] < umin) umin = u[i];
     }
 
     // Se imprimen los datos correspondientes al tiempo inicial
@@ -84,10 +91,16 @@ int main()
         {
             u_nueva[i] = u[i] -(dt/dx)*
             (Flujo(u[i], u[i+1])-Flujo(u[i-1], u[i]));
+            
+            if (u_nueva[i] > umax) umax = u_nueva[i];
+            if (u_nueva[i] < umin) umin = u_nueva[i];
         }
         
+        
         // Condiciones de frontera
-        cond_frontera_periodica(u, u_nueva, Nx, dt, dx);
+        // cond_frontera_periodica(u, u_nueva, Nx, dt, dx);
+        u_nueva[0] = 0.0;
+        u_nueva[Nx-1] = 0.0;
 
         // Actualizar u
         for (int i = 0; i < Nx; i++)
@@ -105,12 +118,15 @@ int main()
         // Actualizamos el tiempo
         tiempo += dt;        
     }
-    
+    // Parámetros de ploteo
+    double margen = 0.25;
+    double ymax = umax + (umax-umin)*margen;
+    double ymin = umin - (umax-umin)*margen;
     // Se escribe el archivo .gp para generar la solución de
     // la evolución temporal
-    gplotmain << "# Animación de evolución temporal de Burgers1DV F" << endl;
+    gplotmain << "# Animación de evolución temporal de Burgers1DVF" << endl;
     gplotmain << "set xrange[0:" << L << "]" << endl;
-    gplotmain << "set yrange[-1:7]" << endl;
+    gplotmain << "set yrange[" << ymin << ":" << ymax <<"]" << endl;
     gplotmain << "print 'Presione Enter'" << endl;
     gplotmain << "pause -1" << endl;
     gplotmain << endl;
@@ -147,7 +163,7 @@ double f_cond_inicial(double x)
     double b = 0.03;
     double mu = 50;
     double A = 3.5;
-    return A*exp(-b*pow(x - mu,2));
+    return -A*exp(-b*pow(x - mu,2));
 }
 
 double step_func(double x)
@@ -231,5 +247,19 @@ double u_prima(double u, double v)
  */
 double Flujo(double u, double v)
 {
-    return 0.5*pow(u_prima(u,v), 2);
+    return 0.5*pow(uPrime(u,v), 2);
+}
+
+double uPrime(double u, double v)
+{
+    if (u + v > 0)
+    {
+        return u;
+    }
+    else if (u + v < 0)
+    {
+        return v;
+    }else
+        return 0;
+    
 }
