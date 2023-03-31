@@ -497,10 +497,41 @@
 		\label{fig:instantesvis1DDF}
 	\end{figure}
 	\subsubsection{Discusión de resultados}
-	La solución numérica de la ecuación de Burgers viscosa proporciona una comprensión más coherente de la evolución temporal de la velocidad de un fluido modelado en comparación con la ecuación de Burgers no viscosa. Esto se debe a que la solución numérica no presenta irregularidades considerables o efectos que hagan perder el significado físico del sistema. Según lo investigado, los métodos más frecuentes utilizados para resolver la ecuación de Burgers suelen incluir un término viscoso para calibrar y afinar la solución que se desea analizar. Esto es lógico, ya que en la dinámica de un gas o fluido real siempre estará presente algún nivel de viscosidad.
+	La solución numérica de la ecuación de Burgers viscosa proporciona una comprensión más coherente de la evolución temporal de la velocidad de un fluido modelado en comparación con la ecuación de Burgers no viscosa. Esto se debe a que la solución numérica no presenta irregularidades considerables o efectos que hagan perder el significado físico del sistema. Según lo investigado, los métodos más frecuentemente utilizados para resolver la ecuación de Burgers suelen incluir un término viscoso para calibrar y afinar la solución que se desea analizar. Esto es lógico, ya que en la dinámica de un gas o fluido real siempre estará presente algún nivel de viscosidad.
 	
-	Al resolver este problema se consideraron varios valores para el coeficiente de viscosidad $\nu$, como se puede ver en la figura \ref{fig:instantesvis1DDF}. Cabe destacar que $\nu = 0.5$ fue el valor mínimo que este pudo tener sin que la solución perdiera significado físico. Por lo tanto, el método de diferencias finitas está limitado a resolver la ecuación viscosa de Burgers con $\nu > 0.5$; no obstante, el método es mucho más útil al resolver la versión viscosa que la versión no viscosa de la ecuación de Burgers, ya que hay soluciones sin error numérico considerable. En la figura \ref{label} se pueden observar cuatro instantes de tiempo de la solución de la ecuación viscosa con $\nu = 0.3$ utilizando diferencias finitas.
+	Al resolver este problema se consideraron varios valores para el coeficiente de viscosidad $\nu$, como se puede ver en la figura \ref{fig:instantesvis1DDF}. Cabe destacar que $\nu = 0.5$ fue el valor mínimo que este pudo tener sin que la solución perdiera significado físico. Por lo tanto, el método de diferencias finitas está limitado a resolver la ecuación viscosa de Burgers con $\nu > 0.5$; no obstante, el método es mucho más útil al resolver la versión viscosa que la versión no viscosa de la ecuación de Burgers, ya que hay soluciones que no presentan error numérico considerable. En la figura \ref{fig:instantes-nu0.3} se pueden observar cuatro instantes de tiempo de la solución de la ecuación viscosa con $\nu = 0.3$ utilizando diferencias finitas.
+	
+	\begin{figure}[ht]
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frames0.3/frame000.pdf}
+			\caption*{Gráfica de $u(x,t=0.0\unit{\second})$}
+			\label{fig:vis0.3-1}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frames0.3/frame067.pdf}
+			\caption*{Gráfica de $u(x,t=1.34\unit{\second})$}
+			\label{fig:vis0.3-2}
+		\end{subfigure}
+		\par\medskip
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frames0.3/frame082.pdf}
+			\caption*{Gráfica de $u(x,t=1.64\unit{\second})$}
+			\label{fig:vis0.3-3}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burg-vis1DDF/results/frames0.3/frame107.pdf}
+			\caption*{Gráfica de $u(x,t=2.14\unit{\second})$}
+			\label{fig:vis0.3-4}
+		\end{subfigure}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers con viscosidad igual a $0.3$, resuelta con diferencias finitas.}
+		\label{fig:instantes-nu0.3}
+	\end{figure}
+	
 	\section{Método de volúmenes finitos}
+	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} 
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
