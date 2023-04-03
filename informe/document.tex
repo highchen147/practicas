@@ -565,10 +565,16 @@
 
 	\begin{equation}
 		u_{i}^{n+1} - u_{i}^{n} + \frac{1}{\Delta x}\int_{t_n}^{t_{n+1}}\left[ f(u(x_{i+1} ,t)) - f(u(x_{i},t))\right]\dd{t} = 0 
+
 	\end{equation}
 	Entonces, la integral en $t$ se puede interpretar como el flujo promedio en el intervalo temporal $[t_n,t_{n+1}]$. Esto es:
 	\begin{equation}
 		F_{i}^{n} \approx \frac{1}{\Delta t} \int_{t_n}^{t_{n+1}} f(u(x_i,t)) \dd{t}
+		\label{eq:flujo_promedio}
+	\end{equation}
+	Sustituyendo en la integración de la ecuación:
+	\begin{equation}
+		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F_{i+1}^n - F_{i}^{n}\right] = 0 
 	\end{equation}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
