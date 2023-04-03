@@ -531,7 +531,38 @@
 	\end{figure}
 	
 	\section{Método de volúmenes finitos}
-	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} 
+	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} Este método se especializa en resolver ecuaciones diferenciales escritas en formas conservativas y es capaz de integrarlas aún cuando las soluciones poseen discontinuidades o  en el contexto de las ecuaciones de la mecánica de fluidos, choques (\textit{shocks} en inglés) \cite{LeVeque1998}. El método de volúmenes finitos es aplicable utilizando sub-métodos distintos que consisten en resolver el \textbf{problema de Riemann} en celdas vecinas de una grilla \cite{LeVeque1998}. Se explicará el concepto general del método de volúmenes finitos, el problema de Riemann y el sub-método utilizado.
+	
+	El método de volúmenes finitos tiene como principio básico la reinterpretación de los valores discretizados de la función $u_{i}^{n}$,	dado que en lugar de considerar a estos valores como la aproximación del valor exacto $u(x_{i}, t_{n}) $\footnote{La notación introducida $u_{i}^{n}$ $\approx$ $u(x_{i}, t_{n})$ es tal que, $t_n \equiv t + n \Delta t $ con $n \in \mathbb{N}$} estos se interpretan como el \textbf{valor promedio} de la función $u$ en el intervalo $C_{i} = \left[ x_i, x_{i+1} \right]$. Entonces la discretización de la función consiste en dividir el intervalo $I = [0,L]$ en $N$ intervalos $C_i$, donde $\Delta x = L/N = x_{i+1} - x_i$. De tal manera que, formalmente, el valor promedio de $u_{i}^{n}$ se calcula con una integral en $C_i$:
+	
+	\begin{equation}
+		u_{i}^{n} \approx \frac{1}{\Delta x} \int_{x_i}^{x_{i+1}} u(x,t_n) \dd{x}
+		\label{eq:uiapprox}
+	\end{equation}
+	
+	Ahora, el método toma ventaja de esta nueva interpretación de la discretización cuando se integra la versión conservativa de la ecuación diferencial a resolver, es decir, una ecuación de la forma $\pdv{u}{t} + \pdv{f(u)}{x} = 0$, donde $f(u)$ es la función del flujo de $u$; para la ecuación de Burgers $f(u) = \frac{u^2}{2}$. Entonces, integrando dicha ecuación en ambas variables:
+	
+	\begin{equation}
+		\int_{C_i} \pdv{u}{t} \dd{x} + \int_{C_i} \pdv{f(u)}{x} \dd{x} = 0
+	\end{equation}
+
+	\begin{equation}
+		\int_{C_i} \pdv{u}{t} \dd{x} + f(u(x_{i+1} ,t)) - f(u(x_{i},t)) = 0
+	\end{equation}
+
+	\begin{equation}
+		\int_{t_n}^{t_{n+1}} \int_{C_i} \pdv{u}{t} \dd{x} \dd{t} + \int_{t_n}^{t_{n+1}}\left[ f(u(x_{i+1} ,t)) - f(u(x_{i},t))\right]\dd{t} = 0
+	\end{equation}
+
+	\begin{equation}
+		\int_{C_i} \left[u(x, t_{n+1}) - u(x, t_n)\right] \dd{x} + \int_{t_n}^{t_{n+1}}\left[ f(u(x_{i+1} ,t)) - f(u(x_{i},t))\right]\dd{t} = 0 
+	\end{equation}
+	
+	Esta expresión es totalmente exacta y expresa cómo cambiará el promedio en cada celda después de un instante $\Delta t$
+	\begin{equation}
+		\int_{C_i} \left[u(x, t_{n+1}) - u(x, t_n)\right] \dd{x} + \int_{t_n}^{t_{n+1}}\left[ f(u(x_{i+1} ,t)) - f(u(x_{i},t))\right]\dd{t} = 0 
+	\end{equation}
+
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
