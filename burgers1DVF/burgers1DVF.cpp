@@ -19,8 +19,8 @@ double step_pos(double x);
 double gauss_impar(double x);
 void salida(ofstream &of, double *u, double *x, double t, int N);
 void condicion_frontera(double *u, double *u_nueva, int N, 
-                        double dt, double dx, const string &marco, 
-                        const string &tipo);
+                        double dt, double dx, const string &tipo, 
+                        const string &marco);
 double u_prima(double u, double v);
 double uPrime(double u, double v);
 double Flujo(double u, double v, const string &Marco, double dx, double dt);
@@ -47,13 +47,13 @@ int main()
     // LF: Lex-Friedrichs
     // roe: Roe
     // gudonov: Gudonov
-    string Marco;
+    string marco;
     cout << "Ingrese el marco numérico a utilizar: gudonov, roe o LF" << endl;
-    cin  >> Marco;
+    cin  >> marco;
     cout << endl;
-    while (Marco != "LF" && Marco != "godunov" && Marco != "roe") {
+    while (marco != "LF" && marco != "godunov" && marco != "roe") {
         cout << "Marco numérico inválido. Intente de nuevo con gudonov, roe o LF";
-        cin >> Marco;
+        cin >> marco;
         cout << "\n" << endl;
     }
 
@@ -79,25 +79,25 @@ int main()
     }
 
     // Se almacena el tipo de condiciones de frontera: fija o periódica
-    string frontera;
+    string tipo_frontera;
     cout << "Escriba el tipo de condición de frontera que desea aplicar:" << endl;
     cout << "fija" << endl;
     cout << "periodica" << endl;
-    cin >> frontera;
+    cin >> tipo_frontera;
     cout << "\n" << endl;
-    while (frontera != "fija" && 
-           frontera != "periodica") 
+    while (tipo_frontera != "fija" && 
+           tipo_frontera != "periodica") 
     {
         cout << "Condición inválida. Intente de nuevo con:" << endl;
         cout << "fija \nperiodica" << endl;
-        cin >> frontera;
+        cin >> tipo_frontera;
         cout << "\n" << endl;
     }
 
-    string nombreDatos = funcion_inicial + "-" + frontera + ".dat";
-    string pathDatos = Marco + "/" + nombreDatos;
-    string nombreGraf = funcion_inicial + "-" + frontera + ".gp";
-    string pathGraf = Marco + "/" + nombreGraf;
+    string nombreDatos = funcion_inicial + "-" + tipo_frontera + ".dat";
+    string pathDatos = marco + "/" + nombreDatos;
+    string nombreGraf = funcion_inicial + "-" + tipo_frontera + ".gp";
+    string pathGraf = marco + "/" + nombreGraf;
     
     // Escribir archivos
     ofstream salidaDatos;
@@ -172,8 +172,8 @@ int main()
         for (int i = 1; i < Nx-1; i++)
         {
             u_nueva[i] = u[i] -(dt/dx)*
-            (Flujo(u[i], u[i+1], Marco, dx, dt)-
-            Flujo(u[i-1], u[i], Marco, dx, dt));
+            (Flujo(u[i], u[i+1], marco, dx, dt)-
+            Flujo(u[i-1], u[i], marco, dx, dt));
             
             if (u_nueva[i] > umax) umax = u_nueva[i];
             if (u_nueva[i] < umin) umin = u_nueva[i];
@@ -181,9 +181,9 @@ int main()
         
         
         // Condiciones de frontera
-        // condicion_frontera(u, u_nueva, Nx, dt, dx);
-        u_nueva[0] = 0.0;
-        u_nueva[Nx-1] = 0.0;
+        condicion_frontera(u, u_nueva, Nx, dt, dx, tipo_frontera, marco);
+        // u_nueva[0] = 0.0;
+        // u_nueva[Nx-1] = 0.0;
 
         // Actualizar u
         for (int i = 0; i < Nx; i++)
@@ -231,22 +231,28 @@ int main()
  * @param N Tamaño del arreglo u
  * @param dt Tamaño de paso en t
  * @param dx Tamaño de paso en x
+ * @param tipo Tipo de condición, periódica o fija
+ * @param marco Marco numérico utilizado
+ * 
  */
 void condicion_frontera(double *u, double *u_nueva, int N, 
-                        double dt, double dx, const string &marco, 
-                        const string &tipo)
+                        double dt, double dx, const string &tipo, 
+                        const string &marco)
 {
     if (tipo == "fija")
     {
-        /* code */
+        u_nueva[0] = u[0];
+        u_nueva[N-1] = u[N-1];
     }
     else
     {    
     u_nueva[0] = u[0] -(dt/dx)*
-            (Flujo(u[0], u[1], marco, dx, dt)-Flujo(u[N-1], u[0], marco, dx, dt));
+            (Flujo(u[0], u[1], marco, dx, dt)-
+            Flujo(u[N-1], u[0], marco, dx, dt));
 
     u_nueva[N-1] = u[N-1] -(dt/dx)*
-            (Flujo(u[N-1], u[0], marco, dx, dt)-Flujo(u[N-2], u[N-1], marco, dx, dt));
+            (Flujo(u[N-1], u[0], marco, dx, dt)-
+            Flujo(u[N-2], u[N-1], marco, dx, dt));
     }
 }
 
@@ -340,21 +346,24 @@ double u_prima(double u, double v)
  * 
  * @param u Velocidad a la izquierda de la interfaz
  * @param v Velocidad a la derecha de la interfaz
- * @param Marco Tipo de marco numérico usado
+ * @param marco Tipo de marco numérico usado
  * @param dx Tamaño de paso en x
  * @param dt Tamaño de paso temporal
  * @return double: Velocidad a usar, según marco de Gudonov 
  */
-double Flujo(double u, double v, const string &Marco, double dx = 0.2, double dt = 0.001)
+double Flujo(double u, double v, const string &marco, double dx = 0.2, double dt = 0.001)
 {
-    if (Marco == "gudonov")
+    // Marco de Gudonov
+    if (marco == "gudonov")
     {
         return 0.5*pow(uPrime(u,v), 2);    
     }
-    if (Marco == "LF")
+    // Marco de Lex-Friedrichs
+    if (marco == "LF")
     {
         return 0.5*(pow(u,2)+pow(v,2))-(0.5*dt/dx*(v-u));
     }
+    // Marco de Roe, falta programarlo
     else
     {
         return 0.5*pow(uPrime(u,v), 2);
