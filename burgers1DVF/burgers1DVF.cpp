@@ -5,6 +5,7 @@
 // 
 // 
 #include <iostream>
+#include <string>
 #include <cstring>
 #include <cmath>
 #include <iomanip>
@@ -40,6 +41,49 @@ int main()
     double dx = L/(Nx-1); // Tamaño de paso en el eje x
 
     // Variables y archivos de salida
+    // Se almacena el nombre del marco numérico a utilizar
+    // LF: Lex-Friedrichs
+    // roe: Roe
+    // gudonov: Gudonov
+    string Marco;
+    cout << "Ingrese el marco numérico a utilizar: gudonov, roe o LF" << endl;
+    cin  >> Marco;
+    while (Marco != "LF" && Marco != "godunov" && Marco != "roe") {
+        cout << "Marco numérico inválido. Intente de nuevo con gudonov, roe o LF";
+        cin >> Marco;
+    }
+    
+    // Se almacena el nombre de la función inicial a utilizar
+    // step_neg: Función Heaviside valuada en L/2-x donde L es el largo del dominio en x
+    // step_pos: Función Heaviside valuada en L/2+x
+    // gauss: Función gaussiana centrada en L/2 con amplitud A
+    // gauss_impar: Función gaussiana multiplicada por (x-L/2) con amplitud A
+    string funcion_inicial;
+    cout << "Escriba la condición inicial a utilizar, puede ser:"<< endl; 
+    cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
+    cin  >> funcion_inicial;
+    while (funcion_inicial != "step_neg" && 
+           funcion_inicial != "step_pos" && 
+           funcion_inicial != "gauss" && 
+           funcion_inicial != "gauss_impar") 
+    {
+        cout << "Función inválida. Intente de nuevo con:" << endl;
+        cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
+        cin >> funcion_inicial;
+    }
+
+    string nombreDatos = funcion_inicial + ".dat";
+    string pathDatos = Marco + "/" + nombreDatos;
+    string nombreGraf = funcion_inicial + ".gp";
+    string pathGraf = Marco + "/" + nombreGraf;
+    
+
+    ofstream salidaDatos;
+    salidaDatos.open(pathDatos, ios::out);
+    ofstream salidaGraf;
+    salidaGraf.open(pathGraf, ios::out);
+
+
     ofstream outfile; // Archivo donde se guarda la función solución u
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
