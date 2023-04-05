@@ -100,7 +100,7 @@
 	
 	Un ejemplo de discretización, que se usa al aplicar el método DF en una ecuación diferencial parcial, es el siguiente: la segunda derivada parcial respecto a $x$ de una función $u = u(x,t)$ valuada en $(x,t)$ se puede aproximar expandiendo la función en dos series de Taylor centradas en dos diferentes valores sobre el eje $x$, que corresponden a los dos puntos vecinos a $x$, separándose de este punto por una distancia $\Delta x$; también llamada \textbf{tamaño de paso} en $x$. 
 	
-	Para obtener la aproximación de la segunda derivada de $u$ respecto a $x$ usamos las expansiones en series de Taylor:
+	Para obtener la aproximación de la segunda derivada de $u$ respecto a $x$ se utilizan las expansiones en series de Taylor:
 
 	\begin{equation}
 		u(x + \Delta x,t) \approx u(x,t) + \Delta x\pdv{u(x,t)}{x} + \frac{(\Delta x)^{2}}{2}\pdv{^{2}u(x,t)}{x^2} 
@@ -117,7 +117,7 @@
 	\begin{equation}
 		\pdv{^{2}u(x,t)}{x^2}\approx \frac{u(x + \Delta x,t) + u(x - \Delta x,t) - 2 u(x,t)}{(\Delta x)^2}
 	\end{equation}
-	Por tanto, podemos aproximar una derivada de segundo orden en términos de valores conocidos, puesto que $u(x + \Delta x,t)$ y $u(x - \Delta x,t)$ corresponden a valores que toma la función en un dominio discretizado, en donde la distancia entre los puntos de la grilla es siempre $\Delta x$. Se puede escribir la función valuada en forma discreta:
+	Por tanto, se puede aproximar una derivada de segundo orden en términos de valores conocidos, puesto que $u(x + \Delta x,t)$ y $u(x - \Delta x,t)$ corresponden a valores que toma la función en un dominio discretizado, en donde la distancia entre los puntos de la grilla es siempre $\Delta x$. Se puede escribir la función valuada en forma discreta:
 	\[u_{i} := u(x,t)\]
 	\[u_{i+1} := u(x + \Delta x,t)\]
 	\[u_{i-1} := u(x - \Delta x,t)\]
@@ -230,7 +230,7 @@
 	\begin{equation}
 		\pdv{u}{t} \approx \frac{u_{\text{nueva},i}-u_{i}}{\Delta t}
 	\end{equation}
-	Donde $\Delta x$ y $\Delta t$ son los tamaños de paso en la dimensión espacial y temporal respectivamente\footnote{En el código, estas cantidades fueron nombradas como \texttt{dx} y \texttt{dt} respectivamente}. Sustituyendo las anteriores aproximaciones en \ref{eq:burgers1d}, obtenemos
+	Donde $\Delta x$ y $\Delta t$ son los tamaños de paso en la dimensión espacial y temporal respectivamente\footnote{En el código, estas cantidades fueron nombradas como \texttt{dx} y \texttt{dt} respectivamente}. Sustituyendo las anteriores aproximaciones en \ref{eq:burgers1d}, se obtiene
 	\begin{equation}
 		\frac{u_{\text{nueva},i}-u_{i}}{\Delta t}+u_{i}\left( \frac{u_{i+1}-u_{i}}{\Delta x}\right) =0
 	\end{equation}
@@ -319,7 +319,7 @@
 		\dv{u}{t} = \pdv{u}{t} + \dv{x}{t}\pdv{u}{x} = \pdv{u}{t}+u\pdv{u}{x} = 0
 		\label{eq:parcialu}
 	\end{equation}
-	Notamos en la ecuación \ref{eq:parcialu} que $u$ es constante en el tiempo a lo largo de cualquier curva característica, por lo que resolviendo la ecuación \ref{eq:dxdt} obtenemos:
+	Se puede observar en la ecuación \ref{eq:parcialu} que $u$ es constante en el tiempo a lo largo de cualquier curva característica, por lo que resolviendo la ecuación \ref{eq:dxdt} se obtiene:
 	\begin{equation}
 		x-x_{0} = ut
 	\end{equation}
@@ -329,7 +329,7 @@
 	\end{equation}
 	Donde $u_0(x) = u(x,0)$
 	
-	Notamos que las curvas características son rectas en el plano $x-t$ que parten de un punto $(x_{n}, 0)$ y poseen pendiente $u_{0}(x_n)$, donde $x_n$ es un punto que pertenece al dominio espacial. Consecuentemente se puede demostrar que estas curvas se intersectarán en un tiempo finito si $u'_{0}(x) < 0$ para algún $x$. Supongamos que las dos características $x(t) = x_{1}+u_{0}(x_1)t$ y $x(t) = x_{2}+u_{0}(x_2)t$ llegan a intersectarse en un tiempo $t_{int}$.
+	Se puede notar que las curvas características son rectas en el plano $x-t$ que parten de un punto $(x_{n}, 0)$ y poseen pendiente $u_{0}(x_n)$, donde $x_n$ es un punto que pertenece al dominio espacial. Consecuentemente se puede demostrar que estas curvas se intersectarán en un tiempo finito si $u'_{0}(x) < 0$ para algún $x$. Si se supone que las dos características $x(t) = x_{1}+u_{0}(x_1)t$ y $x(t) = x_{2}+u_{0}(x_2)t$ llegan a intersectarse en un tiempo $t_{int}$.
 	\begin{equation}
 		x_{1}+u_{0}(x_1)t_{int} = x_{2}+u_{0}(x_2)t_{int}
 	\end{equation}
@@ -342,7 +342,7 @@
 	\begin{equation}
 		t_{int} = -\dfrac{1}{\dfrac{u_{0}(x_2) - u_{0}(x_1)}{x_2-x_1}}
 	\end{equation}
-	Por el teorema del valor medio, podemos asumir que para un $x_0$ tal que $x_1 < x_0 < x_2$ existe $u'(x_0)=\dfrac{u_{0}(x_2) - u_{0}(x_1)}{x_2-x_1}$ y entonces, $u'$ sí es negativa en algún punto, por lo tanto, el tiempo $t_{int}$ es positivo y las características se intersectan.
+	Por el teorema del valor medio, se puede asumir que para un $x_0$ tal que $x_1 < x_0 < x_2$ existe $u'(x_0)=\dfrac{u_{0}(x_2) - u_{0}(x_1)}{x_2-x_1}$ y entonces, $u'$ sí es negativa en algún punto, por lo tanto, el tiempo $t_{int}$ es positivo y las características se intersectan.
 	
 	Cuando las características se intersectan la onda viajera se rompe ya que según la ecuación diferencial que la rige esta debería seguir siendo constante en dos puntos distintos y esto produce la discontinuidad. El método numérico de diferencias finitas reacciona erróneamente ante la discontinuidad que se presenta en la solución, puesto que el término $u_{i}-u_{i+1}$ es una cantidad que crece cada vez más en cada iteración y el error numérico ya no se puede despreciar, por lo que la solución pierde el significado físico.
 	\\
@@ -436,7 +436,7 @@
 	keywordstyle=\color{blue}]{../burg-vis1DDF/burg-vis1DDF.cpp}
 	Como puede notarse en el código presentado, los archivos \texttt{.dat} y \texttt{.gp} están nombrados de acuerdo al coeficiente de viscosidad utilizado en la solución que representan.
 	
-	Se aplicó la discretización de la ecuación \ref{eq:segunda-derivada-discreta} para tratar la derivada de segundo orden de la ecuación de Burgers viscosa. Aplicando las discretizaciones en la ecuación \ref{eq:burg-vis-con} obtenemos:
+	Se aplicó la discretización de la ecuación \ref{eq:segunda-derivada-discreta} para tratar la derivada de segundo orden de la ecuación de Burgers viscosa. Aplicando las discretizaciones en la ecuación \ref{eq:burg-vis-con} se obtiene:
 	
 	\begin{equation}
 		\frac{u_{\text{nueva},i}-u_{i}}{\Delta t} +  \frac{1}{2} \left(\frac{u^{2}_{i+1}-u^{2}_{i}}{\Delta x}\right)  -  \nu \left( \frac{u_{i+1}-2u_{i}+u_{i-1}}{(\Delta x)^{2}} \right) =0
@@ -565,17 +565,19 @@
 
 	\begin{equation}
 		u_{i}^{n+1} - u_{i}^{n} + \frac{1}{\Delta x}\int_{t_n}^{t_{n+1}}\left[ f(u(x_{i+1} ,t)) - f(u(x_{i},t))\right]\dd{t} = 0 
-
 	\end{equation}
-	Entonces, la integral en $t$ se puede interpretar como el flujo promedio en el intervalo temporal $[t_n,t_{n+1}]$. Esto es:
+
+	Entonces, la siguiente integral se puede interpretar como el flujo promedio en el intervalo temporal $[t_n,t_{n+1}]$. Esto es:
 	\begin{equation}
 		F_{i}^{n} \approx \frac{1}{\Delta t} \int_{t_n}^{t_{n+1}} f(u(x_i,t)) \dd{t}
 		\label{eq:flujo_promedio}
 	\end{equation}
-	Sustituyendo en la integración de la ecuación:
+	Sustituyendo en la integración de la ecuación, se obtiene:
 	\begin{equation}
-		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F_{i+1}^n - F_{i}^{n}\right] = 0 
+		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F_{i+1}^n - F_{i}^{n}\right] = 0
+		\label{eq:diferencia-flujos}
 	\end{equation}
+	Entonces, la ecuación \ref{eq:diferencia-flujos} es la forma de \textbf{diferencia de flujos} de la ecuación de conservación; y a partir de la misma se pueden desarrollar los métodos numéricos basados en el método de volúmenes finitos, puesto que la función $F_{i}^{n}$ es una aproximación numérica. Para que el método sea exitoso, la función $F_{i}^{n}$ debe calcularse utilizando los valores de la grilla, $u^{n}$ de tal manera que se obtendrá un método totalmente discretizado. \cite{LeVeque1998}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	

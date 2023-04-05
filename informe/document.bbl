@@ -1,0 +1,120 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{devries2011first}{book}{}
+      \name{author}{3}{}{%
+        {{hash=ddbb8d2254770cc2d3ee5cf967628010}{%
+           family={DeVries},
+           familyi={D\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5900eb20efb553ed5a9d22db0b065fdd}{%
+           family={DeVries},
+           familyi={D\bibinitperiod},
+           given={P.L.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5fe7f2aaac3aa2d6bc18e90402581fae}{%
+           family={Hasbun},
+           familyi={H\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Jones \& Bartlett Learning}%
+      }
+      \strng{namehash}{5b23bd29e8ddfbef21b789dee1888293}
+      \strng{fullhash}{5b23bd29e8ddfbef21b789dee1888293}
+      \strng{bibnamehash}{5b23bd29e8ddfbef21b789dee1888293}
+      \strng{authorbibnamehash}{5b23bd29e8ddfbef21b789dee1888293}
+      \strng{authornamehash}{5b23bd29e8ddfbef21b789dee1888293}
+      \strng{authorfullhash}{5b23bd29e8ddfbef21b789dee1888293}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780763773144}
+      \field{title}{A First Course in Computational Physics}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb https://books.google.com.gt/books?id=X3FEPiebLH0C
+      \endverb
+      \verb{url}
+      \verb https://books.google.com.gt/books?id=X3FEPiebLH0C
+      \endverb
+    \endentry
+    \entry{LeVeque1998}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=c5fc096f540a44e56f892cc83176f0fb}{%
+           family={LeVeque},
+           familyi={L\bibinitperiod},
+           given={Randall\bibnamedelima J.},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=8c1cb58c49b56ec6e0910954870bf273}{%
+           family={Steiner},
+           familyi={S\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod}}}%
+        {{hash=efc9a0d1bed70e53df2212addff2b7a3}{%
+           family={Gautschy},
+           familyi={G\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{c5fc096f540a44e56f892cc83176f0fb}
+      \strng{fullhash}{c5fc096f540a44e56f892cc83176f0fb}
+      \strng{bibnamehash}{c5fc096f540a44e56f892cc83176f0fb}
+      \strng{authorbibnamehash}{c5fc096f540a44e56f892cc83176f0fb}
+      \strng{authornamehash}{c5fc096f540a44e56f892cc83176f0fb}
+      \strng{authorfullhash}{c5fc096f540a44e56f892cc83176f0fb}
+      \strng{editorbibnamehash}{82425ae55ad9755bf20b86407b9f5f90}
+      \strng{editornamehash}{82425ae55ad9755bf20b86407b9f5f90}
+      \strng{editorfullhash}{82425ae55ad9755bf20b86407b9f5f90}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-540-31632-9}
+      \field{title}{Nonlinear Conservation Laws and Finite Volume Methods}
+      \field{year}{1998}
+      \field{pages}{1\bibrangedash 159}
+      \range{pages}{159}
+      \verb{doi}
+      \verb 10.1007/3-540-31632-9_1
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/3-540-31632-9_1
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/3-540-31632-9_1
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
