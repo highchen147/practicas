@@ -13,8 +13,9 @@
 using namespace std;
 
 // Declaración de funciones
-double f_cond_inicial(double x);
-double step_func(double x);
+double gauss(double x);
+double step_neg(double x);
+double step_pos(double x);
 double gauss_impar(double x);
 void salida(ofstream &of, double *u, double *x, double t, int N);
 void cond_frontera_periodica(double *u, double *u_nueva, int N, 
@@ -48,9 +49,11 @@ int main()
     string Marco;
     cout << "Ingrese el marco numérico a utilizar: gudonov, roe o LF" << endl;
     cin  >> Marco;
+    cout << endl;
     while (Marco != "LF" && Marco != "godunov" && Marco != "roe") {
         cout << "Marco numérico inválido. Intente de nuevo con gudonov, roe o LF";
         cin >> Marco;
+        cout << "\n" << endl;
     }
 
     // Se almacena el nombre de la función inicial a utilizar
@@ -62,6 +65,7 @@ int main()
     cout << "Escriba la condición inicial a utilizar, puede ser:"<< endl; 
     cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
     cin  >> funcion_inicial;
+    cout << endl;
     while (funcion_inicial != "step_neg" && 
            funcion_inicial != "step_pos" && 
            funcion_inicial != "gauss" && 
@@ -70,11 +74,28 @@ int main()
         cout << "Función inválida. Intente de nuevo con:" << endl;
         cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
         cin >> funcion_inicial;
+        cout << "\n" << endl;
     }
 
-    string nombreDatos = funcion_inicial + ".dat";
+    // Se almacena el tipo de condiciones de frontera: fija o periódica
+    string frontera;
+    cout << "Escriba el tipo de condición de frontera que desea aplicar:" << endl;
+    cout << "fija" << endl;
+    cout << "periodica" << endl;
+    cin >> frontera;
+    cout << "\n" << endl;
+    while (frontera != "fija" && 
+           frontera != "periodica") 
+    {
+        cout << "Condición inválida. Intente de nuevo con:" << endl;
+        cout << "fija \nperiodica" << endl;
+        cin >> frontera;
+        cout << "\n" << endl;
+    }
+
+    string nombreDatos = funcion_inicial + "-" + frontera + ".dat";
     string pathDatos = Marco + "/" + nombreDatos;
-    string nombreGraf = funcion_inicial + ".gp";
+    string nombreGraf = funcion_inicial + "-" + frontera + ".gp";
     string pathGraf = Marco + "/" + nombreGraf;
     
     // Escribir archivos
@@ -115,7 +136,23 @@ int main()
     // Aplicar condición inicial a u
     for (int i = 0; i < Nx; i++)
     {
-        u[i] = step_func(x[i]);
+        if (funcion_inicial == "step_neg")
+        {
+            u[i] = step_neg(x[i]);
+        }
+        else if (funcion_inicial == "step_pos")
+        {
+            u[i] = step_pos(x[i]);
+        }
+        else if (funcion_inicial == "gauss")
+        {
+            u[i] = gauss(x[i]);
+        }
+        else if (funcion_inicial == "gauss_impar")
+        {
+            u[i] = gauss_impar(x[i]);
+        }
+        
         // Encontrar el máximo y mínimo valor de u
         if (u[i] > umax) umax = u[i];
         if (u[i] < umin) umin = u[i];
@@ -202,7 +239,7 @@ void cond_frontera_periodica(double *u, double *u_nueva, int N,
             (Flujo(u[N-1], u[0])-Flujo(u[N-2], u[N-1]));
 }
 
-double f_cond_inicial(double x)
+double gauss(double x)
 {
     double b = 0.03;
     double mu = 50;
@@ -210,7 +247,7 @@ double f_cond_inicial(double x)
     return -A*exp(-b*pow(x - mu,2));
 }
 
-double step_func(double x)
+double step_neg(double x)
 {
     double L = 100;
     if (x < L/2)
@@ -223,11 +260,16 @@ double step_func(double x)
     }
 }
 
+double step_pos(double x)
+{
+    return step_neg(-x);
+}
+
 double gauss_impar(double x)
 {
     double a = 0.4;
     double L = 100;
-    return a*(x-L/2)*f_cond_inicial(x);
+    return a*(x-L/2)*gauss(x);
 }
 
 /**
