@@ -18,11 +18,12 @@ double step_neg(double x);
 double step_pos(double x);
 double gauss_impar(double x);
 void salida(ofstream &of, double *u, double *x, double t, int N);
-void cond_frontera_periodica(double *u, double *u_nueva, int N, 
-                             double dt, double dx);
+void condicion_frontera(double *u, double *u_nueva, int N, 
+                        double dt, double dx, const string &marco, 
+                        const string &tipo);
 double u_prima(double u, double v);
 double uPrime(double u, double v);
-double Flujo(double u, double v);
+double Flujo(double u, double v, const string &Marco, double dx, double dt);
 
 int main()
 {
@@ -171,7 +172,8 @@ int main()
         for (int i = 1; i < Nx-1; i++)
         {
             u_nueva[i] = u[i] -(dt/dx)*
-            (Flujo(u[i], u[i+1])-Flujo(u[i-1], u[i]));
+            (Flujo(u[i], u[i+1], Marco, dx, dt)-
+            Flujo(u[i-1], u[i], Marco, dx, dt));
             
             if (u_nueva[i] > umax) umax = u_nueva[i];
             if (u_nueva[i] < umin) umin = u_nueva[i];
@@ -179,7 +181,7 @@ int main()
         
         
         // Condiciones de frontera
-        // cond_frontera_periodica(u, u_nueva, Nx, dt, dx);
+        // condicion_frontera(u, u_nueva, Nx, dt, dx);
         u_nueva[0] = 0.0;
         u_nueva[Nx-1] = 0.0;
 
@@ -190,7 +192,8 @@ int main()
         }
         
         // Se imprime la solución de la iteración
-        if (j % out_cada == 0){
+        if (j % out_cada == 0)
+        {
             salida(outfile, u, x, tiempo, Nx);
             cout << 100*tiempo/t_total << endl;
         }
@@ -229,14 +232,22 @@ int main()
  * @param dt Tamaño de paso en t
  * @param dx Tamaño de paso en x
  */
-void cond_frontera_periodica(double *u, double *u_nueva, int N, 
-                             double dt, double dx)
+void condicion_frontera(double *u, double *u_nueva, int N, 
+                        double dt, double dx, const string &marco, 
+                        const string &tipo)
 {
+    if (tipo == "fija")
+    {
+        /* code */
+    }
+    else
+    {    
     u_nueva[0] = u[0] -(dt/dx)*
-            (Flujo(u[0], u[1])-Flujo(u[N-1], u[0]));
+            (Flujo(u[0], u[1], marco, dx, dt)-Flujo(u[N-1], u[0], marco, dx, dt));
 
     u_nueva[N-1] = u[N-1] -(dt/dx)*
-            (Flujo(u[N-1], u[0])-Flujo(u[N-2], u[N-1]));
+            (Flujo(u[N-1], u[0], marco, dx, dt)-Flujo(u[N-2], u[N-1], marco, dx, dt));
+    }
 }
 
 double gauss(double x)
@@ -325,15 +336,29 @@ double u_prima(double u, double v)
 }
 
 /**
- * @brief Calcula el flujo según la ec. de Burgers
+ * @brief Calcula el flujo promedio por interfaz según la ec. de Burgers
  * 
  * @param u Velocidad a la izquierda de la interfaz
  * @param v Velocidad a la derecha de la interfaz
+ * @param Marco Tipo de marco numérico usado
+ * @param dx Tamaño de paso en x
+ * @param dt Tamaño de paso temporal
  * @return double: Velocidad a usar, según marco de Gudonov 
  */
-double Flujo(double u, double v)
+double Flujo(double u, double v, const string &Marco, double dx = 0.2, double dt = 0.001)
 {
-    return 0.5*pow(uPrime(u,v), 2);
+    if (Marco == "gudonov")
+    {
+        return 0.5*pow(uPrime(u,v), 2);    
+    }
+    if (Marco == "LF")
+    {
+        return 0.5*(pow(u,2)+pow(v,2))-(0.5*dt/dx*(v-u));
+    }
+    else
+    {
+        return 0.5*pow(uPrime(u,v), 2);
+    }    
 }
 
 double uPrime(double u, double v)
