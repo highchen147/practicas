@@ -52,7 +52,7 @@ int main()
         cout << "Marco numérico inválido. Intente de nuevo con gudonov, roe o LF";
         cin >> Marco;
     }
-    
+
     // Se almacena el nombre de la función inicial a utilizar
     // step_neg: Función Heaviside valuada en L/2-x donde L es el largo del dominio en x
     // step_pos: Función Heaviside valuada en L/2+x
@@ -77,7 +77,7 @@ int main()
     string nombreGraf = funcion_inicial + ".gp";
     string pathGraf = Marco + "/" + nombreGraf;
     
-
+    // Escribir archivos
     ofstream salidaDatos;
     salidaDatos.open(pathDatos, ios::out);
     ofstream salidaGraf;
