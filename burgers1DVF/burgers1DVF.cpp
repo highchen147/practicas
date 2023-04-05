@@ -46,13 +46,13 @@ int main()
     // Se almacena el nombre del marco numérico a utilizar
     // LF: Lex-Friedrichs
     // roe: Roe
-    // gudonov: Gudonov
+    // godunov: Godunov
     string marco;
-    cout << "Ingrese el marco numérico a utilizar: gudonov, roe o LF" << endl;
+    cout << "Ingrese el marco numérico a utilizar: godunov, roe o LF" << endl;
     cin  >> marco;
     cout << endl;
     while (marco != "LF" && marco != "godunov" && marco != "roe") {
-        cout << "Marco numérico inválido. Intente de nuevo con gudonov, roe o LF";
+        cout << "Marco numérico inválido. Intente de nuevo con godunov, roe o LF";
         cin >> marco;
         cout << "\n" << endl;
     }
@@ -100,10 +100,10 @@ int main()
     string pathGraf = marco + "/" + nombreGraf;
     
     // Escribir archivos
-    ofstream salidaDatos;
-    salidaDatos.open(pathDatos, ios::out);
-    ofstream salidaGraf;
-    salidaGraf.open(pathGraf, ios::out);
+    // ofstream salidaDatos;
+    // salidaDatos.open(pathDatos, ios::out);
+    // ofstream salidaGraf;
+    // salidaGraf.open(pathGraf, ios::out);
 
 
     ofstream outfile; // Archivo donde se guarda la función solución u
@@ -115,8 +115,9 @@ int main()
     char name_gplotmain[strlen(nombre) + 11];
     sprintf(name_datafile, "%s.dat", nombre);
     sprintf(name_gplotmain, "grafica-%s.gp", nombre);
-    outfile.open(name_datafile, ios::out );
-    gplotmain.open(name_gplotmain, ios::out);
+
+    outfile.open(pathDatos, ios::out );
+    gplotmain.open(pathGraf, ios::out);
 
     // Arreglos
     // Función de velocidad en el tiempo actual: u{x, t} = u_i
@@ -215,7 +216,7 @@ int main()
     gplotmain << "pause -1" << endl;
     gplotmain << endl;
     gplotmain << "do for [i=0:" << num_outs - 1 << "] {" << endl;
-    gplotmain << "plot '" << name_datafile << "' index i u 2:3 w l" << endl;
+    gplotmain << "plot '" << pathDatos << "' index i u 2:3 w l" << endl;
     gplotmain << "pause " << 0.02 << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
@@ -261,7 +262,7 @@ double gauss(double x)
     double b = 0.03;
     double mu = 50;
     double A = 3.5;
-    return -A*exp(-b*pow(x - mu,2));
+    return A*exp(-b*pow(x - mu,2));
 }
 
 double step_neg(double x)
@@ -354,7 +355,7 @@ double u_prima(double u, double v)
 double Flujo(double u, double v, const string &marco, double dx = 0.2, double dt = 0.001)
 {
     // Marco de Gudonov
-    if (marco == "gudonov")
+    if (marco == "godunov")
     {
         return 0.5*pow(uPrime(u,v), 2);    
     }
