@@ -253,7 +253,7 @@ double gauss(double x)
 {
     double b = 0.02;
     double mu = 50;
-    double A = 10;
+    double A = 3.5;
     return A*exp(-b*pow(x - mu,2));
 }
 
