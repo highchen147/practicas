@@ -21,17 +21,16 @@ void salida(ofstream &of, double *u, double *x, double t, int N);
 void condicion_frontera(double *u, double *u_nueva, int N, 
                         double dt, double dx, const string &tipo, 
                         const string &marco);
-double u_prima(double u, double v);
 double uPrime(double u, double v);
 double Flujo(double u, double v, const string &Marco, double dx, double dt);
 
 int main()
 {
     // Parámetros temporales
-    const double t_total = 10; // Tiempo total en segundos
+    const double t_total = 30; // Tiempo total en segundos
     const double dt = 0.001; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 400; // Número de gráficas de instantes temporales
+    const int num_outs = 1000; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
@@ -174,7 +173,7 @@ int main()
         {
             u_nueva[i] = u[i] -(dt/dx)*
             (Flujo(u[i], u[i+1], marco, dx, dt)-
-            Flujo(u[i-1], u[i], marco, dx, dt));
+             Flujo(u[i-1], u[i], marco, dx, dt));
             
             if (u_nueva[i] > umax) umax = u_nueva[i];
             if (u_nueva[i] < umin) umin = u_nueva[i];
@@ -259,9 +258,9 @@ void condicion_frontera(double *u, double *u_nueva, int N,
 
 double gauss(double x)
 {
-    double b = 0.03;
+    double b = 0.02;
     double mu = 50;
-    double A = 3.5;
+    double A = 10;
     return A*exp(-b*pow(x - mu,2));
 }
 
@@ -310,39 +309,6 @@ void salida(ofstream &of, double *u, double *x, double t, int N)
 }
 
 /**
- * @brief Retorna la velocidad adecuada según el marco de Gudonov
- * 
- * @param u Velocidad a la izquierda de la interfaz
- * @param v Velocidad a la derecha de la interfaz
- * @return double: Velocidad a tomar en cuenta para el flujo
- */
-double u_prima(double u, double v)
-{
-    if (u >= v)
-    {
-        if (u + v > 0)
-        {
-            return u;
-        }else
-            return v;
-    }
-    else
-    {
-        if (u > 0)
-        {
-            return u;
-        }
-        else if (v < 0)
-        {
-            return v;
-        }else
-        {
-            return 0;
-        }
-    }
-}
-
-/**
  * @brief Calcula el flujo promedio por interfaz según la ec. de Burgers
  * 
  * @param u Velocidad a la izquierda de la interfaz
@@ -350,7 +316,7 @@ double u_prima(double u, double v)
  * @param marco Tipo de marco numérico usado
  * @param dx Tamaño de paso en x
  * @param dt Tamaño de paso temporal
- * @return double: Velocidad a usar, según marco de Gudonov 
+ * @return double: Flujo promedio en la i-ésima interfaz 
  */
 double Flujo(double u, double v, const string &marco, double dx = 0.2, double dt = 0.001)
 {
@@ -371,6 +337,13 @@ double Flujo(double u, double v, const string &marco, double dx = 0.2, double dt
     }    
 }
 
+/**
+ * @brief Velocidad a usar para el flujo según Godunov
+ * 
+ * @param u Velocidad a la izquierda
+ * @param v Velocidad a la derecha
+ * @return double: velocidad elegida
+ */
 double uPrime(double u, double v)
 {
     if (u + v > 0)
