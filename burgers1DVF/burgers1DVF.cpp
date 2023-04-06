@@ -319,7 +319,7 @@ double Flujo(double u, double v, const string &marco, double dx = 0.2, double dt
         return 0.5*pow(uPrime(u,v), 2);    
     }
     // Marco de Lex-Friedrichs
-    if (marco == "LF")
+    else if (marco == "LF")
     {
         return 0.5*(pow(u,2)+pow(v,2))-(0.5*dt/dx*(v-u));
     }
