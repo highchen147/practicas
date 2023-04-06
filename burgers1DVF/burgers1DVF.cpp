@@ -6,7 +6,6 @@
 // 
 #include <iostream>
 #include <string>
-#include <cstring>
 #include <cmath>
 #include <iomanip>
 #include <fstream>
@@ -109,12 +108,6 @@ int main()
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
     // Nombres de los archivos de datos y de gráficas
-    const char *nombre = "step-gudonov2";
-    char name_datafile[strlen(nombre) + 4];
-    char name_gplotmain[strlen(nombre) + 11];
-    sprintf(name_datafile, "%s.dat", nombre);
-    sprintf(name_gplotmain, "grafica-%s.gp", nombre);
-
     outfile.open(pathDatos, ios::out );
     gplotmain.open(pathGraf, ios::out);
 
