@@ -24,7 +24,7 @@ set xrange[xmin:xmax]
 set yrange[ymin:ymax]
 print 'Presione Enter'
 pause -1
-
+#
 
 
 
