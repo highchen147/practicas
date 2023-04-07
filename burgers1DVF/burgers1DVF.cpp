@@ -20,8 +20,9 @@ void salida(ofstream &of, double *u, double *x, double t, int N);
 void condicion_frontera(double *u, double *u_nueva, int N, 
                         double dt, double dx, const string &tipo, 
                         const string &marco);
-double uPrime(double u, double v);
 double Flujo(double u, double v, const string &Marco, double dx, double dt);
+double uPrime(double u, double v);
+double uProm(double u, double v);
 
 int main()
 {
@@ -262,7 +263,7 @@ double step_neg(double x)
     double L = 100;
     if (x < L/2)
     {
-        return 5.0;        
+        return 1.0;        
     }
     else
     {
@@ -323,11 +324,16 @@ double Flujo(double u, double v, const string &marco, double dx = 0.2, double dt
     {
         return 0.5*(pow(u,2)+pow(v,2))-(0.5*dt/dx*(v-u));
     }
-    // Marco de Roe, falta programarlo
-    else
+    // Marco de Roe
+    else if (marco == "roe")
     {
-        return 0.5*pow(uPrime(u,v), 2);
-    }    
+        double FlujoPromedio = 0.5*(pow(u,2) + pow(v,2));
+        return FlujoPromedio - 0.5*abs(uProm(u,v))*(v-u);
+    }
+    // Flujo por default, toma la velocidad de la izquierda
+    else 
+        return 0.5*u*u;
+
 }
 
 /**
@@ -348,5 +354,22 @@ double uPrime(double u, double v)
         return v;
     }else
         return 0;
-    
+}
+
+/**
+ * @brief Velocidad promedio entre celdas para el flujo del 
+ * marco de Roe.
+ * 
+ * @param u Velocidad a la izquierda. También denotada u_{i}
+ * @param v Velocidad a la derecha, o u_{i+1}
+ * @return double: Velocidad a usar
+ */
+double uProm(double u, double v)
+{
+    if (u != v)
+    {
+        return 0.5*(u + v);
+    }
+    else
+        return u;
 }
