@@ -196,6 +196,7 @@ int main()
         // Actualizamos el tiempo
         tiempo += dt;        
     }
+
     // Parámetros de ploteo
     double margen = 0.25;
     double ymax = umax + (umax-umin)*margen;
@@ -213,7 +214,18 @@ int main()
     gplotmain << "pause " << 0.02 << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
-  
+    
+    // Enviamos el número de iteraciones y margen a los archivos de gráficas generales
+    // ofstream grafica_general;
+    // string nombre_grafica_general;
+    // nombre_grafica_general = funcion_inicial + "-" + tipo_frontera + "-general.gp";
+    // grafica_general.open(nombre_grafica_general, ios::in | ios::ate);
+    // grafica_general.seekp(0);
+    // grafica_general << "# Margen" << endl;
+    // grafica_general << "margen = " << margen << endl;
+    // grafica_general << "# Número de iteraciones temporales" << endl;
+    // grafica_general << "N_iter = "<< num_outs - 1 << endl;
+    // grafica_general.close();
 }
 
 /**
