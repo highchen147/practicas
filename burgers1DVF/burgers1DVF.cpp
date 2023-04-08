@@ -20,6 +20,7 @@ void salida(ofstream &of, double *u, double *x, double t, int N);
 void condicion_frontera(double *u, double *u_nueva, int N, 
                         double dt, double dx, const string &tipo, 
                         const string &marco);
+double FlujoBurgers(double u);                        
 double Flujo(double u, double v, const string &Marco, double dx, double dt);
 double uPrime(double u, double v);
 double uProm(double u, double v);
@@ -107,7 +108,6 @@ int main()
     for (int i = 0; i < num_marcos; i++)
     {
     string marco = marcos[i];
-    cout << marco << endl;
     string nombreDatos = funcion_inicial + "-" + tipo_frontera + ".dat";
     string pathDatos = marco + "/" + nombreDatos;
     string nombreGraf = funcion_inicial + "-" + tipo_frontera + ".gp";
@@ -203,14 +203,15 @@ int main()
         if (j % out_cada == 0)
         {
             salida(outfile, u, x, tiempo, Nx);
-            cout << marco << " " << 100*tiempo/t_total << "%" << endl;
+            cout << "\r" << marco << " " << round(100*tiempo/t_total*100)/100 << "%";
+            cout.flush();
         }
             
 
         // Actualizamos el tiempo
         tiempo += dt;        
     }
-    
+    cout << endl;    
 
     // Parámetros de ploteo
     double margen = 0.25;
@@ -331,6 +332,17 @@ void salida(ofstream &of, double *u, double *x, double t, int N)
 }
 
 /**
+ * @brief Flujo general de la ecuación de Burgers, F(u) = 1/2(u^2)
+ * 
+ * @param u Velocidad en x
+ * @return double: Flujo en función de la velocidad u
+ */
+double FlujoBurgers(double u)
+{
+    return 0.5*pow(u, 2);
+}
+
+/**
  * @brief Calcula el flujo promedio por interfaz según la ec. de Burgers
  * 
  * @param u Velocidad a la izquierda de la interfaz
@@ -340,28 +352,32 @@ void salida(ofstream &of, double *u, double *x, double t, int N)
  * @param dt Tamaño de paso temporal
  * @return double: Flujo promedio en la i-ésima interfaz 
  */
-double Flujo(double u, double v, const string &marco, double dx = 0.2, double dt = 0.001)
+double Flujo(double u, 
+             double v, 
+             const string &marco, 
+             double dx, 
+             double dt)
 {
     // Marco de Gudonov
     if (marco == "godunov")
     {
-        return 0.5*pow(uPrime(u,v), 2);    
+        return FlujoBurgers(uPrime(u, v));
     }
     // Marco de Lex-Friedrichs
     else if (marco == "LF")
     {
-        return 0.5*(0.5*pow(u,2)+0.5*pow(v,2))-(0.5*dt/dx*(v-u));
+        double FlujoPromedio = 0.5*(FlujoBurgers(u)+FlujoBurgers(v));
+        return FlujoPromedio-0.5*dt/dx*(v-u);
     }
     // Marco de Roe
     else if (marco == "roe")
     {
-        double FlujoPromedio = 0.5*(0.5*pow(u,2) + 0.5*pow(v,2));
-        return (FlujoPromedio - 0.5*abs(uProm(u,v))*(v-u));
+        double FlujoPromedio = 0.5*(FlujoBurgers(u)+FlujoBurgers(v));
+        return (FlujoPromedio-0.5*abs(uProm(u,v))*(v-u));
     }
     // Flujo por default, toma la velocidad de la izquierda
     else 
-        return 0.5*u*u;
-
+        return FlujoBurgers(u);
 }
 
 /**
