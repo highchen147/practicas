@@ -1,6 +1,6 @@
 # Animación de evolución temporal de Burgers1DVF
 set xrange[0:100]
-set yrange[-0.917117:4.58558]
+set yrange[-0.917069:4.58534]
 print 'Presione Enter'
 pause -1
 

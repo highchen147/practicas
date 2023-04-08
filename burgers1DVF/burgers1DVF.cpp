@@ -46,15 +46,18 @@ int main()
     // LF: Lex-Friedrichs
     // roe: Roe
     // godunov: Godunov
-    string marco;
-    cout << "Ingrese el marco numérico a utilizar: godunov, roe o LF" << endl;
-    cin  >> marco;
-    cout << endl;
-    while (marco != "LF" && marco != "godunov" && marco != "roe") {
-        cout << "Marco numérico inválido. Intente de nuevo con godunov, roe o LF";
-        cin >> marco;
-        cout << "\n" << endl;
-    }
+
+    
+    // string marco;
+    // cout << "Ingrese el marco numérico a utilizar: godunov, roe o LF" << endl;
+    // cin  >> marco;
+    // cout << endl;
+    // while (marco != "LF" && marco != "godunov" && marco != "roe") {
+    //     cout << "Marco numérico inválido. Intente de nuevo con godunov, roe o LF";
+    //     cin >> marco;
+    //     cout << "\n" << endl;
+    // }
+    
 
     // Se almacena el nombre de la función inicial a utilizar
     // step_neg: Función Heaviside valuada en L/2-x donde L es el largo del dominio en x
@@ -93,6 +96,13 @@ int main()
         cout << "\n" << endl;
     }
 
+    // Se escribe arreglo que almacena tipos de marcos utilizados.
+    string marcos[] = {"godunov", "roe", "LF"};
+    int num_marcos = sizeof(marcos) / sizeof(marcos[0]);
+    for (int i = 0; i < num_marcos; i++)
+    {
+    string marco = marcos[i];
+    cout << marco << endl;
     string nombreDatos = funcion_inicial + "-" + tipo_frontera + ".dat";
     string pathDatos = marco + "/" + nombreDatos;
     string nombreGraf = funcion_inicial + "-" + tipo_frontera + ".gp";
@@ -103,8 +113,6 @@ int main()
     // salidaDatos.open(pathDatos, ios::out);
     // ofstream salidaGraf;
     // salidaGraf.open(pathGraf, ios::out);
-
-
     ofstream outfile; // Archivo donde se guarda la función solución u
     ofstream out_curves; // Archivo donde se guardan curvas de velocidad
     ofstream gplotmain; // Archivo de gnuplot para graficar la función
@@ -155,6 +163,7 @@ int main()
 
     // Se imprimen los datos correspondientes al tiempo inicial
     // de la simulación
+    tiempo = 0.0;
     salida(outfile, u, x, tiempo, Nx);
         
     // Comienza a correr el tiempo antes de entrar al ciclo principal
@@ -196,6 +205,7 @@ int main()
         // Actualizamos el tiempo
         tiempo += dt;        
     }
+    
 
     // Parámetros de ploteo
     double margen = 0.25;
@@ -215,6 +225,7 @@ int main()
     gplotmain << "print i" << endl;
     gplotmain << "}";
     
+    }
     // Enviamos el número de iteraciones y margen a los archivos de gráficas generales
     // ofstream grafica_general;
     // string nombre_grafica_general;

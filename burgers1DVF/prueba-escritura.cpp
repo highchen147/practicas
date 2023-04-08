@@ -8,8 +8,8 @@ int main()
 {
     string nombre;
     ofstream archivo;
-    archivo.open("hola.dat", ios_base::app);
-    // archivo.seekp(0, ios);
+    archivo.open("hola.dat", ios::in | ios::ate);
+    archivo.seekp(0);
     // archivo << endl;
     archivo << "mundo" << endl;
     archivo.close();
