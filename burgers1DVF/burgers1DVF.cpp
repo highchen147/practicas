@@ -67,6 +67,7 @@ int main()
     string funcion_inicial;
     cout << "Escriba la condición inicial a utilizar, puede ser:"<< endl; 
     cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
+    cout << ">> ";
     cin  >> funcion_inicial;
     cout << endl;
     while (funcion_inicial != "step_neg" && 
@@ -76,6 +77,7 @@ int main()
     {
         cout << "Función inválida. Intente de nuevo con:" << endl;
         cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
+        cout << ">> ";
         cin >> funcion_inicial;
         cout << "\n" << endl;
     }
@@ -85,6 +87,7 @@ int main()
     cout << "Escriba el tipo de condición de frontera que desea aplicar:" << endl;
     cout << "fija" << endl;
     cout << "periodica" << endl;
+    cout << ">> ";
     cin >> tipo_frontera;
     cout << "\n" << endl;
     while (tipo_frontera != "fija" && 
@@ -200,7 +203,7 @@ int main()
         if (j % out_cada == 0)
         {
             salida(outfile, u, x, tiempo, Nx);
-            cout << 100*tiempo/t_total << endl;
+            cout << marco << " " << 100*tiempo/t_total << "%" << endl;
         }
             
 
@@ -347,13 +350,13 @@ double Flujo(double u, double v, const string &marco, double dx = 0.2, double dt
     // Marco de Lex-Friedrichs
     else if (marco == "LF")
     {
-        return 0.5*(pow(u,2)+pow(v,2))-(0.5*dt/dx*(v-u));
+        return 0.5*(0.5*pow(u,2)+0.5*pow(v,2))-(0.5*dt/dx*(v-u));
     }
     // Marco de Roe
     else if (marco == "roe")
     {
-        double FlujoPromedio = 0.5*(pow(u,2) + pow(v,2));
-        return FlujoPromedio - 0.5*abs(uProm(u,v))*(v-u);
+        double FlujoPromedio = 0.5*(0.5*pow(u,2) + 0.5*pow(v,2));
+        return (FlujoPromedio - 0.5*abs(uProm(u,v))*(v-u));
     }
     // Flujo por default, toma la velocidad de la izquierda
     else 
