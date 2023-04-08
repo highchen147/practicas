@@ -99,6 +99,8 @@ int main()
     // Se escribe arreglo que almacena tipos de marcos utilizados.
     string marcos[] = {"godunov", "roe", "LF"};
     int num_marcos = sizeof(marcos) / sizeof(marcos[0]);
+    // Ciclo principal que resuelve sobre todos los marcos la ecuación 
+    // de Burgers
     for (int i = 0; i < num_marcos; i++)
     {
     string marco = marcos[i];
