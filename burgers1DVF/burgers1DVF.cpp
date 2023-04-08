@@ -103,14 +103,19 @@ int main()
     // Se escribe arreglo que almacena tipos de marcos utilizados.
     string marcos[] = {"godunov", "roe", "LF"};
     int num_marcos = sizeof(marcos) / sizeof(marcos[0]);
-    // Ciclo principal que resuelve sobre todos los marcos la ecuación 
-    // de Burgers
+
+    // Ciclo principal que resuelve con todos los marcos implementados
+    // la ecuación de Burgers
     for (int i = 0; i < num_marcos; i++)
     {
     string marco = marcos[i];
+    // nombre del archivo .dat con los resultados numéricos
     string nombreDatos = funcion_inicial + "-" + tipo_frontera + ".dat";
+    // ruta de los datos numéricos
     string pathDatos = marco + "/" + nombreDatos;
+    // nombre del archivo .gp que grafica los datos
     string nombreGraf = funcion_inicial + "-" + tipo_frontera + ".gp";
+    // ruta del archivo de la gráfica
     string pathGraf = marco + "/" + nombreGraf;
     
     // Escribir archivos
@@ -230,8 +235,16 @@ int main()
     gplotmain << "pause " << 0.02 << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
+
     
     }
+
+    
+    
+    
+
+    // Escritura de las gráficas generales por condicion inicial y de frontera
+    
     // Enviamos el número de iteraciones y margen a los archivos de gráficas generales
     // ofstream grafica_general;
     // string nombre_grafica_general;
@@ -290,7 +303,8 @@ double gauss(double x)
 double step_neg(double x)
 {
     double L = 100;
-    if (x < L/2)
+    double arg = x - L/2;
+    if (arg < 0)
     {
         return 1.0;        
     }
@@ -343,11 +357,12 @@ double FlujoBurgers(double u)
 }
 
 /**
- * @brief Calcula el flujo promedio por interfaz según la ec. de Burgers
+ * @brief Calcula el flujo por interfaz según el marco utilizado
  * 
  * @param u Velocidad a la izquierda de la interfaz
  * @param v Velocidad a la derecha de la interfaz
- * @param marco Tipo de marco numérico usado
+ * @param marco Tipo de marco numérico usado: godunov, roe 
+ * o LF (Lax-Friedrichs)
  * @param dx Tamaño de paso en x
  * @param dt Tamaño de paso temporal
  * @return double: Flujo promedio en la i-ésima interfaz 
