@@ -67,14 +67,15 @@ int main()
     // gauss_impar: Función gaussiana multiplicada por (x-L/2) con amplitud A
     string funcion_inicial;
     cout << "Escriba la condición inicial a utilizar, puede ser:"<< endl; 
-    cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
+    cout << "step_neg \nstep_pos \ngauss \ngauss_impar \ngauss_neg" << endl;
     cout << ">> ";
     cin  >> funcion_inicial;
     cout << endl;
     while (funcion_inicial != "step_neg" && 
            funcion_inicial != "step_pos" && 
            funcion_inicial != "gauss" && 
-           funcion_inicial != "gauss_impar") 
+           funcion_inicial != "gauss_impar" &&
+           funcion_inicial != "gauss_neg") 
     {
         cout << "Función inválida. Intente de nuevo con:" << endl;
         cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
@@ -165,6 +166,10 @@ int main()
         {
             u[i] = gauss_impar(x[i]);
         }
+        else if (funcion_inicial == "gauss_neg")
+        {
+            u[i] = -gauss(x[i]);
+        }
         
         // Encontrar el máximo y mínimo valor de u
         if (u[i] > umax) umax = u[i];
@@ -179,7 +184,7 @@ int main()
     // Comienza a correr el tiempo antes de entrar al ciclo principal
     tiempo += dt;
     
-    // Ciclo principal
+    // Ciclo principal de integración
     for (int j = 0; j < Niter; j++)
     {
         for (int i = 1; i < Nx-1; i++)
@@ -235,27 +240,9 @@ int main()
     gplotmain << "pause " << 0.02 << endl;
     gplotmain << "print i" << endl;
     gplotmain << "}";
-
     
     }
 
-    
-    
-    
-
-    // Escritura de las gráficas generales por condicion inicial y de frontera
-    
-    // Enviamos el número de iteraciones y margen a los archivos de gráficas generales
-    // ofstream grafica_general;
-    // string nombre_grafica_general;
-    // nombre_grafica_general = funcion_inicial + "-" + tipo_frontera + "-general.gp";
-    // grafica_general.open(nombre_grafica_general, ios::in | ios::ate);
-    // grafica_general.seekp(0);
-    // grafica_general << "# Margen" << endl;
-    // grafica_general << "margen = " << margen << endl;
-    // grafica_general << "# Número de iteraciones temporales" << endl;
-    // grafica_general << "N_iter = "<< num_outs - 1 << endl;
-    // grafica_general.close();
 }
 
 /**
@@ -282,13 +269,13 @@ void condicion_frontera(double *u, double *u_nueva, int N,
     }
     else
     {    
-    u_nueva[0] = u[0] -(dt/dx)*
+        u_nueva[0] = u[0] -(dt/dx)*
             (Flujo(u[0], u[1], marco, dx, dt)-
-            Flujo(u[N-1], u[0], marco, dx, dt));
+             Flujo(u[N-1], u[0], marco, dx, dt));
 
-    u_nueva[N-1] = u[N-1] -(dt/dx)*
+        u_nueva[N-1] = u[N-1] -(dt/dx)*
             (Flujo(u[N-1], u[0], marco, dx, dt)-
-            Flujo(u[N-2], u[N-1], marco, dx, dt));
+             Flujo(u[N-2], u[N-1], marco, dx, dt));
     }
 }
 
@@ -324,7 +311,7 @@ double step_pos(double x)
     }
     else
     {
-        return 0.0;
+        return -1.0;
     }
 }
 
@@ -405,7 +392,7 @@ double Flujo(double u,
 }
 
 /**
- * @brief Velocidad a usar para el flujo según Godunov
+ * @brief Velocidad a usar para el flujo del marco de Godunov
  * 
  * @param u Velocidad a la izquierda
  * @param v Velocidad a la derecha
