@@ -316,7 +316,16 @@ double step_neg(double x)
 
 double step_pos(double x)
 {
-    return step_neg(-x);
+    double L = 100;
+    double arg = -(x - L/2);
+    if (arg < 0)
+    {
+        return 1.0;        
+    }
+    else
+    {
+        return 0.0;
+    }
 }
 
 double gauss_impar(double x)
