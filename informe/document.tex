@@ -544,6 +544,7 @@
 	
 	\begin{equation}
 		\int_{C_i} \pdv{u}{t} \dd{x} + \int_{C_i} \pdv{f(u)}{x} \dd{x} = 0
+		\label{eq:ecuacion-integrada}
 	\end{equation}
 
 	\begin{equation}
@@ -577,9 +578,19 @@
 		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F_{i+1}^n - F_{i}^{n}\right] = 0
 		\label{eq:diferencia-flujos}
 	\end{equation}
-	Entonces, la ecuación \ref{eq:diferencia-flujos} es la forma de \textbf{diferencia de flujos} de la ecuación de conservación; y a partir de la misma se pueden desarrollar los métodos numéricos basados en el método de volúmenes finitos, puesto que la función $F_{i}^{n}$ es una aproximación numérica. Para que el método funcione, la función $F_{i}^{n}$ debe calcularse utilizando los valores de la grilla, $u^{n}$ de tal manera que se obtendrá un método numérico totalmente discretizado \cite{LeVeque1998}. 
+	Entonces, la ecuación \ref{eq:diferencia-flujos} es la forma de \textbf{diferencia de flujos} de la ecuación de conservación; y a partir de la misma se pueden desarrollar los métodos numéricos basados en el método de volúmenes finitos, puesto que la función $F_{i}^{n}$ es una aproximación numérica. Para que el método funcione, la función $F_{i}^{n}$ debe calcularse utilizando los valores de la grilla, $u^{n}$ de tal manera que se obtenga un método numérico totalmente discretizado \cite{LeVeque1998}. 
 	
-	Se puede notar en la ecuación \ref{eq:flujo_promedio} que la expresión exacta para el flujo promedio en una interfaz, $F_{i}^{n}$ () es una integral y generalmente, en consecuencia de que $u$ depende del tiempo, esta integral tampoco es trivial. Sin embargo, se sabe que la información de la onda se propaga a través del espacio con velocidad finita, lo que implica que es posible obtener $F_{i}^{n}$ a partir de los valores $u_i$ y $u_{i-1}$ \cite{LeVeque1998}:
+	Se dice que la ecuación \ref{eq:diferencia-flujos} es un método numérico \textbf{conservativo} ya que emula la idea de la solución exacta expuesta en el desarrollo del inicio de este capítulo (ecuación \ref{eq:ecuacion-integrada}). Si se suman los valores que toma $u$, desde la celda $L$ hasta la celda $R$, se obtiene:
+	\begin{equation}
+		\sum_{i=L}^{R} u_{i}^{n+1} - \sum_{i=L}^{R}  u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ \sum_{i=L}^{R}F_{i+1}^{n} - \sum_{i=L}^{R}F_{i}^{n}\right] =0
+	\end{equation}
+		
+	\begin{equation}
+		{\Delta x}\sum_{i=L}^{R} u_{i}^{n+1} - {\Delta x}\sum_{i=L}^{R}  u_{i}^{n} + {\Delta t}\left[ F_{R+1}^{n} - F_{L}^{n} \right] =0
+	\end{equation}
+	Entonces, se concluye que el resultado del equivalente discreto de la integración de la función $u$ varía en el tiempo solamente debido a los flujos en las celdas limitantes del dominio considerado. Esta es la propiedad conservativa de la ecuación de diferencia de flujos.
+	
+	Volviendo a considerar el flujo $F_{i}^{n}$, se puede notar en la ecuación \ref{eq:flujo_promedio} que la expresión exacta para el flujo promedio en una interfaz, $F_{i}^{n}$ es una integral y generalmente, en consecuencia de que $u$ depende del tiempo, esta integral no es trivial. Sin embargo, se sabe que la información de la onda se propaga a través del espacio con una velocidad finita, lo que implica que es posible obtener $F_{i}^{n}$ a partir de los valores $u_i$ y $u_{i-1}$ \cite{LeVeque1998}:
 	\begin{equation}
 		F_{i}^{n} = F(u_{i-1}^{n}, u_{i}^{n})
 	\end{equation}
@@ -587,6 +598,7 @@
 	\begin{equation}
 		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F(u_{i}^{n}, u_{i+1}^{n}) - F(u_{i-1}^{n}, u_{i}^{n})\right] = 0
 	\end{equation}
+	A continuación se explican los marcos numéricos evaluados para calcular el flujo $F_{i}^{n}$.
 	
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
