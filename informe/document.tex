@@ -531,9 +531,9 @@
 	\end{figure}
 	
 	\section{Método de volúmenes finitos}
-	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} Este método se especializa en resolver ecuaciones diferenciales escritas en formas conservativas y es capaz de integrarlas aún cuando las soluciones poseen discontinuidades o  en el contexto de las ecuaciones de la mecánica de fluidos, choques (\textit{shocks} en inglés) \cite{LeVeque1998}. El método de volúmenes finitos es aplicable utilizando sub-métodos distintos que consisten en resolver el \textbf{problema de Riemann} en celdas vecinas de una grilla \cite{LeVeque1998}. Se explicará el concepto general del método de volúmenes finitos, el problema de Riemann y el sub-método utilizado.
+	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} Este método se especializa en resolver ecuaciones diferenciales escritas en forma conservativa y es capaz de integrarlas aún cuando las soluciones poseen discontinuidades o  en el contexto de las ecuaciones de la mecánica de fluidos, choques (\textit{shocks} en inglés) \cite{LeVeque1998}. El método de volúmenes finitos es aplicable utilizando métodos llamados \textit{esquemas} o \textit{marcos}, que sirven para calcular apropiadamente el \textbf{flujo} en las interfaces de las celdas de la grilla \cite{LeVeque1998}. Se explicará la deducción del método de volúmenes finitos, los marcos utilizados y la teoría de su funcionamiento.
 	
-	El método de volúmenes finitos tiene como principio básico la reinterpretación de los valores discretizados $u_{i}^{n}$ de la función incógnita $u$, dado que en lugar de considerar a estos valores como la aproximación del valor exacto $u(x_{i}, t_{n}) $\footnote{La notación introducida $u_{i}^{n}$ $\approx$ $u(x_{i}, t_{n})$ es tal que, $t_n \equiv n \Delta t $ con $n \in \mathbb{N}$} estos se interpretan como el \textbf{valor promedio} de la función $u$ en el intervalo $C_{i} = \left[ x_i, x_{i+1} \right]$, también denominado \textbf{celda}. Entonces la discretización de la función consiste en dividir el intervalo $I = [0,L]$ en $N$ intervalos $C_i$, donde $\Delta x = L/N = x_{i+1} - x_i$. De tal manera que, formalmente, el valor $u_{i}^{n}$ se calcula con una integral en $x$ sobre $C_i$:
+	El principio básico del método de volúmenes finitos es la reinterpretación de los valores discretizados $u_{i}^{n}$ de la función incógnita $u$; dado que en lugar de considerar a estos valores como la aproximación del valor exacto $u(x_{i}, t_{n}) $\footnote{La notación introducida $u_{i}^{n}$ $\approx$ $u(x_{i}, t_{n})$ es tal que, $t_n \equiv n \Delta t $ con $n \in \mathbb{N}$} se interpretan como el \textbf{valor promedio} de la función $u$ en el intervalo $C_{i} = \left[ x_i, x_{i+1} \right]$, también denominado \textbf{celda}. Entonces la discretización de la función consiste en dividir el intervalo $I = [0,L]$ en $N$ intervalos $C_i$, donde $\Delta x = L/N = x_{i+1} - x_i$. De tal manera que, formalmente, el valor $u_{i}^{n}$ se calcula con una integral en $x$ sobre $C_i$:
 	
 	\begin{equation}
 		u_{i}^{n} \approx \frac{1}{\Delta x} \int_{C_i} u(x,t_n) \dd{x} \equiv \frac{1}{\Delta x} \int_{x_i}^{x_{i+1}} u(x,t_n) \dd{x}
@@ -544,6 +544,7 @@
 	
 	\begin{equation}
 		\int_{C_i} \pdv{u}{t} \dd{x} + \int_{C_i} \pdv{f(u)}{x} \dd{x} = 0
+		\label{eq:ecuacion-integrada}
 	\end{equation}
 
 	\begin{equation}
@@ -577,7 +578,28 @@
 		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F_{i+1}^n - F_{i}^{n}\right] = 0
 		\label{eq:diferencia-flujos}
 	\end{equation}
-	Entonces, la ecuación \ref{eq:diferencia-flujos} es la forma de \textbf{diferencia de flujos} de la ecuación de conservación; y a partir de la misma se pueden desarrollar los métodos numéricos basados en el método de volúmenes finitos, puesto que la función $F_{i}^{n}$ es una aproximación numérica. Para que el método funcione, la función $F_{i}^{n}$ debe calcularse utilizando los valores de la grilla, $u^{n}$ de tal manera que se obtendrá un método numérico totalmente discretizado \cite{LeVeque1998}.
+	Entonces, la ecuación \ref{eq:diferencia-flujos} es la forma de \textbf{diferencia de flujos} de la ecuación de conservación; y a partir de la misma se pueden desarrollar los métodos numéricos basados en el método de volúmenes finitos, puesto que la función $F_{i}^{n}$ es una aproximación numérica. Para que el método funcione, la función $F_{i}^{n}$ debe calcularse utilizando los valores de la grilla, $u^{n}$ de tal manera que se obtenga un método numérico totalmente discretizado \cite{LeVeque1998}. 
+	
+	Se dice que la ecuación \ref{eq:diferencia-flujos} es un método numérico \textbf{conservativo} ya que emula la idea de la solución exacta expuesta en el desarrollo del inicio de este capítulo (ecuación \ref{eq:ecuacion-integrada}). Si se suman los valores que toma $u$, desde la celda $L$ hasta la celda $R$, se obtiene:
+	\begin{equation}
+		\sum_{i=L}^{R} u_{i}^{n+1} - \sum_{i=L}^{R}  u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ \sum_{i=L}^{R}F_{i+1}^{n} - \sum_{i=L}^{R}F_{i}^{n}\right] =0
+	\end{equation}
+		
+	\begin{equation}
+		{\Delta x}\sum_{i=L}^{R} u_{i}^{n+1} - {\Delta x}\sum_{i=L}^{R}  u_{i}^{n} + {\Delta t}\left[ F_{R+1}^{n} - F_{L}^{n} \right] =0
+	\end{equation}
+	Entonces, se concluye que el resultado del equivalente discreto de la integración de la función $u$ varía en el tiempo solamente debido a los flujos en las celdas limitantes del dominio considerado. Esta es la propiedad conservativa de la ecuación de diferencia de flujos.
+	
+	Volviendo a considerar el flujo $F_{i}^{n}$, se puede notar en la ecuación \ref{eq:flujo_promedio} que la expresión exacta para el flujo promedio en una interfaz, $F_{i}^{n}$ es una integral y generalmente, en consecuencia de que $u$ depende del tiempo, esta integral no es trivial. Sin embargo, se sabe que la información de la onda se propaga a través del espacio con una velocidad finita, lo que implica que es posible obtener $F_{i}^{n}$ a partir de los valores $u_i$ y $u_{i-1}$ \cite{LeVeque1998}:
+	\begin{equation}
+		F_{i}^{n} = F(u_{i-1}^{n}, u_{i}^{n})
+	\end{equation}
+	De tal manera que, sustituyendo en la ecuación \ref{eq:diferencia-flujos} se obtiene:
+	\begin{equation}
+		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F(u_{i}^{n}, u_{i+1}^{n}) - F(u_{i-1}^{n}, u_{i}^{n})\right] = 0
+	\end{equation}
+	A continuación se explican los marcos numéricos evaluados para calcular el flujo $F_{i}^{n}$.
+	
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
