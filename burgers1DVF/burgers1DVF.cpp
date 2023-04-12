@@ -48,7 +48,6 @@ int main()
     // roe: Roe
     // godunov: Godunov
 
-    
     // string marco;
     // cout << "Ingrese el marco numérico a utilizar: godunov, roe o LF" << endl;
     // cin  >> marco;
@@ -293,7 +292,7 @@ double step_neg(double x)
     double arg = x - L/2;
     if (arg < 0)
     {
-        return 1.0;        
+        return 0.05;        
     }
     else
     {
