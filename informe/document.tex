@@ -541,7 +541,12 @@
 		\label{eq:uiapprox}
 	\end{equation}
 	
-	Ahora, el método toma ventaja de esta nueva interpretación de la discretización cuando se integra la versión conservativa de la ecuación diferencial a resolver, es decir, una ecuación de la forma $\pdv{u}{t} + \pdv{f(u)}{x} = 0$, donde $f(u)$ es la función del flujo de $u$; para la ecuación de Burgers $f(u) = \frac{u^2}{2}$. Entonces, integrando dicha ecuación en ambas variables:
+	Ahora, el método toma ventaja de esta nueva interpretación de la discretización cuando se integra la versión conservativa de la ecuación diferencial a resolver, es decir, una ecuación de la forma:
+	\begin{equation}
+		\pdv{u}{t} + \pdv{f(u)}{x} = 0
+	\end{equation}
+	
+	donde $f(u)$ es la función del flujo de $u$; para la ecuación de Burgers $f(u) = \frac{u^2}{2}$. Entonces, integrando dicha ecuación en ambas variables:
 	
 	\begin{equation}
 		\int_{C_i} \pdv{u}{t} \dd{x} + \int_{C_i} \pdv{f(u)}{x} \dd{x} = 0
