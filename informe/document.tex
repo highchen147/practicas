@@ -610,7 +610,7 @@
 		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right) 
 	\end{equation}
 	
-	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
+	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
 	\begin{equation}
 		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
 	\end{equation}
