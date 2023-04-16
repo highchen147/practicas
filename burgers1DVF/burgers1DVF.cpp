@@ -43,21 +43,6 @@ int main()
     double dx = L/(Nx-1); // Tamaño de paso en el eje x
 
     // Variables y archivos de salida
-    // Se almacena el nombre del marco numérico a utilizar
-    // LF: Lex-Friedrichs
-    // roe: Roe
-    // godunov: Godunov
-
-    // string marco;
-    // cout << "Ingrese el marco numérico a utilizar: godunov, roe o LF" << endl;
-    // cin  >> marco;
-    // cout << endl;
-    // while (marco != "LF" && marco != "godunov" && marco != "roe") {
-    //     cout << "Marco numérico inválido. Intente de nuevo con godunov, roe o LF";
-    //     cin >> marco;
-    //     cout << "\n" << endl;
-    // }
-    
 
     // Se almacena el nombre de la función inicial a utilizar
     // step_neg: Función Heaviside valuada en L/2-x donde L es el largo del dominio en x
