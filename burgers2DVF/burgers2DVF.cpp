@@ -23,20 +23,73 @@ double Flujo(double u, double v, const string &Marco, double dx, double dt);
 double uPrime(double u, double v);
 double uProm(double u, double v);
 void imprimir(ofstream &file, double xcor, double ycor, double f);
+void datos_funciones();
 
 int main()
 {
-    ofstream archivo;
-    archivo.open("campana.dat", ios::out );
-        
-    for (int i = 0; i < 100; i++)
+    // Parámetros temporales
+    const double t_total = 30; // Tiempo total en segundos
+    const double dt = 0.001; // Tamaño de paso temporal en segundos
+    int Niter = floor(t_total/dt); // Número total de iteraciones
+    const int num_outs = 1000; // Número de gráficas de instantes temporales
+    int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
+                                            // imprimen los valores
+    
+    double tiempo = 0.0; // Variable de tiempo en la simulación
+
+    // Parámetros espaciales
+    int Nx = 500; // Número de puntos en el eje x
+    int Ny = 500; // Número de puntos en el eje y
+    double Lx = 100.0; // Largo del dominio x en metros
+    double Ly = 100.0; // Largo del dominio y en metros
+    double dx = Lx/(Nx-1); // Tamaño de paso en el eje x
+    double dy = Ly/(Ny-1); // Tamaño de paso en el eje y
+
+    
+    // Variables y archivos de salida
+    // Se almacena el nombre de la función inicial a utilizar
+    // step_neg: Función Heaviside valuada en L/2-x donde L es el largo del dominio en x
+    // step_pos: Función Heaviside valuada en L/2+x
+    // gauss: Función gaussiana centrada en L/2 con amplitud A
+    // gauss_impar: Función gaussiana multiplicada por (x-L/2) con amplitud A
+    string funcion_inicial;
+    cout << "Escriba la condición inicial a utilizar, puede ser:"<< endl; 
+    cout << "step_neg \nstep_pos \ngauss \ngauss_impar \ngauss_neg" << endl;
+    cout << ">> ";
+    cin  >> funcion_inicial;
+    cout << endl;
+    while (funcion_inicial != "step_neg" && 
+           funcion_inicial != "step_pos" && 
+           funcion_inicial != "gauss" && 
+           funcion_inicial != "gauss_impar" &&
+           funcion_inicial != "gauss_neg") 
     {
-        for (int j = 0; j < 100; j++)
-        {
-            imprimir(archivo, i, j, step_neg(i,j));
-        }
-        
+        cout << "Función inválida. Intente de nuevo con:" << endl;
+        cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
+        cout << ">> ";
+        cin >> funcion_inicial;
+        cout << "\n" << endl;
     }
+
+    // Se almacena el tipo de condiciones de frontera: fija o periódica
+    string tipo_frontera;
+    cout << "Escriba el tipo de condición de frontera que desea aplicar:" << endl;
+    cout << "fija" << endl;
+    cout << "periodica" << endl;
+    cout << ">> ";
+    cin >> tipo_frontera;
+    cout << "\n" << endl;
+    while (tipo_frontera != "fija" && 
+           tipo_frontera != "periodica") 
+    {
+        cout << "Condición inválida. Intente de nuevo con:" << endl;
+        cout << "fija \nperiodica" << endl;
+        cout << ">> ";
+        cin >> tipo_frontera;
+        cout << "\n" << endl;
+    }
+
+    // Arreglos y constantes
     
 }
 
@@ -91,4 +144,19 @@ double step_pos(double x, double y)
 void imprimir(ofstream &file, double xcor, double ycor, double f)
 {
     file << xcor << "\t" << ycor << "\t" << f << endl;
+}
+
+void datos_funciones()
+{
+    ofstream archivo;
+    archivo.open("campana.dat", ios::out );
+        
+    for (int i = 0; i < 100; i++)
+    {
+        for (int j = 0; j < 100; j++)
+        {
+            imprimir(archivo, i, j, step_pos(i,j));
+        }
+        
+    }
 }
