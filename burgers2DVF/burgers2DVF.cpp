@@ -89,11 +89,43 @@ int main()
         cout << "\n" << endl;
     }
 
+    // Nombre del archivo con los datos
+    string nombreDatos;
+    nombreDatos = funcion_inicial + "-" + tipo_frontera + ".dat";
+    // Se abre el archivo donde van los datos
+    ofstream outfile;
+    outfile.open(nombreDatos, ios::out);
+
     // Arreglos y constantes
+    // Función de velocidad en el tiempo actual: u{x, y, t}
+    double **u = new double*[Nx];
+    // Función de velocidad en el tiempo dt después u{x, y, t+dt}
+    double **u_nueva = new double*[Nx];
+    // Puntos sobre el eje x
+    double *x = new double[Nx];
+    // Puntos sobre el eje y
+    double *y = new double[Ny];
+
+    // Inicialización de cada arreglo
+    for (int i = 0; i < Nx; i++)
+    {
+        // Función u
+        u[i] = new double[Ny];
+        u_nueva[i] = new double[Ny];
+        // Arreglos dimensionales
+        x[i] = i*dx;
+    }
+    // Arreglo de dominio y
+    for (int j = 0; j < Ny; j++)
+    {
+        y[j] = j*dx;
+    }
+    
+
     
 }
 
-void salida( ostream &of, double **u, double *x, double *y, double t, int Nx, int Ny )
+void salida(ostream &of, double **u, double *x, double *y, double t, int Nx, int Ny )
 {
   for( int i=0; i<Nx+1; i++ ){
     for( int j=0; j<Ny+1; j++ ){
