@@ -43,7 +43,6 @@ int main()
     double dx = L/(Nx-1); // Tamaño de paso en el eje x
 
     // Variables y archivos de salida
-
     // Se almacena el nombre de la función inicial a utilizar
     // step_neg: Función Heaviside valuada en L/2-x donde L es el largo del dominio en x
     // step_pos: Función Heaviside valuada en L/2+x
@@ -184,8 +183,6 @@ int main()
         
         // Condiciones de frontera
         condicion_frontera(u, u_nueva, Nx, dt, dx, tipo_frontera, marco);
-        // u_nueva[0] = 0.0;
-        // u_nueva[Nx-1] = 0.0;
 
         // Actualizar u
         for (int i = 0; i < Nx; i++)
