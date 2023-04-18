@@ -18,9 +18,11 @@ double step_neg(double x, double y);
 double step_pos(double x, double y);
 double gauss_impar(double x, double y);
 double funcion_cond_inicial(const string &nombre_funcion, double x, double y);
+void condicion_frontera(double **u, double **u_nueva, int Nx, int Ny, 
+                        double dt, double dx, double dy, const string &tipo);
 void salida(ostream &of, double **u, double *x, double *y, double t, int Nx, int Ny);
-double FlujoBurgers(double u);                        
-double Flujo(double u, double v, const string &Marco, double dx, double dt);
+double FlujoBurgers(double u);
+double Flujo(double u, double v);
 double uPrime(double u, double v);
 double uProm(double u, double v);
 void imprimir(ofstream &file, double xcor, double ycor, double f);
@@ -29,10 +31,10 @@ void datos_funciones();
 int main()
 {
     // Parámetros temporales
-    const double t_total = 30; // Tiempo total en segundos
-    const double dt = 0.001; // Tamaño de paso temporal en segundos
+    const double t_total = 10; // Tiempo total en segundos
+    const double dt = 0.008; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 1000; // Número de gráficas de instantes temporales
+    const int num_outs = 300; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
@@ -106,6 +108,9 @@ int main()
     double *x = new double[Nx];
     // Puntos sobre el eje y
     double *y = new double[Ny];
+    // Variables de control
+    double umax = 0;
+    double umin = 0;
 
     // Inicialización de cada arreglo
     for (int i = 0; i < Nx; i++)
@@ -130,7 +135,50 @@ int main()
         }
         
     }
-    salida(outfile, u, x, y, 0, Nx, Ny);
+
+    // Inicia integración
+    tiempo = 0.0;
+    salida(outfile, u, x, y, tiempo, Nx, Ny);
+    // Comienza a correr el tiempo
+    tiempo += dt;
+
+    // Ciclo temporal
+    for (int k = 0; k < Niter; k++)
+    {
+        // Ciclo iterativo eje x
+        for (int i = 1; i < Nx-1; i++)
+        {
+            // Ciclo iterativo eje y
+            for (int j = 1; j < Ny-1; j++)
+            {
+                u_nueva[i][j] = u[i][j]
+                -(dt/dx)*(Flujo(u[i][j], u[i+1][j])-Flujo(u[i-1][j], u[i][j]))
+                -(dt/dy)*(Flujo(u[i][j], u[i][j+1])-Flujo(u[i][j-1], u[i][j]));
+            }
+        }
+        // Se aplica la condición de frontera
+        condicion_frontera(u, u_nueva, Nx, Ny, dt, dx, dy, tipo_frontera);
+
+        // Actualizar u
+        for (int i = 0; i < Nx; i++)
+        {
+            for (int j = 0; j < Ny; j++)
+            {
+                u[i][j] = u_nueva[i][j];
+            }
+        }
+
+        // Se imprimen los datos
+        if (k % out_cada == 0)
+        {
+            salida(outfile, u, x, y, tiempo, Nx, Ny);
+            cout << round(100*tiempo/t_total*100)/100 << "%\n" << endl;
+            // cout.flush();
+        }
+
+        // Actualizar el tiempo
+        tiempo += dt;
+    }
     
 }
 
@@ -147,10 +195,10 @@ void salida(ostream &of, double **u, double *x, double *y, double t, int Nx, int
 
 double gauss(double x, double y)
 {
-    double b = 0.02;
+    double b = 0.01;
     double x0 = 50;
     double y0 = 50; 
-    double A = 3.5;
+    double A = 5;
     return A*exp(-b*(pow(x - x0,2) + pow(y-y0,2)));
 }
 
@@ -209,6 +257,64 @@ double funcion_cond_inicial(const string &nombre_funcion, double x, double y)
     }
     else 
         return gauss(x, y);
+}
+
+void condicion_frontera(double **u, double **u_nueva, int Nx, int Ny, 
+                        double dt, double dx, double dy, const string &tipo)
+{
+    if (tipo == "fija")
+    {
+        // u_nueva[0] = u[0];
+        // u_nueva[N-1] = u[N-1];
+        for (int i = 0; i < Nx; i++)
+        {
+            u_nueva[i][0] = u[i][0];
+            u_nueva[i][Ny-1] = u[i][Ny-1];
+        }
+        for (int j = 0; j < Ny; j++)
+        {
+            u_nueva[0][j] = u[0][j];
+            u_nueva[Nx-1][j] = u[Nx-1][j];
+        }
+        
+    }
+    
+}
+
+/**
+ * @brief Flujo general de la ecuación de Burgers, F(u) = 1/2(u^2)
+ * 
+ * @param u Velocidad en x
+ * @return double: Flujo en función de la velocidad u
+ */
+double FlujoBurgers(double u)
+{
+    return 0.5*pow(u, 2);
+}
+
+/**
+ * @brief Velocidad a usar para el flujo del marco de Godunov
+ * 
+ * @param u Velocidad a la izquierda
+ * @param v Velocidad a la derecha
+ * @return double: velocidad elegida
+ */
+double uPrime(double u, double v)
+{
+    if (u + v > 0)
+    {
+        return u;
+    }
+    else if (u + v < 0)
+    {
+        return v;
+    }else
+        return 0;
+}
+
+double Flujo(double u, double v)
+{
+    return FlujoBurgers(uPrime(u, v));
 }
 
 void imprimir(ofstream &file, double xcor, double ycor, double f)
