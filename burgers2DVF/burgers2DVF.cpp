@@ -57,7 +57,7 @@ int main()
     // gauss_impar: Función gaussiana multiplicada por (x-L/2) con amplitud A
     string nombre_func_inicial;
     cout << "Escriba la condición inicial a utilizar, puede ser:"<< endl; 
-    cout << "step_neg \nstep_pos \ngauss \ngauss_impar \ngauss_neg" << endl;
+    cout << "step_neg \nstep_pos \ngauss \ngauss_impar \ngauss_neg \nsquare" << endl;
     cout << ">> ";
     cin  >> nombre_func_inicial;
     cout << endl;
@@ -65,10 +65,11 @@ int main()
            nombre_func_inicial != "step_pos" && 
            nombre_func_inicial != "gauss" && 
            nombre_func_inicial != "gauss_impar" &&
-           nombre_func_inicial != "gauss_neg") 
+           nombre_func_inicial != "gauss_neg" &&
+           nombre_func_inicial != "square") 
     {
         cout << "Función inválida. Intente de nuevo con:" << endl;
-        cout << "step_neg \nstep_pos \ngauss \ngauss_impar" << endl;
+        cout << "step_neg \nstep_pos \ngauss \ngauss_impar \nsquare" << endl;
         cout << ">> ";
         cin >> nombre_func_inicial;
         cout << "\n" << endl;
@@ -237,6 +238,23 @@ double step_pos(double x, double y)
     }
 }
 
+double square(double x, double y)
+{
+    double Lx = 50;
+    double Ly = 50;
+    double x0 = Lx;
+    double y0 = Ly;
+    if ((abs(x-x0) < Lx/2) && (abs(y-y0) < Ly/2))
+    {
+        return 6.0;
+    }
+    else
+    {
+        return 0.0;
+    }
+    
+}
+
 double funcion_cond_inicial(const string &nombre_funcion, double x, double y)
 {
     if (nombre_funcion == "gauss")
@@ -255,8 +273,14 @@ double funcion_cond_inicial(const string &nombre_funcion, double x, double y)
     {
         return gauss_impar(x, y);
     }
-    else 
-        return gauss(x, y);
+    else if (nombre_funcion == "square")
+    {
+        return square(x, y);
+    }
+    else
+        return 0.0;
+        
+    
 }
 
 void condicion_frontera(double **u, double **u_nueva, int Nx, int Ny, 
