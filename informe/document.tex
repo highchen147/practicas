@@ -18,6 +18,7 @@
 \usepackage{biblatex}
 \usepackage{physics}
 \usepackage{siunitx}
+\usepackage{color}
 
 \usepackage[table,xcdraw,dvipsnames]{xcolor}
 \addbibresource{ref.bib}
@@ -540,7 +541,12 @@
 		\label{eq:uiapprox}
 	\end{equation}
 	
-	Ahora, el método toma ventaja de esta nueva interpretación de la discretización cuando se integra la versión conservativa de la ecuación diferencial a resolver, es decir, una ecuación de la forma $\pdv{u}{t} + \pdv{f(u)}{x} = 0$, donde $f(u)$ es la función del flujo de $u$; para la ecuación de Burgers $f(u) = \frac{u^2}{2}$. Entonces, integrando dicha ecuación en ambas variables:
+	Ahora, el método toma ventaja de esta nueva interpretación de la discretización cuando se integra la versión conservativa de la ecuación diferencial a resolver, es decir, una ecuación de la forma:
+	\begin{equation}
+		\pdv{u}{t} + \pdv{f(u)}{x} = 0
+	\end{equation}
+	
+	donde $f(u)$ es la función del flujo de $u$; para la ecuación de Burgers $f(u) = \frac{u^2}{2}$. Entonces, integrando dicha ecuación en ambas variables:
 	
 	\begin{equation}
 		\int_{C_i} \pdv{u}{t} \dd{x} + \int_{C_i} \pdv{f(u)}{x} \dd{x} = 0
@@ -590,7 +596,7 @@
 	\end{equation}
 	Entonces, se concluye que el resultado del equivalente discreto de la integración de la función $u$ varía en el tiempo solamente debido a los flujos en las celdas limitantes del dominio considerado. Esta es la propiedad conservativa de la ecuación de diferencia de flujos.
 	
-	Volviendo a considerar el flujo $F_{i}^{n}$, se puede notar en la ecuación \ref{eq:flujo_promedio} que la expresión exacta para el flujo promedio en una interfaz, $F_{i}^{n}$ es una integral y generalmente, en consecuencia de que $u$ depende del tiempo, esta integral no es trivial. Sin embargo, se sabe que la información de la onda se propaga a través del espacio con una velocidad finita, lo que implica que es posible obtener $F_{i}^{n}$ a partir de los valores $u_i$ y $u_{i-1}$ \cite{LeVeque1998}:
+	Volviendo a considerar el flujo $F_{i}^{n}$, se puede notar en la ecuación \ref{eq:flujo_promedio} que la expresión para el flujo promedio en una interfaz, $F_{i}^{n}$ contiene una integral y generalmente, en consecuencia de que $u$ depende del tiempo, esta integral no es trivial. Sin embargo, se sabe que la información de la onda se propaga a través del espacio con una velocidad finita, lo que implica que es posible obtener $F_{i}^{n}$ a partir de los valores $u_i$ y $u_{i-1}$ \cite{LeVeque1998}:
 	\begin{equation}
 		F_{i}^{n} = F(u_{i-1}^{n}, u_{i}^{n})
 	\end{equation}
@@ -598,8 +604,22 @@
 	\begin{equation}
 		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F(u_{i}^{n}, u_{i+1}^{n}) - F(u_{i-1}^{n}, u_{i}^{n})\right] = 0
 	\end{equation}
-	A continuación se explican los marcos numéricos evaluados para calcular el flujo $F_{i}^{n}$.
+	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
+	\subsection{Esquema de Lax-Friedrichs}
+	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
+	\begin{equation}
+		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( f(u_{i-1}^{n}) + f(u_{i}^{n})\right) 
+	\end{equation}
+	\begin{equation}
+		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right) 
+	\end{equation}
+	
+	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
+	\begin{equation}
+		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
+	\end{equation}
+	Este es el esquema de Lax-Friedrichs para el flujo numérico de la ecuación de Burgers.
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
