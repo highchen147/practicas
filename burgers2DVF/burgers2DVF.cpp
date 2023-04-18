@@ -32,7 +32,7 @@ int main()
 {
     // Parámetros temporales
     const double t_total = 10; // Tiempo total en segundos
-    const double dt = 0.008; // Tamaño de paso temporal en segundos
+    const double dt = 0.004; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
     const int num_outs = 300; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
@@ -41,8 +41,8 @@ int main()
     double tiempo = 0.0; // Variable de tiempo en la simulación
 
     // Parámetros espaciales
-    int Nx = 200; // Número de puntos en el eje x
-    int Ny = 200; // Número de puntos en el eje y
+    int Nx = 100; // Número de puntos en el eje x
+    int Ny = 100; // Número de puntos en el eje y
     double Lx = 100.0; // Largo del dominio x en metros
     double Ly = 100.0; // Largo del dominio y en metros
     double dx = Lx/(Nx-1); // Tamaño de paso en el eje x
@@ -195,10 +195,10 @@ void salida(ostream &of, double **u, double *x, double *y, double t, int Nx, int
 
 double gauss(double x, double y)
 {
-    double b = 0.01;
+    double b = 0.006;
     double x0 = 50;
     double y0 = 50; 
-    double A = 5;
+    double A = 10;
     return A*exp(-b*(pow(x - x0,2) + pow(y-y0,2)));
 }
 
@@ -215,7 +215,7 @@ double step_neg(double x, double y)
     double arg = x - L/2;
     if (arg < 0)
     {
-        return 1.0;        
+        return 6.0;        
     }
     else
     {
