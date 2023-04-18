@@ -10,3 +10,4 @@ informe/document.toc
 informe/document.log
 informe/document.synctex.gz
 *.log
+burgers2DVF/*.dat
