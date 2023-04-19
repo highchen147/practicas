@@ -3,7 +3,7 @@ set xlabel "X"
 set ylabel "Y"
 set pm3d map
 set palette rgbformulae 33,13,10
-archivo = "square-fija.dat"
+archivo = "step_neg-fija.dat"
 
 stats archivo using 4 nooutput 
 set cbrange [STATS_min:STATS_max]
