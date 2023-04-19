@@ -300,9 +300,45 @@ void condicion_frontera(double **u, double **u_nueva, int Nx, int Ny,
             u_nueva[0][j] = u[0][j];
             u_nueva[Nx-1][j] = u[Nx-1][j];
         }
+    }
+    else if (tipo == "periodica")
+    {
+        // Esquinas inferiores
+        u_nueva[0][0] = u[0][0]
+        -(dt/dx)*(Flujo(u[0][0], u[1][0])-Flujo(u[Nx-1][0], u[0][0]))
+        -(dt/dy)*(Flujo(u[0][0], u[0][1])-Flujo(u[0][Ny-1], u[0][0]));
+
+        u_nueva[Nx-1][0] = u[Nx-1][0]
+        -(dt/dx)*(Flujo(u[Nx-1][0], u[0][0])-Flujo(u[Nx-2][0], u[Nx-1][0]))
+        -(dt/dy)*(Flujo(u[Nx-1][0], u[Nx-1][1])-Flujo(u[Nx-1][Ny-1], u[Nx-1][0]));
+
+        // Esquinas superiores
+
+        // Bordes horizontales
+        for (int i = 1; i < Nx-1; i++)
+        {
+            u_nueva[i][0] = u[i][0]
+            -(dt/dx)*(Flujo(u[i][0], u[i+1][0])-Flujo(u[i-1][0], u[i][0]))
+            -(dt/dy)*(Flujo(u[i][0], u[i][1])-Flujo(u[i][Ny-1], u[i][0]));
+
+            u_nueva[i][Ny-1] = u[i][Ny-1]
+            -(dt/dx)*(Flujo(u[i][Ny-1], u[i+1][Ny-1])-Flujo(u[i-1][Ny-1], u[i][Ny-1]))
+            -(dt/dy)*(Flujo(u[i][Ny-1], u[i][0])-Flujo(u[i][Ny-2], u[i][Ny-1]));
+        }
+        // Bordes verticales
+        for (int j = 1; j < Ny-1; j++)
+        {
+            u_nueva[0][j] = u[0][j]
+            -(dt/dx)*(Flujo(u[0][j], u[1][j])-Flujo(u[Nx-1][j], u[0][j]))
+            -(dt/dy)*(Flujo(u[0][j], u[0][j+1])-Flujo(u[0][j-1], u[0][j]));
+
+            u_nueva[Nx-1][j] = u[Nx-1][j]
+            -(dt/dx)*(Flujo(u[Nx-1][j], u[0][j])-Flujo(u[Nx-2][j], u[Nx-1][j]))
+            -(dt/dy)*(Flujo(u[Nx-1][j], u[Nx-1][j+1])-Flujo(u[Nx-1][j-1], u[Nx-1][j]));
+        }
+        
         
     }
-    
 }
 
 /**
