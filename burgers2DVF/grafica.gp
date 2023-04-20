@@ -1,9 +1,10 @@
 set title "Burgers 2D"
 set xlabel "X"
 set ylabel "Y"
+set size ratio 1
 set pm3d map
 set palette rgbformulae 33,13,10
-archivo = "step_neg-fija.dat"
+archivo = "square-periodica.dat"
 
 stats archivo using 4 nooutput 
 set cbrange [STATS_min:STATS_max]
