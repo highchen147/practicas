@@ -8,7 +8,8 @@ archivo = "square-periodica.dat"
 
 stats archivo using 4 nooutput 
 set cbrange [STATS_min:STATS_max]
-
+print "Presione enter"
+pause -1
 do for[i=0:300]{
     splot archivo index i using 2:3:4 with pm3d
     print i
