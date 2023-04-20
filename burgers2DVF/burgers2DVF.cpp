@@ -240,17 +240,19 @@ double step_pos(double x, double y)
 
 double square(double x, double y)
 {
-    double Lx = 50;
-    double Ly = 50;
-    double x0 = Lx;
-    double y0 = Ly;
+    double Lx_domain = 100;
+    double Ly_domain = 100;
+    double Lx = Lx_domain/2;
+    double Ly = Ly_domain/2;
+    double x0 = Lx/3;
+    double y0 = Ly/3;
     if ((abs(x-x0) < Lx/2) && (abs(y-y0) < Ly/2))
     {
-        return 6.0;
+        return 24.0;
     }
     else
     {
-        return 0.0;
+        return 4.0;
     }
     
 }
@@ -313,6 +315,13 @@ void condicion_frontera(double **u, double **u_nueva, int Nx, int Ny,
         -(dt/dy)*(Flujo(u[Nx-1][0], u[Nx-1][1])-Flujo(u[Nx-1][Ny-1], u[Nx-1][0]));
 
         // Esquinas superiores
+        u_nueva[0][Ny-1] = u[0][Ny-1]
+        -(dt/dx)*(Flujo(u[0][Ny-1], u[1][Ny-1])-Flujo(u[Nx-1][Ny-1], u[0][Ny-1]))
+        -(dt/dy)*(Flujo(u[0][Ny-1], u[0][0])-Flujo(u[0][Ny-2], u[0][Ny-1]));
+
+        u_nueva[Nx-1][Ny-1] = u[Nx-1][Ny-1]
+        -(dt/dx)*(Flujo(u[Nx-1][Ny-1], u[0][Ny-1])-Flujo(u[Nx-2][Ny-1], u[Nx-1][Ny-1]))
+        -(dt/dy)*(Flujo(u[Nx-1][Ny-1], u[Nx-1][0])-Flujo(u[Nx-1][Ny-2], u[Nx-1][Ny-1]));
 
         // Bordes horizontales
         for (int i = 1; i < Nx-1; i++)
