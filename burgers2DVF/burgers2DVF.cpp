@@ -31,10 +31,10 @@ void datos_funciones();
 int main()
 {
     // Parámetros temporales
-    const double t_total = 5; // Tiempo total en segundos
-    const double dt = 0.0009; // Tamaño de paso temporal en segundos
+    const double t_total = 10; // Tiempo total en segundos
+    const double dt = 0.004; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 150; // Número de gráficas de instantes temporales
+    const int num_outs = 300; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
@@ -43,8 +43,8 @@ int main()
     // Parámetros espaciales
     int Nx = 100; // Número de puntos en el eje x
     int Ny = 100; // Número de puntos en el eje y
-    double Lx = 1.0; // Largo del dominio x en metros
-    double Ly = 1.0; // Largo del dominio y en metros
+    double Lx = 100.0; // Largo del dominio x en metros
+    double Ly = 100.0; // Largo del dominio y en metros
     double dx = Lx/(Nx-1); // Tamaño de paso en el eje x
     double dy = Ly/(Ny-1); // Tamaño de paso en el eje y
 
@@ -240,19 +240,19 @@ double step_pos(double x, double y)
 
 double square(double x, double y)
 {
-    double Lx_domain = 1;
-    double Ly_domain = 1;
+    double Lx_domain = 100;
+    double Ly_domain = 100;
     double Lx = Lx_domain/2;
     double Ly = Ly_domain/2;
     double x0 = Lx_domain*0.35;
     double y0 = Ly_domain*0.35;
     if ((abs(x-x0) < Lx/2) && (abs(y-y0) < Ly/2))
     {
-        return 1.0;
+        return 100.0;
     }
     else
     {
-        return 0.1;
+        return 10.0;
     }
     
 }
