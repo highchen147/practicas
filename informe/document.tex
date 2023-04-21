@@ -606,6 +606,13 @@
 	\end{equation}
 	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
+	\subsection{Esquema de Godunov}
+	El esquema de Godunov es complejo de entender pero la idea fundamental es simple. El esquema de Godunov consiste en resolver el \textbf{problema de Riemann} en cada una de las celdas de la solución, este problema se explicará con detalle después de considerar algunas propiedades de las ecuaciones diferenciales en forma conservativa. Primero, se debe introducir el concepto de \textbf{solución débil.}
+	\subsubsection{Solución débil de una ecuación diferencial}
+	Como fue visto en secciones anteriores, la ecuación de Burgers tiene soluciones discontinuas, lo cual parece contradecir la misma ecuación diferencial puesto que esta posee derivadas parciales en todas sus variables y una función discontinua no es derivable en todo su dominio. Con el objetivo de validar las funciones discontinuas como soluciones de las ecuaciones diferenciales el concepto de solución débil fue introducido a la teoría de ecuaciones diferenciales parciales \cite{Cameron}.
+	
+	Como motivación para entender el concepto de la solución débil se define una función infinitamente suave $\phi(x,t)$ que posee un soporte compacto, es decir, que la función es distinta de cero solamente en un subconjunto compacto del espacio $(x,t)= \mathbb{R} \times \left[ 0, + \infty \right] $
+	
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
 	\begin{equation}
