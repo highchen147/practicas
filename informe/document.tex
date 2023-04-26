@@ -633,11 +633,17 @@
 			\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\left( \int_{-\infty}^{\infty} \phi u \dd{x} \right)\bigg|_{0}^{\infty}=-\int_{-\infty}^{\infty}\phi (x,0)u(x,0)\dd{x}
 		\end{equation}
 	\end{definition}
-	Se puede notar que la definición de la solución débil fuerza que la función $u(x,t)$ satisfaga la forma integral de la ecuación conservativa \ref{eq:integral_conservative}, mediante la función $\phi$ denominada \textit{función de prueba} \cite{Cameron}.
+	Se puede notar que la definición de la solución débil fuerza que la función $u(x,t)$ satisfaga la forma integral de la ecuación conservativa (\ref{eq:integral_conservative}), mediante la función $\phi$ denominada \textit{función de prueba} \cite{Cameron}.
 	
-	\begin{definition}
-		l
-	\end{definition}
+	\subsubsection{Problema de Riemann}
+	El problema de Riemann es un problema de valores iniciales para cualquier ecuación diferencial en forma conservativa, que exige:
+	\begin{equation}
+		u(x,t) =
+		\begin{cases}
+			u_{L}, & x < 0 \\
+			u_{R}, & x > 0
+		\end{cases}
+	\end{equation}
 	
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
