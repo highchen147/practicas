@@ -640,11 +640,11 @@
 	\begin{equation}
 		u(x,t) =
 		\begin{cases}
-			u_{L}, & x < 0 \\
-			u_{R}, & x > 0
+			u_{L} & x < 0 \\
+			u_{R} & x > 0
 		\end{cases}
 	\end{equation}
-	
+	Se considerarán los casos no triviales para este problema, $u_L > u_R$ y $u_L < u_R$.
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
 	\begin{equation}
