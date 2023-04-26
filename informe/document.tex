@@ -621,19 +621,23 @@
 	 
 	 \begin{equation}
 	 	\left( \int_{-\infty}^{\infty} \phi u \dd{x} \right)\bigg|_{0}^{\infty} - \int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=0
+	 	\label{eq:integral_conservative}
 	 \end{equation}
 	A partir de este resultado, yace la definición de solución débil.
 	
 	
 	
 	\begin{definition}
-		$u(x,t)$ es una solución débil de la ecuación diferencial $\pdv{u}{t} + \pdv{f(u)}{x}=0$ si para cualquier función suave $\phi(x,t)$ con soporte compacto satisface lo siguiente:
+		$u(x,t)$ es una solución débil de la ecuación diferencial $\pdv{u}{t} + \pdv{f(u)}{x}=0$ si para cualquier función suave $\phi(x,t)$ con soporte compacto se satisface lo siguiente:
 		\begin{equation}
-			\int_{0}^{\infty}
+			\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\left( \int_{-\infty}^{\infty} \phi u \dd{x} \right)\bigg|_{0}^{\infty}=-\int_{-\infty}^{\infty}\phi (x,0)u(x,0)\dd{x}
 		\end{equation}
-	\end{definition}	
+	\end{definition}
+	Se puede notar que la definición de la solución débil fuerza que la función $u(x,t)$ satisfaga la forma integral de la ecuación conservativa \ref{eq:integral_conservative}, mediante la función $\phi$ denominada \textit{función de prueba} \cite{Cameron}.
 	
-	
+	\begin{definition}
+		l
+	\end{definition}
 	
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
