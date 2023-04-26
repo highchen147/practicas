@@ -1,7 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[paper=letterpaper,margin=2cm]{geometry}
-\usepackage{amsmath, array}
+\usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{enumitem}
@@ -530,7 +531,9 @@
 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers con viscosidad igual a $0.3$, resuelta con diferencias finitas.}
 		\label{fig:instantes-nu0.3}
 	\end{figure}
-	
+
+	\theoremstyle{definition}
+	\newtheorem{definition}{Definición}[section]
 	\section{Método de volúmenes finitos}
 	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} Este método se especializa en resolver ecuaciones diferenciales escritas en forma conservativa y es capaz de integrarlas aún cuando las soluciones poseen discontinuidades o  en el contexto de las ecuaciones de la mecánica de fluidos, choques (\textit{shocks} en inglés) \cite{LeVeque1998}. El método de volúmenes finitos es aplicable utilizando métodos llamados \textit{esquemas} o \textit{marcos}, que sirven para calcular apropiadamente el \textbf{flujo} en las interfaces de las celdas de la grilla \cite{LeVeque1998}. Se explicará la deducción del método de volúmenes finitos, los marcos utilizados y la teoría de su funcionamiento.
 	
@@ -607,11 +610,29 @@
 	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
 	\subsection{Esquema de Godunov}
-	El esquema de Godunov es complejo de entender pero la idea fundamental es simple. El esquema de Godunov consiste en resolver el \textbf{problema de Riemann} en cada una de las celdas de la solución, este problema se explicará con detalle después de considerar algunas propiedades de las ecuaciones diferenciales en forma conservativa. Primero, se debe introducir el concepto de \textbf{solución débil.}
+	El esquema de Godunov se justifica a través de ideas complejas de las ecuaciones diferenciales de conservación; pero la idea fundamental del método es simple. El esquema de Godunov consiste en resolver el \textbf{problema de Riemann} en cada una de las celdas de la solución, este problema se explicará con detalle después de considerar algunas propiedades de las ecuaciones diferenciales en forma conservativa. Primero, se debe introducir el concepto de \textbf{solución débil.}
 	\subsubsection{Solución débil de una ecuación diferencial}
 	Como fue visto en secciones anteriores, la ecuación de Burgers tiene soluciones discontinuas, lo cual parece contradecir la misma ecuación diferencial puesto que esta posee derivadas parciales en todas sus variables y una función discontinua no es derivable en todo su dominio. Con el objetivo de validar las funciones discontinuas como soluciones de las ecuaciones diferenciales el concepto de solución débil fue introducido a la teoría de ecuaciones diferenciales parciales \cite{Cameron}.
 	
-	Como motivación para entender el concepto de la solución débil se define una función infinitamente suave $\phi(x,t)$ que posee un soporte compacto, es decir, que la función es distinta de cero solamente en un subconjunto compacto del espacio $(x,t)= \mathbb{R} \times \left[ 0, + \infty \right] $
+	Como motivación para entender el concepto de la solución débil se define una función infinitamente suave $\phi(x,t)$ que posee un soporte compacto, es decir, que la función es distinta de cero solamente en un subconjunto compacto del espacio $(x,t)= \mathbb{R} \times \left[ 0, + \infty \right] $. Luego se define $u(x,t)$ tal que esta satisface la ecuación de conservación general $\pdv{u}{t} + \pdv{f(u)}{x}=0$. Entonces integrando por partes se obtiene lo siguiente:
+	\begin{equation}
+		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( \pdv{u}{t} + \pdv{f(u)}{x} \right)\phi(x,t)\dd{x}\dd{t} = 0
+	\end{equation}
+	 
+	 \begin{equation}
+	 	\left( \int_{-\infty}^{\infty} \phi u \dd{x} \right)\bigg|_{0}^{\infty} - \int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=0
+	 \end{equation}
+	A partir de este resultado, yace la definición de solución débil.
+	
+	
+	
+	\begin{definition}
+		$u(x,t)$ es una solución débil de la ecuación diferencial $\pdv{u}{t} + \pdv{f(u)}{x}=0$ si para cualquier función suave $\phi(x,t)$ con soporte compacto satisface lo siguiente:
+	\end{definition}	
+	\begin{equation}
+		\int_{0}^{\infty}
+	\end{equation}
+	
 	
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
