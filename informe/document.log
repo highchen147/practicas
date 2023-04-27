@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  25 APR 2023 22:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  26 APR 2023 20:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -752,7 +752,94 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 Package color Info: Driver file: pdftex.def on input line 149.
 
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.lt
-x)) (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+x))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tik
+z.sty
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.st
+y
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.
+sty
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfut
+il-common.tex
+\pgfutil@everybye=\toks35
+\pgfutil@tempdima=\dimen186
+\pgfutil@tempdimb=\dimen187
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfut
+il-latex.def
+\pgfutil@abb=\box67
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrc
+s.code.tex
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.te
+x)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcor
+e.sty
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsy
+s.sty
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
+sys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfke
+ys.code.tex
+\pgfkeys@pathtoks=\toks36
+\pgfkeys@temptoks=\toks37
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfke
+yslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks38
+))
+\pgf@x=\dimen188
+\pgf@y=\dimen189
+\pgf@xa=\dimen190
+\pgf@ya=\dimen191
+\pgf@xb=\dimen192
+\pgf@yb=\dimen193
+\pgf@xc=\dimen194
+\pgf@yc=\dimen195
+\pgf@xd=\dimen196
+\pgf@yd=\dimen197
+\w@pgf@writea=\write4
+\r@pgf@reada=\read4
+\c@pgf@counta=\count444
+\c@pgf@countb=\count445
+\c@pgf@countc=\count446
+\c@pgf@countd=\count447
+\t@pgf@toka=\toks39
+\t@pgf@tokb=\toks40
+\t@pgf@tokc=\toks41
+\pgf@sys@id@count=\count448
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
+.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
+sys-pdftex.def
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
+sys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
+syssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count449
+\pgfsyssoftpath@bigbuffer@items=\count450
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf
+sysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
 
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cf
@@ -760,13 +847,6 @@ g
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 227.
-
-(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
-Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
-\everycr=\toks35
-\minrowclearance=\skip96
-\rownum=\count444
-)
 LaTeX Info: Redefining \color on input line 711.
 
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.lt
@@ -780,77 +860,292 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+ore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 
-(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/graphics\dvipsnam.def
-File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.co
+de.tex
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathuti
+l.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathpar
+ser.code.tex
+\pgfmath@dimen=\dimen198
+\pgfmath@count=\count451
+\pgfmath@box=\box68
+\pgfmath@toks=\toks42
+\pgfmath@stack@operand=\toks43
+\pgfmath@stack@operation=\toks44
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.basic.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.trigonometric.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.random.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.comparison.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.base.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.round.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.misc.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfun
+ctions.integerarithmetics.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcal
+c.code.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathflo
+at.code.tex
+\c@pgfmathroundto@lastzeros=\count452
 ))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.cod
+e.tex)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orepoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen199
+\pgf@picmaxx=\dimen256
+\pgf@picminy=\dimen257
+\pgf@picmaxy=\dimen258
+\pgf@pathminx=\dimen259
+\pgf@pathmaxx=\dimen260
+\pgf@pathminy=\dimen261
+\pgf@pathmaxy=\dimen262
+\pgf@xx=\dimen263
+\pgf@xy=\dimen264
+\pgf@yx=\dimen265
+\pgf@yy=\dimen266
+\pgf@zx=\dimen267
+\pgf@zy=\dimen268
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen269
+\pgf@path@lasty=\dimen270
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orepathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen271
+\pgf@shorten@start@additional=\dimen272
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orescopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box69
+\pgf@hbox=\box70
+\pgf@layerbox@main=\box71
+\pgf@picture@serial@count=\count453
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+oregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen273
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+oretransformations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen274
+\pgf@pt@y=\dimen275
+\pgf@pt@temp=\dimen276
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orequick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+oreobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orearrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen277
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+oreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen278
+\pgf@sys@shading@range@num=\count454
+\pgf@shadingcount=\count455
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+oreimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+oreexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box72
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orelayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+oretransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orepatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfc
+orerdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodu
+leshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box73
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodu
+leplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgf
+comp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen279
+\pgf@nodesepend=\dimen280
+)
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgf
+comp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.
+sty
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys
+.sty
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfke
+ys.code.tex))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.co
+de.tex))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffo
+r.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen281
+\pgffor@skip=\dimen282
+\pgffor@stack=\toks45
+\pgffor@toks=\toks46
+))
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
+ikz\tikz.code.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgfli
+braryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count456
+\pgfplotmarksize=\dimen283
+)
+\tikz@lastx=\dimen284
+\tikz@lasty=\dimen285
+\tikz@lastxsaved=\dimen286
+\tikz@lastysaved=\dimen287
+\tikz@lastmovetox=\dimen288
+\tikz@lastmovetoy=\dimen289
+\tikzleveldistance=\dimen290
+\tikzsiblingdistance=\dimen291
+\tikz@figbox=\box74
+\tikz@figbox@bg=\box75
+\tikz@tempbox=\box76
+\tikz@tempbox@bg=\box77
+\tikztreelevel=\count457
+\tikznumberofchildren=\count458
+\tikznumberofcurrentchild=\count459
+\tikz@fig@count=\count460
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodu
+lematrix.code.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count461
+\pgfmatrixcurrentcolumn=\count462
+\pgf@matrix@numberofcolumns=\count463
+)
+\tikz@expandcount=\count464
+
+(C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/t
+ikz/libraries\tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/tocloft\tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has section divisions on input line 51.
-\cftparskip=\skip97
-\cftbeforetoctitleskip=\skip98
-\cftaftertoctitleskip=\skip99
-\cftbeforepartskip=\skip100
-\cftpartnumwidth=\skip101
-\cftpartindent=\skip102
-\cftbeforesecskip=\skip103
-\cftsecindent=\skip104
-\cftsecnumwidth=\skip105
-\cftbeforesubsecskip=\skip106
-\cftsubsecindent=\skip107
-\cftsubsecnumwidth=\skip108
-\cftbeforesubsubsecskip=\skip109
-\cftsubsubsecindent=\skip110
-\cftsubsubsecnumwidth=\skip111
-\cftbeforeparaskip=\skip112
-\cftparaindent=\skip113
-\cftparanumwidth=\skip114
-\cftbeforesubparaskip=\skip115
-\cftsubparaindent=\skip116
-\cftsubparanumwidth=\skip117
-\cftbeforeloftitleskip=\skip118
-\cftafterloftitleskip=\skip119
-\cftbeforefigskip=\skip120
-\cftfigindent=\skip121
-\cftfignumwidth=\skip122
-\c@lofdepth=\count445
-\c@lotdepth=\count446
-\cftbeforelottitleskip=\skip123
-\cftafterlottitleskip=\skip124
-\cftbeforetabskip=\skip125
-\cfttabindent=\skip126
-\cfttabnumwidth=\skip127
+\cftparskip=\skip96
+\cftbeforetoctitleskip=\skip97
+\cftaftertoctitleskip=\skip98
+\cftbeforepartskip=\skip99
+\cftpartnumwidth=\skip100
+\cftpartindent=\skip101
+\cftbeforesecskip=\skip102
+\cftsecindent=\skip103
+\cftsecnumwidth=\skip104
+\cftbeforesubsecskip=\skip105
+\cftsubsecindent=\skip106
+\cftsubsecnumwidth=\skip107
+\cftbeforesubsubsecskip=\skip108
+\cftsubsubsecindent=\skip109
+\cftsubsubsecnumwidth=\skip110
+\cftbeforeparaskip=\skip111
+\cftparaindent=\skip112
+\cftparanumwidth=\skip113
+\cftbeforesubparaskip=\skip114
+\cftsubparaindent=\skip115
+\cftsubparanumwidth=\skip116
+\cftbeforeloftitleskip=\skip117
+\cftafterloftitleskip=\skip118
+\cftbeforefigskip=\skip119
+\cftfigindent=\skip120
+\cftfignumwidth=\skip121
+\c@lofdepth=\count465
+\c@lotdepth=\count466
+\cftbeforelottitleskip=\skip122
+\cftafterlottitleskip=\skip123
+\cftbeforetabskip=\skip124
+\cfttabindent=\skip125
+\cfttabnumwidth=\skip126
 )
 
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count447
-\@quotereset=\count448
+\@quotelevel=\count467
+\@quotereset=\count468
 (document.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -886,29 +1181,29 @@ LaTeX Font Info:    ... okay on input line 37.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \. on input line 37.
-LaTeX Info: Redefining \% on input line 37.
-Package hyperref Info: Link coloring ON on input line 37.
+LaTeX Info: Redefining \. on input line 39.
+LaTeX Info: Redefining \% on input line 39.
+Package hyperref Info: Link coloring ON on input line 39.
 (document.out) (document.out)
-\@outlinefile=\write4
-\openout4 = `document.out'.
+\@outlinefile=\write5
+\openout5 = `document.out'.
 
-\c@lstlisting=\count449
+\c@lstlisting=\count469
 
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
 mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count450
-\scratchdimen=\dimen186
-\scratchbox=\box67
-\nofMPsegments=\count451
-\nofMParguments=\count452
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count453
-\MPscratchDim=\dimen187
-\MPnumerator=\count454
-\makeMPintoPDFobject=\count455
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count470
+\scratchdimen=\dimen292
+\scratchbox=\box78
+\nofMPsegments=\count471
+\nofMParguments=\count472
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count473
+\MPscratchDim=\dimen293
+\MPnumerator=\count474
+\makeMPintoPDFobject=\count475
+\everyMPtoPDFconversion=\toks48
 )
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf
 -base.sty
@@ -937,8 +1232,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'document.bbl' found.
  (document.bbl)
-Package biblatex Info: Reference section=0 on input line 37.
-Package biblatex Info: Reference segment=0 on input line 37.
+Package biblatex Info: Reference section=0 on input line 39.
+Package biblatex Info: Reference segment=0 on input line 39.
 
 
 Package siunitx Warning: Detected the "physics" package:
@@ -958,31 +1253,31 @@ File: translations-basic-dictionary-spanish.trsl (spanish translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `spanish'. on input line 37.
-<images/usaclogo.png, id=75, 501.875pt x 501.875pt>
+or `spanish'. on input line 39.
+<images/usaclogo.png, id=82, 501.875pt x 501.875pt>
 File: images/usaclogo.png Graphic file (type png)
 <use images/usaclogo.png>
-Package pdftex.def Info: images/usaclogo.png  used on input line 49.
+Package pdftex.def Info: images/usaclogo.png  used on input line 51.
 (pdftex.def)             Requested size: 113.81102pt x 113.80533pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
 
 
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
 
 
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<images/logoecfmplain.png, id=77, 401.5pt x 401.5pt>
+<images/logoecfmplain.png, id=84, 401.5pt x 401.5pt>
 File: images/logoecfmplain.png Graphic file (type png)
 <use images/logoecfmplain.png>
-Package pdftex.def Info: images/logoecfmplain.png  used on input line 53.
+Package pdftex.def Info: images/logoecfmplain.png  used on input line 55.
 (pdftex.def)             Requested size: 113.80992pt x 113.80992pt.
 
-Overfull \hbox (10.01181pt too wide) in paragraph at lines 48--56
+Overfull \hbox (10.01181pt too wide) in paragraph at lines 50--58
 []$[]$$[]$ 
  []
 
@@ -994,27 +1289,27 @@ LaTeX Info: Redefining \sptext on input line 1.
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
-\tf@toc=\write5
-\openout5 = `document.toc'.
+\tf@toc=\write6
+\openout6 = `document.toc'.
 
  [2]
 
 pdfTeX warning: pdflatex.exe (file ./images/grilla.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<images/grilla.pdf, id=113, 497.86pt x 162.6075pt>
+<images/grilla.pdf, id=123, 497.86pt x 162.6075pt>
 File: images/grilla.pdf Graphic file (type pdf)
 <use images/grilla.pdf>
-Package pdftex.def Info: images/grilla.pdf  used on input line 135.
+Package pdftex.def Info: images/grilla.pdf  used on input line 137.
 (pdftex.def)             Requested size: 398.28853pt x 130.08617pt.
 [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
 
  []
 
@@ -1081,41 +1376,41 @@ consecutive:
 File: latin1.def 2021/02/14 v1.3d Input encoding file
 )
 consecutive:
-<../burgers1DDF/results/frame001.pdf, id=245, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame001.pdf, id=253, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame001.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame001.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame001.pdf  used on input lin
-e 271.
+e 273.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame026.pdf, id=246, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame026.pdf, id=254, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame026.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame026.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame026.pdf  used on input lin
-e 277.
+e 279.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame037.pdf, id=247, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame037.pdf, id=255, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame037.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame037.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame037.pdf  used on input lin
-e 283.
+e 285.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame040.pdf, id=248, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame040.pdf, id=256, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame040.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame040.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame040.pdf  used on input lin
-e 289.
+e 291.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame044.pdf, id=249, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame044.pdf, id=257, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame044.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame044.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame044.pdf  used on input lin
-e 295.
+e 297.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame045.pdf, id=250, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame045.pdf, id=258, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame045.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame045.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame045.pdf  used on input lin
-e 301.
+e 303.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
 [8] [9 <../burgers1DDF/results/frame001.pdf> <../burgers1DDF/results/frame026.p
 df
@@ -1139,37 +1434,37 @@ clusion: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame045.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >]
-<../burgers1DDF/resultados-conservativa/frame000.pdf, id=322, 361.35pt x 216.81
+<../burgers1DDF/resultados-conservativa/frame000.pdf, id=330, 361.35pt x 216.81
 pt>
 File: ../burgers1DDF/resultados-conservativa/frame000.pdf Graphic file (type pd
 f)
 <use ../burgers1DDF/resultados-conservativa/frame000.pdf>
 Package pdftex.def Info: ../burgers1DDF/resultados-conservativa/frame000.pdf  u
-sed on input line 368.
+sed on input line 370.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/resultados-conservativa/frame016.pdf, id=323, 361.35pt x 216.81
+<../burgers1DDF/resultados-conservativa/frame016.pdf, id=331, 361.35pt x 216.81
 pt>
 File: ../burgers1DDF/resultados-conservativa/frame016.pdf Graphic file (type pd
 f)
 <use ../burgers1DDF/resultados-conservativa/frame016.pdf>
 Package pdftex.def Info: ../burgers1DDF/resultados-conservativa/frame016.pdf  u
-sed on input line 374.
+sed on input line 376.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/resultados-conservativa/frame032.pdf, id=324, 361.35pt x 216.81
+<../burgers1DDF/resultados-conservativa/frame032.pdf, id=332, 361.35pt x 216.81
 pt>
 File: ../burgers1DDF/resultados-conservativa/frame032.pdf Graphic file (type pd
 f)
 <use ../burgers1DDF/resultados-conservativa/frame032.pdf>
 Package pdftex.def Info: ../burgers1DDF/resultados-conservativa/frame032.pdf  u
-sed on input line 380.
+sed on input line 382.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/resultados-conservativa/frame047.pdf, id=325, 361.35pt x 216.81
+<../burgers1DDF/resultados-conservativa/frame047.pdf, id=333, 361.35pt x 216.81
 pt>
 File: ../burgers1DDF/resultados-conservativa/frame047.pdf Graphic file (type pd
 f)
 <use ../burgers1DDF/resultados-conservativa/frame047.pdf>
 Package pdftex.def Info: ../burgers1DDF/resultados-conservativa/frame047.pdf  u
-sed on input line 386.
+sed on input line 388.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
  [10] [11 <../burgers1DDF/resultados-conservativa/frame000.pdf> <../burgers1DDF
 /resultados-conservativa/frame016.pdf
@@ -1188,7 +1483,7 @@ pdfTeX warning: pdflatex.exe (file ../burgers1DDF/resultados-conservativa/frame
 047.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
 e
 >]
-Overfull \hbox (1.19008pt too wide) in paragraph at lines 431--432
+Overfull \hbox (1.19008pt too wide) in paragraph at lines 433--434
 []\OT1/cmr/m/n/12 Se re-sol-vie-ron tres ecua-cio-nes con un co-efi-cien-te de 
 vis-co-si-dad $\OML/cmm/m/it/12 ^^W$ \OT1/cmr/m/n/12 dis-tin-to pa-ra ca-da una
 :$0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 50m[]\OML/cmm/m/it/12 =\OT1/cmr/m/n/12 s$,
@@ -1210,41 +1505,41 @@ Overfull \hbox (14.16512pt too wide) in paragraph at lines 95--96
  []
 
 [13]
-<../burg-vis1DDF/results/frame000.pdf, id=459, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame000.pdf, id=467, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame000.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame000.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame000.pdf  used on input li
-ne 464.
+ne 466.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame016.pdf, id=460, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame016.pdf, id=468, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame016.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame016.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame016.pdf  used on input li
-ne 470.
+ne 472.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame030.pdf, id=461, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame030.pdf, id=469, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame030.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame030.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame030.pdf  used on input li
-ne 476.
+ne 478.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame050.pdf, id=462, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame050.pdf, id=470, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame050.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame050.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame050.pdf  used on input li
-ne 482.
+ne 484.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame090.pdf, id=463, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame090.pdf, id=471, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame090.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame090.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame090.pdf  used on input li
-ne 488.
+ne 490.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame190.pdf, id=464, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame190.pdf, id=472, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame190.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame190.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame190.pdf  used on input li
-ne 494.
+ne 496.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
  [14 <../burg-vis1DDF/results/frame000.pdf> <../burg-vis1DDF/results/frame016.p
 df
@@ -1268,31 +1563,31 @@ nclusion: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex.exe (file ../burg-vis1DDF/results/frame190.pdf): PDF i
 nclusion: multiple pdfs with page group included in a single page
 >]
-<../burg-vis1DDF/results/frames0.3/frame000.pdf, id=563, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frames0.3/frame000.pdf, id=571, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frames0.3/frame000.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frames0.3/frame000.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frames0.3/frame000.pdf  used o
-n input line 509.
+n input line 511.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frames0.3/frame067.pdf, id=564, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frames0.3/frame067.pdf, id=572, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frames0.3/frame067.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frames0.3/frame067.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frames0.3/frame067.pdf  used o
-n input line 515.
+n input line 517.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frames0.3/frame082.pdf, id=565, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frames0.3/frame082.pdf, id=573, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frames0.3/frame082.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frames0.3/frame082.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frames0.3/frame082.pdf  used o
-n input line 521.
+n input line 523.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frames0.3/frame107.pdf, id=566, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frames0.3/frame107.pdf, id=574, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frames0.3/frame107.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frames0.3/frame107.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frames0.3/frame107.pdf  used o
-n input line 527.
+n input line 529.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-\c@definition=\count456
+\c@definition=\count476
  [15 <../burg-vis1DDF/results/frames0.3/frame000.pdf> <../burg-vis1DDF/results/
 frames0.3/frame067.pdf
 
@@ -1306,25 +1601,45 @@ df): PDF inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex.exe (file ../burg-vis1DDF/results/frames0.3/frame107.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
->] [16] [17] [18] [19] (document.aux
+>] [16] [17]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 651.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 651.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 651.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 651.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[18] [19] (document.aux
 LaTeX Info: Redefining \sptext on input line 23.
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 0A5E39DF74D94A1C503772995E92216E;3755.
+(rerunfilecheck)             Checksum: 327E336BBDD93ABFA84E6551C23B1099;3983.
 Package logreq Info: Writing requests to 'document.run.xml'.
 \openout1 = `document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 28696 strings out of 476339
- 544893 string characters out of 5787175
- 1904340 words of memory out of 5000000
- 48502 multiletter control sequences out of 15000+600000
+ 38667 strings out of 476339
+ 767253 string characters out of 5787175
+ 1905340 words of memory out of 5000000
+ 58274 multiletter control sequences out of 15000+600000
  523962 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,76p,909b,2870s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,89p,909b,2870s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Rodrigo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1200.pk><C:/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type
@@ -1350,9 +1665,9 @@ s/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Rodrigo/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Rodrigo/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users/Rodrigo/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on document.pdf (19 pages, 836324 bytes).
+Output written on document.pdf (19 pages, 842068 bytes).
 PDF statistics:
- 843 PDF objects out of 1000 (max. 8388607)
- 249 named destinations out of 1000 (max. 500000)
- 260 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 857 PDF objects out of 1000 (max. 8388607)
+ 252 named destinations out of 1000 (max. 500000)
+ 280 words of extra memory for PDF output out of 10000 (max. 10000000)
 

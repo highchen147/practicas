@@ -20,10 +20,12 @@
 \usepackage{physics}
 \usepackage{siunitx}
 \usepackage{color}
+\usepackage{tikz}
 
-\usepackage[table,xcdraw,dvipsnames]{xcolor}
-\addbibresource{ref.bib}
+%\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\usepackage{xcolor}
 \usepackage{tocloft}
+\addbibresource{ref.bib}
 \hypersetup{linkcolor=blue}
 \newcommand{\m}{\text{m}}
 \newcommand{\mpers}{\unit[per-mode = symbol]{\metre\per\second}}
@@ -547,6 +549,7 @@
 	Ahora, el método toma ventaja de esta nueva interpretación de la discretización cuando se integra la versión conservativa de la ecuación diferencial a resolver, es decir, una ecuación de la forma:
 	\begin{equation}
 		\pdv{u}{t} + \pdv{f(u)}{x} = 0
+		\label{eq:conservative_general}
 	\end{equation}
 	
 	donde $f(u)$ es la función del flujo de $u$; para la ecuación de Burgers $f(u) = \frac{u^2}{2}$. Entonces, integrando dicha ecuación en ambas variables:
@@ -636,15 +639,45 @@
 	Se puede notar que la definición de la solución débil fuerza que la función $u(x,t)$ satisfaga la forma integral de la ecuación conservativa (\ref{eq:integral_conservative}), mediante la función $\phi$ denominada \textit{función de prueba} \cite{Cameron}.
 	
 	\subsubsection{Problema de Riemann}
-	El problema de Riemann es un problema de valores iniciales para cualquier ecuación diferencial en forma conservativa, que exige:
+	El problema de Riemann es un problema de valores iniciales para cualquier ecuación diferencial en forma conservativa (ecuación \ref{eq:conservative_general}), que exige:
 	\begin{equation}
-		u(x,t) =
+		u(x,0) =
 		\begin{cases}
 			u_{L} & x < 0 \\
 			u_{R} & x > 0
 		\end{cases}
 	\end{equation}
-	Se considerarán los casos no triviales para este problema, $u_L > u_R$ y $u_L < u_R$.
+	Se considerarán los casos no triviales para este problema, si $u_L > u_R$ o $u_L < u_R$.
+	\subsubsection{Caso $u_L > u_R$, prob. de Riemann}
+	Este caso (apreciable en la figura \ref{fig:riemann_caso1}) de condición inicial tiene como solución general de una ecuación de conservación (ecuación \ref{eq:conservative_general}):
+	\begin{equation}
+		u(x,t) =
+		\begin{cases}
+			u_{L} & x < st \\
+			u_{R} & x > st
+		\end{cases}
+		\qquad, 
+		\qquad
+		\begin{aligned}
+			s &= \frac{f(u_L) - f(u_R)}{u_L - u_R}
+		\end{aligned}
+	\end{equation}
+	Donde $s$ es la \textit{velocidad de choque.} La expresión para $s$ también denominada \textit{condición Rankine-Hugoniot} \cite{Cameron}. 
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[scale=1.5]
+			\draw[stealth-stealth] (-2,0) -- (2,0) node[right] {$x$};
+			\draw[-] (0,-1.5) -- (0,1.5) node[above] {$u(x,0)$};
+			\draw[domain=-2:0,smooth,variable=\x,blue] plot ({\x},{1});
+			\draw[domain=0:2,smooth,variable=\x,red] plot ({\x},{-1});
+			\draw[dashed] (0,-1.5) -- (0,1.5);
+		\end{tikzpicture}
+		\caption{Gráfica de condición inicial del caso $u_L > u_R$}
+		\label{fig:riemann_caso1}
+	\end{figure}
+	
+	
+
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
 	\begin{equation}
