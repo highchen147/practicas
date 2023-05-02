@@ -42,6 +42,18 @@ double u_prom(double u_L, double u_R, double rho_L, double rho_R)
     (sqrt(rho_L) + sqrt(rho_R));
 }
 
+/**
+ * @brief Calcula media ponderada de la entalpía
+ * respecto a la raíz de densidades vecinas
+ * 
+ * @param p_L 
+ * @param p_R 
+ * @param u_L 
+ * @param u_R 
+ * @param rho_L 
+ * @param rho_R 
+ * @return double 
+ */
 double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R)
 {
     // Se calcula la entalpía a la izquierda y a la derecha
