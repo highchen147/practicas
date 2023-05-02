@@ -1,7 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[paper=letterpaper,margin=2cm]{geometry}
-\usepackage{amsmath, array}
+\usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{enumitem}
@@ -19,10 +20,12 @@
 \usepackage{physics}
 \usepackage{siunitx}
 \usepackage{color}
+\usepackage{tikz}
 
-\usepackage[table,xcdraw,dvipsnames]{xcolor}
-\addbibresource{ref.bib}
+%\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\usepackage{xcolor}
 \usepackage{tocloft}
+\addbibresource{ref.bib}
 \hypersetup{linkcolor=blue}
 \newcommand{\m}{\text{m}}
 \newcommand{\mpers}{\unit[per-mode = symbol]{\metre\per\second}}
@@ -530,7 +533,9 @@
 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers con viscosidad igual a $0.3$, resuelta con diferencias finitas.}
 		\label{fig:instantes-nu0.3}
 	\end{figure}
-	
+
+	\theoremstyle{definition}
+	\newtheorem{definition}{Definición}[section]
 	\section{Método de volúmenes finitos}
 	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} Este método se especializa en resolver ecuaciones diferenciales escritas en forma conservativa y es capaz de integrarlas aún cuando las soluciones poseen discontinuidades o  en el contexto de las ecuaciones de la mecánica de fluidos, choques (\textit{shocks} en inglés) \cite{LeVeque1998}. El método de volúmenes finitos es aplicable utilizando métodos llamados \textit{esquemas} o \textit{marcos}, que sirven para calcular apropiadamente el \textbf{flujo} en las interfaces de las celdas de la grilla \cite{LeVeque1998}. Se explicará la deducción del método de volúmenes finitos, los marcos utilizados y la teoría de su funcionamiento.
 	
@@ -544,6 +549,7 @@
 	Ahora, el método toma ventaja de esta nueva interpretación de la discretización cuando se integra la versión conservativa de la ecuación diferencial a resolver, es decir, una ecuación de la forma:
 	\begin{equation}
 		\pdv{u}{t} + \pdv{f(u)}{x} = 0
+		\label{eq:conservative_general}
 	\end{equation}
 	
 	donde $f(u)$ es la función del flujo de $u$; para la ecuación de Burgers $f(u) = \frac{u^2}{2}$. Entonces, integrando dicha ecuación en ambas variables:
@@ -606,6 +612,75 @@
 	\end{equation}
 	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
+	\subsection{Esquema de Godunov}
+	El esquema de Godunov se justifica a través de ideas complejas de las ecuaciones diferenciales de conservación; pero la idea fundamental del método es simple. El esquema de Godunov consiste en resolver el \textbf{problema de Riemann} en cada una de las celdas de la solución, este problema se explicará con detalle después de considerar algunas propiedades de las ecuaciones diferenciales en forma conservativa. Primero, se debe introducir el concepto de \textbf{solución débil.}
+	\subsubsection{Solución débil de una ecuación diferencial}
+	Como fue visto en secciones anteriores, la ecuación de Burgers tiene soluciones discontinuas, lo cual parece contradecir la misma ecuación diferencial puesto que esta posee derivadas parciales en todas sus variables y una función discontinua no es derivable en todo su dominio. Con el objetivo de validar las funciones discontinuas como soluciones de las ecuaciones diferenciales el concepto de solución débil fue introducido a la teoría de ecuaciones diferenciales parciales \cite{Cameron}.
+	
+	Como motivación para entender el concepto de la solución débil se define una función infinitamente suave $\phi(x,t)$ que posee un soporte compacto, es decir, que la función es distinta de cero solamente en un subconjunto compacto del espacio $(x,t)= \mathbb{R} \times \left[ 0, + \infty \right] $. Luego se define $u(x,t)$ tal que esta satisface la ecuación de conservación general $\pdv{u}{t} + \pdv{f(u)}{x}=0$. Entonces integrando por partes se obtiene lo siguiente:
+	\begin{equation}
+		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( \pdv{u}{t} + \pdv{f(u)}{x} \right)\phi(x,t)\dd{x}\dd{t} = 0
+		\label{eq:integral_conservative1}
+	\end{equation}
+	 
+	 \begin{equation}
+	 	\left( \int_{-\infty}^{\infty} \phi u \dd{x} \right)\bigg|_{0}^{\infty} - \int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=0
+	 	\label{eq:integral_conservative2}
+	 \end{equation}
+	A partir de este resultado, yace la definición de solución débil.
+	
+	
+	
+	\begin{definition}
+		$u(x,t)$ es una solución débil de la ecuación diferencial $\pdv{u}{t} + \pdv{f(u)}{x}=0$ si para cualquier función suave $\phi(x,t)$ con soporte compacto se satisface lo siguiente:
+		\begin{equation}
+			\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\left( \int_{-\infty}^{\infty} \phi u \dd{x} \right)\bigg|_{0}^{\infty}=-\int_{-\infty}^{\infty}\phi (x,0)u(x,0)\dd{x}
+			\label{eq:weak_sol_cond}
+		\end{equation}
+	\end{definition}
+	Se puede notar que la definición de la solución débil fuerza que la función $u(x,t)$ satisfaga la forma integral de la ecuación conservativa (\ref{eq:integral_conservative}), mediante la función $\phi$ denominada \textit{función de prueba} \cite{Cameron}.
+	
+	\subsubsection{Problema de Riemann}
+	El problema de Riemann es un problema de valores iniciales para cualquier ecuación diferencial en forma conservativa (ecuación \ref{eq:conservative_general}), que exige:
+	\begin{equation}
+		u(x,0) =
+		\begin{cases}
+			u_{L} & x < 0 \\
+			u_{R} & x > 0
+		\end{cases}
+	\end{equation}
+	Se considerarán los casos no triviales para este problema, si $u_L > u_R$ o $u_L < u_R$.
+	\subsubsection{Caso $u_L > u_R$, prob. de Riemann}
+	Este caso (apreciable en la figura \ref{fig:riemann_caso1}) de condición inicial tiene como solución general de una ecuación de conservación (ecuación \ref{eq:conservative_general}):
+	\begin{equation}
+		u(x,t) =
+		\begin{cases}
+			u_{L} & x < st \\
+			u_{R} & x > st
+		\end{cases}
+		\qquad donde,
+		\qquad
+		\begin{aligned}
+			s &= \frac{f(u_L) - f(u_R)}{u_L - u_R}
+		\end{aligned}
+	\end{equation}
+	Donde $s$ es la \textit{velocidad de choque.} La expresión para $s$ también es denominada \textit{condición Rankine-Hugoniot} \cite{Cameron}. A continuación se demostrará que esta solución es una solución débil de la ecuación (\ref{eq:conservative_general}).\\
+	\textit{Prueba:} Sea $\phi$ una función de prueba con soporte compacto $U$ y que este último yace completamente en alguno de los dos conjuntos siguientes: $\{x<st\}$ o $\{x>st\}$. Dado que $u(x,t)$ es constante en ambos conjuntos mencionados, esta satisface la ecuación conservativa (\ref{eq:conservative_general}) y consecuentemente se satisface la condición \ref{eq:weak_sol_cond} que garantiza que la solución es una solución débil.
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[scale=1.5]
+			\draw[stealth-stealth] (-2,0) -- (2,0) node[right] {$x$};
+			\draw[-] (0,-1.5) -- (0,1.5) node[above] {$u(x,0)$};
+			\draw[domain=-2:0,smooth,variable=\x,blue] plot ({\x},{1});
+			\draw[domain=0:2,smooth,variable=\x,red] plot ({\x},{-1});
+			\draw[dashed] (0,-1.5) -- (0,1.5);
+		\end{tikzpicture}
+		\caption{Gráfica de condición inicial del caso $u_L > u_R$}
+		\label{fig:riemann_caso1}
+	\end{figure}
+	
+	
+
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
 	\begin{equation}

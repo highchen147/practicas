@@ -19,6 +19,28 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{Cameron}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=d691b5968ed6fa3ee172bcfb70ef012f}{%
+           family={Cameron},
+           familyi={C\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{d691b5968ed6fa3ee172bcfb70ef012f}
+      \strng{fullhash}{d691b5968ed6fa3ee172bcfb70ef012f}
+      \strng{bibnamehash}{d691b5968ed6fa3ee172bcfb70ef012f}
+      \strng{authorbibnamehash}{d691b5968ed6fa3ee172bcfb70ef012f}
+      \strng{authornamehash}{d691b5968ed6fa3ee172bcfb70ef012f}
+      \strng{authorfullhash}{d691b5968ed6fa3ee172bcfb70ef012f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Universidad de Maryland}
+      \field{title}{Notes on Burger's Equation}
+      \field{year}{2016}
+    \endentry
     \entry{devries2011first}{book}{}
       \name{author}{3}{}{%
         {{hash=ddbb8d2254770cc2d3ee5cf967628010}{%
