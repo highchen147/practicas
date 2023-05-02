@@ -18,6 +18,7 @@ double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, doub
 double a_prom(double p_L, double p_R, double rho_L, double rho_R);
 vector<double> operator+(const vector<double>& a, const vector<double>& b);
 vector<double> operator*(const vector<double>& v, double scalar);
+vector<double>& operator+=(vector<double>& v1, const vector<double>& v2);
 
 const double Gamma = 1.4;
 
@@ -118,4 +119,16 @@ vector<double> operator*(const vector<double>& v, double scalar) {
         result[i] = v[i] * scalar;
     }
     return result;
+}
+
+vector<double>& operator+=(vector<double>& v1, const vector<double>& v2) {
+    if (v1.size() != v2.size()) {
+        throw invalid_argument("Los vectores deben tener el mismo tamaño.");
+    }
+
+    for (size_t i = 0; i < v1.size(); i++) {
+        v1[i] += v2[i];
+    }
+
+    return v1;
 }
