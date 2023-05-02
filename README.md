@@ -7,7 +7,6 @@
 <ul>
   <li>Método de diferencias finitas</li>
   <li>Método de volúmenes finitos</li>
-  <li>Método de elementos finitos</li>
 </ul>
 
 <p><strong>Ecuación de Burgers, con y sin viscosidad</strong></p>
