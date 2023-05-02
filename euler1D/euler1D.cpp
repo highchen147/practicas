@@ -3,17 +3,35 @@
 #include <cmath>
 #include <iomanip>
 #include <fstream>
+#include <vector>
 using namespace std;
+
+// Sobrecarga de * para multiplicación de escalar por un vector
+
+
+// Sobrecarga de + para suma de vectores 
+
 
 double rho_prom(double rho_L, double rho_R);
 double u_prom(double u_L, double u_R, double rho_L, double rho_R);
 double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 double a_prom(double p_L, double p_R, double rho_L, double rho_R);
+vector<double> operator+(const vector<double>& a, const vector<double>& b);
+vector<double> operator*(const vector<double>& v, double scalar);
+
 const double Gamma = 1.4;
 
 int main()
 {
+    // Parámetros temporales
+    const double t_total = 30; // Tiempo total en segundos
+    const double dt = 0.01; // Tamaño de paso temporal en segundos
+    int Niter = floor(t_total/dt); // Número total de iteraciones
+    const int num_outs = 1000; // Número de gráficas de instantes temporales
+    int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
+                                            // imprimen los valores
     
+    double tiempo = 0.0; // Variable de tiempo en la simulación
 }
 
 /**
@@ -79,4 +97,25 @@ double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, doub
 double a_prom(double p_L, double p_R, double rho_L, double rho_R)
 {
     return sqrt(Gamma*(p_L/sqrt(rho_L)+p_R/sqrt(rho_R))/(sqrt(rho_L)+sqrt(rho_R)));
+}
+
+vector<double> operator+(const vector<double>& a, const vector<double>& b) {
+    // Asegurarse de que ambos vectores tengan el mismo tamaño
+    if (a.size() != b.size()) {
+        throw runtime_error("Los vectores deben tener el mismo tamaño.");
+    }
+    
+    vector<double> result(a.size());
+    for (size_t i = 0; i < a.size(); i++) {
+        result[i] = a[i] + b[i];
+    }
+    return result;
+}
+
+vector<double> operator*(const vector<double>& v, double scalar) {
+    vector<double> result(v.size());
+    for (size_t i = 0; i < v.size(); i++) {
+        result[i] = v[i] * scalar;
+    }
+    return result;
 }
