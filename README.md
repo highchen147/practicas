@@ -20,6 +20,8 @@ $$
 \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}-\nu\frac{\partial^{2} u}{\partial x^{2}}=0
 $$
 
+<p><strong>Ecuaciones de Euler de movimiento del medio continuo en una dimensión</strong></p>
+
 $$
 \frac{\partial \rho}{\partial t} + \frac{\partial}{\partial x}(\rho u) = 0
 $$
