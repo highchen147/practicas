@@ -20,6 +20,7 @@ $$
 \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}-\nu\frac{\partial^{2} u}{\partial x^{2}}=0
 $$
 
+<p>Se resolverá las ecuaciones de Euler en una dimensión espacial usando volúmenes finitos.</p>
 <p><strong>Ecuaciones de Euler de movimiento del medio continuo en una dimensión</strong></p>
 
 $$
