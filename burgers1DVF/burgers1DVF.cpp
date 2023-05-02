@@ -124,7 +124,7 @@ int main()
     // Variables de control
     double umax = 0;
     double umin = 0;
-
+    
     // Inicialización de arreglos
     for (int i = 0; i < Nx; i++)
     {
