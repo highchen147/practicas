@@ -613,7 +613,7 @@
 	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
 	\subsection{Esquema de Godunov}
-	El esquema de Godunov se justifica a través de ideas complejas de las ecuaciones diferenciales de conservación; pero la idea fundamental del método es simple. El esquema de Godunov consiste en resolver el \textbf{problema de Riemann} en cada una de las celdas de la solución, este problema se explicará con detalle después de considerar algunas propiedades de las ecuaciones diferenciales en forma conservativa. Primero, se debe introducir el concepto de \textbf{solución débil.}
+	El esquema de Godunov se justifica a través de conceptos avanzados de las ecuaciones diferenciales de conservación; pero la idea fundamental del método es simple. El esquema de Godunov consiste en resolver el \textbf{problema de Riemann} en cada una de las celdas de la solución, este problema se explicará con detalle después de considerar algunas propiedades de las ecuaciones diferenciales en forma conservativa. Primero, se debe comprender el concepto de \textbf{solución débil} de una ecuación diferencial.
 	\subsubsection{Solución débil de una ecuación diferencial}
 	Como fue visto en secciones anteriores, la ecuación de Burgers tiene soluciones discontinuas, lo cual parece contradecir la misma ecuación diferencial puesto que esta posee derivadas parciales en todas sus variables y una función discontinua no es derivable en todo su dominio. Con el objetivo de validar las funciones discontinuas como soluciones de las ecuaciones diferenciales el concepto de solución débil fue introducido a la teoría de ecuaciones diferenciales parciales \cite{Cameron}.
 	
@@ -665,6 +665,7 @@
 		\end{aligned}
 	\end{equation}
 	Donde $s$ es la \textit{velocidad de choque.} La expresión para $s$ también es denominada \textit{condición Rankine-Hugoniot} \cite{Cameron}. A continuación se demostrará que esta solución es una solución débil de la ecuación (\ref{eq:conservative_general}).\\
+	
 	\textit{Prueba:} Sea $\phi$ una función de prueba con soporte compacto $U$ y que este último yace completamente en alguno de los dos conjuntos siguientes: $\{x<st\}$ o $\{x>st\}$. Dado que $u(x,t)$ es constante en ambos conjuntos mencionados, esta satisface la ecuación conservativa (\ref{eq:conservative_general}) y consecuentemente se satisface la condición \ref{eq:weak_sol_cond} que garantiza que la solución es una solución débil.
 	\begin{figure}[h]
 		\centering
