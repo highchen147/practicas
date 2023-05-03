@@ -247,7 +247,23 @@ vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho
     double u = u_prom(u_L, u_R, rho_L, rho_R);
     double rho = rho_prom(rho_L, rho_R);
     double h = h_prom(p_L, p_R, u_L, u_R, rho_L, rho_R);
-    
+    double a = a_prom(p_L, p_R, rho_L, rho_R);
+    double dp = p_R - p_L;
+    double du = u_R - u_L;
+    double drho = rho_R - rho_L;
+    // Fuerzas de las ondas, alfa
+    double alfa_1 = 0.5*(dp-rho*a*du)/pow(a, 2);
+    double alfa_2 = (pow(a, 2)*drho-dp)/pow(a, 2);
+    double alfa_3 = 0.5*(dp+rho*a*du)/pow(a, 2);
+    vector<double> alfa = {alfa_1, alfa_2, alfa_3};
+    // Autovalores de las ondas
+    vector<double> lambda = {u-a, u, u+a};
+    // Autovectores
+    vector<double> e_1 = {1, u-a, h-u*a};
+    vector<double> e_2 = {1, u, 0.5*pow(u,2)};
+    vector<double> e_3 = {1, u+a, h+u*a};
+    // vector de vectores
+    vector<vector<double>> e_vec = {e_1, e_2, e_3};
 }
 
 vector<double> operator+(const vector<double>& a, const vector<double>& b) {
