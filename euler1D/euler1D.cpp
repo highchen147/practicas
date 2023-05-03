@@ -6,10 +6,6 @@
 #include <vector>
 using namespace std;
 
-// Sobrecarga de * para multiplicación de escalar por un vector
-
-
-// Sobrecarga de + para suma de vectores 
 
 
 double rho_prom(double rho_L, double rho_R);
