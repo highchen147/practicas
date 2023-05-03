@@ -7,7 +7,11 @@
 using namespace std;
 
 
-
+double rho_inicial(double x);
+double p_inicial(double x);
+double u_inicial(double x);
+void calc_componentes_Q(double *q1, double *q2, double *q3, double *rho, double *p, double *u, int Nx);
+void calc_componentes_F(double *F1, double *F2, double *F3, double *rho, double *p, double *u, int Nx);
 double rho_prom(double rho_L, double rho_R);
 double u_prom(double u_L, double u_R, double rho_L, double rho_R);
 double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
@@ -29,6 +33,144 @@ int main()
                                             // imprimen los valores
     
     double tiempo = 0.0; // Variable de tiempo en la simulación
+
+    // Parámetros espaciales
+    int Nx = 500; // Número de puntos en el eje x
+    double L = 100.0; // Largo del dominio en metros
+    double dx = L/(Nx-1); // Tamaño de paso en el eje x
+     
+    // Arreglos
+    // Cantidades físicas
+    double *rho = new double[Nx]; // Densidad
+    double *u = new double[Nx]; // Velocidad
+    double *p = new double[Nx]; // Presión
+    // Componentes del vector Q
+    double *q1 = new double[Nx];
+    double *q2 = new double[Nx];
+    double *q3 = new double[Nx];
+    // Componentes del vector F
+    double *F1 = new double[Nx];
+    double *F2 = new double[Nx];
+    double *F3 = new double[Nx];
+    // Puntos sobre el eje x
+    double *x = new double[Nx];
+
+    // Inicialización de arreglos
+    // Dominio espacial
+    for (int i = 0; i < Nx; i++)
+    {
+        x[i] = i*dx;
+    }
+    // Densidad
+    for (int i = 0; i < Nx; i++)
+    {
+        rho[i] = rho_inicial(x[i]);
+    }
+    // Presión
+    for (int i = 0; i < Nx; i++)
+    {
+        p[i] = p_inicial(x[i]);
+    }
+    // Velocidad
+    for (int i = 0; i < Nx; i++)
+    {
+        u[i] = u_inicial(x[i]);
+    }
+
+    // Se calculan las componentes del vector Q de acuerdo a su definición 
+    calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
+
+    
+    
+
+}
+
+/**
+ * @brief Función inicial de la velocidad
+ * 
+ * @param x Posición en x
+ * @return double 
+ */
+double u_inicial(double x)
+{
+    return 0.0;
+}
+
+/**
+ * @brief Función inicial de la presión
+ * 
+ * @param x Posición en x
+ * @return double 
+ */
+double p_inicial(double x)
+{
+    double atm = (1.01325e5);
+    double L = 100;
+    if (x > L/2)
+    {
+        return 2*atm;
+    }
+    else
+    {
+        return atm;    
+    }
+}
+
+/**
+ * @brief Función inicial de la densidad
+ * 
+ * @param x Posición en x
+ * @return double 
+ */
+double rho_inicial(double x)
+{
+    // Densidad del aire en kg/m^3
+    double d_aire = 1.29;
+    return 1.0*d_aire;
+}
+
+/**
+ * @brief Asignar valores a las componentes del vector Q
+ * 
+ * @param q1 Componente 1 de Q
+ * @param q2 Componente 2 de Q
+ * @param q3 Componente 3 de Q
+ * @param rho Densidad
+ * @param p Presión
+ * @param u Velocidad
+ * @param Nx Tamaño de los arreglos que almacenan las funciones
+ */
+void calc_componentes_Q(double *q1, double *q2, double *q3, double *rho, double *p, double *u, int Nx)
+{
+    for (int i = 0; i < Nx; i++)
+    {
+        q1[i] = rho[i];
+        q2[i] = rho[i]*u[i];
+        q3[i] = p[i]/(Gamma-1) + 0.5*rho[i]*pow(u[i], 2);
+    }
+    
+}
+
+/**
+ * @brief Asignar valores a las componentes del vector F (flujo)
+ * 
+ * @param F1 Componente 1 de F
+ * @param F2 Componente 2 de F
+ * @param F3 Componente 3 de F
+ * @param rho Densidad
+ * @param p Presión
+ * @param u Velocidad
+ * @param Nx Tamaño de los arreglos que almacenan las funciones
+ */
+void calc_componentes_F(double *F1, double *F2, double *F3, double *rho, double *p, double *u, int Nx)
+{
+    for (int i = 0; i < Nx; i++)
+    {
+        F1[i] = rho[i]*u[i];
+        F2[i] = p[i] + rho[i]*pow(u[i], 2);
+        F3[i] = u[i]*(p[i]/(Gamma-1) + 0.5*rho[i]*pow(u[i], 2) + p[i]); 
+    }
+    
 }
 
 /**
