@@ -14,7 +14,7 @@
 \contentsline {subsection}{\numberline {2.1}Esquema de Godunov}{17}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}Solución débil de una ecuación diferencial}{18}{subsubsection.2.1.1}%
 \contentsline {subsubsection}{\numberline {2.1.2}Problema de Riemann}{18}{subsubsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.3}Caso $u_L > u_R$, prob. de Riemann}{18}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.3}Caso $u_L > u_R$ del problema de Riemann}{18}{subsubsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.2}Esquema de Lax-Friedrichs}{19}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Método de elementos finitos}{19}{section.3}%
-\contentsline {section}{\numberline {4}Conclusiones}{19}{section.4}%
+\contentsline {section}{\numberline {3}Método de elementos finitos}{20}{section.3}%
+\contentsline {section}{\numberline {4}Conclusiones}{20}{section.4}%

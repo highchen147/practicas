@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  3 MAY 2023 13:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.15)  3 MAY 2023 15:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1515,10 +1515,6 @@ pdfTeX warning: pdflatex.exe (file ../burg-vis1DDF/results/frames0.3/frame107.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
 >] [16] [17]
 
-LaTeX Warning: Reference `eq:integral_conservative' on page 18 undefined on inp
-ut line 641.
-
-
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 653.
 
@@ -1539,31 +1535,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 666--668
 
  []
 
-[18] [19] [20] (./document.aux
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[18]
+Overfull \hbox (7.5644pt too wide) detected at line 686
+[][][][][] [][] [] [] [] \OT1/cmr/m/n/12 = [] [][] [] [] [] + [] [][] [] [] []
+ []
+
+[19] [20] (./document.aux
 LaTeX Info: Redefining \sptext on input line 23.
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-
-LaTeX Warning: There were undefined references.
-
-
-Package rerunfilecheck Warning: File `document.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `document.out':
-(rerunfilecheck)             Before: 26680C981A38E48EBDF16D0EE08BB42F;4002
-(rerunfilecheck)             After:  327E336BBDD93ABFA84E6551C23B1099;3983.
+Package rerunfilecheck Info: File `document.out' has not changed.
+(rerunfilecheck)             Checksum: 23850D13AD10CFE8193913865568C531;4016.
 Package logreq Info: Writing requests to 'document.run.xml'.
 \openout1 = `document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
  38656 strings out of 476029
- 757837 string characters out of 5794164
+ 757824 string characters out of 5794164
  1905340 words of memory out of 5000000
- 58289 multiletter control sequences out of 15000+600000
+ 58288 multiletter control sequences out of 15000+600000
  523962 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,89p,907b,2870s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1588,10 +1583,10 @@ dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2022/texmf-dist/font
 s/type1/public/amsfonts/cm/cmtt12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/p
 ublic/amsfonts/symbols/msbm10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/publi
 c/cm-super/sfrm1200.pfb>
-Output written on document.pdf (20 pages, 765473 bytes).
+Output written on document.pdf (20 pages, 766246 bytes).
 PDF statistics:
- 874 PDF objects out of 1000 (max. 8388607)
- 714 compressed objects within 8 object streams
- 253 named destinations out of 1000 (max. 500000)
+ 878 PDF objects out of 1000 (max. 8388607)
+ 718 compressed objects within 8 object streams
+ 254 named destinations out of 1000 (max. 500000)
  280 words of extra memory for PDF output out of 10000 (max. 10000000)
 

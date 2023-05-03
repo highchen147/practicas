@@ -638,7 +638,7 @@
 			\label{eq:weak_sol_cond}
 		\end{equation}
 	\end{definition}
-	Se puede notar que la definición de la solución débil fuerza que la función $u(x,t)$ satisfaga la forma integral de la ecuación conservativa (\ref{eq:integral_conservative}), mediante la función $\phi$ denominada \textit{función de prueba} \cite{Cameron}.
+	Se puede notar que la definición de la solución débil fuerza que la función $u(x,t)$ satisfaga la forma integral de la ecuación conservativa (\ref{eq:integral_conservative1}), mediante la función $\phi$ denominada \textit{función de prueba} \cite{Cameron}.
 	
 	\subsubsection{Problema de Riemann}
 	El problema de Riemann es un problema de valores iniciales para cualquier ecuación diferencial en forma conservativa (ecuación \ref{eq:conservative_general}), que exige:
@@ -650,7 +650,7 @@
 		\end{cases}
 	\end{equation}
 	Se considerarán los casos no triviales para este problema, si $u_L > u_R$ o $u_L < u_R$.
-	\subsubsection{Caso $u_L > u_R$, prob. de Riemann}
+	\subsubsection{Caso $u_L > u_R$ del problema de Riemann}
 	Este caso (apreciable en la figura \ref{fig:riemann_caso1}) de condición inicial tiene como solución general de una ecuación de conservación (ecuación \ref{eq:conservative_general}):
 	\begin{equation}
 		u(x,t) =
@@ -658,15 +658,14 @@
 			u_{L} & x < st \\
 			u_{R} & x > st
 		\end{cases}
-		\qquad donde,
+		\qquad \text{donde,}
 		\qquad
 		\begin{aligned}
 			s &= \frac{f(u_L) - f(u_R)}{u_L - u_R}
 		\end{aligned}
 	\end{equation}
 	Donde $s$ es la \textit{velocidad de choque.} La expresión para $s$ también es denominada \textit{condición Rankine-Hugoniot} \cite{Cameron}. A continuación se demostrará que esta solución es una solución débil de la ecuación (\ref{eq:conservative_general}).\\
-	
-	\textit{Prueba:} Sea $\phi$ una función de prueba con soporte compacto $U$ y que este último yace completamente en alguno de los dos conjuntos siguientes: $\{x<st\}$ o $\{x>st\}$. Dado que $u(x,t)$ es constante en ambos conjuntos mencionados, esta satisface la ecuación conservativa (\ref{eq:conservative_general}) y consecuentemente se satisface la condición \ref{eq:weak_sol_cond} que garantiza que la solución es una solución débil.
+		
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}[scale=1.5]
@@ -679,7 +678,12 @@
 		\caption{Gráfica de condición inicial del caso $u_L > u_R$}
 		\label{fig:riemann_caso1}
 	\end{figure}
+	\textit{Prueba:} Sea $\phi$ una función de prueba con soporte compacto $U$ y que este último yace completamente en alguno de los dos conjuntos siguientes: $\{x<st\}$ o $\{x>st\}$. Dado que $u(x,t)$ es constante en ambos conjuntos mencionados, esta satisface la ecuación conservativa (\ref{eq:integral_conservative1}) y consecuentemente se satisface la condición \ref{eq:weak_sol_cond}\cite{Cameron}.
 	
+	Ahora se demostrará que $u(x,t)$ es la única solución débil de la ecuación \ref{eq:conservative_general}. Suponiendo que el soporte $U$ de $\phi$ está dividido por la recta $x=st$, de tal forma que el conjunto a la izquierda de la recta es $U_L$ y a la derecha es $U_R$. Integrando, se tiene 
+	\begin{equation}
+		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t} = \int\int_{U_L}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t} + \int\int_{U_R}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}
+	\end{equation}
 	
 
 	\subsection{Esquema de Lax-Friedrichs}
