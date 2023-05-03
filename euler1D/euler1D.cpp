@@ -16,6 +16,7 @@ double rho_prom(double rho_L, double rho_R);
 double u_prom(double u_L, double u_R, double rho_L, double rho_R);
 double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 double a_prom(double p_L, double p_R, double rho_L, double rho_R);
+vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 vector<double> operator+(const vector<double>& a, const vector<double>& b);
 vector<double> operator*(const vector<double>& v, double scalar);
 vector<double>& operator+=(vector<double>& v1, const vector<double>& v2);
@@ -79,6 +80,9 @@ int main()
 
     // Se calculan las componentes del vector Q de acuerdo a su definición 
     calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
+
+    // Se calculan las componentes del vector F, que representa el flujo
+    calc_componentes_F(F1, F2, F3, rho, p, u, Nx);
 
     
     
@@ -236,6 +240,14 @@ double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, doub
 double a_prom(double p_L, double p_R, double rho_L, double rho_R)
 {
     return sqrt(Gamma*(p_L/sqrt(rho_L)+p_R/sqrt(rho_R))/(sqrt(rho_L)+sqrt(rho_R)));
+}
+
+vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R)
+{
+    double u = u_prom(u_L, u_R, rho_L, rho_R);
+    double rho = rho_prom(rho_L, rho_R);
+    double h = h_prom(p_L, p_R, u_L, u_R, rho_L, rho_R);
+    
 }
 
 vector<double> operator+(const vector<double>& a, const vector<double>& b) {
