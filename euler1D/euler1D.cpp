@@ -21,7 +21,7 @@ vector<double> operator+(const vector<double>& a, const vector<double>& b);
 vector<double> operator*(const vector<double>& v, double scalar);
 vector<double>& operator+=(vector<double>& v1, const vector<double>& v2);
 
-const double Gamma = 1.4;
+const double Gamma = 4;
 
 int main()
 {
@@ -84,9 +84,12 @@ int main()
     // Se calculan las componentes del vector F, que representa el flujo
     calc_componentes_F(F1, F2, F3, rho, p, u, Nx);
 
+    vector<double> res = suma_k(0, 4, 0, 0, 1, 1);
     
-    
-
+    for (double i : res){
+        cout << i << endl;
+    }
+    cout << endl;
 }
 
 /**
@@ -264,6 +267,15 @@ vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho
     vector<double> e_3 = {1, u+a, h+u*a};
     // vector de vectores
     vector<vector<double>> e_vec = {e_1, e_2, e_3};
+    // Se declara el vector resultante
+    vector<double> resultado(3, 0);
+
+    // Se realiza la suma
+    for (int i = 0; i < 3; i++)
+    {
+        resultado += e_vec[i]*(alfa[i]*abs(lambda[i]));
+    }
+    return resultado;
 }
 
 vector<double> operator+(const vector<double>& a, const vector<double>& b) {
