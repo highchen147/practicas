@@ -663,6 +663,7 @@
 		\begin{aligned}
 			s &= \frac{f(u_L) - f(u_R)}{u_L - u_R}
 		\end{aligned}
+		\label{eq:sol-riemann-weak}
 	\end{equation}
 	Donde $s$ es la \textit{velocidad de choque.} La expresión para $s$ también es denominada \textit{condición Rankine-Hugoniot} \cite{Cameron}. A continuación se demostrará que esta solución es una solución débil de la ecuación (\ref{eq:conservative_general}).\\
 		
@@ -696,7 +697,7 @@
 	\end{equation}
 	\begin{equation}
 		\pdv{(f(u)\phi)}{x} = f(u)\pdv{\phi}{x} 
-	\end{equation}
+	\end{equation}	
 	Aplicando estas propiedades en la integración \ref{eq:integracion-cons}, se obtiene
 	\begin{equation}
 		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t} = \int\int_{U_L}\left( \pdv{(u\phi)}{t} + \pdv{(f(u)\phi)}{x}\right)\dd{x}\dd{t} + \int\int_{U_R}\left( \pdv{(u\phi)}{t} + \pdv{(f(u)\phi)}{x}\right)\dd{x}\dd{t}
@@ -706,10 +707,14 @@
 		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\int_{\partial U_L}\phi \left( f(u_L)\dd{t} - u_L \dd{x}\right) + \int_{\partial U_R}\phi \left( f(u_R)\dd{t} - u_R \dd{x}\right)
 	\end{equation}
 	\begin{equation}
-		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\int_{x=st}\phi \left(\frac{f(u_L)}{s} - u_L  - \frac{f(u_R)}{s} + u_R  \right)\dd{x}
+		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\int_{x=st}\phi \left(\frac{f(u_L)}{s} - u_L  - \frac{f(u_R)}{s} + u_R  \right)\dd{x}-\int_{-\infty}^{0}\phi u_L \dd{x} -\int_{0}^{\infty}\phi u_R \dd{x}
 	\end{equation}
+	\begin{equation}
+		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\int_{x=st}\phi \left(\frac{f(u_L)-f(u_R)}{s} - (u_L-u_R) \right)\dd{x} - \int_{-\infty}^{\infty}\phi(x,0)u(x,0) \dd{x}
+		\label{eq:integracion-final}
+	\end{equation}
+	El integrando del primer término de la ecuación \ref{eq:integracion-final} se hace cero si y solo si $s = \frac{f(u_L) - f(u_R)}{u_L - u_R}$ y dado que esta integral debe ser cero por la condición \ref{eq:weak_sol_cond}, se demuestra que $u(x,t)$ definida en \ref{eq:sol-riemann-weak} es la única solución para el problema de Riemann en el caso $u_L > u_R$.
 	
-
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
 	\begin{equation}
