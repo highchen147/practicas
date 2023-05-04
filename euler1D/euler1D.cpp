@@ -16,6 +16,7 @@ double rho_prom(double rho_L, double rho_R);
 double u_prom(double u_L, double u_R, double rho_L, double rho_R);
 double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 double a_prom(double p_L, double p_R, double rho_L, double rho_R);
+void salida(ofstream &of, double *u, double *x, double tiempo, int N);
 vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 vector<double> operator+(const vector<double>& a, const vector<double>& b);
 vector<double> operator*(const vector<double>& v, double scalar);
@@ -39,6 +40,14 @@ int main()
     int Nx = 500; // Número de puntos en el eje x
     double L = 100.0; // Largo del dominio en metros
     double dx = L/(Nx-1); // Tamaño de paso en el eje x
+
+    // Archivos
+    ofstream file_densidad;
+    ofstream file_presion;
+    ofstream file_velocidad;
+    file_densidad.open("data/densidad.dat", ios::out );
+    file_presion.open("data/presion.dat", ios::out);
+    file_velocidad.open("data/velocidad.dat", ios::out);
      
     // Arreglos
     // Cantidades físicas
@@ -84,12 +93,12 @@ int main()
     // Se calculan las componentes del vector F, que representa el flujo
     calc_componentes_F(F1, F2, F3, rho, p, u, Nx);
 
-    vector<double> res = suma_k(0, 4, 0, 0, 1, 1);
+    // Se envían los datos iniciales
+    salida(file_densidad, rho, x, tiempo, Nx);
+    salida(file_presion, p, x, tiempo, Nx);
+    salida(file_velocidad, u, x, tiempo, Nx);
     
-    for (double i : res){
-        cout << i << endl;
-    }
-    cout << endl;
+    
 }
 
 /**
@@ -267,7 +276,8 @@ vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho
     vector<double> e_3 = {1, u+a, h+u*a};
     // vector de vectores
     vector<vector<double>> e_vec = {e_1, e_2, e_3};
-    // Se declara el vector resultante
+
+    // Se declara el vector resultante, de dimensión 3 y con ceros.
     vector<double> resultado(3, 0);
 
     // Se realiza la suma
@@ -276,6 +286,24 @@ vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho
         resultado += e_vec[i]*(alfa[i]*abs(lambda[i]));
     }
     return resultado;
+}
+
+/**
+ * @brief Función que envía datos a los archivos, con instantes
+ * temporales separados por doble enter
+ * 
+ * @param of Archivo de datos
+ * @param u Arreglo que almacena los valores de las funciones
+ * @param x Arreglo de dimensión espacial
+ * @param tiempo Instante temporal en cuestión
+ * @param N Tamaño del arreglo
+ */
+void salida(ofstream &of, double *u, double *x, double tiempo, int N){
+    for (int i = 0; i < N; i++)
+    {
+        of << tiempo << "\t" << x[i] << "\t" << u[i] << endl;
+    }
+    of << endl << endl;
 }
 
 vector<double> operator+(const vector<double>& a, const vector<double>& b) {
