@@ -680,15 +680,36 @@
 	\end{figure}
 	\textit{Prueba:} Sea $\phi$ una función de prueba con soporte compacto $U$ y que este último yace completamente en alguno de los dos conjuntos siguientes: $\{x<st\}$ o $\{x>st\}$. Dado que $u(x,t)$ es constante en ambos conjuntos mencionados, esta satisface la ecuación conservativa (\ref{eq:integral_conservative1}) y consecuentemente se satisface la condición \ref{eq:weak_sol_cond}\cite{Cameron}.
 	
-	Ahora se demostrará que $u(x,t)$ es la única solución débil de la ecuación \ref{eq:conservative_general}. Suponiendo que el soporte $U$ de $\phi$ está dividido por la recta $x=st$, de tal forma que el conjunto a la izquierda de la recta es $U_L$ y a la derecha es $U_R$. Integrando, se tiene 
+	Ahora se demostrará que $u(x,t)$ es la única solución débil de la ecuación \ref{eq:conservative_general}. Suponiendo que el soporte $U$ de $\phi$ está dividido por la recta $x=st$, de tal forma que el conjunto a la izquierda de la recta es $U_L$ y a la derecha es $U_R$. Integrando, se obtiene 
 	\begin{equation}
 		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t} = \int\int_{U_L}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t} + \int\int_{U_R}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}
+		\label{eq:integracion-cons}
 	\end{equation}
 	
 	Usando el teorema de Green
 	\begin{equation}
-		contenidos...
+		\int\int_{D} \left(\pdv{P}{x} -\pdv{Q}{t}\right)\dd{x}\dd{t} = \int\int_{\partial D} P\dd{t} + Q\dd{x}
 	\end{equation}
+	y dado que $u(x,t)$ es constante tanto en $U_L$ como en $U_R$ se tiene que:
+	\begin{equation}
+		\pdv{(u\phi)}{t} = u\pdv{\phi}{t} 
+	\end{equation}
+	\begin{equation}
+		\pdv{(f(u)\phi)}{x} = f(u)\pdv{\phi}{x} 
+	\end{equation}
+	Aplicando estas propiedades en la integración \ref{eq:integracion-cons}, se obtiene
+	\begin{equation}
+		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t} = \int\int_{U_L}\left( \pdv{(u\phi)}{t} + \pdv{(f(u)\phi)}{x}\right)\dd{x}\dd{t} + \int\int_{U_R}\left( \pdv{(u\phi)}{t} + \pdv{(f(u)\phi)}{x}\right)\dd{x}\dd{t}
+	\end{equation}
+
+	\begin{equation}
+		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\int_{\partial U_L}\phi \left( f(u_L)\dd{t} - u_L \dd{x}\right) + \int_{\partial U_R}\phi \left( f(u_R)\dd{t} - u_R \dd{x}\right)
+	\end{equation}
+	\begin{equation}
+		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( u\pdv{\phi}{t} + f(u)\pdv{\phi}{x}\right)\dd{x}\dd{t}=\int_{x=st}\phi \left(\frac{f(u_L)}{s} - u_L  - \frac{f(u_R)}{s} + u_R  \right)\dd{x}
+	\end{equation}
+	
+
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
 	\begin{equation}
