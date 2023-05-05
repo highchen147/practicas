@@ -1,3 +1,14 @@
+/**
+ * @file euler1D.cpp
+ * @author Rodrigo Castillo (steverogersavengers@gmail.com)
+ * @brief Programa integrador de la ecuación de Euler en una dimensión,
+ * correspondiente a un gas ideal.
+ * @version 0.1
+ * @date 2023-05-04
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -17,8 +28,10 @@ double u_prom(double u_L, double u_R, double rho_L, double rho_R);
 double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 double a_prom(double p_L, double p_R, double rho_L, double rho_R);
 void salida(ofstream &of, double *u, double *x, double tiempo, int N);
+vector<double> flujo_euler(double rho, double p, double u);
 vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 vector<double> operator+(const vector<double>& a, const vector<double>& b);
+vector<double> operator-(const vector<double>& a, const vector<double>& b);
 vector<double> operator*(const vector<double>& v, double scalar);
 vector<double>& operator+=(vector<double>& v1, const vector<double>& v2);
 
@@ -87,9 +100,12 @@ int main()
         u[i] = u_inicial(x[i]);
     }
 
+    // Se declaran los vectores principales de la integración
+    vector<double> Q(3);
+    vector<double> Q_nuevo(3);
+    vector<double> F(3);
     // Se calculan las componentes del vector Q de acuerdo a su definición 
     calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
-
     // Se calculan las componentes del vector F, que representa el flujo
     calc_componentes_F(F1, F2, F3, rho, p, u, Nx);
 
@@ -98,6 +114,38 @@ int main()
     salida(file_presion, p, x, tiempo, Nx);
     salida(file_velocidad, u, x, tiempo, Nx);
     
+    // Comienza a correr el tiempo
+    tiempo += dt;
+    // Ciclo principal
+    for (int k = 0; k < Niter; k++)
+    {
+        // Se calculan las componentes del vector Q de acuerdo a su definición 
+        calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
+        // Se calculan las componentes del vector F, que representa el flujo
+        calc_componentes_F(F1, F2, F3, rho, p, u, Nx);
+        for (int i = 1; i < Nx-1; i++)
+        {
+            // Definir valores de Q
+            Q = {q1[i], q2[i], q3[i]};
+            
+            // Actualizar e integrar Q
+            Q = Q - ((Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
+                            p[i], p[i+1], 
+                            u[i], u[i+1], 
+                            rho[i], rho[i+1]) - 
+                      Flujo(flujo_euler(rho[i-1], p[i-1], u[i-1]), flujo_euler(rho[i], p[i], u[i]), 
+                            p[i-1], p[i], 
+                            u[i-1], u[i], 
+                            rho[i-1], rho[i]))*(dt/dx));
+            
+            // Despejar variables físicas de Q y actulizar
+            rho[i] = Q[0];
+            u[i] = Q[1]/rho[i];
+            p[i] = (Q[2] - 0.5*pow(u[i], 2))*(Gamma-1);
+
+        }
+        
+    }
     
 }
 
@@ -254,6 +302,18 @@ double a_prom(double p_L, double p_R, double rho_L, double rho_R)
     return sqrt(Gamma*(p_L/sqrt(rho_L)+p_R/sqrt(rho_R))/(sqrt(rho_L)+sqrt(rho_R)));
 }
 
+/**
+ * @brief Suma sobre k de los autovectores de la matriz A del sistema
+ * por sus fuerzas y autovalores.
+ * 
+ * @param p_L Presión a la izquierda
+ * @param p_R Presión a la derecha
+ * @param u_L Velocidad a la izquierda
+ * @param u_R Velocidad a la derecha
+ * @param rho_L Densidad a la izquierda
+ * @param rho_R Densidad a la derecha
+ * @return vector<double> 
+ */
 vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R)
 {
     double u = u_prom(u_L, u_R, rho_L, rho_R);
@@ -289,6 +349,46 @@ vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho
 }
 
 /**
+ * @brief Calcula el flujo F de la ecuación de Euler en forma conservativa.
+ * 
+ * @param rho Densidad
+ * @param p Presión
+ * @param u Velocidad
+ * @return vector<double> 
+ */
+vector<double> flujo_euler(double rho, double p, double u)
+{
+    vector<double> f_resultante(3);
+    double F1 = rho*u;
+    double F2 = p + rho*pow(u, 2);
+    double F3 = u*(p/(Gamma-1) + 0.5*rho*pow(u, 2) + p);
+    f_resultante = {F1, F2, F3};
+    return f_resultante;
+}
+
+/**
+ * @brief Calcula el flujo entre celdas utilizando el esquema de Roe
+ * 
+ * @param F_L Flujo total en la celda izquierda
+ * @param F_R Flujo total en la celda derecha
+ * @param p_L Presión a la izquierda
+ * @param p_R Presión a la derecha
+ * @param u_L Velocidad a la izquierda
+ * @param u_R Velocidad a la derecha
+ * @param rho_L Densidad a la izquierda
+ * @param rho_R Densidad a la derecha
+ * @return vector<double> 
+ */
+vector<double> Flujo(
+    vector<double> F_L, 
+    vector<double> F_R, 
+    double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R)
+{
+    vector<double> F_prom = (F_L+F_R)*0.5;
+    return F_prom + (suma_k(p_L, p_R, u_L, u_R, rho_L, rho_R)*0.5);
+}
+
+/**
  * @brief Función que envía datos a los archivos, con instantes
  * temporales separados por doble enter
  * 
@@ -315,6 +415,19 @@ vector<double> operator+(const vector<double>& a, const vector<double>& b) {
     vector<double> result(a.size());
     for (size_t i = 0; i < a.size(); i++) {
         result[i] = a[i] + b[i];
+    }
+    return result;
+}
+
+vector<double> operator-(const vector<double>& a, const vector<double>& b) {
+    // Asegurarse de que ambos vectores tengan el mismo tamaño
+    if (a.size() != b.size()) {
+        throw runtime_error("Los vectores deben tener el mismo tamaño.");
+    }
+    
+    vector<double> result(a.size());
+    for (size_t i = 0; i < a.size(); i++) {
+        result[i] = a[i] - b[i];
     }
     return result;
 }
