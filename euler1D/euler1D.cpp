@@ -119,17 +119,30 @@ int main()
     // Ciclo principal
     for (int k = 0; k < Niter; k++)
     {
+        // Se calculan las componentes del vector Q de acuerdo a su definición 
+        calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
+        // Se calculan las componentes del vector F, que representa el flujo
+        calc_componentes_F(F1, F2, F3, rho, p, u, Nx);
         for (int i = 1; i < Nx-1; i++)
         {
+            // Definir valores de Q
             Q = {q1[i], q2[i], q3[i]};
-            Q_nuevo = Q - (Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
-                                 p[i], p[i+1], 
-                                 u[i], u[i+1], 
-                                 rho[i], rho[i+1]) - 
-                           Flujo(flujo_euler(rho[i-1], p[i-1], u[i-1]), flujo_euler(rho[i], p[i], u[i]), 
-                                 p[i-1], p[i], 
-                                 u[i-1], u[i], 
-                                 rho[i-1], rho[i]))*(dt/dx);
+            
+            // Actualizar e integrar Q
+            Q = Q - ((Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
+                            p[i], p[i+1], 
+                            u[i], u[i+1], 
+                            rho[i], rho[i+1]) - 
+                      Flujo(flujo_euler(rho[i-1], p[i-1], u[i-1]), flujo_euler(rho[i], p[i], u[i]), 
+                            p[i-1], p[i], 
+                            u[i-1], u[i], 
+                            rho[i-1], rho[i]))*(dt/dx));
+            
+            // Despejar variables físicas de Q y actulizar
+            rho[i] = Q[0];
+            u[i] = Q[1]/rho[i];
+            p[i] = (Q[2] - 0.5*pow(u[i], 2))*(Gamma-1);
+
         }
         
     }
@@ -353,6 +366,19 @@ vector<double> flujo_euler(double rho, double p, double u)
     return f_resultante;
 }
 
+/**
+ * @brief Calcula el flujo entre celdas utilizando el esquema de Roe
+ * 
+ * @param F_L Flujo total en la celda izquierda
+ * @param F_R Flujo total en la celda derecha
+ * @param p_L Presión a la izquierda
+ * @param p_R Presión a la derecha
+ * @param u_L Velocidad a la izquierda
+ * @param u_R Velocidad a la derecha
+ * @param rho_L Densidad a la izquierda
+ * @param rho_R Densidad a la derecha
+ * @return vector<double> 
+ */
 vector<double> Flujo(
     vector<double> F_L, 
     vector<double> F_R, 
