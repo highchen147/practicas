@@ -1,3 +1,14 @@
+/**
+ * @file euler1D.cpp
+ * @author Rodrigo Castillo (steverogersavengers@gmail.com)
+ * @brief Programa integrador de la ecuación de Euler en una dimensión,
+ * correspondiente a un gas ideal.
+ * @version 0.1
+ * @date 2023-05-04
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -89,7 +100,8 @@ int main()
 
     // Se calculan las componentes del vector Q de acuerdo a su definición 
     calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
-
+    // Se declara y asigna el vector Q
+    
     // Se calculan las componentes del vector F, que representa el flujo
     calc_componentes_F(F1, F2, F3, rho, p, u, Nx);
 
@@ -98,6 +110,7 @@ int main()
     salida(file_presion, p, x, tiempo, Nx);
     salida(file_velocidad, u, x, tiempo, Nx);
     
+    // Ciclo principal
     
 }
 
