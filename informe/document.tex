@@ -571,7 +571,7 @@
 		\int_{C_i} \left[u(x, t_{n+1}) - u(x, t_n)\right] \dd{x} + \int_{t_n}^{t_{n+1}}\left[ f(u(x_{i+1} ,t)) - f(u(x_{i},t))\right]\dd{t} = 0 
 	\end{equation}
 	
-	Esta última expresión es totalmente exacta y expresa cómo cambiará el promedio en cada celda después de un instante $\Delta t$. Ahora, haciendo uso de la aproximación de la ecuación \ref{eq:uiapprox}, se tiene:
+	Esta última expresión es totalmente exacta y expresa cómo cambiará el valor promedio de $u$ en cada celda, después de un instante $\Delta t$. Ahora, haciendo uso de la aproximación de la ecuación \ref{eq:uiapprox}, se tiene:
 	\begin{equation}
 		 \Delta x\left( u_{i}^{n+1} - u_{i}^{n}\right)   + \int_{t_n}^{t_{n+1}}\left[ f(u(x_{i+1} ,t)) - f(u(x_{i},t))\right]\dd{t} = 0 
 	\end{equation}
@@ -580,7 +580,7 @@
 		u_{i}^{n+1} - u_{i}^{n} + \frac{1}{\Delta x}\int_{t_n}^{t_{n+1}}\left[ f(u(x_{i+1} ,t)) - f(u(x_{i},t))\right]\dd{t} = 0 
 	\end{equation}
 
-	Entonces, la siguiente integral se puede interpretar como el flujo promedio en el intervalo temporal $[t_n,t_{n+1}]$. Esto es:
+	Por otro lado, la siguiente integral se puede interpretar como el flujo promedio en el intervalo temporal $[t_n,t_{n+1}]$. Esto es:
 	\begin{equation}
 		F_{i}^{n} \approx \frac{1}{\Delta t} \int_{t_n}^{t_{n+1}} f(u(x_i,t)) \dd{t}
 		\label{eq:flujo_promedio}
