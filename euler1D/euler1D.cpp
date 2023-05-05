@@ -122,7 +122,7 @@ int main()
         for (int i = 1; i < Nx-1; i++)
         {
             Q = {q1[i], q2[i], q3[i]};
-            Q_nuevo = Q + (Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
+            Q_nuevo = Q - (Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
                                  p[i], p[i+1], 
                                  u[i], u[i+1], 
                                  rho[i], rho[i+1]) - 
