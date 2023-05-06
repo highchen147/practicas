@@ -35,15 +35,15 @@ vector<double> operator-(const vector<double>& a, const vector<double>& b);
 vector<double> operator*(const vector<double>& v, double scalar);
 vector<double>& operator+=(vector<double>& v1, const vector<double>& v2);
 
-const double Gamma = 4;
+const double Gamma = 1.4;
 
 int main()
 {
     // Parámetros temporales
-    const double t_total = 30; // Tiempo total en segundos
+    const double t_total = 10; // Tiempo total en segundos
     const double dt = 0.01; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 1000; // Número de gráficas de instantes temporales
+    const int num_outs = 500; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
@@ -119,6 +119,13 @@ int main()
     // Ciclo principal
     for (int k = 0; k < Niter; k++)
     {
+        // Condiciones de frontera
+        rho[0] = 0.0;
+        rho[Nx-1] = 0.0;
+        u[0] = 0.0;
+        u[Nx-1] = 0.0;
+        // La presión queda fija
+
         // Se calculan las componentes del vector Q de acuerdo a su definición 
         calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
         // Se calculan las componentes del vector F, que representa el flujo
@@ -144,7 +151,15 @@ int main()
             p[i] = (Q[2] - 0.5*pow(u[i], 2))*(Gamma-1);
 
         }
-        
+
+        if (k % out_cada == 0)
+        {
+            salida(file_densidad, rho, x, tiempo, Nx);
+            salida(file_presion, p, x, tiempo, Nx);
+            salida(file_velocidad, u, x, tiempo, Nx);
+        }
+        // Actualizar el tiempo
+        tiempo += dt;
     }
     
 }
