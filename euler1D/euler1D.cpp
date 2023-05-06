@@ -128,8 +128,6 @@ int main()
 
         // Se calculan las componentes del vector Q de acuerdo a su definición 
         calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
-        // Se calculan las componentes del vector F, que representa el flujo
-        calc_componentes_F(F1, F2, F3, rho, p, u, Nx);
         for (int i = 1; i < Nx-1; i++)
         {
             // Definir valores de Q
