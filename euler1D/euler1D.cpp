@@ -400,7 +400,7 @@ vector<double> Flujo(
     double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R)
 {
     vector<double> F_prom = (F_L+F_R)*0.5;
-    return F_prom + (suma_k(p_L, p_R, u_L, u_R, rho_L, rho_R)*0.5);
+    return F_prom - (suma_k(p_L, p_R, u_L, u_R, rho_L, rho_R)*0.5);
 }
 
 /**
