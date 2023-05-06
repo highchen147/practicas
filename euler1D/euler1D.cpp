@@ -29,6 +29,7 @@ double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, doub
 double a_prom(double p_L, double p_R, double rho_L, double rho_R);
 void salida(ofstream &of, double *u, double *x, double tiempo, int N);
 vector<double> flujo_euler(double rho, double p, double u);
+vector<double> Flujo(vector<double> F_L, vector<double> F_R, double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
 vector<double> operator+(const vector<double>& a, const vector<double>& b);
 vector<double> operator-(const vector<double>& a, const vector<double>& b);
@@ -41,7 +42,7 @@ int main()
 {
     // Parámetros temporales
     const double t_total = 10; // Tiempo total en segundos
-    const double dt = 0.01; // Tamaño de paso temporal en segundos
+    const double dt = 0.001; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
     const int num_outs = 500; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
@@ -65,8 +66,11 @@ int main()
     // Arreglos
     // Cantidades físicas
     double *rho = new double[Nx]; // Densidad
+    double *rho_nueva = new double[Nx];
     double *u = new double[Nx]; // Velocidad
+    double *u_nueva = new double[Nx];
     double *p = new double[Nx]; // Presión
+    double *p_nueva = new double[Nx];
     // Componentes del vector Q
     double *q1 = new double[Nx];
     double *q2 = new double[Nx];
@@ -98,6 +102,9 @@ int main()
     for (int i = 0; i < Nx; i++)
     {
         u[i] = u_inicial(x[i]);
+        q1[i] = 0.0;
+        q2[i] = 0.0;
+        q3[i] = 0.0;
     }
 
     // Se declaran los vectores principales de la integración
@@ -120,21 +127,28 @@ int main()
     for (int k = 0; k < Niter; k++)
     {
         // Condiciones de frontera
-        rho[0] = 0.0;
-        rho[Nx-1] = 0.0;
-        u[0] = 0.0;
-        u[Nx-1] = 0.0;
+        // rho[0] = 0.0;
+        rho_nueva[0] = rho[0];
+        // rho[Nx-1] = 0.0;
+        rho_nueva[Nx-1] = rho[Nx-1];
+        // u[0] = 0.0;
+        u_nueva[0] = u[0];
+        // u[Nx-1] = 0.0;
+        u_nueva[Nx-1] = u[Nx-1];
         // La presión queda fija
-
+        p_nueva[0] = p[0];
+        p_nueva[Nx-1] = p[Nx-1];
         // Se calculan las componentes del vector Q de acuerdo a su definición 
-        calc_componentes_Q(q1, q1, q3, rho, p, u, Nx);
+        calc_componentes_Q(q1, q2, q3, rho, p, u, Nx);
+        // cout << q1[1] << endl;
         for (int i = 1; i < Nx-1; i++)
         {
+            vector<double> Q_N(3);
             // Definir valores de Q
             Q = {q1[i], q2[i], q3[i]};
             
             // Actualizar e integrar Q
-            Q = Q - ((Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
+            Q_N = Q - ((Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
                             p[i], p[i+1], 
                             u[i], u[i+1], 
                             rho[i], rho[i+1]) - 
@@ -143,19 +157,51 @@ int main()
                             u[i-1], u[i], 
                             rho[i-1], rho[i]))*(dt/dx));
             
-            // Despejar variables físicas de Q y actulizar
-            rho[i] = Q[0];
-            u[i] = Q[1]/rho[i];
-            p[i] = (Q[2] - 0.5*pow(u[i], 2))*(Gamma-1);
+            // Despejar variables físicas de Q
+            rho_nueva[i] = Q_N[0];
+            u_nueva[i] = Q_N[1]/rho_nueva[i];
+            p_nueva[i] = (Q_N[2] - 0.5*pow(u_nueva[i], 2))*(Gamma-1);
+
+            // if ((k == 0))
+            // {
+            //     // cout << a_prom(p[i-1], p[i], rho[i-1], rho[i])<< endl;
+            //     // cout << a_prom(p[i], p[i+1], rho[i], rho[i+1])<< endl;
+            // }
+            
+            // if ((k == 0))
+            // {
+            //     // cout << q1[i] << endl;
+            //     // for (double X : (Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
+            //     //             p[i], p[i+1], 
+            //     //             u[i], u[i+1], 
+            //     //             rho[i], rho[i+1]) - 
+            //     //       Flujo(flujo_euler(rho[i-1], p[i-1], u[i-1]), flujo_euler(rho[i], p[i], u[i]), 
+            //     //             p[i-1], p[i], 
+            //     //             u[i-1], u[i], 
+            //     //             rho[i-1], rho[i])))
+            //     // {
+            //     //     cout << X << endl;
+            //     // }
+                
+            // }
+            
 
         }
+        // Actualizar variables físicas
+        for (int i = 0; i < Nx; i++)
+        {
+            rho[i] = rho_nueva[i];
+            u[i] = u_nueva[i];
+            p[i] = p_nueva[i];
+        }
+        
 
         if (k % out_cada == 0)
         {
             salida(file_densidad, rho, x, tiempo, Nx);
             salida(file_presion, p, x, tiempo, Nx);
             salida(file_velocidad, u, x, tiempo, Nx);
-            cout << round(100*tiempo/t_total*100)/100 << endl;
+            // cout << round(100*tiempo/t_total*100)/100 << endl;
         }
         // Actualizar el tiempo
         tiempo += dt;
@@ -186,7 +232,7 @@ double p_inicial(double x)
     double L = 100;
     if (x > L/2)
     {
-        return 2*atm;
+        return 1.0009*atm;
     }
     else
     {
