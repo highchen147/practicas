@@ -160,35 +160,33 @@ int main()
             // Despejar variables físicas de Q
             rho_nueva[i] = Q_N[0];
             u_nueva[i] = Q_N[1]/rho_nueva[i];
-            p_nueva[i] = (Q_N[2] - 0.5*pow(u_nueva[i], 2))*(Gamma-1);
+            p_nueva[i] = (Q_N[2] - 0.5*rho_nueva[i]*pow(u_nueva[i], 2))*(Gamma-1);
 
-            if ((rho_nueva[i] == 0.0) || (p_nueva[i] == 0.0))
+            if ((a_prom(p[i], p[i+1], rho[i], rho[i+1], u[i], u[i+1]) == 0.0))
             {
-                cout << k << endl;
+                cout << "tiempo: " << k << endl;
+                cout << "coordenada : " << i << endl;
             }
-            
-            // if ((k == 0))
+
+            // if (h_prom(p[i], p[i+1], u[i], u[i+1], rho[i], rho[i+1])==0)
             // {
-            //     // cout << a_prom(p[i-1], p[i], rho[i-1], rho[i])<< endl;
-            //     // cout << a_prom(p[i], p[i+1], rho[i], rho[i+1])<< endl;
+            //     double p_L =p[i];
+            //     double p_R = p[i+1];
+            //     double rho_L = rho[i];
+            //     double rho_R = rho[i+1];
+            //     double u_L = u[i];
+            //     double u_R = u[i+1];
+            //     double h_L = Gamma/(Gamma-1.0)*(p_L/rho_L) + 0.5*u_L*u_L;
+            //     double h_R = Gamma/(Gamma-1.0)*(p_R/rho_R) + 0.5*u_R*u_R;   
+            //     // cout << "tiempo: " << k << endl;
+            //     cout << "coordenada : " << i << endl;
+            //     cout << "hL: " << h_L << endl;
+            //     cout << "hR: " << h_R << endl;
+            //     cout << "rho_L: " << rho[i] << endl;
+            //     cout << "rho_R: " << rho[i+1] << endl;
+            //     // cout << "hprom: " << sqrt(rho_L)*h_L+sqrt(rho_R)*h_R)/(sqrt(rho_L) + sqrt(rho_R) << ebndl;
             // }
             
-            // if ((k == 0))
-            // {
-            //     // cout << q1[i] << endl;
-            //     // for (double X : (Flujo(flujo_euler(rho[i], p[i], u[i]), flujo_euler(rho[i+1], p[i+1], u[i+1]), 
-            //     //             p[i], p[i+1], 
-            //     //             u[i], u[i+1], 
-            //     //             rho[i], rho[i+1]) - 
-            //     //       Flujo(flujo_euler(rho[i-1], p[i-1], u[i-1]), flujo_euler(rho[i], p[i], u[i]), 
-            //     //             p[i-1], p[i], 
-            //     //             u[i-1], u[i], 
-            //     //             rho[i-1], rho[i])))
-            //     // {
-            //     //     cout << X << endl;
-            //     // }
-                
-            // }
             
 
         }
@@ -235,6 +233,7 @@ double p_inicial(double x)
 {
     double L = 100.0;
     double atm = (1.01325e5);
+    // return 100*exp(-0.5*pow((x-L/2), 2));
     return atm*1/3*(atan(x-L/2)+4.50);
 }
 
@@ -341,8 +340,7 @@ double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, doub
     double h_L = Gamma/(Gamma-1.0)*(p_L/rho_L) + 0.5*u_L*u_L;
     double h_R = Gamma/(Gamma-1.0)*(p_R/rho_R) + 0.5*u_R*u_R;
     // Se devuelve la misma media ponderada que con u_prom pero ahora con las entalpías
-    return (sqrt(rho_L)*h_L+sqrt(rho_R)*h_R)/
-    (sqrt(rho_L) + sqrt(rho_R));
+    return (sqrt(rho_L)*h_L+sqrt(rho_R)*h_R)/(sqrt(rho_L) + sqrt(rho_R));
 }
 
 /**
