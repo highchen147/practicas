@@ -26,7 +26,7 @@ void calc_componentes_F(double *F1, double *F2, double *F3, double *rho, double 
 double rho_prom(double rho_L, double rho_R);
 double u_prom(double u_L, double u_R, double rho_L, double rho_R);
 double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
-double a_prom(double p_L, double p_R, double rho_L, double rho_R);
+double a_prom(double p_L, double p_R, double rho_L, double rho_R, double u_L, double u_R);
 void salida(ofstream &of, double *u, double *x, double tiempo, int N);
 vector<double> flujo_euler(double rho, double p, double u);
 vector<double> Flujo(vector<double> F_L, vector<double> F_R, double p_L, double p_R, double u_L, double u_R, double rho_L, double rho_R);
@@ -42,7 +42,7 @@ int main()
 {
     // Parámetros temporales
     const double t_total = 10; // Tiempo total en segundos
-    const double dt = 0.001; // Tamaño de paso temporal en segundos
+    const double dt = 0.01; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
     const int num_outs = 500; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
@@ -162,6 +162,11 @@ int main()
             u_nueva[i] = Q_N[1]/rho_nueva[i];
             p_nueva[i] = (Q_N[2] - 0.5*pow(u_nueva[i], 2))*(Gamma-1);
 
+            if ((rho_nueva[i] == 0.0) || (p_nueva[i] == 0.0))
+            {
+                cout << k << endl;
+            }
+            
             // if ((k == 0))
             // {
             //     // cout << a_prom(p[i-1], p[i], rho[i-1], rho[i])<< endl;
@@ -228,16 +233,9 @@ double u_inicial(double x)
  */
 double p_inicial(double x)
 {
+    double L = 100.0;
     double atm = (1.01325e5);
-    double L = 100;
-    if (x > L/2)
-    {
-        return 1.0009*atm;
-    }
-    else
-    {
-        return atm;    
-    }
+    return atm*1/3*(atan(x-L/2)+4.50);
 }
 
 /**
@@ -357,9 +355,12 @@ double h_prom(double p_L, double p_R, double u_L, double u_R, double rho_L, doub
  * @param rho_R 
  * @return double 
  */
-double a_prom(double p_L, double p_R, double rho_L, double rho_R)
+double a_prom(double p_L, double p_R, double rho_L, double rho_R, double u_L, double u_R)
 {
-    return sqrt(Gamma*(p_L/sqrt(rho_L)+p_R/sqrt(rho_R))/(sqrt(rho_L)+sqrt(rho_R)));
+    double h = h_prom(p_L, p_R, u_L, u_R, rho_L, rho_R);
+    double u = u_prom(u_L,u_R, rho_L, rho_R);
+    return (Gamma - 1)*(h - 0.5*pow(u,2));
+    // return sqrt(Gamma*(p_L/sqrt(rho_L)+p_R/sqrt(rho_R))/(sqrt(rho_L)+sqrt(rho_R)));
 }
 
 /**
@@ -379,7 +380,7 @@ vector<double> suma_k(double p_L, double p_R, double u_L, double u_R, double rho
     double u = u_prom(u_L, u_R, rho_L, rho_R);
     double rho = rho_prom(rho_L, rho_R);
     double h = h_prom(p_L, p_R, u_L, u_R, rho_L, rho_R);
-    double a = a_prom(p_L, p_R, rho_L, rho_R);
+    double a = a_prom(p_L, p_R, rho_L, rho_R, u_L, u_R);
     double dp = p_R - p_L;
     double du = u_R - u_L;
     double drho = rho_R - rho_L;
