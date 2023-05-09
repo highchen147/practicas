@@ -1,6 +1,6 @@
 
 
-file = 'data/densidad.dat'
+file = 'data/presion.dat'
 stats file using 3 nooutput 
 set xrange[0:100]
 set yrange[STATS_min:STATS_max]
