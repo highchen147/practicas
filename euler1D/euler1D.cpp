@@ -184,7 +184,7 @@ int main()
             salida(file_densidad, rho, x, tiempo, Nx);
             salida(file_presion, p, x, tiempo, Nx);
             salida(file_velocidad, u, x, tiempo, Nx);
-            // cout << round(100*tiempo/t_total*100)/100 << endl;
+            cout << round(100*tiempo/t_total*100)/100 << endl;
         }
         // Actualizar el tiempo
         tiempo += dt;
