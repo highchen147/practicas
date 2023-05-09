@@ -168,26 +168,6 @@ int main()
                 cout << "coordenada : " << i << endl;
             }
 
-            // if (h_prom(p[i], p[i+1], u[i], u[i+1], rho[i], rho[i+1])==0)
-            // {
-            //     double p_L =p[i];
-            //     double p_R = p[i+1];
-            //     double rho_L = rho[i];
-            //     double rho_R = rho[i+1];
-            //     double u_L = u[i];
-            //     double u_R = u[i+1];
-            //     double h_L = Gamma/(Gamma-1.0)*(p_L/rho_L) + 0.5*u_L*u_L;
-            //     double h_R = Gamma/(Gamma-1.0)*(p_R/rho_R) + 0.5*u_R*u_R;   
-            //     // cout << "tiempo: " << k << endl;
-            //     cout << "coordenada : " << i << endl;
-            //     cout << "hL: " << h_L << endl;
-            //     cout << "hR: " << h_R << endl;
-            //     cout << "rho_L: " << rho[i] << endl;
-            //     cout << "rho_R: " << rho[i+1] << endl;
-            //     // cout << "hprom: " << sqrt(rho_L)*h_L+sqrt(rho_R)*h_R)/(sqrt(rho_L) + sqrt(rho_R) << ebndl;
-            // }
-            
-            
 
         }
         // Actualizar variables físicas
@@ -220,7 +200,8 @@ int main()
  */
 double u_inicial(double x)
 {
-    return 0.0;
+    // return 0.0;
+    return exp(-0.5*pow(x-50, 2));
 }
 
 /**
@@ -232,9 +213,9 @@ double u_inicial(double x)
 double p_inicial(double x)
 {
     double L = 100.0;
-    double atm = (1.01325e5);
+    double atm = (1.01325e2);
     // return 100*exp(-0.5*pow((x-L/2), 2));
-    return atm*1/3*(atan(x-L/2)+4.50);
+    return atm;
 }
 
 /**
@@ -357,7 +338,7 @@ double a_prom(double p_L, double p_R, double rho_L, double rho_R, double u_L, do
 {
     double h = h_prom(p_L, p_R, u_L, u_R, rho_L, rho_R);
     double u = u_prom(u_L,u_R, rho_L, rho_R);
-    return (Gamma - 1)*(h - 0.5*pow(u,2));
+    return sqrt((Gamma - 1)*(h - 0.5*pow(u,2)));
     // return sqrt(Gamma*(p_L/sqrt(rho_L)+p_R/sqrt(rho_R))/(sqrt(rho_L)+sqrt(rho_R)));
 }
 
