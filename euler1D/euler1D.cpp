@@ -215,7 +215,8 @@ double p_inicial(double x)
     double L = 100.0;
     double atm = (1.01325e2);
     // return 100*exp(-0.5*pow((x-L/2), 2));
-    return atm*1/3*(atan(x-L/2)+4.50);
+    // return atm*1/3*(atan(x-L/2)+4.50);
+    return atm;
 }
 
 /**
