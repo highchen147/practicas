@@ -52,13 +52,6 @@ data_p.columns = ["t", "x", "u"]
 data_u = pd.read_csv("data/velocidad.dat", delimiter="\t", skip_blank_lines=False)
 data_u.columns = ["t", "x", "u"]
 
-# data_d = data_d.query('t <= 6')
-# data_p = data_p.query('t <= 6')
-# data_u = data_u.query('t <= 6')
-# print(data_d.tail())
-# print("j")
-
-
 # Crear la figura con tres sub-figuras
 fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 4))
 
@@ -73,11 +66,11 @@ def init():
 # Definir animacion de densidad
 def animate_1(i):
 
-    animacion(data_d, subsets_d[i], 'Densidad', 0.25, ax1, line1)
+    animacion(data_d, subsets_d[i], r'Densidad$\left(\frac{kg}{m^3}\right)$', 0.25, ax1, line1)
 
     return line1,
     
-num_frames = len(subsets_d)//2
+num_frames = 280
 dt = (subsets_d[1]['t'].values[0] - subsets_d[0]['t'].values[0])*1000
 
 anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
@@ -92,7 +85,7 @@ def init2():
     return (line2,)
 # Definir animación de presión
 def animate_2(i):
-    animacion(data_p, subsets_p[i], 'Presión', 0.25, ax2, line2)
+    animacion(data_p, subsets_p[i], r'Presión $(Pa)$', 0.25, ax2, line2)
     return line2,
 
 
@@ -108,7 +101,7 @@ def init3():
     return (line3,)
 # Definir animación de velocidad
 def animate_3(i):
-    animacion(data_u, subsets_u[i], 'Velocidad', 0.25, ax3, line3)
+    animacion(data_u, subsets_u[i], r'Velocidad$\left(\frac{m}{s}\right)$', 0.25, ax3, line3)
     return line3,
 
 
