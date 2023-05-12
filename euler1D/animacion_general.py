@@ -17,7 +17,7 @@ def generar_subsets(data: pd.DataFrame) -> list[pd.DataFrame]:
 
     return subsets
 
-def animacion(data: pd.DataFrame, subset: pd.DataFrame, cantidad: str, margen: float, ax, line):
+def animacion(data: pd.DataFrame, subset: pd.DataFrame, cantidad: str, margen: float, ax: plt.Axes, line):
     
     # Obtener datos de x y u para el instante temporal actual
     x = subset['x'].values
@@ -50,10 +50,11 @@ data_u.columns = ["t", "x", "u"]
 
 # Crear la figura con tres sub-figuras
 fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 4))
-
+ax1: plt.Axes
+ax2: plt.Axes
+ax3: plt.Axes
 # Primera animación
 line1, = ax1.plot([], [], lw=2)
-
 subsets_d = generar_subsets(data_d)
 
 def init():
