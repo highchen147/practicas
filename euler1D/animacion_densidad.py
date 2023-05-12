@@ -12,7 +12,7 @@ data_d.columns = ["t", "x", "u"]
 # print(data_d.shape[0])
 print(data_d['u'].max())
 
-vacios_d = data_d[pd.isna(data_d["t"])]
+vacios_d = data_d[pd.isna(data_d['t'])]
 bounds_d = np.array([-1] + list(vacios_d.index))
 # print(bounds_d)
 desfases_d = np.zeros(len(bounds_d), dtype=int)
