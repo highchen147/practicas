@@ -19,15 +19,14 @@ def generar_subsets(data: pd.DataFrame) -> list[pd.DataFrame]:
 
 def animacion(data: pd.DataFrame, subset: pd.DataFrame, cantidad: str, margen: float, ax, line):
     
-    # Get the x and y data_d for the current timestep
+    # Obtener datos de x y u para el instante temporal actual
     x = subset['x'].values
     u = subset['u'].values
     
-    # Update the data_d for the line
+    # Actualizar los datos para la linea a trazar
     line.set_data(x, u)
     
-    # Set the x and y limits of the axis
-    # margen = 0.25
+    # Establecer límites del lienzo en donde se graficará
     min_u = data['u'].min()
     max_u = data['u'].max()
     min_y = min_u - (max_u-min_u)*margen
@@ -36,15 +35,12 @@ def animacion(data: pd.DataFrame, subset: pd.DataFrame, cantidad: str, margen: f
     max_x = data['x'].max()
     ax.set_xlim([min_x, max_x])
     ax.set_ylim([min_y, max_y])
-    # Get time
+    # Obtener el tiempo
     t = subset['t'].values[0]
-    # Set the title of the axis to the current timestamp
+    # Establecer el título de la gráfica incluyendo el instante temporal
     ax.set_title("{}, t={} s".format(cantidad, t))
 
-    # return line
-
-
-
+# importar datos
 data_d = pd.read_csv("data/densidad.dat", delimiter='\t', skip_blank_lines=False)
 data_d.columns = ["t", "x", "u"]
 data_p = pd.read_csv("data/presion.dat", delimiter="\t", skip_blank_lines=False)
