@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from matplotlib.animation import FFMpegWriter
 
 def generar_subsets(data: pd.DataFrame) -> list[pd.DataFrame]:
     
@@ -63,14 +64,14 @@ def init():
 # Definir animacion de densidad
 def animate_1(i):
 
-    animacion(data_d, subsets_d[i], r'Densidad$\left(\frac{kg}{m^3}\right)$', 0.25, ax1, line1)
+    animacion(data_d, subsets_d[i], r'Densidad $\left(\frac{kg}{m^3}\right)$', 0.25, ax1, line1)
 
     return line1,
     
 num_frames = 280
 dt = (subsets_d[1]['t'].values[0] - subsets_d[0]['t'].values[0])*1000
 
-anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
+# anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
 
 # Segunda animación
 line2, = ax2.plot([], [], lw=2)
@@ -86,7 +87,7 @@ def animate_2(i):
     return line2,
 
 
-anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(num_frames)), repeat=False, interval=100)
+# anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(num_frames)), repeat=False, interval=100)
 
 # Tercera animación
 line3, = ax3.plot([], [], lw=2)
@@ -98,10 +99,22 @@ def init3():
     return (line3,)
 # Definir animación de velocidad
 def animate_3(i):
-    animacion(data_u, subsets_u[i], r'Velocidad$\left(\frac{m}{s}\right)$', 0.25, ax3, line3)
+    animacion(data_u, subsets_u[i], r'Velocidad $\left(\frac{m}{s}\right)$', 0.25, ax3, line3)
     return line3,
 
-
+anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
+anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(num_frames)), repeat=False, interval=100)
 anim3 = animation.FuncAnimation(fig, animate_3, init_func=init3, frames=(range(num_frames)), repeat=False, interval=100)
 
+
+# # Crear el objeto FFmpegWriter
+# writer = FFMpegWriter(fps=30, metadata=dict(artist='Me'), bitrate=1800)
+
+# # Grabar la animación final en un archivo mp4
+# ani = animation.ArtistAnimation(fig, [anim1, anim2, anim3], interval=50, blit=True, repeat=False)
+# ani.save("animacion.mp4", writer=writer)
+
+
 plt.show()
+
+
