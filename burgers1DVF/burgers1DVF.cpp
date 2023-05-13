@@ -381,15 +381,35 @@ double Flujo(double u,
  */
 double uPrime(double u, double v)
 {
-    if (u + v > 0)
+
+    
+    if (u > v)
     {
-        return u;
+        if ((u+v)/2 > 0)
+        {
+            return u;
+        }
+        else return v;
+        
     }
-    else if (u + v < 0)
+    else if (v > u )
     {
-        return v;
-    }else
-        return 0;
+        if (u > 0)
+        {
+            return u;
+        }
+        else if (v < 0)
+        {
+            return v;
+        }
+        else if ((v > 0) && (u < 0))
+        {
+            return 0;
+        }
+        else return 0;
+    }
+    else return u;
+    
     
     
 }
