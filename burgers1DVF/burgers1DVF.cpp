@@ -292,7 +292,7 @@ double step_pos(double x)
     }
     else
     {
-        return -1.0;
+        return -2.0;
     }
 }
 
@@ -355,11 +355,11 @@ double Flujo(double u,
     {
         return FlujoBurgers(uPrime(u, v));
     }
-    // Marco de Lex-Friedrichs
+    // Marco de Lax-Friedrichs
     else if (marco == "LF")
     {
         double FlujoPromedio = 0.5*(FlujoBurgers(u)+FlujoBurgers(v));
-        return FlujoPromedio-0.5*dt/dx*(v-u);
+        return FlujoPromedio-0.5*dx/dt*(v-u);
     }
     // Marco de Roe
     else if (marco == "roe")
@@ -390,6 +390,8 @@ double uPrime(double u, double v)
         return v;
     }else
         return 0;
+    
+    
 }
 
 /**
