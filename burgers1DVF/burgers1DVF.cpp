@@ -274,7 +274,7 @@ double step_neg(double x)
     double arg = x - L/2;
     if (arg < 0)
     {
-        return 0.05;        
+        return 1.0;        
     }
     else
     {
@@ -292,7 +292,7 @@ double step_pos(double x)
     }
     else
     {
-        return -2.0;
+        return -1.0;
     }
 }
 

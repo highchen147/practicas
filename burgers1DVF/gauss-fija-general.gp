@@ -11,7 +11,7 @@ xmin = 0
 # valor máximo en x
 xmax = 0
 
-do for [file in "roe/gauss-fija.dat godunov/gauss-fija.dat"] {
+do for [file in "roe/gauss-fija.dat godunov/gauss-fija.dat LF/gauss-fija.dat"] {
     stats file using 3 nooutput
     umax = (STATS_max > umax ? STATS_max : umax)
     umin = (STATS_min < umin ? STATS_min : umin)
@@ -29,7 +29,7 @@ print 'Presione Enter'
 pause -1
 
 do for [i=0:num_outs] {
-plot 'roe/gauss-fija.dat' index i u 2:3 w l, 'godunov/gauss-fija.dat' index i u 2:3 w l
+plot 'roe/gauss-fija.dat' index i u 2:3 w l, 'godunov/gauss-fija.dat' index i u 2:3 w l, 'LF/gauss-fija.dat' index i u 2:3 w l
 pause 0.02
 print i
 }
