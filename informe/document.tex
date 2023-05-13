@@ -715,6 +715,29 @@
 	\end{equation}
 	El integrando del primer término de la ecuación (\ref{eq:integracion-final}) se hace cero si y solo si $s = \frac{f(u_L) - f(u_R)}{u_L - u_R}$ y dado que esta integral debe ser cero por la condición \ref{eq:weak_sol_cond}, se demuestra que $u(x,t)$ definida en \ref{eq:sol-riemann-weak} es la única solución para el problema de Riemann en el caso $u_L > u_R$.
 	
+	Si sustituimos el flujo de la ecuación de Burgers, encontramos que la solución del problema de Riemann de esta ecuación, para este caso es 
+	
+	\begin{equation}
+		u(x,t) =
+		\begin{cases}
+			u_{L} & x < st \\
+			u_{R} & x > st
+		\end{cases}
+		\qquad \text{donde,}
+		\qquad
+		\begin{aligned}
+			s &= \frac{u_{L} + u_{R}}{2}
+		\end{aligned}
+		\label{eq:sol-riemann-weak-burgers}
+	\end{equation}
+
+	\subsubsection{Caso $u_L > u_R$ del problema de Riemann}
+	
+	Hay múltiples soluciones débiles para este caso. Por  ejemplo, se puede demostrar que la solución \ref{eq:sol-riemann-weak-burgers} satisface este caso también, tomando en cuenta que cambiará el signo de la velocidad de propagación $s$. Sin embargo este solución no satisface la condición de entropía descrita por \cite{Cameron}.
+	
+	\begin{definition}
+		Una discontinuidad, propagándose en el espacio $x-t$, dada por la ecuación \ref{eq:sol-riemann-weak} satisface la condición 
+	\end{definition}
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
 	\begin{equation}
