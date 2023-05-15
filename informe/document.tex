@@ -609,6 +609,7 @@
 	De tal manera que, sustituyendo en la ecuación \ref{eq:diferencia-flujos} se obtiene:
 	\begin{equation}
 		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F(u_{i}^{n}, u_{i+1}^{n}) - F(u_{i-1}^{n}, u_{i}^{n})\right] = 0
+		\label{eq:flux-diff}
 	\end{equation}
 	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
@@ -752,8 +753,41 @@
  
  	Esta solución se conoce como \textit{rarefacción transónica}.
  	
+ 	\subsubsection{Cálculo del esquema de Godunov}
+ 	El esquema de Godunov para encontrar el flujo entre celdas se consigue considerando las soluciones del problema de Riemann para la ecuación a resolver y evaluando que también se satisfagan las condiciones de entropía. 
  	
+ 	A partir de la ecuación conservativa discretizada en la forma de diferencia de flujos (ecuación \ref{eq:flux-diff}) se puede notar que el flujo se define como
+ 	
+ 	\begin{equation}
+		F_{i}^{n} = F(u_{i-1}^{n}, u_{i}^{n})
+ 	\end{equation}
  
+
+ 	entonces, Godunov incluye una función $u^{*}(u_L, u_R)$ que depende de las velocidades de las celdas vecinas a la interfaz en donde se quiere calcular el flujo, de tal manera que
+ 	
+ 	\begin{equation}
+ 		F_{i}^{n} = F(u^{*}(u_{i-1}^{n}, u_{i}^{n}))
+ 	\end{equation}
+ 	
+ 	
+ 	La función $u^{*}(u_L, u_R)$ devuelve el valor correcto que tendrá la velocidad $u$ en la interfaz, de acuerdo con la solución del problema de Riemann y la condición de entropía. Para calcular el valor de velocidad de $u^{*}$ es preferible partir de los dos casos del problema de Riemann.
+ 	
+ 	Para el caso $u_L > u_R$ que produce ondas de choque, se tiene
+ 	\begin{equation}
+ 		u^{*} =
+ 		\begin{cases}
+ 			u_{L} & x < 0 \\
+ 			u_{R} & x > 0
+ 		\end{cases}
+ 	\end{equation}
+ 	
+ 	Dado que el flujo $F_{i}^{n}$ se define como una integral en el tiempo del flujo real $f(u)$ (ecuación \ref{eq:flujo_promedio}), el cálculo de la velocidad que proporciona $u^{*}$ debe considerar que al resolver el problema de Riemann la velocidad devuelta sea constante en un intervalo de tiempo $\Delta t$; esto da origen a la \textbf{condición de estabilidad}, también conocida como condición \textbf{CFL.} La condición de estabilidad para el marco de Godunov es la siguiente \cite{pletcher1997computational}
+ 	
+ 	\begin{equation}
+ 		\left| u_{\text{max}} \frac{\Delta t}{\Delta x}\right| \leq \frac{1}{2} 
+ 	\end{equation}
+ 	 
+ 	
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
 	\begin{equation}
