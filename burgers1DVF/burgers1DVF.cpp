@@ -9,6 +9,7 @@
 #include <cmath>
 #include <iomanip>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 
 // Declaración de funciones
@@ -85,7 +86,7 @@ int main()
     }
 
     // Se escribe arreglo que almacena tipos de marcos utilizados.
-    string marcos[] = {"godunov", "roe", "LF"};
+    string marcos[] = {"godunov", "roe", "LF", "roe-fix"};
     int num_marcos = sizeof(marcos) / sizeof(marcos[0]);
 
     // Ciclo principal que resuelve con todos los marcos implementados
@@ -366,6 +367,21 @@ double Flujo(double u,
     {
         double FlujoPromedio = 0.5*(FlujoBurgers(u)+FlujoBurgers(v));
         return (FlujoPromedio-0.5*abs(uProm(u,v))*(v-u));
+    }
+    else if (marco == "roe-fix")
+    {
+        double epsilon = max(0.0, (v-u)/2);
+        double FlujoPromedio = 0.5*(FlujoBurgers(u)+FlujoBurgers(v));
+        double u_prom = uProm(u,v);
+        if (u_prom >= epsilon)
+        {
+            return (FlujoPromedio-0.5*abs(uProm(u,v))*(v-u));
+        }
+        else
+        {
+            return (FlujoPromedio-0.5*abs(epsilon)*(v-u));   
+        }
+        
     }
     // Flujo por default, toma la velocidad de la izquierda
     else 
