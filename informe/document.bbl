@@ -136,6 +136,48 @@
       \verb https://doi.org/10.1007/3-540-31632-9_1
       \endverb
     \endentry
+    \entry{pletcher1997computational}{book}{}
+      \name{author}{3}{}{%
+        {{hash=2f8c00c1866b637a259eadddb9d66cb0}{%
+           family={Pletcher},
+           familyi={P\bibinitperiod},
+           given={R.H.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1512cdbcb700ba76177f7a8b968cdf4a}{%
+           family={Tannehill},
+           familyi={T\bibinitperiod},
+           given={J.C.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3e0fc1fc877b115a9614e5230be73678}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{ebccdce9c1903f82a62c818a56c3c857}
+      \strng{fullhash}{ebccdce9c1903f82a62c818a56c3c857}
+      \strng{bibnamehash}{ebccdce9c1903f82a62c818a56c3c857}
+      \strng{authorbibnamehash}{ebccdce9c1903f82a62c818a56c3c857}
+      \strng{authornamehash}{ebccdce9c1903f82a62c818a56c3c857}
+      \strng{authorfullhash}{ebccdce9c1903f82a62c818a56c3c857}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781560320463}
+      \field{series}{Series in Computational and Physical Processes in Mechanics and Thermal Sciences}
+      \field{title}{Computational Fluid Mechanics and Heat Transfer, Second Edition}
+      \field{year}{1997}
+      \verb{urlraw}
+      \verb https://books.google.com.gt/books?id=ZJPbtHeilCgC
+      \endverb
+      \verb{url}
+      \verb https://books.google.com.gt/books?id=ZJPbtHeilCgC
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
