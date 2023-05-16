@@ -618,7 +618,7 @@
 	\subsubsection{Solución débil de una ecuación diferencial}
 	Como fue visto en secciones anteriores, la ecuación de Burgers tiene soluciones discontinuas, lo cual parece contradecir la misma ecuación diferencial puesto que esta posee derivadas parciales en todas sus variables y una función discontinua no es derivable en todo su dominio. Con el objetivo de validar las funciones discontinuas como soluciones de las ecuaciones diferenciales el concepto de solución débil fue introducido a la teoría de ecuaciones diferenciales parciales \cite{Cameron}.
 	
-	Como motivación para entender el concepto de la solución débil se define una función infinitamente suave $\phi(x,t)$ que posee un soporte compacto, es decir, que la función es distinta de cero solamente en un subconjunto compacto del espacio $(x,t)= \mathbb{R} \times \left[ 0, + \infty \right] $. Luego se define $u(x,t)$ tal que esta satisface la ecuación de conservación general $\pdv{u}{t} + \pdv{f(u)}{x}=0$. Entonces integrando por partes se obtiene lo siguiente:
+	Como motivación para hacer riguroso el concepto de la solución débil se define una función infinitamente suave $\phi(x,t)$ que posee un soporte compacto, es decir, que la función es distinta de cero solamente en un subconjunto compacto del espacio $(x,t)= \mathbb{R} \times \left[ 0, + \infty \right] $. Luego se define $u(x,t)$ tal que esta satisface la ecuación de conservación general $\pdv{u}{t} + \pdv{f(u)}{x}=0$. Entonces integrando por partes se obtiene lo siguiente:
 	\begin{equation}
 		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( \pdv{u}{t} + \pdv{f(u)}{x} \right)\phi(x,t)\dd{x}\dd{t} = 0
 		\label{eq:integral_conservative1}
@@ -766,30 +766,56 @@
  	entonces, Godunov incluye una función $u^{*}(u_L, u_R)$ que depende de las velocidades de las celdas vecinas a la interfaz en donde se quiere calcular el flujo, de tal manera que
  	
  	\begin{equation}
- 		F_{i}^{n} = F(u^{*}(u_{i-1}^{n}, u_{i}^{n}))
+ 		F_{i}^{n} = f(u^{*}(u_{i-1}^{n}, u_{i}^{n}))
  	\end{equation}
  	
  	
  	La función $u^{*}(u_L, u_R)$ devuelve el valor correcto que tendrá la velocidad $u$ en la interfaz, de acuerdo con la solución del problema de Riemann y la condición de entropía. Para calcular el valor de velocidad de $u^{*}$ es preferible partir de los dos casos del problema de Riemann.
  	
- 	Para el caso $u_L > u_R$ que produce ondas de choque, se tiene
- 	\begin{equation}
- 		u^{*} =
- 		\begin{cases}
- 			u_{L} & x < 0 \\
- 			u_{R} & x > 0
- 		\end{cases}
- 	\end{equation}
+	Recordando que para la ecuación de Burgers, $s = \frac{u_L + u_R}{2}$, se puede deducir $u^{*}$. 
+ 	
+ 	\begin{itemize}
+ 		\item Para el caso $u_L > u_R$ que produce \textbf{ondas de choque}, se tiene
+ 		\begin{equation}
+ 			u^{*} =
+ 			\begin{cases}
+ 				u_{L} & \frac{u_L + u_R}{2} > 0 \\
+ 				u_{R} & \frac{u_L + u_R}{2} < 0.
+ 			\end{cases}
+ 		\end{equation}
+ 		\item Para el caso $u_L < u_R$ que produce \textbf{rarefacción transónica}, se tiene
+ 		\begin{equation}
+ 			u^{*} =
+ 			\begin{cases}
+ 				0 & u_{L} < 0 < u_{R}\\
+ 				u_{L} & \frac{u_L + u_R}{2} > 0 \\
+ 				u_{R} & \frac{u_L + u_R}{2} < 0.
+ 			\end{cases}
+ 		\end{equation}
+ 	\end{itemize}
+ 	Se puede destacar que las opciones de $u^{*}$ para el caso de ondas de choque y las últimas dos opciones del caso de rarefacción, se obtiene exactamente el mismo valor para $u^{*}$. La primera opción para el caso de rarefacción se deduce inmediatamente de la ecuación (\ref{eq:sol-riemann-weak-rarefraction}) \cite{pletcher1997computational}.
  	
  	Dado que el flujo $F_{i}^{n}$ se define como una integral en el tiempo del flujo real $f(u)$ (ecuación \ref{eq:flujo_promedio}), el cálculo de la velocidad que proporciona $u^{*}$ debe considerar que al resolver el problema de Riemann la velocidad devuelta sea constante en un intervalo de tiempo $\Delta t$; esto da origen a la \textbf{condición de estabilidad}, también conocida como condición \textbf{CFL.} La condición de estabilidad para el marco de Godunov es la siguiente \cite{pletcher1997computational}
  	
  	\begin{equation}
- 		\left| u_{\text{max}} \frac{\Delta t}{\Delta x}\right| \leq \frac{1}{2} 
+ 		\left| u_{\text{max}} \frac{\Delta t}{\Delta x}\right| \leq \frac{1}{2} .
  	\end{equation}
+ 	 
+ 	 Finalmente, a partir de la definición de $u^{*}$, se puede escribir el flujo numérico de la ecuación de Burgers bajo el esquema de Godunov:
+  	
+  	\begin{equation}
+  		\boxed{F(u_{i-1}^{n}, u_{i}^{n}) =
+  		\begin{cases}
+  			0 & u_{i-1} < 0 < u_{i}\\
+  			\frac{1}{2}u_{i-1}^{2} & \frac{u_{i-1} + u_{i}}{2} > 0 \\
+  			\frac{1}{2}u_{i}^{2} & \frac{u_{i-1} + u_{i}}{2} < 0.
+  		\end{cases}.}
+  		\label{eq:flujo-godunov}
+  	\end{equation}
  	 
  	
 	\subsection{Esquema de Lax-Friedrichs}
-	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
+	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$; esto es:
 	\begin{equation}
 		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( f(u_{i-1}^{n}) + f(u_{i}^{n})\right) 
 	\end{equation}

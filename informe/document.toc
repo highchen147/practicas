@@ -18,5 +18,5 @@
 \contentsline {subsubsection}{\numberline {2.1.4}Caso $u_L < u_R$ del problema de Riemann}{20}{subsubsection.2.1.4}%
 \contentsline {subsubsection}{\numberline {2.1.5}Cálculo del esquema de Godunov}{20}{subsubsection.2.1.5}%
 \contentsline {subsection}{\numberline {2.2}Esquema de Lax-Friedrichs}{21}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Método de elementos finitos}{21}{section.3}%
-\contentsline {section}{\numberline {4}Conclusiones}{21}{section.4}%
+\contentsline {section}{\numberline {3}Método de elementos finitos}{22}{section.3}%
+\contentsline {section}{\numberline {4}Conclusiones}{22}{section.4}%
