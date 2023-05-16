@@ -11,12 +11,13 @@
 \contentsline {subsubsection}{\numberline {1.2.3}Resultados}{14}{subsubsection.1.2.3}%
 \contentsline {subsubsection}{\numberline {1.2.4}Discusión de resultados}{15}{subsubsection.1.2.4}%
 \contentsline {section}{\numberline {2}Método de volúmenes finitos}{15}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Esquema de Godunov}{17}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Solución débil de una ecuación diferencial}{18}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Problema de Riemann}{18}{subsubsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.3}Caso $u_L > u_R$ del problema de Riemann}{18}{subsubsection.2.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.4}Caso $u_L < u_R$ del problema de Riemann}{20}{subsubsection.2.1.4}%
-\contentsline {subsubsection}{\numberline {2.1.5}Cálculo del esquema de Godunov}{20}{subsubsection.2.1.5}%
-\contentsline {subsection}{\numberline {2.2}Esquema de Lax-Friedrichs}{21}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.1}Esquema de Lax-Friedrichs}{17}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Esquema de Godunov}{18}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Solución débil de una ecuación diferencial}{18}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Problema de Riemann}{19}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Caso $u_L > u_R$ del problema de Riemann}{19}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Caso $u_L < u_R$ del problema de Riemann}{20}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Cálculo del esquema de Godunov}{21}{subsubsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.3}Esquema de Roe}{22}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Método de elementos finitos}{22}{section.3}%
 \contentsline {section}{\numberline {4}Conclusiones}{22}{section.4}%

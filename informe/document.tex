@@ -613,6 +613,21 @@
 	\end{equation}
 	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
+	\subsection{Esquema de Lax-Friedrichs}
+	La primera expresión que lógicamente se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$; esto es:
+	\begin{equation}
+		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( f(u_{i-1}^{n}) + f(u_{i}^{n})\right) 
+	\end{equation}
+	\begin{equation}
+		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right) 
+	\end{equation}
+	
+	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
+	\begin{equation}
+		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
+	\end{equation}
+	Este es el esquema de Lax-Friedrichs para el flujo numérico de la ecuación de Burgers.
+	
 	\subsection{Esquema de Godunov}
 	El esquema de Godunov se justifica a través de conceptos avanzados de las ecuaciones diferenciales de conservación; pero la idea fundamental del método es simple. El esquema de Godunov consiste en resolver el \textbf{problema de Riemann} en cada una de las celdas de la solución, este problema se explicará con detalle después de considerar algunas propiedades de las ecuaciones diferenciales en forma conservativa. Primero, se debe comprender el concepto de \textbf{solución débil} de una ecuación diferencial.
 	\subsubsection{Solución débil de una ecuación diferencial}
@@ -813,21 +828,15 @@
   		\label{eq:flujo-godunov}
   	\end{equation}
  	 
- 	
-	\subsection{Esquema de Lax-Friedrichs}
-	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$; esto es:
-	\begin{equation}
-		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( f(u_{i-1}^{n}) + f(u_{i}^{n})\right) 
-	\end{equation}
-	\begin{equation}
-		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right) 
-	\end{equation}
+ 	 \subsection{Esquema de Roe}
+ 	Al igual que el esquema de \textbf{Lax-Friedrichs}, el esquema de Roe es un \textbf{método aproximado} de la solución del problema de Riemann. Se diferencia principalmente del esquema de Godunov en que este último resuelve exactamente el problema de Riemann entre las celdas, mientras que Roe propone una aproximación de la solución basada en la linealización de la ecuación a resolver. Puede parecer poco motivador implementar el método de Roe para resolver la ecuación de Burgers, dado que ya se tiene el esquema de Godunov que aplica finamente la solución del problema de Riemann para obtener un método numérico. Sin embargo, resolver el problema de Riemann analíticamente es costoso, especialmente cuando las ecuaciones describen un modelo físico más realista y por ende, más complicado; es entonces en este tipo de situaciones en donde el método de Roe destaca más.
 	
-	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
+	\subsubsection{Linealización del problema}
+	La ecuación de Burgers es no lineal, pero Roe propone resolver el problema de Riemann en las celdas linealizando la ecuación localmente. En otras palabras, Roe sugiere resolver la ecuación lineal
 	\begin{equation}
-		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
+		\pdv{u}{t} + \bar{A} \pdv{u}{x} = 0
 	\end{equation}
-	Este es el esquema de Lax-Friedrichs para el flujo numérico de la ecuación de Burgers.
+	en dos celdas vecinas; donde $\bar{A}$ es una matriz constante que depende de los valores de $u$ en cada celda.
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
