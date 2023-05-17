@@ -731,7 +731,7 @@
 	\end{equation}
 	El integrando del primer término de la ecuación (\ref{eq:integracion-final}) se hace cero si y solo si $s = \frac{f(u_L) - f(u_R)}{u_L - u_R}$ y dado que esta integral debe ser cero por la condición \ref{eq:weak_sol_cond}, se demuestra que $u(x,t)$ definida en \ref{eq:sol-riemann-weak} es la única solución para el problema de Riemann en el caso $u_L > u_R$.
 	
-	Si sustituimos el flujo de la ecuación de Burgers, encontramos que la solución del problema de Riemann de esta ecuación, para este caso es 
+	Si se sustituye el flujo de la ecuación de Burgers, se encuentra que la solución del problema de Riemann de esta ecuación, para este caso es 
 	
 	\begin{equation}
 		u(x,t) =
@@ -835,8 +835,26 @@
 	La ecuación de Burgers es no lineal, pero Roe propone resolver el problema de Riemann en las celdas linealizando la ecuación localmente. En otras palabras, Roe sugiere resolver la ecuación lineal
 	\begin{equation}
 		\pdv{u}{t} + \bar{A} \pdv{u}{x} = 0
+		\label{eq:roelineal}
 	\end{equation}
-	en dos celdas vecinas; donde $\bar{A}$ es una matriz constante que depende de los valores de $u$ en cada celda.
+	en dos celdas vecinas; donde $\bar{A}$ es una matriz constante que depende de los valores de $u$ en cada celda vecina. En el caso de la ecuación de Burgers (o cualquier ecuación conservativa con una única función a resolver) $\bar{A}$ es solamente un escalar. Para construir $\bar{A}$ al aplicar el esquema de Roe para la ecuación de Burgers se necesitan satisfacer algunas condiciones
+	
+	\begin{enumerate}
+		\item Para cualquier $u_{i}$, $u_{i+1}$ se tiene,
+		\begin{equation}
+				F_{i+1}-F_{i} = \bar{A} \cdot (u_{i+1} - u_{i})
+		\end{equation}
+		\item Cuando $u_{j} = u_{j+1} = u$ se tiene,
+		\begin{equation}
+				\bar{A}(u_j, u_{j+1}) = \bar{A}(u,u) = \pdv{F}{u} = u.
+		\end{equation}
+	\end{enumerate}
+		
+	La primera condición equivale a exigir que cuando se presenta una discontinuidad en el dominio, el flujo cambie de manera apropiada, dado que $\pdv{F}{x} = \bar{A} \pdv{u}{x}$. La segunda condición exige que en las regiones continuas el valor de $\bar{A}$ devuelva la velocidad de onda; y para la ecuación de Burgers es $u$. Entonces se puede sustituir $\bar{A}$ por $\bar{u}$ en la ecuación \ref{eq:roelineal} para obtener la ecuación de Burgers
+	\begin{equation}
+		\pdv{u}{t} + \bar{u} \pdv{u}{x} = 0
+	\end{equation}
+	
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
