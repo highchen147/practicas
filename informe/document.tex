@@ -852,9 +852,24 @@
 		
 	La primera condición equivale a exigir que cuando se presenta una discontinuidad en el dominio, el flujo cambie de manera apropiada, dado que $\pdv{F}{x} = \bar{A} \pdv{u}{x}$. La segunda condición exige que en las regiones continuas el valor de $\bar{A}$ devuelva la velocidad de onda; y para la ecuación de Burgers es $u$. Entonces se puede sustituir $\bar{A}$ por $\bar{u}$ en la ecuación \ref{eq:roelineal} para obtener la ecuación de Burgers
 	\begin{equation}
-		\pdv{u}{t} + \bar{u} \pdv{u}{x} = 0
+		\pdv{u}{t} + \bar{u} \pdv{u}{x} = 0,
+	\end{equation}
+	de tal manera que $\bar{u}$ se define tal que satisfaga los requerimientos anteriormente expuestos.
+	\begin{equation}
+		\bar{u}_{i+1} =
+		\begin{cases}
+			\frac{F_{i+1} - F_{i}}{u_{i+1} - u_{i}} & u_{i} \neq u_{i+1}\\
+			u_{i} & u_{i} = u_{i+1} 
+		\end{cases}
 	\end{equation}
 	
+	\begin{equation}
+		\bar{u}_{i+1} =
+		\begin{cases}
+			\frac{u_{i+1} + u_{i}}{2} & u_{i} \neq u_{i+1}\\
+			u_{i} & u_{i} = u_{i+1} 
+		\end{cases}
+	\end{equation}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
