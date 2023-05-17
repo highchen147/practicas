@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  16 MAY 2023 21:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  16 MAY 2023 22:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1676,8 +1676,8 @@ Package logreq Info: Writing requests to 'document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38723 strings out of 476339
- 768267 string characters out of 5787175
+ 38724 strings out of 476339
+ 768280 string characters out of 5787175
  1905340 words of memory out of 5000000
  58297 multiletter control sequences out of 15000+600000
  523962 words of font info for 78 fonts, out of 8000000 for 9000
@@ -1710,9 +1710,9 @@ iKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Rodrigo/AppData/Local
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users
 /Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on document.pdf (23 pages, 881662 bytes).
+Output written on document.pdf (23 pages, 881935 bytes).
 PDF statistics:
- 952 PDF objects out of 1000 (max. 8388607)
- 285 named destinations out of 1000 (max. 500000)
+ 953 PDF objects out of 1000 (max. 8388607)
+ 286 named destinations out of 1000 (max. 500000)
  312 words of extra memory for PDF output out of 10000 (max. 10000000)
 
