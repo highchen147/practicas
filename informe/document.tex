@@ -624,7 +624,7 @@
 	
 	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
 	\begin{equation}
-		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
+		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( \frac{(u_{i-1}^{n})^2 + (u_{i}^{n})^2}{2} \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
 	\end{equation}
 	Este es el esquema de Lax-Friedrichs para el flujo numérico de la ecuación de Burgers.
 	
@@ -837,7 +837,7 @@
 		\pdv{u}{t} + \bar{A} \pdv{u}{x} = 0
 		\label{eq:roelineal}
 	\end{equation}
-	en dos celdas vecinas; donde $\bar{A}$ es una matriz constante que depende de los valores de $u$ en cada celda vecina. En el caso de la ecuación de Burgers (o cualquier ecuación conservativa con una única función a resolver) $\bar{A}$ es solamente un escalar. Para construir $\bar{A}$ al aplicar el esquema de Roe para la ecuación de Burgers se necesitan satisfacer algunas condiciones
+	en dos celdas vecinas; donde $\bar{A}$ es una matriz \textbf{constante} que depende de los valores de $u$ en cada celda vecina. En el caso de la ecuación de Burgers (o cualquier ecuación conservativa con una única función a resolver) $\bar{A}$ es solamente un escalar. Para construir $\bar{A}$ al aplicar el esquema de Roe para la ecuación de Burgers se necesitan satisfacer dos condiciones
 	
 	\begin{enumerate}
 		\item Para cualquier $u_{i}$, $u_{i+1}$ se tiene,
@@ -854,7 +854,7 @@
 	\begin{equation}
 		\pdv{u}{t} + \bar{u} \pdv{u}{x} = 0,
 	\end{equation}
-	de tal manera que $\bar{u}$ se define tal que satisfaga los requerimientos anteriormente expuestos.
+	así $\bar{u}$ se define tal que satisfaga los requerimientos anteriormente expuestos.
 	\begin{equation}
 		\bar{u}_{i+1} =
 		\begin{cases}
@@ -869,7 +869,37 @@
 			\frac{u_{i+1} + u_{i}}{2} & u_{i} \neq u_{i+1}\\
 			u_{i} & u_{i} = u_{i+1} 
 		\end{cases}
+	\label{eq:u-prom}
 	\end{equation}
+	
+	Roe consigue obtener una velocidad promedio utilizando la solución local lineal del problema de Riemann. De acuerdo a la condición Rankine-Hugoniot (\ref{eq:sol-riemann-weak}), se puede obtener la diferencia de flujos entre celdas \cite{pletcher1997computational}
+	
+	\begin{equation}
+		F_{i+1} - F_{i} = \bar{u}_{i+1}\left(u_{i+1}-u_{i} \right) 
+	\end{equation}
+
+	Sin embargo, como se comentó anteriormente, la condición Rankine-Hugoniot solo devuelve la velocidad de propagación de una discontinuidad y por tanto, la anterior diferencia de flujos no es capas de diferenciar entre expansiones (caso $u_L > u_R$) y ondas de choque.
+	
+	Para resolver este problema se debe considerar la \textbf{dirección} de la velocidad $\bar{u}$ de la onda, es decir, su signo. Si la velocidad es positiva, entonces la diferencia entre el flujo \textbf{en la celda $i+1$}, $f(u_{i+1})$ y el flujo en la interfaz a la derecha, $F_{i+1}$ es
+	
+	\begin{equation}
+		F_{i+1} - f(u_{i+1}) = \bar{u}_{i+1} (u_{i+1}-u_{i}).
+	\end{equation}
+	Y si la velocidad $\bar{u}$ es negativa, se tiene que
+	
+	\begin{equation}
+		f(u_{i}) - F_{i+1} = \bar{u}_{i+1} (u_{i+1}-u_{i}).
+	\end{equation}
+	Ambas expresiones se pueden combinar, obteniendo
+	\begin{equation}
+		F_{i+1} = \frac{f(u_{i}) + f(u_{i+1})}{2} - \frac{1}{2}\left|\bar{u}_{i+1}\right|(u_{i+1}-u_{i})
+	\end{equation}
+	Junto a la definición de $\bar{u}_{i+1}$ en \ref{eq:u-prom}, y recordando la notación $F_i = F(u_{i-1}^{n}, u_{i}^{n})$ se obtiene el esquema de Roe
+	\begin{equation}
+		\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{f(u_{i-1}^{n}) + f(u_{i}^{n})}{2} - \frac{1}{2}\left|\bar{u}_{i}^{n}\right|(u_{i}^{n}-u_{i-1}^{n})}
+	\end{equation}
+	\subsection{Ecuación de Burgers en una dimensión}
+	Se resolvió la ecuación de Burgers en una dimensión con el método de volúmenes finitos y haciendo uso de cada uno de los esquemas previamente explicados
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
