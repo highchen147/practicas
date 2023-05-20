@@ -299,9 +299,9 @@ double step_pos(double x)
 
 double gauss_impar(double x)
 {
-    double a = 0.4;
+    double c = 0.4;
     double L = 100;
-    return a*(x-L/2)*gauss(x);
+    return c*(x-L/2)*gauss(x);
 }
 
 /**
