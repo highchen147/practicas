@@ -31,7 +31,7 @@ set yrange[ymin:ymax]
 
 do for [i=0:0] {
     set output "results/graficas_iniciales/gauss_impar.pdf"
-    set title "Gráfica de {/:Italic gauss impar}"
+    set title ""
     set xlabel "x"
     set ylabel "u"
     plot 'godunov/gauss_impar-fija.dat' index i u 2:3 w l

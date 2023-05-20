@@ -30,10 +30,11 @@ set yrange[ymin:ymax]
 
 print 'Presione Enter'
 pause -1
+set title ""
+
 
 do for [i=0:0] {
     set output "results/graficas_iniciales/gauss.pdf"
-    set title "Gráfica de {/:Italic gauss}"
     set xlabel "x"
     set ylabel "u"
     plot 'godunov/gauss-fija.dat' index i u 2:3 w l

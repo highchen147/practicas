@@ -31,7 +31,7 @@ set yrange[ymin:ymax]
 
 do for [i=0:0] {
     set output "results/graficas_iniciales/step_pos.pdf"
-    set title "Gráfica de {/:Italic step pos}"
+    set title ""
     set xlabel "x"
     set ylabel "u"
     plot 'godunov/step_pos-fija.dat' index i u 2:3 w l

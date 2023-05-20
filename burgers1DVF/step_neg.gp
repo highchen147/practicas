@@ -31,7 +31,7 @@ set yrange[ymin:ymax]
 
 do for [i=0:0] {
     set output "results/graficas_iniciales/step_neg.pdf"
-    set title "Gráfica de {/:Italic step neg}"
+    set title ""
     set xlabel "x"
     set ylabel "u"
     plot 'godunov/step_neg-fija.dat' index i u 2:3 w l
