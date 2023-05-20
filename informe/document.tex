@@ -167,10 +167,10 @@
 	
 	Se resolvió esta ecuación en un dominio espacial $I$ dado por $I = [0,\text{L}]$, donde $\text{L} = 100 \unit{\meter}$, y sujeta a las siguientes condiciones de frontera:\\
 	\begin{equation}
-		u(0,0)=0
+		u(0,t)=0
 	\end{equation}
 	\begin{equation}
-		u(\text{L},0)= 0
+		u(\text{L},t)= 0
 	\end{equation}
 	La imposición de estas condiciones pueden interpretarse como el modelado de un fluido sin presión ni viscosidad, o un gas, que se mueve en una dimensión cuyos extremos simulan un tope o frontera que impide que el fluido o gas en cuestión salga. 
 	
@@ -412,10 +412,10 @@
 	
  	La ecuación \ref{eq:burg-vis-con} se resolvió en el mismo dominio espacial $I$ y bajo las mismas condiciones iniciales y de frontera que la versión no viscosa de la sección \ref{sec:burgers1ddf}. 
  	\begin{equation}
- 		u(0,0)=0
+ 		u(0,t)=0
  	\end{equation}
  	\begin{equation}
- 		u(\text{L},0)= 0
+ 		u(\text{L},t)= 0
  	\end{equation}
 	\begin{equation}
 		u(x,0) = A\exp(-b(x-\mu)^{2})
@@ -899,7 +899,33 @@
 		\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{f(u_{i-1}^{n}) + f(u_{i}^{n})}{2} - \frac{1}{2}\left|\bar{u}_{i}^{n}\right|(u_{i}^{n}-u_{i-1}^{n})}
 	\end{equation}
 	\subsection{Ecuación de Burgers en una dimensión}
-	Se resolvió la ecuación de Burgers en una dimensión con el método de volúmenes finitos y haciendo uso de cada uno de los esquemas previamente explicados
+	Utilizando el método de volúmenes finitos y cada cada uno de los esquemas previamente explicados, se resolvió la ecuación de Burgers (\ref{eq:burgers1d}) en una dimensión, sujeta a los siguientes tipos de condiciones de frontera:
+	\begin{itemize}
+		\item \textbf{Fijas:} Los valores en las fronteras se mantienen constantes a lo largo de la evolución temporal
+		\begin{equation}
+			u(0,t) = u(0,0)
+		\end{equation}
+		\begin{equation}
+			u(\text{L}, t) = u(\text{L}, 0).
+		\end{equation}
+		Evidentemente, los valores de la frontera son los que toma la función de condición inicial $u(x,0)$.
+		\item \textbf{Periódicas:} El dominio espacial es periódico. Esta condición se puede interpretar como el modelado de una tubería en forma de anillo en donde un fluido se propaga.
+		\begin{equation}
+			u(0,t) = u(\text{L}, t).
+		\end{equation}
+	\end{itemize}
+	Como condiciones iniciales, se aplicaron varias funciones para examinar el funcionamiento de cada marco. A cada función se le asignó un nombre que fuera distintivo.
+	\begin{itemize}
+		\item \texttt{gauss}: Función gaussiana o curva de campana.
+		\begin{equation}
+			u(x,0) = A\exp(-b(x-\mu)^{2}).
+		\end{equation}
+		Donde
+		\begin{itemize}[leftmargin=50pt]
+			\item $A = 0.3$
+			\item $b = $
+		\end{itemize}
+	\end{itemize}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
