@@ -167,10 +167,10 @@
 	
 	Se resolvió esta ecuación en un dominio espacial $I$ dado por $I = [0,\text{L}]$, donde $\text{L} = 100 \unit{\meter}$, y sujeta a las siguientes condiciones de frontera:\\
 	\begin{equation}
-		u(0,0)=0
+		u(0,t)=0
 	\end{equation}
 	\begin{equation}
-		u(\text{L},0)= 0
+		u(\text{L},t)= 0
 	\end{equation}
 	La imposición de estas condiciones pueden interpretarse como el modelado de un fluido sin presión ni viscosidad, o un gas, que se mueve en una dimensión cuyos extremos simulan un tope o frontera que impide que el fluido o gas en cuestión salga. 
 	
@@ -412,10 +412,10 @@
 	
  	La ecuación \ref{eq:burg-vis-con} se resolvió en el mismo dominio espacial $I$ y bajo las mismas condiciones iniciales y de frontera que la versión no viscosa de la sección \ref{sec:burgers1ddf}. 
  	\begin{equation}
- 		u(0,0)=0
+ 		u(0,t)=0
  	\end{equation}
  	\begin{equation}
- 		u(\text{L},0)= 0
+ 		u(\text{L},t)= 0
  	\end{equation}
 	\begin{equation}
 		u(x,0) = A\exp(-b(x-\mu)^{2})
@@ -613,12 +613,27 @@
 	\end{equation}
 	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
+	\subsection{Esquema de Lax-Friedrichs}
+	La primera expresión que lógicamente se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$; esto es:
+	\begin{equation}
+		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( f(u_{i-1}^{n}) + f(u_{i}^{n})\right) 
+	\end{equation}
+	\begin{equation}
+		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right) 
+	\end{equation}
+	
+	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
+	\begin{equation}
+		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( \frac{(u_{i-1}^{n})^2 + (u_{i}^{n})^2}{2} \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
+	\end{equation}
+	Este es el esquema de Lax-Friedrichs para el flujo numérico de la ecuación de Burgers.
+	
 	\subsection{Esquema de Godunov}
 	El esquema de Godunov se justifica a través de conceptos avanzados de las ecuaciones diferenciales de conservación; pero la idea fundamental del método es simple. El esquema de Godunov consiste en resolver el \textbf{problema de Riemann} en cada una de las celdas de la solución, este problema se explicará con detalle después de considerar algunas propiedades de las ecuaciones diferenciales en forma conservativa. Primero, se debe comprender el concepto de \textbf{solución débil} de una ecuación diferencial.
 	\subsubsection{Solución débil de una ecuación diferencial}
 	Como fue visto en secciones anteriores, la ecuación de Burgers tiene soluciones discontinuas, lo cual parece contradecir la misma ecuación diferencial puesto que esta posee derivadas parciales en todas sus variables y una función discontinua no es derivable en todo su dominio. Con el objetivo de validar las funciones discontinuas como soluciones de las ecuaciones diferenciales el concepto de solución débil fue introducido a la teoría de ecuaciones diferenciales parciales \cite{Cameron}.
 	
-	Como motivación para entender el concepto de la solución débil se define una función infinitamente suave $\phi(x,t)$ que posee un soporte compacto, es decir, que la función es distinta de cero solamente en un subconjunto compacto del espacio $(x,t)= \mathbb{R} \times \left[ 0, + \infty \right] $. Luego se define $u(x,t)$ tal que esta satisface la ecuación de conservación general $\pdv{u}{t} + \pdv{f(u)}{x}=0$. Entonces integrando por partes se obtiene lo siguiente:
+	Como motivación para hacer riguroso el concepto de la solución débil se define una función infinitamente suave $\phi(x,t)$ que posee un soporte compacto, es decir, que la función es distinta de cero solamente en un subconjunto compacto del espacio $(x,t)= \mathbb{R} \times \left[ 0, + \infty \right] $. Luego se define $u(x,t)$ tal que esta satisface la ecuación de conservación general $\pdv{u}{t} + \pdv{f(u)}{x}=0$. Entonces integrando por partes se obtiene lo siguiente:
 	\begin{equation}
 		\int_{0}^{\infty}\int_{-\infty}^{\infty}\left( \pdv{u}{t} + \pdv{f(u)}{x} \right)\phi(x,t)\dd{x}\dd{t} = 0
 		\label{eq:integral_conservative1}
@@ -716,7 +731,7 @@
 	\end{equation}
 	El integrando del primer término de la ecuación (\ref{eq:integracion-final}) se hace cero si y solo si $s = \frac{f(u_L) - f(u_R)}{u_L - u_R}$ y dado que esta integral debe ser cero por la condición \ref{eq:weak_sol_cond}, se demuestra que $u(x,t)$ definida en \ref{eq:sol-riemann-weak} es la única solución para el problema de Riemann en el caso $u_L > u_R$.
 	
-	Si sustituimos el flujo de la ecuación de Burgers, encontramos que la solución del problema de Riemann de esta ecuación, para este caso es 
+	Si se sustituye el flujo de la ecuación de Burgers, se encuentra que la solución del problema de Riemann de esta ecuación, para este caso es 
 	
 	\begin{equation}
 		u(x,t) =
@@ -766,42 +781,151 @@
  	entonces, Godunov incluye una función $u^{*}(u_L, u_R)$ que depende de las velocidades de las celdas vecinas a la interfaz en donde se quiere calcular el flujo, de tal manera que
  	
  	\begin{equation}
- 		F_{i}^{n} = F(u^{*}(u_{i-1}^{n}, u_{i}^{n}))
+ 		F_{i}^{n} = f(u^{*}(u_{i-1}^{n}, u_{i}^{n}))
  	\end{equation}
  	
  	
  	La función $u^{*}(u_L, u_R)$ devuelve el valor correcto que tendrá la velocidad $u$ en la interfaz, de acuerdo con la solución del problema de Riemann y la condición de entropía. Para calcular el valor de velocidad de $u^{*}$ es preferible partir de los dos casos del problema de Riemann.
  	
- 	Para el caso $u_L > u_R$ que produce ondas de choque, se tiene
- 	\begin{equation}
- 		u^{*} =
- 		\begin{cases}
- 			u_{L} & x < 0 \\
- 			u_{R} & x > 0
- 		\end{cases}
- 	\end{equation}
+	Recordando que para la ecuación de Burgers, $s = \frac{u_L + u_R}{2}$, se puede deducir $u^{*}$. 
+ 	
+ 	\begin{itemize}
+ 		\item Para el caso $u_L > u_R$ que produce \textbf{ondas de choque}, se tiene
+ 		\begin{equation}
+ 			u^{*} =
+ 			\begin{cases}
+ 				u_{L} & \frac{u_L + u_R}{2} > 0 \\
+ 				u_{R} & \frac{u_L + u_R}{2} < 0.
+ 			\end{cases}
+ 		\end{equation}
+ 		\item Para el caso $u_L < u_R$ que produce \textbf{rarefacción transónica}, se tiene
+ 		\begin{equation}
+ 			u^{*} =
+ 			\begin{cases}
+ 				0 & u_{L} < 0 < u_{R}\\
+ 				u_{L} & \frac{u_L + u_R}{2} > 0 \\
+ 				u_{R} & \frac{u_L + u_R}{2} < 0.
+ 			\end{cases}
+ 		\end{equation}
+ 	\end{itemize}
+ 	Se puede destacar que las opciones de $u^{*}$ para el caso de ondas de choque y las últimas dos opciones del caso de rarefacción, se obtiene exactamente el mismo valor para $u^{*}$. La primera opción para el caso de rarefacción se deduce inmediatamente de la ecuación (\ref{eq:sol-riemann-weak-rarefraction}) \cite{pletcher1997computational}.
  	
  	Dado que el flujo $F_{i}^{n}$ se define como una integral en el tiempo del flujo real $f(u)$ (ecuación \ref{eq:flujo_promedio}), el cálculo de la velocidad que proporciona $u^{*}$ debe considerar que al resolver el problema de Riemann la velocidad devuelta sea constante en un intervalo de tiempo $\Delta t$; esto da origen a la \textbf{condición de estabilidad}, también conocida como condición \textbf{CFL.} La condición de estabilidad para el marco de Godunov es la siguiente \cite{pletcher1997computational}
  	
  	\begin{equation}
- 		\left| u_{\text{max}} \frac{\Delta t}{\Delta x}\right| \leq \frac{1}{2} 
+ 		\left| u_{\text{max}} \frac{\Delta t}{\Delta x}\right| \leq \frac{1}{2} .
  	\end{equation}
  	 
- 	
-	\subsection{Esquema de Lax-Friedrichs}
-	La primera idea que se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$, esto es:
+ 	 Finalmente, a partir de la definición de $u^{*}$, se puede escribir el flujo numérico de la ecuación de Burgers bajo el esquema de Godunov:
+  	
+  	\begin{equation}
+  		\boxed{F(u_{i-1}^{n}, u_{i}^{n}) =
+  		\begin{cases}
+  			0 & u_{i-1} < 0 < u_{i}\\
+  			\frac{1}{2}u_{i-1}^{2} & \frac{u_{i-1} + u_{i}}{2} > 0 \\
+  			\frac{1}{2}u_{i}^{2} & \frac{u_{i-1} + u_{i}}{2} < 0.
+  		\end{cases}.}
+  		\label{eq:flujo-godunov}
+  	\end{equation}
+ 	 
+ 	 \subsection{Esquema de Roe}
+ 	Al igual que el esquema de \textbf{Lax-Friedrichs}, el esquema de Roe es un \textbf{método aproximado} de la solución del problema de Riemann. Se diferencia principalmente del esquema de Godunov en que este último resuelve exactamente el problema de Riemann entre las celdas, mientras que Roe propone una aproximación de la solución basada en la linealización de la ecuación a resolver. Puede parecer poco motivador implementar el método de Roe para resolver la ecuación de Burgers, dado que ya se tiene el esquema de Godunov que aplica finamente la solución del problema de Riemann para obtener un método numérico. Sin embargo, resolver el problema de Riemann analíticamente es costoso, especialmente cuando las ecuaciones describen un modelo físico más realista y por ende, más complicado; es entonces en este tipo de situaciones en donde el método de Roe destaca más.
+	
+	\subsubsection{Linealización del problema}
+	La ecuación de Burgers es no lineal, pero Roe propone resolver el problema de Riemann en las celdas linealizando la ecuación localmente. En otras palabras, Roe sugiere resolver la ecuación lineal
 	\begin{equation}
-		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( f(u_{i-1}^{n}) + f(u_{i}^{n})\right) 
+		\pdv{u}{t} + \bar{A} \pdv{u}{x} = 0
+		\label{eq:roelineal}
 	\end{equation}
+	en dos celdas vecinas; donde $\bar{A}$ es una matriz \textbf{constante} que depende de los valores de $u$ en cada celda vecina. En el caso de la ecuación de Burgers (o cualquier ecuación conservativa con una única función a resolver) $\bar{A}$ es solamente un escalar. Para construir $\bar{A}$ al aplicar el esquema de Roe para la ecuación de Burgers se necesitan satisfacer dos condiciones
+	
+	\begin{enumerate}
+		\item Para cualquier $u_{i}$, $u_{i+1}$ se tiene,
+		\begin{equation}
+				F_{i+1}-F_{i} = \bar{A} \cdot (u_{i+1} - u_{i})
+		\end{equation}
+		\item Cuando $u_{j} = u_{j+1} = u$ se tiene,
+		\begin{equation}
+				\bar{A}(u_j, u_{j+1}) = \bar{A}(u,u) = \pdv{F}{u} = u.
+		\end{equation}
+	\end{enumerate}
+		
+	La primera condición equivale a exigir que cuando se presenta una discontinuidad en el dominio, el flujo cambie de manera apropiada, dado que $\pdv{F}{x} = \bar{A} \pdv{u}{x}$. La segunda condición exige que en las regiones continuas el valor de $\bar{A}$ devuelva la velocidad de onda; y para la ecuación de Burgers es $u$. Entonces se puede sustituir $\bar{A}$ por $\bar{u}$ en la ecuación \ref{eq:roelineal} para obtener la ecuación de Burgers
 	\begin{equation}
-		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right) 
+		\pdv{u}{t} + \bar{u} \pdv{u}{x} = 0,
+	\end{equation}
+	así $\bar{u}$ se define tal que satisfaga los requerimientos anteriormente expuestos.
+	\begin{equation}
+		\bar{u}_{i+1} =
+		\begin{cases}
+			\frac{F_{i+1} - F_{i}}{u_{i+1} - u_{i}} & u_{i} \neq u_{i+1}\\
+			u_{i} & u_{i} = u_{i+1} 
+		\end{cases}
 	\end{equation}
 	
-	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
 	\begin{equation}
-		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
+		\bar{u}_{i+1} =
+		\begin{cases}
+			\frac{u_{i+1} + u_{i}}{2} & u_{i} \neq u_{i+1}\\
+			u_{i} & u_{i} = u_{i+1} 
+		\end{cases}
+	\label{eq:u-prom}
 	\end{equation}
-	Este es el esquema de Lax-Friedrichs para el flujo numérico de la ecuación de Burgers.
+	
+	Roe consigue obtener una velocidad promedio utilizando la solución local lineal del problema de Riemann. De acuerdo a la condición Rankine-Hugoniot (\ref{eq:sol-riemann-weak}), se puede obtener la diferencia de flujos entre celdas \cite{pletcher1997computational}
+	
+	\begin{equation}
+		F_{i+1} - F_{i} = \bar{u}_{i+1}\left(u_{i+1}-u_{i} \right) 
+	\end{equation}
+
+	Sin embargo, como se comentó anteriormente, la condición Rankine-Hugoniot solo devuelve la velocidad de propagación de una discontinuidad y por tanto, la anterior diferencia de flujos no es capas de diferenciar entre expansiones (caso $u_L > u_R$) y ondas de choque.
+	
+	Para resolver este problema se debe considerar la \textbf{dirección} de la velocidad $\bar{u}$ de la onda, es decir, su signo. Si la velocidad es positiva, entonces la diferencia entre el flujo \textbf{en la celda $i+1$}, $f(u_{i+1})$ y el flujo en la interfaz a la derecha, $F_{i+1}$ es
+	
+	\begin{equation}
+		F_{i+1} - f(u_{i+1}) = \bar{u}_{i+1} (u_{i+1}-u_{i}).
+	\end{equation}
+	Y si la velocidad $\bar{u}$ es negativa, se tiene que
+	
+	\begin{equation}
+		f(u_{i}) - F_{i+1} = \bar{u}_{i+1} (u_{i+1}-u_{i}).
+	\end{equation}
+	Ambas expresiones se pueden combinar, obteniendo
+	\begin{equation}
+		F_{i+1} = \frac{f(u_{i}) + f(u_{i+1})}{2} - \frac{1}{2}\left|\bar{u}_{i+1}\right|(u_{i+1}-u_{i})
+	\end{equation}
+	Junto a la definición de $\bar{u}_{i+1}$ en \ref{eq:u-prom}, y recordando la notación $F_i = F(u_{i-1}^{n}, u_{i}^{n})$ se obtiene el esquema de Roe
+	\begin{equation}
+		\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{f(u_{i-1}^{n}) + f(u_{i}^{n})}{2} - \frac{1}{2}\left|\bar{u}_{i}^{n}\right|(u_{i}^{n}-u_{i-1}^{n})}
+	\end{equation}
+	\subsection{Ecuación de Burgers en una dimensión}
+	Utilizando el método de volúmenes finitos y cada cada uno de los esquemas previamente explicados, se resolvió la ecuación de Burgers (\ref{eq:burgers1d}) en una dimensión, sujeta a los siguientes tipos de condiciones de frontera:
+	\begin{itemize}
+		\item \textbf{Fijas:} Los valores en las fronteras se mantienen constantes a lo largo de la evolución temporal
+		\begin{equation}
+			u(0,t) = u(0,0)
+		\end{equation}
+		\begin{equation}
+			u(\text{L}, t) = u(\text{L}, 0).
+		\end{equation}
+		Evidentemente, los valores de la frontera son los que toma la función de condición inicial $u(x,0)$.
+		\item \textbf{Periódicas:} El dominio espacial es periódico. Esta condición se puede interpretar como el modelado de una tubería en forma de anillo en donde un fluido se propaga.
+		\begin{equation}
+			u(0,t) = u(\text{L}, t).
+		\end{equation}
+	\end{itemize}
+	Como condiciones iniciales, se aplicaron varias funciones para examinar el funcionamiento de cada marco. A cada función se le asignó un nombre que fuera distintivo.
+	\begin{itemize}
+		\item \texttt{gauss}: Función gaussiana o curva de campana.
+		\begin{equation}
+			u(x,0) = A\exp(-b(x-\mu)^{2}).
+		\end{equation}
+		Donde
+		\begin{itemize}[leftmargin=50pt]
+			\item $A = 0.3$
+			\item $b = $
+		\end{itemize}
+	\end{itemize}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
