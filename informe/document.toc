@@ -1,25 +1,28 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {section}{\numberline {1}Método de diferencias finitas}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Ecuación de Burgers no viscosa, en una dimensión}{4}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Descripción del problema}{4}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Aplicación del método y código implementado}{5}{subsubsection.1.1.2}%
-\contentsline {subsubsection}{\numberline {1.1.3}Resultados}{8}{subsubsection.1.1.3}%
-\contentsline {subsubsection}{\numberline {1.1.4}Discusión de resultados}{8}{subsubsection.1.1.4}%
-\contentsline {subsection}{\numberline {1.2}Ecuación de Burgers viscosa, en una dimensión}{11}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Descripción del problema}{11}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Aplicación del método y código implementado}{12}{subsubsection.1.2.2}%
-\contentsline {subsubsection}{\numberline {1.2.3}Resultados}{14}{subsubsection.1.2.3}%
-\contentsline {subsubsection}{\numberline {1.2.4}Discusión de resultados}{15}{subsubsection.1.2.4}%
-\contentsline {section}{\numberline {2}Método de volúmenes finitos}{15}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Esquema de Lax-Friedrichs}{17}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Esquema de Godunov}{18}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Solución débil de una ecuación diferencial}{18}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Problema de Riemann}{19}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Caso $u_L > u_R$ del problema de Riemann}{19}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}Caso $u_L < u_R$ del problema de Riemann}{20}{subsubsection.2.2.4}%
-\contentsline {subsubsection}{\numberline {2.2.5}Cálculo del esquema de Godunov}{21}{subsubsection.2.2.5}%
-\contentsline {subsection}{\numberline {2.3}Esquema de Roe}{22}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Linealización del problema}{22}{subsubsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.4}Ecuación de Burgers en una dimensión}{23}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Método de elementos finitos}{25}{section.3}%
-\contentsline {section}{\numberline {4}Conclusiones}{25}{section.4}%
+\contentsline {section}{\numberline {1}Introducción}{3}{section.1}%
+\contentsline {section}{\numberline {2}Método de diferencias finitas}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Ecuación de Burgers no viscosa, en una dimensión}{5}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Descripción del problema}{5}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Aplicación del método y código implementado}{6}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Resultados}{9}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Discusión de resultados}{9}{subsubsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.2}Ecuación de Burgers viscosa, en una dimensión}{12}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Descripción del problema}{12}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Aplicación del método y código implementado}{13}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Resultados}{15}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Discusión de resultados}{16}{subsubsection.2.2.4}%
+\contentsline {section}{\numberline {3}Método de volúmenes finitos}{16}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Esquema de Lax-Friedrichs}{18}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Esquema de Godunov}{19}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Solución débil de una ecuación diferencial}{19}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Problema de Riemann}{20}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Caso $u_L > u_R$ del problema de Riemann}{20}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Caso $u_L < u_R$ del problema de Riemann}{21}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Cálculo del esquema de Godunov}{22}{subsubsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.3}Esquema de Roe}{23}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Linealización del problema}{23}{subsubsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.4}Ecuación de Burgers en una dimensión}{25}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Descripción del problema}{25}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Implementación del método}{26}{subsubsection.3.4.2}%
+\contentsline {section}{\numberline {4}Método de elementos finitos}{29}{section.4}%
+\contentsline {section}{\numberline {5}Conclusiones}{29}{section.5}%
