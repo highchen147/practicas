@@ -236,8 +236,8 @@ int main()
  * @param N Tamaño del arreglo u
  * @param dt Tamaño de paso en t
  * @param dx Tamaño de paso en x
- * @param tipo Tipo de condición, periódica o fija
- * @param marco Marco numérico utilizado
+ * @param tipo Tipo de condición: periódica o fija
+ * @param marco Marco numérico utilizado: roe, godunov o LF
  * 
  */
 void condicion_frontera(double *u, double *u_nueva, int N, 
