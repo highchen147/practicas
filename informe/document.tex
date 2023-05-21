@@ -920,11 +920,50 @@
 		\begin{equation}
 			u(x,0) = A\exp(-b(x-\mu)^{2}).
 		\end{equation}
-		Donde
-		\begin{itemize}[leftmargin=50pt]
-			\item $A = 0.3$
-			\item $b = $
-		\end{itemize}
+		con $A$, $b$ y $\mu$ constantes.
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/gauss.pdf}
+			\caption*{Gráfica de \texttt{gauss}.}
+		\end{figure}
+		\item \texttt{step\_neg}: Función Heaviside invertida respecto el eje horizontal
+		\begin{equation}
+			u(x,0) = 
+			\begin{cases}
+				1.0 & x < \text{L}/2\\
+				0.0 & x \geq \text{L}/2
+			\end{cases}
+		\end{equation}
+		donde L es el largo del dominio espacial.
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/step_neg.pdf}
+			\caption*{Gráfica de \texttt{step\_neg}.}
+		\end{figure}
+		\item \texttt{step\_pos}: Similar a la función Heaviside, pero con $-1.0$ y $1.0$ como sus valores constantes.
+		\begin{equation}
+			u(x,0) = 
+			\begin{cases}
+				-1.0 & x < \text{L}/2\\
+				1.0 & x \geq \text{L}/2
+			\end{cases}
+		\end{equation}
+		donde L es el largo del dominio espacial.
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/step_pos.pdf}
+			\caption*{Gráfica de \texttt{step\_pos}.}
+		\end{figure}
+		\item \texttt{gauss\_impar}: Multiplicación de una función lineal por una campana gaussiana, para obtener una función impar con dos pulsos.
+		\begin{equation}
+			u(x,0) = c\left( x-\frac{L}{2}\right) \cdot A\exp(-b(x-\mu)^{2})
+		\end{equation}
+		con $c$ constante y las mismas constantes definidas para \texttt{gauss}. 
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf}
+			\caption*{Gráfica de \texttt{gauss\_impar}.}
+		\end{figure}
 	\end{itemize}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
