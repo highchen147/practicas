@@ -55,7 +55,7 @@ ax1: plt.Axes
 ax2: plt.Axes
 ax3: plt.Axes
 # Primera animación
-line1, = ax1.plot([], [], lw=2)
+line1, = ax1.plot([], [], lw=0.8)
 subsets_d = generar_subsets(data_d)
 
 def init():
@@ -71,10 +71,10 @@ def animate_1(i):
 num_frames = 280
 dt = (subsets_d[1]['t'].values[0] - subsets_d[0]['t'].values[0])*1000
 
-# anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
+anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
 
 # Segunda animación
-line2, = ax2.plot([], [], lw=2)
+line2, = ax2.plot([], [], lw=1)
 
 subsets_p = generar_subsets(data_p)
 
@@ -87,10 +87,10 @@ def animate_2(i):
     return line2,
 
 
-# anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(num_frames)), repeat=False, interval=100)
+anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(num_frames)), repeat=False, interval=100)
 
 # Tercera animación
-line3, = ax3.plot([], [], lw=2)
+line3, = ax3.plot([], [], lw=1)
 
 subsets_u = generar_subsets(data_u)
 
@@ -102,8 +102,8 @@ def animate_3(i):
     animacion(data_u, subsets_u[i], r'Velocidad $\left(\frac{m}{s}\right)$', 0.25, ax3, line3)
     return line3,
 
-anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
-anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(num_frames)), repeat=False, interval=100)
+# anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
+# anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(num_frames)), repeat=False, interval=100)
 anim3 = animation.FuncAnimation(fig, animate_3, init_func=init3, frames=(range(num_frames)), repeat=False, interval=100)
 
 

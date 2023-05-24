@@ -99,6 +99,12 @@
 	\tableofcontents
 	\clearpage
 	
+	\section{Introducción}
+	En el estudio de la física, existen múltiples maneras de conocer más a profundidad las teorías que se estudian y también para comprobarlas. La física siempre ha dependido del área experimental, ya que las leyes y postulados que se definen en una teoría deben ser consistentes con cualquier experimento; de lo contrario, la teoría está destinada a fracasar. 
+	
+	Sin embargo, gracias al avance tecnológico exponencial que se ha presenciado en el último siglo, la física posee hoy en día una herramienta que le permitirá continuar evolucionando: \textbf{la simulación computacional.} Si bien el área experimental es la piedra angular de cualquier ciencia exacta como la física, la simulación computacional de un sistema físico puede resultar igual o aún más ilustrativa que un experimento del mismo sistema. Más importante, una simulación puede ser capaz de brindarle al investigador una idea más concreta y visual de fenómenos extremos (altas temperaturas, tamaños microscópicos, etc.) que están fuera del alcance de los experimentos.
+	\clearpage
+	
 	\section{Método de diferencias finitas}
 	El \textbf{método de diferencias finitas} o \textbf{método DF} es un método numérico que sirve para resolver ecuaciones diferenciales ordinarias o parciales. El método consiste en discretizar el dominio de la ecuación en un conjunto finito de puntos llamado \textbf{grilla}; donde cada punto debe estar a la misma distancia de cada uno de sus vecinos. Posteriormente se deben aproximar las derivadas de la función con ecuaciones de diferencias utilizando series de potencias, para poder resolver la versión aproximada de la ecuación diferencial algebraica iterativamente \cite{devries2011first}.
 	
@@ -165,12 +171,12 @@
 		\label{eq:burgers1d}
 	\end{equation}
 	
-	Se resolvió esta ecuación en un dominio espacial $I$ dado por $I = [0,\text{L}]$, donde $\text{L} = 100 \unit{\meter}$, y sujeta a las siguientes condiciones de frontera:\\
+	Se resolvió esta ecuación en un dominio espacial $I$ dado por $I = [0,L]$, donde $L = 100 \unit{\meter}$, y sujeta a las siguientes condiciones de frontera:\\
 	\begin{equation}
 		u(0,t)=0
 	\end{equation}
 	\begin{equation}
-		u(\text{L},t)= 0
+		u(L,t)= 0
 	\end{equation}
 	La imposición de estas condiciones pueden interpretarse como el modelado de un fluido sin presión ni viscosidad, o un gas, que se mueve en una dimensión cuyos extremos simulan un tope o frontera que impide que el fluido o gas en cuestión salga. 
 	
@@ -415,7 +421,7 @@
  		u(0,t)=0
  	\end{equation}
  	\begin{equation}
- 		u(\text{L},t)= 0
+ 		u(L,t)= 0
  	\end{equation}
 	\begin{equation}
 		u(x,0) = A\exp(-b(x-\mu)^{2})
@@ -894,11 +900,13 @@
 	\begin{equation}
 		F_{i+1} = \frac{f(u_{i}) + f(u_{i+1})}{2} - \frac{1}{2}\left|\bar{u}_{i+1}\right|(u_{i+1}-u_{i})
 	\end{equation}
-	Junto a la definición de $\bar{u}_{i+1}$ en \ref{eq:u-prom}, y recordando la notación $F_i = F(u_{i-1}^{n}, u_{i}^{n})$ se obtiene el esquema de Roe
+	Junto a la definición de $\bar{u}_{i+1}$ en la ecuación \ref{eq:u-prom}, y recordando la notación $F_i = F(u_{i-1}^{n}, u_{i}^{n})$ se obtiene el esquema de Roe
 	\begin{equation}
 		\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{f(u_{i-1}^{n}) + f(u_{i}^{n})}{2} - \frac{1}{2}\left|\bar{u}_{i}^{n}\right|(u_{i}^{n}-u_{i-1}^{n})}
 	\end{equation}
+	\clearpage
 	\subsection{Ecuación de Burgers en una dimensión}
+	\subsubsection{Descripción del problema}
 	Utilizando el método de volúmenes finitos y cada cada uno de los esquemas previamente explicados, se resolvió la ecuación de Burgers (\ref{eq:burgers1d}) en una dimensión, sujeta a los siguientes tipos de condiciones de frontera:
 	\begin{itemize}
 		\item \textbf{Fijas:} Los valores en las fronteras se mantienen constantes a lo largo de la evolución temporal
@@ -906,12 +914,12 @@
 			u(0,t) = u(0,0)
 		\end{equation}
 		\begin{equation}
-			u(\text{L}, t) = u(\text{L}, 0).
+			u(L, t) = u(L, 0).
 		\end{equation}
 		Evidentemente, los valores de la frontera son los que toma la función de condición inicial $u(x,0)$.
 		\item \textbf{Periódicas:} El dominio espacial es periódico. Esta condición se puede interpretar como el modelado de una tubería en forma de anillo en donde un fluido se propaga.
 		\begin{equation}
-			u(0,t) = u(\text{L}, t).
+			u(0,t) = u(L, t).
 		\end{equation}
 	\end{itemize}
 	Como condiciones iniciales, se aplicaron varias funciones para examinar el funcionamiento de cada marco. A cada función se le asignó un nombre que fuera distintivo.
@@ -930,8 +938,8 @@
 		\begin{equation}
 			u(x,0) = 
 			\begin{cases}
-				1.0 & x < \text{L}/2\\
-				0.0 & x \geq \text{L}/2
+				1.0 & x < L/2\\
+				0.0 & x \geq L/2
 			\end{cases}
 		\end{equation}
 		donde L es el largo del dominio espacial.
@@ -944,8 +952,8 @@
 		\begin{equation}
 			u(x,0) = 
 			\begin{cases}
-				-1.0 & x < \text{L}/2\\
-				1.0 & x \geq \text{L}/2
+				-1.0 & x < L/2\\
+				1.0 & x \geq L/2
 			\end{cases}
 		\end{equation}
 		donde L es el largo del dominio espacial.
@@ -965,6 +973,56 @@
 			\caption*{Gráfica de \texttt{gauss\_impar}.}
 		\end{figure}
 	\end{itemize}
+	\subsubsection{Implementación del método}
+	La implementación de la solución numérica de la ecuación de Burgers con el método de volúmenes finitos tiene una estructura central muy similar a la implementación del método de diferencias finitas. Sin embargo, dado que el método de volúmenes finitos depende de la elección del esquema utilizado, el programa que se diseñó para ejecutar el método incluye la implementación de los tres esquemas; esto para que se pudiera visualizar y comprobar cuál esquema era más preciso al producir la solución
+	
+	\lstinputlisting[title = Variables generales de la simulación,
+	language=C++,
+	firstline=31,
+	lastline=44,
+	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+	
+	Se definieron cadenas de caracteres (\textit{strings}) que identificaran a cada uno de los esquemas (marcos) a utilizar. El string \texttt{roe-fix} será explicado en la discusión de resultados.
+	\lstinputlisting[title = Arreglo de strings con nombres de los esquemas,
+	language=C++,
+	firstline=88,
+	lastline=90,
+	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+	
+	Se utilizaron punteros a arreglos unidimensionales, así como en las anteriores simulaciones descritas,
+	
+	\lstinputlisting[title = Definición e inicialización de punteros a arreglos,
+	language=C++,
+	firstline=119,
+	lastline=161,
+	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+	
+	Las funciones utilizadas al inicializar el arreglo \texttt{u} fueron definidas de la siguiente forma
+	
+	\lstinputlisting[title = Definición de funciones de condición inicial,
+	language=C++,
+	firstline=2,
+	lastline=43,
+	keywordstyle=\color{blue}]{../burgers1DVF/funciones.cpp}
+	
+%	\lstinputlisting[title = Definición de \texttt{step\_neg},
+%	language=C++,
+%	firstline=272,
+%	lastline=284,
+%	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+%	
+%	\lstinputlisting[title = Definición de \texttt{step\_pos},
+%	language=C++,
+%	firstline=286,
+%	lastline=298,
+%	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+%	
+%	\lstinputlisting[title = Definición de \texttt{gauss\_impar},
+%	language=C++,
+%	firstline=300,
+%	lastline=305,
+%	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+%	
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
