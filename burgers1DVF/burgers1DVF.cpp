@@ -351,7 +351,7 @@ double Flujo(double u,
              double dx, 
              double dt)
 {
-    // Marco de Gudonov
+    // Marco de Godunov
     if (marco == "godunov")
     {
         return FlujoBurgers(uPrime(u, v));
@@ -368,6 +368,7 @@ double Flujo(double u,
         double FlujoPromedio = 0.5*(FlujoBurgers(u)+FlujoBurgers(v));
         return (FlujoPromedio-0.5*abs(uProm(u,v))*(v-u));
     }
+    // Marco de Roe corregido
     else if (marco == "roe-fix")
     {
         double epsilon = max(0.0, (v-u)/2);
