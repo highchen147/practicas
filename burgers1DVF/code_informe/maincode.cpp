@@ -154,3 +154,41 @@ int main()
         if (u[i] > umax) umax = u[i];
         if (u[i] < umin) umin = u[i];
     }
+
+    ////////////////////////////////////////////////////////////////////////
+
+// Ciclo principal de integración
+for (int j = 0; j < Niter; j++)
+{
+for (int i = 1; i < Nx-1; i++)
+{
+    u_nueva[i] = u[i] -(dt/dx)*
+    (Flujo(u[i], u[i+1], marco, dx, dt)-
+     Flujo(u[i-1], u[i], marco, dx, dt));
+    
+    if (u_nueva[i] > umax) umax = u_nueva[i];
+    if (u_nueva[i] < umin) umin = u_nueva[i];
+}
+
+
+// Condiciones de frontera
+condicion_frontera(u, u_nueva, Nx, dt, dx, tipo_frontera, marco);
+
+// Actualizar u
+for (int i = 0; i < Nx; i++)
+{
+    u[i] = u_nueva[i];
+}
+
+// Se imprime la solución de la iteración
+if (j % out_cada == 0)
+{
+    salida(outfile, u, x, tiempo, Nx);
+    cout << "\r" << marco << " " << round(100*tiempo/t_total*100)/100 << "%";
+    cout.flush();
+}
+    
+
+// Actualizamos el tiempo
+tiempo += dt;        
+}

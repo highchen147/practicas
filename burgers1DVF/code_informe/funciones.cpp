@@ -152,3 +152,37 @@ double uProm(double u, double v)
     else
         return u;
 }
+
+/**
+ * @brief Aplica condiciones de frontera a la función u pasada como puntero
+ * 
+ * @param u Puntero al arreglo con los valores que toma la función u
+ * @param u_nueva Puntero al arreglo con los valores de la función u 
+ * en un instante dt después
+ * @param N Tamaño del arreglo u
+ * @param dt Tamaño de paso en t
+ * @param dx Tamaño de paso en x
+ * @param tipo Tipo de condición: periódica o fija
+ * @param marco Marco numérico utilizado: roe, godunov o LF
+ * 
+ */
+void condicion_frontera(double *u, double *u_nueva, int N, 
+                        double dt, double dx, const string &tipo, 
+                        const string &marco)
+{
+    if (tipo == "fija")
+    {
+        u_nueva[0] = u[0];
+        u_nueva[N-1] = u[N-1];
+    }
+    else
+    {    
+        u_nueva[0] = u[0] -(dt/dx)*
+            (Flujo(u[0], u[1], marco, dx, dt)-
+             Flujo(u[N-1], u[0], marco, dx, dt));
+
+        u_nueva[N-1] = u[N-1] -(dt/dx)*
+            (Flujo(u[N-1], u[0], marco, dx, dt)-
+             Flujo(u[N-2], u[N-1], marco, dx, dt));
+    }
+}
