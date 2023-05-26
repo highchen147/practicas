@@ -542,6 +542,7 @@
 
 	\theoremstyle{definition}
 	\newtheorem{definition}{Definición}[section]
+	\clearpage
 	\section{Método de volúmenes finitos}
 	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} Este método se especializa en resolver ecuaciones diferenciales escritas en forma conservativa y es capaz de integrarlas aún cuando las soluciones poseen discontinuidades o  en el contexto de las ecuaciones de la mecánica de fluidos, choques (\textit{shocks} en inglés) \cite{LeVeque1998}. El método de volúmenes finitos es aplicable utilizando métodos llamados \textit{esquemas} o \textit{marcos}, que sirven para calcular apropiadamente el \textbf{flujo} en las interfaces de las celdas de la grilla \cite{LeVeque1998}. Se explicará la deducción del método de volúmenes finitos, los marcos utilizados y la teoría de su funcionamiento.
 	
@@ -980,24 +981,24 @@
 	
 	\lstinputlisting[title = Variables generales de la simulación,
 	language=C++,
-	firstline=31,
-	lastline=44,
-	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+	firstline=26,
+	lastline=39,
+	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/maincode.cpp}
 	
 	Se definieron cadenas de caracteres (\textit{strings}) que identificaran a cada uno de los esquemas (marcos) a utilizar. El string \texttt{roe-fix} será explicado en la discusión de resultados.
 	\lstinputlisting[title = Arreglo de strings con nombres de los esquemas,
 	language=C++,
-	firstline=88,
-	lastline=90,
-	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+	firstline=84,
+	lastline=85,
+	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/maincode.cpp}
 	
 	Se utilizaron punteros a arreglos unidimensionales, así como en las anteriores simulaciones descritas,
 	
 	\lstinputlisting[title = Definición e inicialización de punteros a arreglos,
 	language=C++,
-	firstline=119,
-	lastline=161,
-	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+	firstline=114,
+	lastline=152,
+	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/maincode.cpp}
 	
 	
 	
@@ -1007,19 +1008,47 @@
 	language=C++,
 	firstline=2,
 	lastline=43,
-	keywordstyle=\color{blue}]{../burgers1DVF/funciones.cpp}
+	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
 	
 	Para aplicar todos los esquemas que fueron estudiados, se diseñó la función \texttt{Flujo} de tal manera que esta pudiese ser aplicada de acuerdo al marco a utilizar.
  	
  	\lstinputlisting[title = Definición de función que calcula el flujo entre celdas,
  	language=C++,
- 	firstline=337,
- 	lastline=370,
- 	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+ 	firstline=46,
+ 	lastline=79,
+ 	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
  	
- 	La función \texttt{FlujoBurgers} calcula el flujo exacto $f(u) = \frac{1}{2}u^{2}$, ya que todos los esquemas necesitan esta función para calcular el flujo entre celdas. En el caso del esquema de Godunov, se define la función \texttt{uPrime} la cual está basada en la función definida en las ecuaciones \ref{eq:uprima1} y \ref{eq:uprima2}.
+ 	La función \texttt{FlujoBurgers} calcula el flujo exacto $f(u) = \frac{1}{2}u^{2}$, ya que todos los esquemas necesitan esta función para calcular el flujo entre celdas. En el caso del esquema de Godunov, se define la función \texttt{uPrime} la cual es la implementación de la función definida en las ecuaciones \ref{eq:uprima1} y \ref{eq:uprima2}.
  	
+ 	\lstinputlisting[title = Definición de función \texttt{uPrime},
+ 	language=C++,
+ 	firstline=102,
+ 	lastline=136,
+ 	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
  	
+ 	En el caso del esquema de Roe, la función \texttt{uProm} calcula el promedio entre las velocidades de las celdas vecinas
+ 	
+ 	\lstinputlisting[title = Definición de función \texttt{uProm},
+ 	language=C++,
+ 	firstline=138,
+ 	lastline=154,
+ 	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
+ 	
+ 	Para aplicar las condiciones de frontera se optó por definir una función de tipo \texttt{void} que modificara los arreglos de acuerdo al tipo de condición que se quisiera aplicar
+ 	
+ 	\lstinputlisting[title = Definición de función \texttt{condicion\_frontera},
+ 	language=C++,
+ 	firstline=156,
+ 	lastline=188,
+ 	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
+ 	
+ 	Por último, en el ciclo principal de integración se implementó la relación definida en la ecuación \ref{eq:diferencia-flujos}, junto con las funciones explicadas previamente
+ 	
+ 	\lstinputlisting[title = Ciclo principal de integración,
+ 	language=C++,
+ 	firstline=161,
+ 	lastline=194,
+ 	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
  	
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
