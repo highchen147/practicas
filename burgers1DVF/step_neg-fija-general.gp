@@ -10,6 +10,7 @@ umin = 0
 xmin = 0
 # valor máximo en x
 xmax = 0
+dt = 0.03
 
 do for [file in "roe/step_neg-fija.dat godunov/step_neg-fija.dat"] {
     stats file using 3 nooutput
@@ -28,8 +29,9 @@ set yrange[ymin:ymax]
 print 'Presione Enter'
 pause -1
 
-do for [i=0:num_outs] {
-plot 'roe/step_neg-fija.dat' index i u 2:3 w l, 'godunov/step_neg-fija.dat' index i u 2:3 w l
-pause 0.02
+do for [i=0:num_outs_170] {
+set title sprintf("step neg, t = %0.3f s", i*dt)
+plot 'roe/step_neg-fija.dat' index i u 2:3 w l title "Roe", 'godunov/step_neg-fija.dat' index i u 2:3 w l title "Godunov", 'LF/step_neg-fija.dat'index i u 2:3 w l title "Lax-Friedrichs"
+pause -1
 print i
 }
