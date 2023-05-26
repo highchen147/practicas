@@ -803,6 +803,7 @@
  				u_{L} & \frac{u_L + u_R}{2} > 0 \\
  				u_{R} & \frac{u_L + u_R}{2} < 0.
  			\end{cases}
+ 		\label{eq:uprima1}
  		\end{equation}
  		\item Para el caso $u_L < u_R$ que produce \textbf{rarefacción transónica}, se tiene
  		\begin{equation}
@@ -812,6 +813,7 @@
  				u_{L} & \frac{u_L + u_R}{2} > 0 \\
  				u_{R} & \frac{u_L + u_R}{2} < 0.
  			\end{cases}
+ 		\label{eq:uprima2}
  		\end{equation}
  	\end{itemize}
  	Se puede destacar que las opciones de $u^{*}$ para el caso de ondas de choque y las últimas dos opciones del caso de rarefacción, se obtiene exactamente el mismo valor para $u^{*}$. La primera opción para el caso de rarefacción se deduce inmediatamente de la ecuación (\ref{eq:sol-riemann-weak-rarefraction}) \cite{pletcher1997computational}.
@@ -997,6 +999,8 @@
 	lastline=161,
 	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
 	
+	
+	
 	Las funciones utilizadas al inicializar el arreglo \texttt{u} fueron definidas de la siguiente forma
 	
 	\lstinputlisting[title = Definición de funciones de condición inicial,
@@ -1005,24 +1009,18 @@
 	lastline=43,
 	keywordstyle=\color{blue}]{../burgers1DVF/funciones.cpp}
 	
-%	\lstinputlisting[title = Definición de \texttt{step\_neg},
-%	language=C++,
-%	firstline=272,
-%	lastline=284,
-%	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
-%	
-%	\lstinputlisting[title = Definición de \texttt{step\_pos},
-%	language=C++,
-%	firstline=286,
-%	lastline=298,
-%	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
-%	
-%	\lstinputlisting[title = Definición de \texttt{gauss\_impar},
-%	language=C++,
-%	firstline=300,
-%	lastline=305,
-%	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
-%	
+	Para aplicar todos los esquemas que fueron estudiados, se diseñó la función \texttt{Flujo} de tal manera que esta pudiese ser aplicada de acuerdo al marco a utilizar.
+ 	
+ 	\lstinputlisting[title = Definición de función que calcula el flujo entre celdas,
+ 	language=C++,
+ 	firstline=337,
+ 	lastline=370,
+ 	keywordstyle=\color{blue}]{../burgers1DVF/burgers1DVF.cpp}
+ 	
+ 	La función \texttt{FlujoBurgers} calcula el flujo exacto $f(u) = \frac{1}{2}u^{2}$, ya que todos los esquemas necesitan esta función para calcular el flujo entre celdas. En el caso del esquema de Godunov, se define la función \texttt{uPrime} la cual está basada en la función definida en las ecuaciones \ref{eq:uprima1} y \ref{eq:uprima2}.
+ 	
+ 	
+ 	
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	

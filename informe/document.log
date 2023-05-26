@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  21 MAY 2023 17:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  23 MAY 2023 21:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1254,7 +1254,7 @@ nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `spanish'. on input line 39.
-<images/usaclogo.png, id=114, 501.875pt x 501.875pt>
+<images/usaclogo.png, id=106, 501.875pt x 501.875pt>
 File: images/usaclogo.png Graphic file (type png)
 <use images/usaclogo.png>
 Package pdftex.def Info: images/usaclogo.png  used on input line 51.
@@ -1271,7 +1271,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
 (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<images/logoecfmplain.png, id=116, 401.5pt x 401.5pt>
+<images/logoecfmplain.png, id=108, 401.5pt x 401.5pt>
 File: images/logoecfmplain.png Graphic file (type png)
 <use images/logoecfmplain.png>
 Package pdftex.def Info: images/logoecfmplain.png  used on input line 55.
@@ -1284,11 +1284,7 @@ Overfull \hbox (10.01181pt too wide) in paragraph at lines 50--58
 [1
 
 {C:/Users/Rodrigo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./images/u
-saclogo.png> <./images/logoecfmplain.png>] (document.toc
-LaTeX Info: Redefining \sptext on input line 1.
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-)
+saclogo.png> <./images/logoecfmplain.png>] (document.toc)
 \tf@toc=\write6
 \openout6 = `document.toc'.
 
@@ -1298,7 +1294,7 @@ LaTeX Info: Redefining \% on input line 1.
 
 pdfTeX warning: pdflatex.exe (file ./images/grilla.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<images/grilla.pdf, id=167, 497.86pt x 162.6075pt>
+<images/grilla.pdf, id=130, 497.86pt x 162.6075pt>
 File: images/grilla.pdf Graphic file (type pdf)
 <use images/grilla.pdf>
 Package pdftex.def Info: images/grilla.pdf  used on input line 143.
@@ -1378,37 +1374,37 @@ consecutive:
 File: latin1.def 2021/02/14 v1.3d Input encoding file
 )
 consecutive:
-<../burgers1DDF/results/frame001.pdf, id=297, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame001.pdf, id=262, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame001.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame001.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame001.pdf  used on input lin
 e 279.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame026.pdf, id=298, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame026.pdf, id=263, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame026.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame026.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame026.pdf  used on input lin
 e 285.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame037.pdf, id=299, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame037.pdf, id=264, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame037.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame037.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame037.pdf  used on input lin
 e 291.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame040.pdf, id=300, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame040.pdf, id=265, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame040.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame040.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame040.pdf  used on input lin
 e 297.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame044.pdf, id=301, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame044.pdf, id=266, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame044.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame044.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame044.pdf  used on input lin
 e 303.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/results/frame045.pdf, id=302, 361.35pt x 216.81pt>
+<../burgers1DDF/results/frame045.pdf, id=267, 361.35pt x 216.81pt>
 File: ../burgers1DDF/results/frame045.pdf Graphic file (type pdf)
 <use ../burgers1DDF/results/frame045.pdf>
 Package pdftex.def Info: ../burgers1DDF/results/frame045.pdf  used on input lin
@@ -1436,7 +1432,7 @@ clusion: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex.exe (file ../burgers1DDF/results/frame045.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >]
-<../burgers1DDF/resultados-conservativa/frame000.pdf, id=374, 361.35pt x 216.81
+<../burgers1DDF/resultados-conservativa/frame000.pdf, id=339, 361.35pt x 216.81
 pt>
 File: ../burgers1DDF/resultados-conservativa/frame000.pdf Graphic file (type pd
 f)
@@ -1444,7 +1440,7 @@ f)
 Package pdftex.def Info: ../burgers1DDF/resultados-conservativa/frame000.pdf  u
 sed on input line 376.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/resultados-conservativa/frame016.pdf, id=375, 361.35pt x 216.81
+<../burgers1DDF/resultados-conservativa/frame016.pdf, id=340, 361.35pt x 216.81
 pt>
 File: ../burgers1DDF/resultados-conservativa/frame016.pdf Graphic file (type pd
 f)
@@ -1452,7 +1448,7 @@ f)
 Package pdftex.def Info: ../burgers1DDF/resultados-conservativa/frame016.pdf  u
 sed on input line 382.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/resultados-conservativa/frame032.pdf, id=376, 361.35pt x 216.81
+<../burgers1DDF/resultados-conservativa/frame032.pdf, id=341, 361.35pt x 216.81
 pt>
 File: ../burgers1DDF/resultados-conservativa/frame032.pdf Graphic file (type pd
 f)
@@ -1460,7 +1456,7 @@ f)
 Package pdftex.def Info: ../burgers1DDF/resultados-conservativa/frame032.pdf  u
 sed on input line 388.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DDF/resultados-conservativa/frame047.pdf, id=377, 361.35pt x 216.81
+<../burgers1DDF/resultados-conservativa/frame047.pdf, id=342, 361.35pt x 216.81
 pt>
 File: ../burgers1DDF/resultados-conservativa/frame047.pdf Graphic file (type pd
 f)
@@ -1507,37 +1503,37 @@ Overfull \hbox (14.16512pt too wide) in paragraph at lines 95--96
  []
 
 [14]
-<../burg-vis1DDF/results/frame000.pdf, id=511, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame000.pdf, id=476, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame000.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame000.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame000.pdf  used on input li
 ne 472.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame016.pdf, id=512, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame016.pdf, id=477, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame016.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame016.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame016.pdf  used on input li
 ne 478.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame030.pdf, id=513, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame030.pdf, id=478, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame030.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame030.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame030.pdf  used on input li
 ne 484.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame050.pdf, id=514, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame050.pdf, id=479, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame050.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame050.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame050.pdf  used on input li
 ne 490.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame090.pdf, id=515, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame090.pdf, id=480, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame090.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame090.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame090.pdf  used on input li
 ne 496.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frame190.pdf, id=516, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frame190.pdf, id=481, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frame190.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frame190.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frame190.pdf  used on input li
@@ -1565,25 +1561,25 @@ nclusion: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex.exe (file ../burg-vis1DDF/results/frame190.pdf): PDF i
 nclusion: multiple pdfs with page group included in a single page
 >]
-<../burg-vis1DDF/results/frames0.3/frame000.pdf, id=615, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frames0.3/frame000.pdf, id=580, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frames0.3/frame000.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frames0.3/frame000.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frames0.3/frame000.pdf  used o
 n input line 517.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frames0.3/frame067.pdf, id=616, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frames0.3/frame067.pdf, id=581, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frames0.3/frame067.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frames0.3/frame067.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frames0.3/frame067.pdf  used o
 n input line 523.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frames0.3/frame082.pdf, id=617, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frames0.3/frame082.pdf, id=582, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frames0.3/frame082.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frames0.3/frame082.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frames0.3/frame082.pdf  used o
 n input line 529.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burg-vis1DDF/results/frames0.3/frame107.pdf, id=618, 361.35pt x 216.81pt>
+<../burg-vis1DDF/results/frames0.3/frame107.pdf, id=583, 361.35pt x 216.81pt>
 File: ../burg-vis1DDF/results/frames0.3/frame107.pdf Graphic file (type pdf)
 <use ../burg-vis1DDF/results/frames0.3/frame107.pdf>
 Package pdftex.def Info: ../burg-vis1DDF/results/frames0.3/frame107.pdf  used o
@@ -1667,40 +1663,40 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 756.
 
 [21] [22] [23] [24]
-<../burgers1DVF/results/graficas_iniciales/gauss.pdf, id=821, 361.35pt x 216.81
+<../burgers1DVF/results/graficas_iniciales/gauss.pdf, id=786, 361.35pt x 216.81
 pt>
 File: ../burgers1DVF/results/graficas_iniciales/gauss.pdf Graphic file (type pd
 f)
 <use ../burgers1DVF/results/graficas_iniciales/gauss.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/graficas_iniciales/gauss.pdf  u
-sed on input line 934.
+sed on input line 936.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
-<../burgers1DVF/results/graficas_iniciales/step_neg.pdf, id=822, 361.35pt x 216
+<../burgers1DVF/results/graficas_iniciales/step_neg.pdf, id=787, 361.35pt x 216
 .81pt>
 File: ../burgers1DVF/results/graficas_iniciales/step_neg.pdf Graphic file (type
  pdf)
 <use ../burgers1DVF/results/graficas_iniciales/step_neg.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/graficas_iniciales/step_neg.pdf
-  used on input line 948.
+  used on input line 950.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
-<../burgers1DVF/results/graficas_iniciales/step_pos.pdf, id=823, 361.35pt x 216
+<../burgers1DVF/results/graficas_iniciales/step_pos.pdf, id=788, 361.35pt x 216
 .81pt>
 File: ../burgers1DVF/results/graficas_iniciales/step_pos.pdf Graphic file (type
  pdf)
 <use ../burgers1DVF/results/graficas_iniciales/step_pos.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/graficas_iniciales/step_pos.pdf
-  used on input line 962.
+  used on input line 964.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
  [25
 
  <../burgers1DVF/results/graficas_iniciales/gauss.pdf>]
-<../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf, id=843, 361.35pt x 
+<../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf, id=808, 361.35pt x 
 216.81pt>
 File: ../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf Graphic file (t
 ype pdf)
 <use ../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/graficas_iniciales/gauss_impar.
-pdf  used on input line 972.
+pdf  used on input line 974.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
 
 [26 <../burgers1DVF/results/graficas_iniciales/step_neg.pdf> <../burgers1DVF/re
@@ -1732,25 +1728,41 @@ consecutive:
 File: latin1.def 2021/02/14 v1.3d Input encoding file
 )
 consecutive:
-[28] [29] [30] (document.aux
+[28] (C:\Users\Rodrigo\AppData\Local\Programs\MiKTeX\tex/latex/base\latin1.def
+File: latin1.def 2021/02/14 v1.3d Input encoding file
+)
+consecutive:
+[29] [30] [31] (document.aux
 LaTeX Info: Redefining \sptext on input line 23.
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 68921440C4E4D66495A6085F9B5C9EDE;5619.
+
+LaTeX Warning: There were undefined references.
+
+
+Package rerunfilecheck Warning: File `document.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `document.out':
+(rerunfilecheck)             Before: 661AAB92FE80339FE95AC138C7B57921;5324
+(rerunfilecheck)             After:  68921440C4E4D66495A6085F9B5C9EDE;5619.
+
+Package biblatex Warning: Please rerun LaTeX.
+
 Package logreq Info: Writing requests to 'document.run.xml'.
 \openout1 = `document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38933 strings out of 476339
- 773016 string characters out of 5787175
+ 38987 strings out of 476339
+ 773898 string characters out of 5787175
  1905340 words of memory out of 5000000
- 58357 multiletter control sequences out of 15000+600000
+ 58373 multiletter control sequences out of 15000+600000
  523962 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,89p,935b,2872s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,89p,935b,2909s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Rodrigo\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1200.pk><C:/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type
@@ -1778,9 +1790,9 @@ iKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Rodrigo/AppData/Local
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users
 /Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on document.pdf (30 pages, 946252 bytes).
+Output written on document.pdf (31 pages, 948833 bytes).
 PDF statistics:
- 1189 PDF objects out of 1200 (max. 8388607)
- 419 named destinations out of 1000 (max. 500000)
- 364 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1206 PDF objects out of 1440 (max. 8388607)
+ 455 named destinations out of 1000 (max. 500000)
+ 348 words of extra memory for PDF output out of 10000 (max. 10000000)
 
