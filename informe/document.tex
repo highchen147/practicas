@@ -910,7 +910,7 @@
 	\clearpage
 	\subsection{Ecuación de Burgers en una dimensión}
 	\subsubsection{Descripción del problema}
-	Utilizando el método de volúmenes finitos y cada cada uno de los esquemas previamente explicados, se resolvió la ecuación de Burgers (\ref{eq:burgers1d}) en una dimensión, sujeta a los siguientes tipos de condiciones de frontera:
+	Utilizando el método de volúmenes finitos y con cada uno de los esquemas previamente explicados, se resolvió la ecuación de Burgers (\ref{eq:burgers1d}) en una dimensión, sujeta a los siguientes tipos de condiciones de frontera:
 	\begin{itemize}
 		\item \textbf{Fijas:} Los valores en las fronteras se mantienen constantes a lo largo de la evolución temporal
 		\begin{equation}
@@ -930,6 +930,7 @@
 		\item \texttt{gauss}: Función gaussiana o curva de campana.
 		\begin{equation}
 			u(x,0) = A\exp(-b(x-\mu)^{2}).
+			\label{eq:gauss-fija}
 		\end{equation}
 		con $A$, $b$ y $\mu$ constantes.
 		\begin{figure}[ht]
@@ -1050,6 +1051,69 @@
  	lastline=194,
  	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
  	
+ 	\subsubsection{Resultados}
+ 	A través de \textbf{Gnuplot} se generaron las gráficas de la soluciones. A continuación se muestran las soluciones de la ecuación de Burgers resuelta con volúmenes finitos, con condiciones de frontera fijas, con las cuatro condiciones iniciales discutidas previamente y con los tres esquemas: Godunov, Roe y Lax-Friedrichs.
+ 	
+% 	../burgers1DVF/results/sol_fijas/gauss/000.pdf
+ 		\begin{figure}[ht]
+ 		\centering
+ 		\begin{subfigure}[b]{0.4\textwidth}
+ 			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/000.pdf}
+ 			\caption*{Gráficas para $t=0.0\unit{\second}$}
+ 			\label{fig:gauss-fija1}
+ 		\end{subfigure}
+ 		\hfill
+ 		\begin{subfigure}[b]{0.4\textwidth}
+ 			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/170.pdf}
+ 			\caption*{Gráficas para $t=5.10\unit{\second}$}
+ 			\label{fig:gauss-fija2}
+ 		\end{subfigure}
+% 		
+ 		\par\medskip
+ 		\begin{subfigure}[b]{0.4\textwidth}
+ 			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/680.pdf}
+ 			\caption*{Gráficas para $t=20.40\unit{\second}$}
+ 			\label{fig:gauss-fija5}
+ 		\end{subfigure}
+ 		\hfill
+ 		\begin{subfigure}[b]{0.4\textwidth}
+ 			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/850.pdf}
+ 			\caption*{Gráficas para $t=25.50\unit{\second}$}
+ 			\label{fig:gauss-fija6}
+ 		\end{subfigure}
+ 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}}
+ 		\label{fig:instantes-gauss-fija}
+ 	\end{figure}
+ 
+ \begin{figure}[ht]
+ 	\centering
+ 	\begin{subfigure}[b]{0.4\textwidth}
+ 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/000.pdf}
+ 		\caption*{Gráficas para $t=0.0\unit{\second}$}
+ 		\label{fig:gaussimpar-fija1}
+ 	\end{subfigure}
+ 	\hfill
+ 	\begin{subfigure}[b]{0.4\textwidth}
+ 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/170.pdf}
+ 		\caption*{Gráficas para $t=5.10\unit{\second}$}
+ 		\label{fig:gaussimpar-fija2}
+ 	\end{subfigure}
+ 	% 		
+ 	\par\medskip
+ 	\begin{subfigure}[b]{0.4\textwidth}
+ 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/680.pdf}
+ 		\caption*{Gráficas para $t=20.40\unit{\second}$}
+ 		\label{fig:gaussimpar-fija3}
+ 	\end{subfigure}
+ 	\hfill
+ 	\begin{subfigure}[b]{0.4\textwidth}
+ 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/850.pdf}
+ 		\caption*{Gráficas para $t=25.50\unit{\second}$}
+ 		\label{figgaussimpar-fija4}
+ 	\end{subfigure}
+ 	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}}
+ 	\label{fig:instantes-gaussimpar-fija}
+ \end{figure}
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
 	
