@@ -1,5 +1,6 @@
+set term pdf
 # Margen
-margen = 0.25
+margen = 0.35
 # Número de gráficas temporales
 num_outs = 999
 # valor máximo en u
@@ -26,12 +27,16 @@ ymin = umin - (umax-umin)*margen;
 
 set xrange[xmin:xmax]
 set yrange[ymin:ymax]
+# set key outside
+set xlabel "x (m)"
+set ylabel "u (m/s)"
 print 'Presione Enter'
 pause -1
 
 do for [i=0:num_outs:170] {
+set output sprintf("results/sol_fijas/step_pos/%03d.pdf", i)
 print i
 set title sprintf("step pos, t = %0.3f s", i*dt)
 plot 'roe/step_pos-fija.dat' index i u 2:3 with lines title "Roe", 'godunov/step_pos-fija.dat' index i u 2:3 w l title "Godunov", 'LF/step_pos-fija.dat'index i u 2:3 w l title "Lax-Friedrichs"
-pause -1
+# pause -1
 }

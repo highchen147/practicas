@@ -1,3 +1,4 @@
+set term pdf
 # Margen
 margen = 0.25
 # Número de gráficas temporales
@@ -26,12 +27,15 @@ ymin = umin - (umax-umin)*margen;
 
 set xrange[xmin:xmax]
 set yrange[ymin:ymax]
+set xlabel "x (m)"
+set ylabel "u (m/s)"
 print 'Presione Enter'
 pause -1
 
 do for [i=0:num_outs:170] {
+set output sprintf("results/sol_fijas/gauss_impar/%03d.pdf", i)
 set title sprintf("gauss impar, t = %0.3f s", i*dt)
 plot 'roe/gauss_impar-fija.dat' index i u 2:3 w l title "Roe", 'godunov/gauss_impar-fija.dat' index i u 2:3 w l title "Godunov", 'LF/gauss_impar-fija.dat' index i u 2:3 w l title "Lax-Friedrichs"
-pause -1
+# pause -1
 print i
 }
