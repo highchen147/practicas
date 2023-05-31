@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  29 MAY 2023 21:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 23.1) (preloaded format=pdflatex 2023.2.26)  30 MAY 2023 21:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1683,7 +1683,7 @@ File: ../burgers1DVF/results/graficas_iniciales/step_neg.pdf Graphic file (type
  pdf)
 <use ../burgers1DVF/results/graficas_iniciales/step_neg.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/graficas_iniciales/step_neg.pdf
-  used on input line 952.
+  used on input line 953.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
 <../burgers1DVF/results/graficas_iniciales/step_pos.pdf, id=828, 361.35pt x 216
 .81pt>
@@ -1691,7 +1691,7 @@ File: ../burgers1DVF/results/graficas_iniciales/step_pos.pdf Graphic file (type
  pdf)
 <use ../burgers1DVF/results/graficas_iniciales/step_pos.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/graficas_iniciales/step_pos.pdf
-  used on input line 966.
+  used on input line 968.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
  [25
 
@@ -1702,7 +1702,7 @@ File: ../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf Graphic file (t
 ype pdf)
 <use ../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/graficas_iniciales/gauss_impar.
-pdf  used on input line 976.
+pdf  used on input line 979.
 (pdftex.def)             Requested size: 250.24199pt x 150.14491pt.
 
 [26 <../burgers1DVF/results/graficas_iniciales/step_neg.pdf> <../burgers1DVF/re
@@ -1761,33 +1761,136 @@ Overfull \hbox (28.26509pt too wide) in paragraph at lines 157--158
 File: latin1.def 2021/02/14 v1.3d Input encoding file
 )
 consecutive:
-[32]
-<../burgers1DVF/results/sol_fijas/gauss/000.pdf, id=1150, 361.35pt x 216.81pt>
+[32] [33]
+<../burgers1DVF/results/sol_fijas/gauss/000.pdf, id=1165, 361.35pt x 216.81pt>
 File: ../burgers1DVF/results/sol_fijas/gauss/000.pdf Graphic file (type pdf)
 <use ../burgers1DVF/results/sol_fijas/gauss/000.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/gauss/000.pdf  used o
-n input line 1061.
+n input line 1064.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DVF/results/sol_fijas/gauss/170.pdf, id=1151, 361.35pt x 216.81pt>
+<../burgers1DVF/results/sol_fijas/gauss/170.pdf, id=1166, 361.35pt x 216.81pt>
 File: ../burgers1DVF/results/sol_fijas/gauss/170.pdf Graphic file (type pdf)
 <use ../burgers1DVF/results/sol_fijas/gauss/170.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/gauss/170.pdf  used o
-n input line 1067.
+n input line 1070.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DVF/results/sol_fijas/gauss/680.pdf, id=1152, 361.35pt x 216.81pt>
+<../burgers1DVF/results/sol_fijas/gauss/680.pdf, id=1167, 361.35pt x 216.81pt>
 File: ../burgers1DVF/results/sol_fijas/gauss/680.pdf Graphic file (type pdf)
 <use ../burgers1DVF/results/sol_fijas/gauss/680.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/gauss/680.pdf  used o
-n input line 1074.
+n input line 1077.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
-<../burgers1DVF/results/sol_fijas/gauss/850.pdf, id=1153, 361.35pt x 216.81pt>
+<../burgers1DVF/results/sol_fijas/gauss/850.pdf, id=1168, 361.35pt x 216.81pt>
 File: ../burgers1DVF/results/sol_fijas/gauss/850.pdf Graphic file (type pdf)
 <use ../burgers1DVF/results/sol_fijas/gauss/850.pdf>
 Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/gauss/850.pdf  used o
-n input line 1080.
+n input line 1083.
 (pdftex.def)             Requested size: 200.19054pt x 120.11594pt.
- [33 <../burgers1DVF/results/sol_fijas/gauss/000.pdf> <../burgers1DVF/results/s
-ol_fijas/gauss/170.pdf
+<../burgers1DVF/results/sol_fijas/step_neg/000.pdf, id=1171, 361.35pt x 216.81p
+t>
+File: ../burgers1DVF/results/sol_fijas/step_neg/000.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_neg/000.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_neg/000.pdf  use
+d on input line 1094.
+(pdftex.def)             Requested size: 245.2399pt x 147.14433pt.
+<../burgers1DVF/results/sol_fijas/step_neg/170.pdf, id=1172, 361.35pt x 216.81p
+t>
+File: ../burgers1DVF/results/sol_fijas/step_neg/170.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_neg/170.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_neg/170.pdf  use
+d on input line 1100.
+(pdftex.def)             Requested size: 245.2399pt x 147.14433pt.
+<../burgers1DVF/results/sol_fijas/step_neg/680.pdf, id=1173, 361.35pt x 216.81p
+t>
+File: ../burgers1DVF/results/sol_fijas/step_neg/680.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_neg/680.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_neg/680.pdf  use
+d on input line 1106.
+(pdftex.def)             Requested size: 245.2399pt x 147.14433pt.
+<../burgers1DVF/results/sol_fijas/step_neg/850.pdf, id=1174, 361.35pt x 216.81p
+t>
+File: ../burgers1DVF/results/sol_fijas/step_neg/850.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_neg/850.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_neg/850.pdf  use
+d on input line 1112.
+(pdftex.def)             Requested size: 245.2399pt x 147.14433pt.
+
+
+LaTeX Warning: Float too large for page by 42.3183pt on input line 1118.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<../burgers1DVF/results/sol_fijas/step_pos/000.pdf, id=1177, 361.35pt x 216.81p
+t>
+File: ../burgers1DVF/results/sol_fijas/step_pos/000.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_pos/000.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_pos/000.pdf  use
+d on input line 1123.
+(pdftex.def)             Requested size: 225.21626pt x 135.12877pt.
+<../burgers1DVF/results/sol_fijas/step_pos/170.pdf, id=1178, 361.35pt x 216.81p
+t>
+File: ../burgers1DVF/results/sol_fijas/step_pos/170.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_pos/170.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_pos/170.pdf  use
+d on input line 1129.
+(pdftex.def)             Requested size: 225.21626pt x 135.12877pt.
+<../burgers1DVF/results/sol_fijas/step_pos/680.pdf, id=1179, 361.35pt x 216.81p
+t>
+File: ../burgers1DVF/results/sol_fijas/step_pos/680.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_pos/680.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_pos/680.pdf  use
+d on input line 1135.
+(pdftex.def)             Requested size: 225.21626pt x 135.12877pt.
+<../burgers1DVF/results/sol_fijas/step_pos/850.pdf, id=1180, 361.35pt x 216.81p
+t>
+File: ../burgers1DVF/results/sol_fijas/step_pos/850.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_pos/850.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_pos/850.pdf  use
+d on input line 1141.
+(pdftex.def)             Requested size: 225.21626pt x 135.12877pt.
+File: ../burgers1DVF/results/sol_fijas/step_pos/000.pdf Graphic file (type pdf)
+
+<use ../burgers1DVF/results/sol_fijas/step_pos/000.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/step_pos/000.pdf  use
+d on input line 1153.
+(pdftex.def)             Requested size: 225.21626pt x 135.12877pt.
+<../burgers1DVF/results/sol_fijas/gauss_impar/170.pdf, id=1183, 361.35pt x 216.
+81pt>
+File: ../burgers1DVF/results/sol_fijas/gauss_impar/170.pdf Graphic file (type p
+df)
+<use ../burgers1DVF/results/sol_fijas/gauss_impar/170.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/gauss_impar/170.pdf  
+used on input line 1159.
+(pdftex.def)             Requested size: 225.21626pt x 135.12877pt.
+<../burgers1DVF/results/sol_fijas/gauss_impar/680.pdf, id=1184, 361.35pt x 216.
+81pt>
+File: ../burgers1DVF/results/sol_fijas/gauss_impar/680.pdf Graphic file (type p
+df)
+<use ../burgers1DVF/results/sol_fijas/gauss_impar/680.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/gauss_impar/680.pdf  
+used on input line 1166.
+(pdftex.def)             Requested size: 225.21626pt x 135.12877pt.
+<../burgers1DVF/results/sol_fijas/gauss_impar/850.pdf, id=1185, 361.35pt x 216.
+81pt>
+File: ../burgers1DVF/results/sol_fijas/gauss_impar/850.pdf Graphic file (type p
+df)
+<use ../burgers1DVF/results/sol_fijas/gauss_impar/850.pdf>
+Package pdftex.def Info: ../burgers1DVF/results/sol_fijas/gauss_impar/850.pdf  
+used on input line 1172.
+(pdftex.def)             Requested size: 225.21626pt x 135.12877pt.
+[34
+
+ <../burgers1DVF/results/sol_fijas/gauss/000.pdf> <../burgers1DVF/results/sol_f
+ijas/gauss/170.pdf
 
 pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/gauss/170.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
@@ -1799,7 +1902,46 @@ df): PDF inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/gauss/850.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
->] [34] (document.aux
+>] [35 <../burgers1DVF/results/sol_fijas/step_neg/000.pdf> <../burgers1DVF/resu
+lts/sol_fijas/step_neg/170.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/step_neg/17
+0.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../burgers1DVF/results/sol_fijas/step_neg/680.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/step_neg/68
+0.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../burgers1DVF/results/sol_fijas/step_neg/850.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/step_neg/85
+0.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] [36 <../burgers1DVF/results/sol_fijas/step_pos/000.pdf> <../burgers1DVF/resu
+lts/sol_fijas/step_pos/170.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/step_pos/17
+0.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../burgers1DVF/results/sol_fijas/step_pos/680.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/step_pos/68
+0.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <../burgers1DVF/results/sol_fijas/step_pos/850.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/step_pos/85
+0.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] [37 <../burgers1DVF/results/sol_fijas/gauss_impar/170.pdf> <../burgers1DVF/r
+esults/sol_fijas/gauss_impar/680.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/gauss_impar
+/680.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+> <../burgers1DVF/results/sol_fijas/gauss_impar/850.pdf
+
+pdfTeX warning: pdflatex.exe (file ../burgers1DVF/results/sol_fijas/gauss_impar
+/850.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+>] [38
+
+] [39] (document.aux
 LaTeX Info: Redefining \sptext on input line 23.
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
@@ -1811,10 +1953,10 @@ Package logreq Info: Writing requests to 'document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 39202 strings out of 476339
- 778469 string characters out of 5787175
+ 39309 strings out of 476339
+ 783305 string characters out of 5787175
  1910340 words of memory out of 5000000
- 58459 multiletter control sequences out of 15000+600000
+ 58555 multiletter control sequences out of 15000+600000
  523962 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,89p,935b,2909s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1845,9 +1987,9 @@ iKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/Rodrigo/AppData/Local
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users
 /Rodrigo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on document.pdf (34 pages, 1030463 bytes).
+Output written on document.pdf (39 pages, 1167212 bytes).
 PDF statistics:
- 1427 PDF objects out of 1440 (max. 8388607)
- 571 named destinations out of 1000 (max. 500000)
- 392 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1551 PDF objects out of 1728 (max. 8388607)
+ 579 named destinations out of 1000 (max. 500000)
+ 447 words of extra memory for PDF output out of 10000 (max. 10000000)
 

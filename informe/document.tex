@@ -945,6 +945,7 @@
 				1.0 & x < L/2\\
 				0.0 & x \geq L/2
 			\end{cases}
+		\label{eq:step_neg}
 		\end{equation}
 		donde L es el largo del dominio espacial.
 		\begin{figure}[ht]
@@ -959,6 +960,7 @@
 				-1.0 & x < L/2\\
 				1.0 & x \geq L/2
 			\end{cases}
+		\label{eq:step_pos}
 		\end{equation}
 		donde L es el largo del dominio espacial.
 		\begin{figure}[ht]
@@ -969,6 +971,7 @@
 		\item \texttt{gauss\_impar}: Multiplicación de una función lineal por una campana gaussiana, para obtener una función impar con dos pulsos.
 		\begin{equation}
 			u(x,0) = c\left( x-\frac{L}{2}\right) \cdot A\exp(-b(x-\mu)^{2})
+			\label{eq:gauss_impar}
 		\end{equation}
 		con $c$ constante y las mismas constantes definidas para \texttt{gauss}. 
 		\begin{figure}[ht]
@@ -1050,12 +1053,12 @@
  	firstline=161,
  	lastline=194,
  	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
- 	
+ 	\clearpage
  	\subsubsection{Resultados}
  	A través de \textbf{Gnuplot} se generaron las gráficas de la soluciones. A continuación se muestran las soluciones de la ecuación de Burgers resuelta con volúmenes finitos, con condiciones de frontera fijas, con las cuatro condiciones iniciales discutidas previamente y con los tres esquemas: Godunov, Roe y Lax-Friedrichs.
  	
 % 	../burgers1DVF/results/sol_fijas/gauss/000.pdf
- 		\begin{figure}[ht]
+ 	\begin{figure}[ht]
  		\centering
  		\begin{subfigure}[b]{0.4\textwidth}
  			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/000.pdf}
@@ -1081,42 +1084,102 @@
  			\caption*{Gráficas para $t=25.50\unit{\second}$}
  			\label{fig:gauss-fija6}
  		\end{subfigure}
- 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}}
+ 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
  		\label{fig:instantes-gauss-fija}
- 	\end{figure}
+	\end{figure}
  
- \begin{figure}[ht]
+ \begin{figure}[h]
  	\centering
- 	\begin{subfigure}[b]{0.4\textwidth}
- 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/000.pdf}
+ 	\begin{subfigure}[b]{0.49\textwidth}
+ 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_neg/000.pdf}
  		\caption*{Gráficas para $t=0.0\unit{\second}$}
- 		\label{fig:gaussimpar-fija1}
+ 		\label{fig:step_neg-fija1}
  	\end{subfigure}
- 	\hfill
- 	\begin{subfigure}[b]{0.4\textwidth}
- 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/170.pdf}
+ 	\vfill
+ 	\begin{subfigure}[b]{0.49\textwidth}
+ 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_neg/170.pdf}
  		\caption*{Gráficas para $t=5.10\unit{\second}$}
- 		\label{fig:gaussimpar-fija2}
+ 		\label{fig:step_neg-fija2}
  	\end{subfigure}
- 	% 		
- 	\par\medskip
- 	\begin{subfigure}[b]{0.4\textwidth}
- 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/680.pdf}
+ 	\vfill
+ 	\begin{subfigure}[b]{0.49\textwidth}
+ 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_neg/680.pdf}
  		\caption*{Gráficas para $t=20.40\unit{\second}$}
- 		\label{fig:gaussimpar-fija3}
+ 		\label{fig:step_neg-fija3}
  	\end{subfigure}
- 	\hfill
- 	\begin{subfigure}[b]{0.4\textwidth}
- 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/850.pdf}
+ 	\vfill
+ 	\begin{subfigure}[b]{0.49\textwidth}
+ 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_neg/850.pdf}
  		\caption*{Gráficas para $t=25.50\unit{\second}$}
- 		\label{figgaussimpar-fija4}
+ 		\label{fig:step_neg-fija4}
  	\end{subfigure}
- 	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}}
- 	\label{fig:instantes-gaussimpar-fija}
+ 	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_neg}. Gráficas generadas a través de \textbf{gnuplot.}}
+ 	\label{fig:instantes-step_neg-fija}
  \end{figure}
+ 
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/000.pdf}
+		\caption*{Gráficas para $t=0.0\unit{\second}$}
+		\label{fig:step_pos-fija1}
+	\end{subfigure}
+	\vfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/170.pdf}
+		\caption*{Gráficas para $t=5.10\unit{\second}$}
+		\label{fig:step_pos-fija2}
+	\end{subfigure}
+	\vfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/680.pdf}
+		\caption*{Gráficas para $t=20.40\unit{\second}$}
+		\label{fig:step_pos-fija3}
+	\end{subfigure}
+	\vfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/850.pdf}
+		\caption*{Gráficas para $t=25.50\unit{\second}$}
+		\label{fig:step_pos-fija4}
+	\end{subfigure}
+	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+	\label{fig:instantes-step_pos-fija}
+\end{figure}
+
+
+	\begin{figure}[ht]
+		\centering
+		\begin{subfigure}[b]{0.45\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/000.pdf}
+			\caption*{Gráficas para $t=0.0\unit{\second}$}
+			\label{fig:gauss_impar-fija1}
+		\end{subfigure}
+		\vfill
+		\begin{subfigure}[b]{0.45\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss_impar/170.pdf}
+			\caption*{Gráficas para $t=5.10\unit{\second}$}
+			\label{fig:gauss_impar-fija2}
+		\end{subfigure}
+		% 		
+		\vfill
+		\begin{subfigure}[b]{0.45\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss_impar/680.pdf}
+			\caption*{Gráficas para $t=20.40\unit{\second}$}
+			\label{fig:gauss_impar-fija3}
+		\end{subfigure}
+		\vfill
+		\begin{subfigure}[b]{0.45\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss_impar/850.pdf}
+			\caption*{Gráficas para $t=25.50\unit{\second}$}
+			\label{fig:gauss_impar-fija4}
+		\end{subfigure}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss_impar}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\label{fig:instantes-gauss_impar-fija}
+	\end{figure}
+	\clearpage
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
-	
+	\newpage
 	\printbibliography
 	
 \end{document}
