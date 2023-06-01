@@ -1053,7 +1053,7 @@
  	firstline=161,
  	lastline=194,
  	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
- 	\clearpage
+% 	\clearpage
  	\subsubsection{Resultados}
  	A través de \textbf{Gnuplot} se generaron las gráficas de la soluciones. A continuación se muestran las soluciones de la ecuación de Burgers resuelta con volúmenes finitos, con condiciones de frontera fijas, con las cuatro condiciones iniciales discutidas previamente y con los tres esquemas: Godunov, Roe y Lax-Friedrichs.
  	
@@ -1117,27 +1117,27 @@
  	\label{fig:instantes-step_neg-fija}
  \end{figure}
  
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.49\textwidth}
 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/000.pdf}
 		\caption*{Gráficas para $t=0.0\unit{\second}$}
 		\label{fig:step_pos-fija1}
 	\end{subfigure}
 	\vfill
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.49\textwidth}
 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/170.pdf}
 		\caption*{Gráficas para $t=5.10\unit{\second}$}
 		\label{fig:step_pos-fija2}
 	\end{subfigure}
 	\vfill
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.49\textwidth}
 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/680.pdf}
 		\caption*{Gráficas para $t=20.40\unit{\second}$}
 		\label{fig:step_pos-fija3}
 	\end{subfigure}
 	\vfill
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.49\textwidth}
 		\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/850.pdf}
 		\caption*{Gráficas para $t=25.50\unit{\second}$}
 		\label{fig:step_pos-fija4}
@@ -1147,28 +1147,28 @@
 \end{figure}
 
 
-	\begin{figure}[ht]
+	\begin{figure}[h]
 		\centering
-		\begin{subfigure}[b]{0.45\textwidth}
+		\begin{subfigure}[b]{0.49\textwidth}
 			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos/000.pdf}
 			\caption*{Gráficas para $t=0.0\unit{\second}$}
 			\label{fig:gauss_impar-fija1}
 		\end{subfigure}
 		\vfill
-		\begin{subfigure}[b]{0.45\textwidth}
+		\begin{subfigure}[b]{0.49\textwidth}
 			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss_impar/170.pdf}
 			\caption*{Gráficas para $t=5.10\unit{\second}$}
 			\label{fig:gauss_impar-fija2}
 		\end{subfigure}
 		% 		
 		\vfill
-		\begin{subfigure}[b]{0.45\textwidth}
+		\begin{subfigure}[b]{0.49\textwidth}
 			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss_impar/680.pdf}
 			\caption*{Gráficas para $t=20.40\unit{\second}$}
 			\label{fig:gauss_impar-fija3}
 		\end{subfigure}
 		\vfill
-		\begin{subfigure}[b]{0.45\textwidth}
+		\begin{subfigure}[b]{0.49\textwidth}
 			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss_impar/850.pdf}
 			\caption*{Gráficas para $t=25.50\unit{\second}$}
 			\label{fig:gauss_impar-fija4}
@@ -1177,9 +1177,178 @@
 		\label{fig:instantes-gauss_impar-fija}
 	\end{figure}
 	\clearpage
+	\newpage
+	A continuación se muestran las gráficas para las soluciones de la ecuación de Burgers utilizando condiciones \textbf{periódicas} de frontera.
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss/000.pdf}
+			\caption*{Gráficas para $t=0.00\unit{\second}$}
+			\label{fig:gauss-perio1}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss/021.pdf}
+			\caption*{Gráficas para $t=22.34\unit{\second}$}
+			\label{fig:gauss-perio2}
+		\end{subfigure}\par
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss/042.pdf}
+			\caption*{Gráficas para $t=44.68\unit{\second}$}
+			\label{fig:gauss-perio3}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss/063.pdf}
+			\caption*{Gráficas para $t=67.03\unit{\second}$}
+			\label{fig:gauss-perio4}
+		\end{subfigure}\par
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss/084.pdf}
+			\caption*{Gráficas para $t=88.37\unit{\second}$}
+			\label{fig:gauss-perio5}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss/105.pdf}
+			\caption*{Gráficas para $t=111.72\unit{\second}$}
+			\label{fig:gauss-perio6}
+		\end{subfigure}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\label{fig:gauss-periodica}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_neg/000.pdf}
+			\caption*{Gráficas para $t=0.00\unit{\second}$}
+			\label{fig:step_neg-perio1}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_neg/021.pdf}
+			\caption*{Gráficas para $t=22.34\unit{\second}$}
+			\label{fig:gauss-step_neg-perio2}
+		\end{subfigure}\par
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_neg/042.pdf}
+			\caption*{Gráficas para $t=44.68\unit{\second}$}
+			\label{fig:step_neg-perio3}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_neg/063.pdf}
+			\caption*{Gráficas para $t=67.03\unit{\second}$}
+			\label{fig:step_neg-perio4}
+		\end{subfigure}\par
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_neg/084.pdf}
+			\caption*{Gráficas para $t=88.37\unit{\second}$}
+			\label{fig:step_neg-perio5}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_neg/105.pdf}
+			\caption*{Gráficas para $t=111.72\unit{\second}$}
+			\label{fig:step_neg-perio6}
+		\end{subfigure}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_neg}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\label{fig:step_neg-periodica}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_pos/000.pdf}
+			\caption*{Gráficas para $t=0.00\unit{\second}$}
+			\label{fig:step_pos-perio1}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_pos/021.pdf}
+			\caption*{Gráficas para $t=22.34\unit{\second}$}
+			\label{fig:step_pos-perio2}
+		\end{subfigure}\par
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_pos/042.pdf}
+			\caption*{Gráficas para $t=44.68\unit{\second}$}
+			\label{fig:step_pos-perio3}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_pos/063.pdf}
+			\caption*{Gráficas para $t=67.03\unit{\second}$}
+			\label{fig:step_pos-perio4}
+		\end{subfigure}\par
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_pos/084.pdf}
+			\caption*{Gráficas para $t=88.37\unit{\second}$}
+			\label{fig:step_pos-perio5}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/step_pos/105.pdf}
+			\caption*{Gráficas para $t=111.72\unit{\second}$}
+			\label{fig:step_pos-perio6}
+		\end{subfigure}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\label{fig:step_pos-periodica}
+	\end{figure}
+
+	\begin{figure}[h!]
+		\centering
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss_impar/000.pdf}
+			\caption*{Gráficas para $t=0.00\unit{\second}$}
+			\label{fig:gauss_impar-perio1}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss_impar/021.pdf}
+			\caption*{Gráficas para $t=22.34\unit{\second}$}
+			\label{fig:gauss_impar-perio2}
+		\end{subfigure}\par
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss_impar/042.pdf}
+			\caption*{Gráficas para $t=44.68\unit{\second}$}
+			\label{fig:gauss_impar-perio3}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss_impar/063.pdf}
+			\caption*{Gráficas para $t=67.03\unit{\second}$}
+			\label{fig:gauss_impar-perio4}
+		\end{subfigure}\par
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss_impar/084.pdf}
+			\caption*{Gráficas para $t=88.37\unit{\second}$}
+			\label{fig:gauss_impar-perio5}
+		\end{subfigure}\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_periodicas/gauss_impar/105.pdf}
+			\caption*{Gráficas para $t=111.72\unit{\second}$}
+			\label{fig:gauss_impar-perio6}
+		\end{subfigure}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\label{fig:gauss_impar-periodica}
+	\end{figure}
+	\clearpage	
 	\section{Método de elementos finitos}
 	\section{Conclusiones}
-	\newpage
 	\printbibliography
 	
 \end{document}
