@@ -4,7 +4,7 @@ set yrange[-0.874824:4.37412]
 print 'Presione Enter'
 pause -1
 
-do for [i=0:999] {
+do for [i=0:123] {
 plot 'roe/gauss-periodica.dat' index i u 2:3 w l
 pause 0.02
 print i

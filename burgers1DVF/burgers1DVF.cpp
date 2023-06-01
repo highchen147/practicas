@@ -29,10 +29,10 @@ double uProm(double u, double v);
 int main()
 {
     // Parámetros temporales
-    const double t_total = 30; // Tiempo total en segundos
+    const double t_total = 132; // Tiempo total en segundos
     const double dt = 0.001; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 1000; // Número de gráficas de instantes temporales
+    const int num_outs = 124; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
