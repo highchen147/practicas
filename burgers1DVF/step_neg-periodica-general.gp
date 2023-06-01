@@ -1,6 +1,6 @@
 set term pdf
 # Margen
-margen = 0.25
+margen = 0.35
 # Número de gráficas temporales
 num_outs = 123
 # valor máximo en u
