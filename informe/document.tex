@@ -629,9 +629,14 @@
 		F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( (u_{i-1}^{n})^2 + (u_{i}^{n})^2 \right) 
 	\end{equation}
 	
-	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones. En el método de Roe se explicará la razón de la inclusión de este término.
+	Sin embargo, esta elección para el flujo numérico no proporciona una integración estable para ningún valor de $\frac{\Delta t}{\Delta x}$ \cite{LeVeque1998}. Por tanto, se le agrega un término al flujo que actúa como un \textit{flujo difusivo} y compensa parcialmente los efectos de las discontinuidades en las soluciones.
 	\begin{equation}
-		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( \frac{(u_{i-1}^{n})^2 + (u_{i}^{n})^2}{2} \right)  - \frac{\Delta t}{2\Delta x}(u_{i}^{n}-u_{i-1}^{n})} }
+		{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left(f(u_{i-1}^{n}) + f(u_{i}^{n})\right)  - \frac{\Delta x}{2\Delta t}(u_{i}^{n}-u_{i-1}^{n})}
+		\label{eq:flujo-LF}
+	\end{equation}
+
+	\begin{equation}
+		{\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{1}{2} \left( \frac{(u_{i-1}^{n})^2 + (u_{i}^{n})^2}{2} \right)  - \frac{\Delta x}{2\Delta t}(u_{i}^{n}-u_{i-1}^{n})} }
 	\end{equation}
 	Este es el esquema de Lax-Friedrichs para el flujo numérico de la ecuación de Burgers.
 	
@@ -906,6 +911,7 @@
 	Junto a la definición de $\bar{u}_{i+1}$ en la ecuación \ref{eq:u-prom}, y recordando la notación $F_i = F(u_{i-1}^{n}, u_{i}^{n})$ se obtiene el esquema de Roe
 	\begin{equation}
 		\boxed{F(u_{i-1}^{n}, u_{i}^{n}) = \frac{f(u_{i-1}^{n}) + f(u_{i}^{n})}{2} - \frac{1}{2}\left|\bar{u}_{i}^{n}\right|(u_{i}^{n}-u_{i-1}^{n})}
+		\label{eq:flujo-roe}
 	\end{equation}
 	\clearpage
 	\subsection{Ecuación de Burgers en una dimensión}
@@ -1347,7 +1353,10 @@
 		\label{fig:gauss_impar-periodica}
 	\end{figure}
 	\clearpage	
-	\section{Método de elementos finitos}
+	\subsubsection{Discusión de resultados}
+	\paragraph{Comparación de marcos}
+	Como primera observación al comparar los marcos del método de volúmenes finitos en cualquiera de las condiciones de frontera y sobre cualquier condición inicial, se tiene que la solución producida por el marco de Lax-Friedrichs diverge considerablemente de las soluciones producidas por los otros dos marcos, en la mayor parte del dominio espacial y a lo largo de la mayor parte del tiempo de las simulaciones. Se puede indagar que las soluciones de Lax-Friedrichs no son física ni matemáticamente válidas si se comparan las soluciones en donde la condición inicial para $u(x,t)$ era la función \texttt{step\_neg} (figura \ref{fig:instantes-step_neg-fija}); si se observa la evolución de la función, notamos que los marcos de Roe y Godunov producen soluciones de ondas de choque, lo cual es consistente con la solución débil presentada al resolver el problema de Riemann para el marco de Godunov. Sin embargo, el marco de Lax-Friedrichs no devuelve una solución de onda de choque, sino parece más una solución de rarefacción, lo cual es inconsistente con la teoría ya que este tipo de soluciones solo aplica para el caso $u_L < u_R$, donde $u_L$ y  $u_R$ son las partes constantes izquierda y derecha de la función escalón.
+	Es posible entender por qué el marco de Lax-Friedrichs es insuficiente para implementar el método de V.F. si se compara con el marco de Roe. Comparando las ecuaciones \ref{eq:flujo-LF} y \ref{eq:flujo-roe} se puede notar que el marco de Lax-Friedrichs es sencillamente un marco de Roe que no toma en cuenta la velocidad promedio $\left|\bar{u}_{i}^{n}\right|$, sino que utiliza $\frac{\Delta x}{\Delta t}$ como velocidad promedio; dado que esta elección de velocidad satisface la condición de estabilidad $|u_{\text{max}}\frac{\Delta t}{\Delta x}|$.
 	\section{Conclusiones}
 	\printbibliography
 	
