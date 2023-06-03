@@ -37,7 +37,7 @@ do for [i=0:num_outs:170] {
 set output sprintf("results/sol_fijas/step_pos-roe-fix/%03d.pdf", i)
 print i
 set title sprintf("step pos, t = %0.3f s", i*dt)
-plot 'roe/step_pos-fija.dat' index i u 2:3 with lines title "Roe", 'roe-fix/step_pos-fija.dat' index i u 2:3 w l title "Roe corregido",
+plot 'godunov/step_pos-fija.dat' index i u 2:3 with lines title "Godunov", 'roe/step_pos-fija.dat' index i u 2:3 with lines title "Roe", 'roe-fix/step_pos-fija.dat' index i u 2:3 w l title "Roe corregido"
 # pause -1
 }
 

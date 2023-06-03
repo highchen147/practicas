@@ -50,7 +50,6 @@ int main()
     {
         u[i] = step_pos(x[i]);
     }
-
     ofstream outfile;
     outfile.open("rarefaccion.dat", ios::out);
     // Se imprimen los datos correspondientes al tiempo inicial
