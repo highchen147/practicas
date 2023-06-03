@@ -1149,7 +1149,7 @@
 		\label{fig:step_pos-fija4}
 	\end{subfigure}
 	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
-	\label{fig:instantes-step_pos-fija}
+	\label{fig:step_pos-fija}
 \end{figure}
 
 
@@ -1349,14 +1349,38 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:gauss_impar-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss_impar}. Gráficas generadas a través de \textbf{gnuplot.}}
 		\label{fig:gauss_impar-periodica}
 	\end{figure}
 	\clearpage	
 	\subsubsection{Discusión de resultados}
 	\paragraph{Comparación de marcos}
-	Como primera observación al comparar los marcos del método de volúmenes finitos en cualquiera de las condiciones de frontera y sobre cualquier condición inicial, se tiene que la solución producida por el marco de Lax-Friedrichs diverge considerablemente de las soluciones producidas por los otros dos marcos, en la mayor parte del dominio espacial y a lo largo de la mayor parte del tiempo de las simulaciones. Se puede indagar que las soluciones de Lax-Friedrichs no son física ni matemáticamente válidas si se comparan las soluciones en donde la condición inicial para $u(x,t)$ era la función \texttt{step\_neg} (figura \ref{fig:instantes-step_neg-fija}); si se observa la evolución de la función, notamos que los marcos de Roe y Godunov producen soluciones de ondas de choque, lo cual es consistente con la solución débil presentada al resolver el problema de Riemann para el marco de Godunov. Sin embargo, el marco de Lax-Friedrichs no devuelve una solución de onda de choque, sino parece más una solución de rarefacción, lo cual es inconsistente con la teoría ya que este tipo de soluciones solo aplica para el caso $u_L < u_R$, donde $u_L$ y  $u_R$ son las partes constantes izquierda y derecha de la función escalón.
-	Es posible entender por qué el marco de Lax-Friedrichs es insuficiente para implementar el método de V.F. si se compara con el marco de Roe. Comparando las ecuaciones \ref{eq:flujo-LF} y \ref{eq:flujo-roe} se puede notar que el marco de Lax-Friedrichs es sencillamente un marco de Roe que no toma en cuenta la velocidad promedio $\left|\bar{u}_{i}^{n}\right|$, sino que utiliza $\frac{\Delta x}{\Delta t}$ como velocidad promedio; dado que esta elección de velocidad satisface la condición de estabilidad $|u_{\text{max}}\frac{\Delta t}{\Delta x}|$.
+	
+	Al comparar los marcos del método de volúmenes finitos en cualquiera de las condiciones de frontera y sobre cualquier condición inicial, se tiene que la solución producida por el marco de Lax-Friedrichs diverge considerablemente de las soluciones producidas por los otros dos marcos, en la mayor parte del dominio espacial y a lo largo de la mayor parte del tiempo de las simulaciones. Se puede indagar que las soluciones de Lax-Friedrichs no son física ni matemáticamente válidas si se comparan las soluciones en donde la condición inicial para $u(x,t)$ era la función \texttt{step\_neg} (figura \ref{fig:instantes-step_neg-fija}); si se observa la evolución de la función, notamos que los marcos de Roe y Godunov producen soluciones de ondas de choque, lo cual es consistente con la solución débil presentada al resolver el problema de Riemann. Sin embargo, el marco de Lax-Friedrichs no devuelve una solución de onda de choque, sino parece más una solución de rarefacción, lo cual es inconsistente con la teoría ya que este tipo de soluciones solo aplica para el caso $u_L < u_R$, donde $u_L$ y  $u_R$ son las partes constantes izquierda y derecha de la función escalón.
+	
+	Es posible entender por qué el marco de Lax-Friedrichs es insuficiente para implementar el método de volúmenes finitos si se compara con el marco de Roe. Comparando las ecuaciones \ref{eq:flujo-LF} y \ref{eq:flujo-roe} se puede notar que el marco de Lax-Friedrichs es simplemente un marco de Roe que no toma en cuenta la velocidad promedio $\bar{u}_{i}^{n}$, sino que utiliza $\frac{\Delta x}{\Delta t}$ como velocidad promedio; dado que esta elección de velocidad satisface la condición de estabilidad $|u_{\text{max}}\frac{\Delta t}{\Delta x}| \leq 1$. Por tanto, el marco de Lax-Friedrichs no integra las soluciones al mismo nivel de precisión que lo hacen los marcos de Roe y Godunov, ya que estos últimos devuelven un flujo entre celdas más preciso.
+	
+	\paragraph*{Soluciones con condición inicial \texttt{step\_pos}}
+	Las soluciones numéricas obtenidas al resolver la ecuación de Burgers con \texttt{step\_pos} (ecuación \ref{eq:step_pos}) como condición inicial son considerablemente distintas en casi todos los puntos e instantes de tiempo, solo coincidiendo en $t=0.0\unit{\second}$, como se puede observar en la figura \ref{fig:step_pos-fija} y \ref{fig:step_pos-periodica}. Ya se ha concluido que el marco de Lax-Friedrichs es obsoleto para resolver esta ecuación, pero este caso de condición inicial es el único en donde los marcos de Roe y Godunov no producen soluciones idénticas. Sin embargo, el marco de Godunov sí produce una solución físicamente válida, ya que el problema con condición inicial \texttt{step\_pos} y condiciones de frontera fijas es un problema de Riemman correspondiente al caso $u_L < u_R$; y la solución exacta de este caso está dada por la solución de rarefacción transónica (ecuación \ref{eq:sol-riemann-weak-rarefraction}). Esta solución es consistente con la solución producida por el marco de Godunov.
+	
+	
+	Según \cite{pletcher1997computational} el marco de Roe no funciona al aplicarlo en condiciones iniciales como \texttt{step\_pos} ya que es incapaz de diferenciar entre una onda de choque (caso $u_L > u_R$ del problema de Riemann) y una onda de rarefacción (caso $u_L < u_R$ del problema de Riemann). Este error del marco es demostrable al notar que la solución producida por Roe para \texttt{step\_pos}, con condiciones de frontera fijas, es una onda de choque estática; pero esta condición debería producir una solución de rarefacción. 
+	
+	\paragraph*{Corrección del método de Roe}
+	En \cite{pletcher1997computational} se describe una corrección en el marco de Roe para que este distinga entre soluciones de ondas de choque y de rarefacción, propuesta por Harten y Hyuman (1983). Esta modificación se basa en reformular la velocidad promedio $\bar{u}_{i+1}$. Sea 
+	\begin{equation}
+		\epsilon = \max\left(0, \frac{u_{i+1} - u_i}{2}\right
+	\end{equation}
+	entonces, se redefine $\bar{u}_{i+1}$ como
+	\begin{equation}
+		\bar{u}_{i+1} = 
+		\begin{cases}
+			\bar{u}_{i+1}, & \bar{u}_{i+1} \geq \epsilon \\
+			\epsilon, & \bar{u}_{i+1} < \epsilon
+		\end{cases}
+	\end{equation}
+	Esta corrección consiste en evaluar si el salto de $u_i$ a $u_{i+1}$ es positivo o negativo, en efecto, evaluando el caso del problema de Riemann que se tiene entre cada par de celdas adyacentes. Si este es negativo, se mantiene la definición original de $\bar{u}_{i+1}$ (ecuación \ref{eq:u-prom}). Si es positivo, se utiliza la mitad de la diferencia de las velocidades adyacentes $ \frac{u_{i+1} - u_i}{2}\right$ en lugar del promedio de estas.
+	
 	\section{Conclusiones}
 	\printbibliography
 	
