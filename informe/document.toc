@@ -24,6 +24,7 @@
 \contentsline {subsection}{\numberline {3.4}Ecuación de Burgers en una dimensión}{25}{subsection.3.4}%
 \contentsline {subsubsection}{\numberline {3.4.1}Descripción del problema}{25}{subsubsection.3.4.1}%
 \contentsline {subsubsection}{\numberline {3.4.2}Implementación del método}{26}{subsubsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.3}Resultados}{34}{subsubsection.3.4.3}%
-\contentsline {section}{\numberline {4}Método de elementos finitos}{38}{section.4}%
-\contentsline {section}{\numberline {5}Conclusiones}{38}{section.5}%
+\contentsline {subsubsection}{\numberline {3.4.3}Resultados}{33}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Discusión de resultados}{41}{subsubsection.3.4.4}%
+\contentsline {paragraph}{Comparación de marcos}{41}{section*.20}%
+\contentsline {section}{\numberline {4}Conclusiones}{41}{section.4}%
