@@ -141,7 +141,7 @@
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[scale=0.8]{images/grilla.pdf}
-		\caption{Discretización del dominio espacial}
+		\caption{Discretización del dominio espacial, generada a través de Geogebra}
 		\label{fig:discretizacion}
 	\end{figure}
 	
@@ -310,7 +310,7 @@
 			\caption*{Gráfica de $u(x,t=1.149\unit{\second})$}
 			\label{fig:b1ddf6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de la ecuación de Burgers no viscosa con diferencias finitas.}
+		\caption{Seis instantes de tiempo de la evolución temporal de la ecuación de Burgers no viscosa con diferencias finitas. Generadas a través de \textbf{Gnuplot.}}
 		\label{fig:instantesB1DDF}
 	\end{figure}
 	
@@ -400,7 +400,7 @@
 	\end{figure}
 	
 	\newpage
-	\subsection{Ecuación de Burgers viscosa, en una dimensión}
+	\subsection{Ecuación de Burgers viscosa, en una dimensión. Gráficas generadas a través de \textbf{Gnuplot.}}
 	\label{sec:burg-vis1ddf}
 	\subsubsection{Descripción del problema}
 	La ecuación de Burgers viscosa es una ecuación diferencial parcial no lineal de \textbf{segundo orden,} que se utiliza para modelar la velocidad de gases o fluidos con viscosidad considerable. La ecuación tiene la siguiente forma:
@@ -503,7 +503,7 @@
 			\caption*{Gráfica de $u(x,t=3.8\unit{\second})$}
 			\label{fig:vis1ddf6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de tres versiones de la ecuación de Burgers viscosa para diferentes coeficientes de viscosidad, con diferencias finitas.}
+		\caption{Seis instantes de tiempo de la evolución temporal de tres versiones de la ecuación de Burgers viscosa para diferentes coeficientes de viscosidad, con diferencias finitas. Gráficas generadas a través de \textbf{Gnuplot.}}
 		\label{fig:instantesvis1DDF}
 	\end{figure}
 	\subsubsection{Discusión de resultados}
@@ -536,7 +536,7 @@
 			\caption*{Gráfica de $u(x,t=2.14\unit{\second})$}
 			\label{fig:vis0.3-4}
 		\end{subfigure}
-		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers con viscosidad igual a $0.3$, resuelta con diferencias finitas.}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers con viscosidad igual a $0.3$, resuelta con diferencias finitas. Gráficas generadas a través de \textbf{Gnuplot.}}
 		\label{fig:instantes-nu0.3}
 	\end{figure}
 
@@ -704,7 +704,7 @@
 			\draw[domain=0:2,smooth,variable=\x,red] plot ({\x},{-1});
 			\draw[dashed] (0,-1.5) -- (0,1.5);
 		\end{tikzpicture}
-		\caption{Gráfica de condición inicial del caso $u_L > u_R$}
+		\caption{Gráfica de condición inicial del caso $u_L > u_R$. Gráfica de elaboración propia.}
 		\label{fig:riemann_caso1}
 	\end{figure}
 	\textit{Prueba:} Sea $\phi$ una función de prueba con soporte compacto $U$ y que este último yace completamente en alguno de los dos conjuntos siguientes: $\{x<st\}$ o $\{x>st\}$. Dado que $u(x,t)$ es constante en ambos conjuntos mencionados, esta satisface la ecuación conservativa (\ref{eq:integral_conservative1}) y consecuentemente se satisface la condición \ref{eq:weak_sol_cond}\cite{Cameron}.
@@ -942,7 +942,7 @@
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/gauss.pdf}
-			\caption*{Gráfica de \texttt{gauss}.}
+			\caption*{Gráfica de \texttt{gauss}. Generada con \textbf{Gnuplot.}}
 		\end{figure}
 		\item \texttt{step\_neg}: Función Heaviside invertida respecto el eje horizontal
 		\begin{equation}
@@ -957,7 +957,7 @@
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/step_neg.pdf}
-			\caption*{Gráfica de \texttt{step\_neg}.}
+			\caption*{Gráfica de \texttt{step\_neg}. Generada con \textbf{Gnuplot.}}
 		\end{figure}
 		\item \texttt{step\_pos}: Similar a la función Heaviside, pero con $-1.0$ y $1.0$ como sus valores constantes.
 		\begin{equation}
@@ -972,7 +972,7 @@
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/step_pos.pdf}
-			\caption*{Gráfica de \texttt{step\_pos}.}
+			\caption*{Gráfica de \texttt{step\_pos}. Generada con \textbf{Gnuplot.}}
 		\end{figure}
 		\item \texttt{gauss\_impar}: Multiplicación de una función lineal por una campana gaussiana, para obtener una función impar con dos pulsos.
 		\begin{equation}
@@ -983,7 +983,7 @@
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf}
-			\caption*{Gráfica de \texttt{gauss\_impar}.}
+			\caption*{Gráfica de \texttt{gauss\_impar}. Generada con \textbf{Gnuplot.}}
 		\end{figure}
 	\end{itemize}
 	\subsubsection{Implementación del método}
@@ -1379,7 +1379,7 @@
 			\epsilon, & \bar{u}_{i+1} < \epsilon
 		\end{cases}
 	\end{equation}
-	Esta corrección consiste en evaluar si el salto de $u_i$ a $u_{i+1}$ es positivo o negativo, en efecto, evaluando el caso del problema de Riemann que se tiene entre cada par de celdas adyacentes. Si este es negativo, se mantiene la definición original de $\bar{u}_{i+1}$ (ecuación \ref{eq:u-prom}). Si es positivo, se utiliza la mitad de la diferencia de las velocidades adyacentes $ \frac{u_{i+1} - u_i}{2}$ en lugar del promedio de estas.
+	Esta corrección consiste en evaluar si el salto de $u_i$ a $u_{i+1}$ es positivo o negativo, en efecto, determinando el caso del problema de Riemann que se tiene entre cada par de celdas adyacentes.
 	
 	Se programó la versión corregida del marco de Roe. 
  	\lstinputlisting[title = Marco de Roe corregido,
@@ -1388,8 +1388,36 @@
 	lastline=93,
 	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
 	
-	A continuación se muestra la solución de la ecuación de Burgers con condición inicial \texttt{step\_pos} y condiciones fijas de frontera, comparando el método de Roe, Roe corregido y Godunov
-	
+	En la figura \ref{fig:step_pos-roe-fix} se muestra la solución de la ecuación de Burgers con condición inicial \texttt{step\_pos} y condiciones fijas de frontera, comparando el método de Roe corregido, Godunov y la solución exacta de rarefacción transónica (ecuación \ref{eq:sol-riemann-weak-rarefraction})
+		\begin{figure}[h]
+			\centering
+			\begin{subfigure}[b]{0.49\textwidth}
+				\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/000.pdf}
+				\caption*{Gráficas para $t=0.0\unit{\second}$}
+%				\label{fig:step_pos-fija1}
+			\end{subfigure}
+			\vfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/170.pdf}
+				\caption*{Gráficas para $t=5.10\unit{\second}$}
+%				\label{fig:step_pos-fija2}
+			\end{subfigure}
+			\vfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/680.pdf}
+				\caption*{Gráficas para $t=20.40\unit{\second}$}
+%				\label{fig:step_pos-fija3}
+			\end{subfigure}
+			\vfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix//850.pdf}
+				\caption*{Gráficas para $t=25.50\unit{\second}$}
+%				\label{fig:step_pos-fija4}
+			\end{subfigure}
+			\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con el marco de Roe corregido, el marco de Godunov y la solución exacta dada por la ecuación \ref{eq:}, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:sol-riemann-weak-rarefraction}. Gráficas generadas a través de \textbf{gnuplot.}}
+			\label{fig:step_pos-roe-fix}
+		\end{figure}
+		
 	\section{Conclusiones}
 	\printbibliography
 	

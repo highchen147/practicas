@@ -6,7 +6,7 @@
 \contentsline {subsubsection}{\numberline {2.1.2}Aplicación del método y código implementado}{6}{subsubsection.2.1.2}%
 \contentsline {subsubsection}{\numberline {2.1.3}Resultados}{9}{subsubsection.2.1.3}%
 \contentsline {subsubsection}{\numberline {2.1.4}Discusión de resultados}{9}{subsubsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.2}Ecuación de Burgers viscosa, en una dimensión}{12}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.2}Ecuación de Burgers viscosa, en una dimensión. Gráficas generadas a través de \textbf {Gnuplot.}}{12}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Descripción del problema}{12}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Aplicación del método y código implementado}{13}{subsubsection.2.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.3}Resultados}{15}{subsubsection.2.2.3}%
