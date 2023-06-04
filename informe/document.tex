@@ -1364,12 +1364,12 @@
 	Las soluciones numéricas obtenidas al resolver la ecuación de Burgers con \texttt{step\_pos} (ecuación \ref{eq:step_pos}) como condición inicial son considerablemente distintas en casi todos los puntos e instantes de tiempo, solo coincidiendo en $t=0.0\unit{\second}$, como se puede observar en la figura \ref{fig:step_pos-fija} y \ref{fig:step_pos-periodica}. Ya se ha concluido que el marco de Lax-Friedrichs es obsoleto para resolver esta ecuación, pero este caso de condición inicial es el único en donde los marcos de Roe y Godunov no producen soluciones idénticas. Sin embargo, el marco de Godunov sí produce una solución físicamente válida, ya que el problema con condición inicial \texttt{step\_pos} y condiciones de frontera fijas es un problema de Riemman correspondiente al caso $u_L < u_R$; y la solución exacta de este caso está dada por la solución de rarefacción transónica (ecuación \ref{eq:sol-riemann-weak-rarefraction}). Esta solución es consistente con la solución producida por el marco de Godunov.
 	
 	
-	Según \cite{pletcher1997computational} el marco de Roe no funciona al aplicarlo en condiciones iniciales como \texttt{step\_pos} ya que es incapaz de diferenciar entre una onda de choque (caso $u_L > u_R$ del problema de Riemann) y una onda de rarefacción (caso $u_L < u_R$ del problema de Riemann). Este error del marco es demostrable al notar que la solución producida por Roe para \texttt{step\_pos}, con condiciones de frontera fijas, es una onda de choque estática; pero esta condición debería producir una solución de rarefacción. 
+	El marco de Roe no funciona al aplicarlo en condiciones iniciales como \texttt{step\_pos} ya que es incapaz de diferenciar entre una onda de choque (caso $u_L > u_R$ del problema de Riemann) y una onda de rarefacción (caso $u_L < u_R$ del problema de Riemann). Este error del marco es demostrable al notar que la solución producida por Roe para \texttt{step\_pos}, con condiciones de frontera fijas, es una onda de choque estática; pero esta condición debería producir una solución de rarefacción. 
 	
 	\paragraph*{Corrección del método de Roe}
 	En \cite{pletcher1997computational} se describe una corrección en el marco de Roe para que este distinga entre soluciones de ondas de choque y de rarefacción, propuesta por Harten y Hyuman (1983). Esta modificación se basa en reformular la velocidad promedio $\bar{u}_{i+1}$. Sea 
 	\begin{equation}
-		\epsilon = \max\left(0, \frac{u_{i+1} - u_i}{2}\right
+		\epsilon = \max\left(0, \frac{u_{i+1} - u_i}{2}\right)
 	\end{equation}
 	entonces, se redefine $\bar{u}_{i+1}$ como
 	\begin{equation}
@@ -1379,7 +1379,16 @@
 			\epsilon, & \bar{u}_{i+1} < \epsilon
 		\end{cases}
 	\end{equation}
-	Esta corrección consiste en evaluar si el salto de $u_i$ a $u_{i+1}$ es positivo o negativo, en efecto, evaluando el caso del problema de Riemann que se tiene entre cada par de celdas adyacentes. Si este es negativo, se mantiene la definición original de $\bar{u}_{i+1}$ (ecuación \ref{eq:u-prom}). Si es positivo, se utiliza la mitad de la diferencia de las velocidades adyacentes $ \frac{u_{i+1} - u_i}{2}\right$ en lugar del promedio de estas.
+	Esta corrección consiste en evaluar si el salto de $u_i$ a $u_{i+1}$ es positivo o negativo, en efecto, evaluando el caso del problema de Riemann que se tiene entre cada par de celdas adyacentes. Si este es negativo, se mantiene la definición original de $\bar{u}_{i+1}$ (ecuación \ref{eq:u-prom}). Si es positivo, se utiliza la mitad de la diferencia de las velocidades adyacentes $ \frac{u_{i+1} - u_i}{2}$ en lugar del promedio de estas.
+	
+	Se programó la versión corregida del marco de Roe. 
+ 	\lstinputlisting[title = Marco de Roe corregido,
+	language=C++,
+	firstline=80,
+	lastline=93,
+	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
+	
+	A continuación se muestra la solución de la ecuación de Burgers con condición inicial \texttt{step\_pos} y condiciones fijas de frontera, comparando el método de Roe, Roe corregido y Godunov
 	
 	\section{Conclusiones}
 	\printbibliography
