@@ -1384,39 +1384,70 @@
 	Se programó la versión corregida del marco de Roe. 
  	\lstinputlisting[title = Marco de Roe corregido,
 	language=C++,
-	firstline=80,
-	lastline=93,
+	firstline=81,
+	lastline=92,
 	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
 	
 	En la figura \ref{fig:step_pos-roe-fix} se muestra la solución de la ecuación de Burgers con condición inicial \texttt{step\_pos} y condiciones fijas de frontera, comparando el método de Roe corregido, Godunov y la solución exacta de rarefacción transónica (ecuación \ref{eq:sol-riemann-weak-rarefraction})
-		\begin{figure}[h]
-			\centering
-			\begin{subfigure}[b]{0.49\textwidth}
-				\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/000.pdf}
-				\caption*{Gráficas para $t=0.0\unit{\second}$}
+%	
+%	\begin{figure}[ht]
+%		\centering
+%		\begin{subfigure}[b]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/000.pdf}
+%			\caption*{Gráficas para $t=0.0\unit{\second}$}
+%%			\label{fig:gauss-fija1}
+%		\end{subfigure}
+%		\hfill
+%		\begin{subfigure}[b]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/170.pdf}
+%			\caption*{Gráficas para $t=5.10\unit{\second}$}
+%%			\label{fig:gauss-fija2}
+%		\end{subfigure}
+%		% 		
+%		\par\medskip
+%		\begin{subfigure}[b]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/680.pdf}
+%			\caption*{Gráficas para $t=20.40\unit{\second}$}
+%%			\label{fig:gauss-fija5}
+%		\end{subfigure}
+%		\hfill
+%		\begin{subfigure}[b]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/gauss/850.pdf}
+%			\caption*{Gráficas para $t=25.50\unit{\second}$}
+%%			\label{fig:gauss-fija6}
+%		\end{subfigure}
+%		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
+%%		\label{fig:instantes-gauss-fija}
+%	\end{figure}
+	
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/000.pdf}
+			\caption*{Gráficas para $t=0.0\unit{\second}$}
 %				\label{fig:step_pos-fija1}
-			\end{subfigure}
-			\vfill
-			\begin{subfigure}[b]{0.49\textwidth}
-				\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/170.pdf}
-				\caption*{Gráficas para $t=5.10\unit{\second}$}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/170.pdf}
+			\caption*{Gráficas para $t=5.10\unit{\second}$}
 %				\label{fig:step_pos-fija2}
-			\end{subfigure}
-			\vfill
-			\begin{subfigure}[b]{0.49\textwidth}
-				\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/680.pdf}
-				\caption*{Gráficas para $t=20.40\unit{\second}$}
+		\end{subfigure}
+		\par\medskip
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix/680.pdf}
+			\caption*{Gráficas para $t=20.40\unit{\second}$}
 %				\label{fig:step_pos-fija3}
-			\end{subfigure}
-			\vfill
-			\begin{subfigure}[b]{0.49\textwidth}
-				\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix//850.pdf}
-				\caption*{Gráficas para $t=25.50\unit{\second}$}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{../burgers1DVF/results/sol_fijas/step_pos-roe-fix//850.pdf}
+			\caption*{Gráficas para $t=25.50\unit{\second}$}
 %				\label{fig:step_pos-fija4}
-			\end{subfigure}
-			\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con el marco de Roe corregido, el marco de Godunov y la solución exacta dada por la ecuación \ref{eq:}, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:sol-riemann-weak-rarefraction}. Gráficas generadas a través de \textbf{gnuplot.}}
-			\label{fig:step_pos-roe-fix}
-		\end{figure}
+		\end{subfigure}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con el marco de Roe corregido, el marco de Godunov y la solución exacta dada por la ecuación \ref{eq:}, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:sol-riemann-weak-rarefraction}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\label{fig:step_pos-roe-fix}
+	\end{figure}
 		
 	\section{Conclusiones}
 	\printbibliography
