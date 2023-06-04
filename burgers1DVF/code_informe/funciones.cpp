@@ -82,7 +82,6 @@ double Flujo(double u,
     {
         double epsilon = max(0.0, (v-u)/2);
         double FlujoPromedio = 0.5*(FlujoBurgers(u)+FlujoBurgers(v));
-        double u_prom = uProm(u,v);
         if (u_prom >= epsilon)
         {
             return (FlujoPromedio-0.5*abs(uProm(u,v))*(v-u));
