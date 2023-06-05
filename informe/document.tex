@@ -103,6 +103,12 @@
 	En el estudio de la física, existen múltiples maneras de conocer más a profundidad las teorías que se estudian y también para comprobarlas. La física siempre ha dependido del área experimental, ya que las leyes y postulados que se definen en una teoría deben ser consistentes con cualquier experimento; de lo contrario, la teoría está destinada a fracasar. 
 	
 	Sin embargo, gracias al avance tecnológico exponencial que se ha presenciado en el último siglo, la física posee hoy en día una herramienta que le permitirá continuar evolucionando: \textbf{la simulación computacional.} Si bien el área experimental es la piedra angular de cualquier ciencia exacta como la física, la simulación computacional de un sistema físico puede resultar igual o aún más ilustrativa que un experimento del mismo sistema. Más importante, una simulación puede ser capaz de brindarle al investigador una idea más concreta y visual de fenómenos extremos (altas temperaturas, tamaños microscópicos, etc.) que están fuera del alcance de los experimentos.
+	
+	El desarrollo de las simulaciones computacionales requiere del estudio de varios métodos de solución que tiene como idea base la discretización de las funciones continuas que describen la evolución temporal de algún fenómeno físico. Sin embargo, no todos los métodos son capaces o de resolver cualquier ecuación diferencial que se presente; existen métodos especializados para resolver algunos tipos de ecuaciones diferenciales. La teoría matemática necesaria para desarrollar estos métodos continúa siendo objeto de investigación.
+	
+	En la mecánica de fluidos aparecen varias ecuaciones que no tienen soluciones exactas y por tanto, la física computacional se ha encargado de proveer soluciones numéricas de dichas ecuaciones. Estas últimas suelen ser bastante complejas y previamente a estudiarlas se debe elegir un método numérico adecuado para resolverlas. La \textbf{ecuación de Burgers} es una simplificación del modelado de la \textbf{velocidad} de un fluido o  un gas y es una ecuación que se presta de buena manera para evaluar métodos numéricos que posteriormente se puedan utilizar para resolver ecuaciones más generales de la mecánica de fluidos.
+	
+	El objetivo de estas prácticas es describir y evaluar el desempeño de algunos métodos numéricos al utilizarlos en la resolución de la ecuación de Burgers.
 	\clearpage
 	
 	\section{Método de diferencias finitas}
@@ -544,7 +550,7 @@
 	\newtheorem{definition}{Definición}[section]
 	\clearpage
 	\section{Método de volúmenes finitos}
-	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} Este método se especializa en resolver ecuaciones diferenciales escritas en forma conservativa y es capaz de integrarlas aún cuando las soluciones poseen discontinuidades o  en el contexto de las ecuaciones de la mecánica de fluidos, choques (\textit{shocks} en inglés) \cite{LeVeque1998}. El método de volúmenes finitos es aplicable utilizando métodos llamados \textit{esquemas} o \textit{marcos}, que sirven para calcular apropiadamente el \textbf{flujo} en las interfaces de las celdas de la grilla \cite{LeVeque1998}. Se explicará la deducción del método de volúmenes finitos, los marcos utilizados y la teoría de su funcionamiento.
+	El siguiente método utilizado fue el \textbf{método de volúmenes finitos.} Este método se especializa en resolver ecuaciones diferenciales escritas en forma conservativa y es capaz de integrarlas aún cuando las soluciones poseen discontinuidades o  en el contexto de las ecuaciones de la mecánica de fluidos, choques (\textit{shocks} en inglés) \cite{LeVeque1998}. El método de volúmenes finitos es aplicable utilizando métodos llamados \textit{esquemas} o \textit{marcos}, que sirven para calcular apropiadamente el \textbf{flujo} en las interfaces de las celdas de la grilla \cite{LeVeque1998}. Se explicará la deducción del método de volúmenes finitos, los esquemas utilizados y la teoría de su funcionamiento.
 	
 	El principio básico del método de volúmenes finitos es la reinterpretación de los valores discretizados $u_{i}^{n}$ de la función incógnita $u$; dado que en lugar de considerar a estos valores como la aproximación del valor exacto $u(x_{i}, t_{n}) $\footnote{La notación introducida $u_{i}^{n}$ $\approx$ $u(x_{i}, t_{n})$ es tal que, $t_n \equiv n \Delta t $ con $n \in \mathbb{N}$} se interpretan como el \textbf{valor promedio} de la función $u$ en el intervalo $C_{i} = \left[ x_i, x_{i+1} \right]$, también denominado \textbf{celda}. Entonces la discretización de la función consiste en dividir el intervalo $I = [0,L]$ en $N$ intervalos $C_i$, donde $\Delta x = L/N = x_{i+1} - x_i$. De tal manera que, formalmente, el valor $u_{i}^{n}$ se calcula con una integral en $x$ sobre $C_i$:
 	
@@ -618,7 +624,7 @@
 		u_{i}^{n+1} - u_{i}^{n} + \frac{\Delta t}{\Delta x}\left[ F(u_{i}^{n}, u_{i+1}^{n}) - F(u_{i-1}^{n}, u_{i}^{n})\right] = 0
 		\label{eq:flux-diff}
 	\end{equation}
-	A continuación se explican los marcos numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
+	A continuación se explican los esquemas numéricos evaluados para calcular el flujo numérico $F_{i}^{n}$ para resolver la ecuación de Burgers, donde $f(u)=\frac{u^2}{2}$.
 	
 	\subsection{Esquema de Lax-Friedrichs}
 	La primera expresión que lógicamente se puede proponer para poder calcular $F(u_{i-1}^{n}, u_{i}^{n})$ es promediar el valor del flujo $f(u)$ valuado en $u_{i-1}^{n}$ y en $u_{i}^{n}$; esto es:
@@ -824,7 +830,7 @@
  	\end{itemize}
  	Se puede destacar que las opciones de $u^{*}$ para el caso de ondas de choque y las últimas dos opciones del caso de rarefacción, se obtiene exactamente el mismo valor para $u^{*}$. La primera opción para el caso de rarefacción se deduce inmediatamente de la ecuación (\ref{eq:sol-riemann-weak-rarefraction}) \cite{pletcher1997computational}.
  	
- 	Dado que el flujo $F_{i}^{n}$ se define como una integral en el tiempo del flujo real $f(u)$ (ecuación \ref{eq:flujo_promedio}), el cálculo de la velocidad que proporciona $u^{*}$ debe considerar que al resolver el problema de Riemann la velocidad devuelta sea constante en un intervalo de tiempo $\Delta t$; esto da origen a la \textbf{condición de estabilidad}, también conocida como condición \textbf{CFL.} La condición de estabilidad para el marco de Godunov es la siguiente \cite{pletcher1997computational}
+ 	Dado que el flujo $F_{i}^{n}$ se define como una integral en el tiempo del flujo real $f(u)$ (ecuación \ref{eq:flujo_promedio}), el cálculo de la velocidad que proporciona $u^{*}$ debe considerar que al resolver el problema de Riemann la velocidad devuelta sea constante en un intervalo de tiempo $\Delta t$; esto da origen a la \textbf{condición de estabilidad}, también conocida como condición \textbf{CFL.} La condición de estabilidad para el esquema de Godunov es la siguiente \cite{pletcher1997computational}
  	
  	\begin{equation}
  		\left| u_{\text{max}} \frac{\Delta t}{\Delta x}\right| \leq \frac{1}{2} .
@@ -931,7 +937,7 @@
 			u(0,t) = u(L, t).
 		\end{equation}
 	\end{itemize}
-	Como condiciones iniciales, se aplicaron varias funciones para examinar el funcionamiento de cada marco. A cada función se le asignó un nombre que fuera distintivo.
+	Como condiciones iniciales, se aplicaron varias funciones para examinar el funcionamiento de cada esquema. A cada función se le asignó un nombre que fuera distintivo.
 	\begin{itemize}
 		\item \texttt{gauss}: Función gaussiana o curva de campana.
 		\begin{equation}
@@ -1020,7 +1026,7 @@
 	lastline=43,
 	keywordstyle=\color{blue}]{../burgers1DVF/code_informe/funciones.cpp}
 	
-	Para aplicar todos los esquemas que fueron estudiados, se diseñó la función \texttt{Flujo} de tal manera que esta pudiese ser aplicada de acuerdo al marco a utilizar.
+	Para aplicar todos los esquemas que fueron estudiados, se diseñó la función \texttt{Flujo} de tal manera que esta pudiese ser aplicada de acuerdo al esquema a utilizar.
  	
  	\lstinputlisting[title = Definición de función que calcula el flujo entre celdas,
  	language=C++,
@@ -1090,7 +1096,7 @@
  			\caption*{Gráficas para $t=25.50\unit{\second}$}
  			\label{fig:gauss-fija6}
  		\end{subfigure}
- 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
+ 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
  		\label{fig:instantes-gauss-fija}
 	\end{figure}
  
@@ -1119,7 +1125,7 @@
  		\caption*{Gráficas para $t=25.50\unit{\second}$}
  		\label{fig:step_neg-fija4}
  	\end{subfigure}
- 	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_neg}. Gráficas generadas a través de \textbf{gnuplot.}}
+ 	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_neg}. Gráficas generadas a través de \textbf{gnuplot.}}
  	\label{fig:instantes-step_neg-fija}
  \end{figure}
  
@@ -1148,7 +1154,7 @@
 		\caption*{Gráficas para $t=25.50\unit{\second}$}
 		\label{fig:step_pos-fija4}
 	\end{subfigure}
-	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
 	\label{fig:step_pos-fija}
 \end{figure}
 
@@ -1179,7 +1185,7 @@
 			\caption*{Gráficas para $t=25.50\unit{\second}$}
 			\label{fig:gauss_impar-fija4}
 		\end{subfigure}
-		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss_impar}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss_impar}. Gráficas generadas a través de \textbf{gnuplot.}}
 		\label{fig:instantes-gauss_impar-fija}
 	\end{figure}
 	\clearpage
@@ -1223,7 +1229,7 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:gauss-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
 		\label{fig:gauss-periodica}
 	\end{figure}
 
@@ -1265,7 +1271,7 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:step_neg-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_neg}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_neg}. Gráficas generadas a través de \textbf{gnuplot.}}
 		\label{fig:step_neg-periodica}
 	\end{figure}
 
@@ -1307,7 +1313,7 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:step_pos-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
 		\label{fig:step_pos-periodica}
 	\end{figure}
 
@@ -1349,25 +1355,25 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:gauss_impar-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes marcos del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss_impar}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss_impar}. Gráficas generadas a través de \textbf{gnuplot.}}
 		\label{fig:gauss_impar-periodica}
 	\end{figure}
 	\clearpage	
 	\subsubsection{Discusión de resultados}
-	\paragraph{Comparación de marcos}
+	\paragraph{Comparación de esquemas}
 	
-	Al comparar los marcos del método de volúmenes finitos en cualquiera de las condiciones de frontera y sobre cualquier condición inicial, se tiene que la solución producida por el marco de Lax-Friedrichs diverge considerablemente de las soluciones producidas por los otros dos marcos, en la mayor parte del dominio espacial y a lo largo de la mayor parte del tiempo de las simulaciones. Se puede indagar que las soluciones de Lax-Friedrichs no son física ni matemáticamente válidas si se comparan las soluciones en donde la condición inicial para $u(x,t)$ era la función \texttt{step\_neg} (figura \ref{fig:instantes-step_neg-fija}); si se observa la evolución de la función, notamos que los marcos de Roe y Godunov producen soluciones de ondas de choque, lo cual es consistente con la solución débil presentada al resolver el problema de Riemann. Sin embargo, el marco de Lax-Friedrichs no devuelve una solución de onda de choque, sino parece más una solución de rarefacción, lo cual es inconsistente con la teoría ya que este tipo de soluciones solo aplica para el caso $u_L < u_R$, donde $u_L$ y  $u_R$ son las partes constantes izquierda y derecha de la función escalón.
+	Al comparar los esquemas del método de volúmenes finitos en cualquiera de las condiciones de frontera y sobre cualquier condición inicial, se tiene que la solución producida por el esquema de Lax-Friedrichs diverge considerablemente de las soluciones producidas por los otros dos esquemas, en la mayor parte del dominio espacial y a lo largo de la mayor parte del tiempo de las simulaciones. Se puede indagar que las soluciones de Lax-Friedrichs no son física ni matemáticamente válidas si se comparan las soluciones en donde la condición inicial para $u(x,t)$ era la función \texttt{step\_neg} (figura \ref{fig:instantes-step_neg-fija}); si se observa la evolución de la función, notamos que los esquemas de Roe y Godunov producen soluciones de ondas de choque, lo cual es consistente con la solución débil presentada al resolver el problema de Riemann. Sin embargo, el esquema de Lax-Friedrichs no devuelve una solución de onda de choque, sino parece más una solución de rarefacción, lo cual es inconsistente con la teoría ya que este tipo de soluciones solo aplica para el caso $u_L < u_R$, donde $u_L$ y  $u_R$ son las partes constantes izquierda y derecha de la función escalón.
 	
-	Es posible entender por qué el marco de Lax-Friedrichs es insuficiente para implementar el método de volúmenes finitos si se compara con el marco de Roe. Comparando las ecuaciones \ref{eq:flujo-LF} y \ref{eq:flujo-roe} se puede notar que el marco de Lax-Friedrichs es simplemente un marco de Roe que no toma en cuenta la velocidad promedio $\bar{u}_{i}^{n}$, sino que utiliza $\frac{\Delta x}{\Delta t}$ como velocidad promedio; dado que esta elección de velocidad satisface la condición de estabilidad $|u_{\text{max}}\frac{\Delta t}{\Delta x}| \leq 1$. Por tanto, el marco de Lax-Friedrichs no integra las soluciones al mismo nivel de precisión que lo hacen los marcos de Roe y Godunov, ya que estos últimos devuelven un flujo entre celdas más preciso.
+	Es posible entender por qué el esquema de Lax-Friedrichs es insuficiente para implementar el método de volúmenes finitos si se compara con el esquema de Roe. Comparando las ecuaciones \ref{eq:flujo-LF} y \ref{eq:flujo-roe} se puede notar que el esquema de Lax-Friedrichs es simplemente un esquema de Roe que no toma en cuenta la velocidad promedio $\bar{u}_{i}^{n}$, sino que utiliza $\frac{\Delta x}{\Delta t}$ como velocidad promedio; dado que esta elección de velocidad satisface la condición de estabilidad $|u_{\text{max}}\frac{\Delta t}{\Delta x}| \leq 1$. Por tanto, el esquema de Lax-Friedrichs no integra las soluciones al mismo nivel de precisión que lo hacen los esquemas de Roe y Godunov, ya que estos últimos devuelven un flujo entre celdas más preciso.
 	
 	\paragraph*{Soluciones con condición inicial \texttt{step\_pos}}
-	Las soluciones numéricas obtenidas al resolver la ecuación de Burgers con \texttt{step\_pos} (ecuación \ref{eq:step_pos}) como condición inicial son considerablemente distintas en casi todos los puntos e instantes de tiempo, solo coincidiendo en $t=0.0\unit{\second}$, como se puede observar en la figura \ref{fig:step_pos-fija} y \ref{fig:step_pos-periodica}. Ya se ha concluido que el marco de Lax-Friedrichs es obsoleto para resolver esta ecuación, pero este caso de condición inicial es el único en donde los marcos de Roe y Godunov no producen soluciones idénticas. Sin embargo, el marco de Godunov sí produce una solución físicamente válida, ya que el problema con condición inicial \texttt{step\_pos} y condiciones de frontera fijas es un problema de Riemman correspondiente al caso $u_L < u_R$; y la solución exacta de este caso está dada por la solución de rarefacción transónica (ecuación \ref{eq:sol-riemann-weak-rarefraction}). Esta solución es consistente con la solución producida por el marco de Godunov.
+	Las soluciones numéricas obtenidas al resolver la ecuación de Burgers con \texttt{step\_pos} (ecuación \ref{eq:step_pos}) como condición inicial son considerablemente distintas en casi todos los puntos e instantes de tiempo, solo coincidiendo en $t=0.0\unit{\second}$, como se puede observar en la figura \ref{fig:step_pos-fija} y \ref{fig:step_pos-periodica}. Ya se ha concluido que el esquema de Lax-Friedrichs es obsoleto para resolver esta ecuación, pero este caso de condición inicial es el único en donde los esquemas de Roe y Godunov no producen soluciones idénticas. Sin embargo, el esquema de Godunov sí produce una solución físicamente válida, ya que el problema con condición inicial \texttt{step\_pos} y condiciones de frontera fijas es un problema de Riemman correspondiente al caso $u_L < u_R$; y la solución exacta de este caso está dada por la solución de rarefacción transónica (ecuación \ref{eq:sol-riemann-weak-rarefraction}). Esta solución es consistente con la solución producida por el esquema de Godunov.
 	
 	
-	El marco de Roe no funciona al aplicarlo en condiciones iniciales como \texttt{step\_pos} ya que es incapaz de diferenciar entre una onda de choque (caso $u_L > u_R$ del problema de Riemann) y una onda de rarefacción (caso $u_L < u_R$ del problema de Riemann). Este error del marco es demostrable al notar que la solución producida por Roe para \texttt{step\_pos}, con condiciones de frontera fijas, es una onda de choque estática; pero esta condición debería producir una solución de rarefacción. 
+	El esquema de Roe no funciona al aplicarlo en condiciones iniciales como \texttt{step\_pos} ya que es incapaz de diferenciar entre una onda de choque (caso $u_L > u_R$ del problema de Riemann) y una onda de rarefacción (caso $u_L < u_R$ del problema de Riemann). Este error del esquema es demostrable al notar que la solución producida por Roe para \texttt{step\_pos}, con condiciones de frontera fijas, es una onda de choque estática; pero esta condición debería producir una solución de rarefacción. 
 	
 	\paragraph*{Corrección del método de Roe}
-	En \cite{pletcher1997computational} se describe una corrección en el marco de Roe para que este distinga entre soluciones de ondas de choque y de rarefacción, propuesta por Harten y Hyuman (1983). Esta modificación se basa en reformular la velocidad promedio $\bar{u}_{i+1}$. Sea 
+	En \cite{pletcher1997computational} se describe una corrección en el esquema de Roe para que este distinga entre soluciones de ondas de choque y de rarefacción, propuesta por Harten y Hyuman (1983). Esta modificación se basa en reformular la velocidad promedio $\bar{u}_{i+1}$. Sea 
 	\begin{equation}
 		\epsilon = \max\left(0, \frac{u_{i+1} - u_i}{2}\right)
 	\end{equation}
@@ -1381,8 +1387,8 @@
 	\end{equation}
 	Esta corrección consiste en evaluar si el salto de $u_i$ a $u_{i+1}$ es positivo o negativo, en efecto, determinando el caso del problema de Riemann que se tiene entre cada par de celdas adyacentes.
 	
-	Se programó la versión corregida del marco de Roe. 
- 	\lstinputlisting[title = Marco de Roe corregido,
+	Se programó la versión corregida del esquema de Roe. 
+ 	\lstinputlisting[title = Esquema de Roe corregido,
 	language=C++,
 	firstline=81,
 	lastline=92,
@@ -1415,11 +1421,24 @@
 			\caption*{Gráficas para $t=25.50\unit{\second}$}
 %				\label{fig:step_pos-fija4}
 		\end{subfigure}
-		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con el marco de Roe corregido, el marco de Godunov y la solución exacta dada por la ecuación \ref{eq:}, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:sol-riemann-weak-rarefraction}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con el esquema de Roe corregido, el esquema de Godunov y la solución exacta dada por la ecuación \ref{eq:sol-riemann-weak-rarefraction}, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
 		\label{fig:step_pos-roe-fix}
 	\end{figure}
 		
 	\section{Conclusiones}
+	\begin{itemize}
+		\item La capacidad del método de diferencias finitas no es suficiente para resolver ecuaciones que pueden admitir soluciones débiles que presentan discontinuidades como la ecuación de Burgers no viscosa. El método de diferencias finitas sí es posible utilizarlo para resolver la ecuación de Burgers viscosa, siempre que el término viscoso no sea despreciable.
+		\item El método de volúmenes finitos es el método óptimo para utilizar al resolver ecuaciones diferenciales en forma conservativa. 
+		\item El esquema de Godunov es excelente para calcular el flujo promedio del método de volúmenes finitos ya que considera la solución del problema de Riemann asociado a la ecuación diferencial a resolver. Sin embargo, resolver este problema puede ser una tarea costosa y no trivial.
+		\item El esquema de Roe es más sencillo de aplicar, a pesar de depender de una corrección adicional, el esquema representa un buen balance entre las características de un método numérico práctico: precisión y estabilidad.
+		\item El esquema de Roe destaca por ser aplicable en problemas donde la ecuación diferencial es una ecuación vectorial que acopla varias ecuaciones diferenciales escalares.
+	\end{itemize}
+	\section{Recomendaciones}
+	\begin{itemize}
+		\item Explorar los alcances del esquema de Roe: Se recomienda utilizar el esquema de Roe en ecuaciones de conservación que modelen fenómenos físicos más complejos, como las ecuaciones de Euler del medio continuo.
+		\item Resolver la ecuación de Burgers viscosa con el método de volúmenes finitos: Se recomienda investigar esquemas para el método de volúmenes finitos que puedan ser aplicables a la resolución de la ecuación de Burgers con viscosidad.
+		\item Integrar modelos de fenómenos físicos de ecuaciones de conservación con los métodos estudiados: Se recomienda utilizar el método de volúmenes finitos para distintas formas de ecuaciones de conservación. Por ejemplo, en casos bidimensionales y tridimensionales.
+	\end{itemize}
 	\printbibliography
 	
 \end{document}
