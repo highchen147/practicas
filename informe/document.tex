@@ -158,7 +158,7 @@
 	\begin{figure}[ht]
 		\centering
 		\includegraphics[scale=0.8]{images/grilla.pdf}
-		\caption{Discretización del dominio espacial, generada a través de Geogebra}
+		\caption{Discretización del dominio espacial. \textit{Fuente: elaboración propia a través de Geogebra.}}
 		\label{fig:discretizacion}
 	\end{figure}
 	
@@ -206,7 +206,7 @@
 	Donde:
 	\begin{itemize}
 		\item $A=3.5\mpers$
-		\item $b=0.05$
+		\item $b=0.05\unit{\meter^{-2}}$
 		\item $\mu=L/2=50\unit{\meter}$
 	\end{itemize}
 
@@ -327,7 +327,7 @@
 			\caption*{Gráfica de $u(x,t=1.149\unit{\second})$}
 			\label{fig:b1ddf6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de la ecuación de Burgers no viscosa con diferencias finitas. Generadas a través de \textbf{Gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de la ecuación de Burgers no viscosa con diferencias finitas. \textit{Fuente: elaboración propia}}
 		\label{fig:instantesB1DDF}
 	\end{figure}
 	
@@ -412,7 +412,7 @@
 			\caption*{Gráfica de $u(x,t=0.0235\unit{\second})$}
 			\label{fig:image4}
 		\end{subfigure}
-		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers en su versión conservativa, con diferencias finitas.  Gráficas generadas a través de \textbf{Gnuplot.}}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers en su versión conservativa, con diferencias finitas.  \textit{Fuente: elaboración propia}}
 		\label{fig:instantes-conservativa}
 	\end{figure}
 	
@@ -449,7 +449,7 @@
 	\begin{itemize}
 		\item $L = 100\unit{\meter}$
 		\item $A=3.5\mpers$
-		\item $b=0.05$
+		\item $b=0.05\unit{\meter^{-2}}$
 		\item $\mu=L/2=50\unit{\meter}$
 	\end{itemize}
 	
@@ -520,7 +520,7 @@
 			\caption*{Gráfica de $u(x,t=3.8\unit{\second})$}
 			\label{fig:vis1ddf6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de tres versiones de la ecuación de Burgers viscosa para diferentes coeficientes de viscosidad, con diferencias finitas. Gráficas generadas a través de \textbf{Gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de tres versiones de la ecuación de Burgers viscosa para diferentes coeficientes de viscosidad, con diferencias finitas. \textit{Fuente: elaboración propia}}
 		\label{fig:instantesvis1DDF}
 	\end{figure}
 	\subsubsection{Discusión de resultados}
@@ -553,7 +553,7 @@
 			\caption*{Gráfica de $u(x,t=2.14\unit{\second})$}
 			\label{fig:vis0.3-4}
 		\end{subfigure}
-		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers con viscosidad igual a $0.3$, resuelta con diferencias finitas. Gráficas generadas a través de \textbf{Gnuplot.}}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers con viscosidad igual a $0.3$, resuelta con diferencias finitas. \textit{Fuente: elaboración propia}}
 		\label{fig:instantes-nu0.3}
 	\end{figure}
 
@@ -721,7 +721,7 @@
 			\draw[domain=0:2,smooth,variable=\x,red] plot ({\x},{-1});
 			\draw[dashed] (0,-1.5) -- (0,1.5);
 		\end{tikzpicture}
-		\caption{Gráfica de condición inicial del caso $u_L > u_R$. Gráfica de elaboración propia.}
+		\caption{Gráfica de condición inicial del caso $u_L > u_R$. \textit{Fuente: elaboración propia}}
 		\label{fig:riemann_caso1}
 	\end{figure}
 	\textit{Prueba:} Sea $\phi$ una función de prueba con soporte compacto $U$ y que este último yace completamente en alguno de los dos conjuntos siguientes: $\{x<st\}$ o $\{x>st\}$. Dado que $u(x,t)$ es constante en ambos conjuntos mencionados, esta satisface la ecuación conservativa (\ref{eq:integral_conservative1}) y consecuentemente se satisface la condición \ref{eq:weak_sol_cond}\cite{Cameron}.
@@ -959,7 +959,7 @@
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/gauss.pdf}
-			\caption*{Gráfica de \texttt{gauss}. Generada con \textbf{Gnuplot.}}
+			\caption*{Gráfica de \texttt{gauss}. \textit{Fuente: elaboración propia}}
 		\end{figure}
 		\item \texttt{step\_neg}: Función Heaviside invertida respecto el eje horizontal
 		\begin{equation}
@@ -974,7 +974,7 @@
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/step_neg.pdf}
-			\caption*{Gráfica de \texttt{step\_neg}. Generada con \textbf{Gnuplot.}}
+			\caption*{Gráfica de \texttt{step\_neg}. \textit{Fuente: elaboración propia}}
 		\end{figure}
 		\item \texttt{step\_pos}: Similar a la función Heaviside, pero con $-1.0$ y $1.0$ como sus valores constantes.
 		\begin{equation}
@@ -989,7 +989,7 @@
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/step_pos.pdf}
-			\caption*{Gráfica de \texttt{step\_pos}. Generada con \textbf{Gnuplot.}}
+			\caption*{Gráfica de \texttt{step\_pos}. \textit{Fuente: elaboración propia}}
 		\end{figure}
 		\item \texttt{gauss\_impar}: Multiplicación de una función lineal por una campana gaussiana, para obtener una función impar con dos pulsos.
 		\begin{equation}
@@ -1000,7 +1000,7 @@
 		\begin{figure}[ht]
 			\centering
 			\includegraphics[width=0.5\textwidth]{../burgers1DVF/results/graficas_iniciales/gauss_impar.pdf}
-			\caption*{Gráfica de \texttt{gauss\_impar}. Generada con \textbf{Gnuplot.}}
+			\caption*{Gráfica de \texttt{gauss\_impar}. \textit{Fuente: elaboración propia}}
 		\end{figure}
 	\end{itemize}
 	\subsubsection{Implementación del método}
@@ -1107,7 +1107,7 @@
  			\caption*{Gráficas para $t=25.50\unit{\second}$}
  			\label{fig:gauss-fija6}
  		\end{subfigure}
- 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
+ 		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss-fija}. \textit{Fuente: elaboración propia}}
  		\label{fig:instantes-gauss-fija}
 	\end{figure}
  
@@ -1136,7 +1136,7 @@
  		\caption*{Gráficas para $t=25.50\unit{\second}$}
  		\label{fig:step_neg-fija4}
  	\end{subfigure}
- 	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_neg}. Gráficas generadas a través de \textbf{gnuplot.}}
+ 	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_neg}. \textit{Fuente: elaboración propia}}
  	\label{fig:instantes-step_neg-fija}
  \end{figure}
  
@@ -1165,7 +1165,7 @@
 		\caption*{Gráficas para $t=25.50\unit{\second}$}
 		\label{fig:step_pos-fija4}
 	\end{subfigure}
-	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+	\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. \textit{Fuente: elaboración propia}}
 	\label{fig:step_pos-fija}
 \end{figure}
 
@@ -1196,7 +1196,7 @@
 			\caption*{Gráficas para $t=25.50\unit{\second}$}
 			\label{fig:gauss_impar-fija4}
 		\end{subfigure}
-		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss_impar}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:gauss_impar}. \textit{Fuente: elaboración propia}}
 		\label{fig:instantes-gauss_impar-fija}
 	\end{figure}
 	\clearpage
@@ -1240,7 +1240,7 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:gauss-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss-fija}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss-fija}. \textit{Fuente: elaboración propia}}
 		\label{fig:gauss-periodica}
 	\end{figure}
 
@@ -1282,7 +1282,7 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:step_neg-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_neg}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_neg}. \textit{Fuente: elaboración propia}}
 		\label{fig:step_neg-periodica}
 	\end{figure}
 
@@ -1324,7 +1324,7 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:step_pos-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:step_pos}. \textit{Fuente: elaboración propia}}
 		\label{fig:step_pos-periodica}
 	\end{figure}
 
@@ -1366,7 +1366,7 @@
 			\caption*{Gráficas para $t=111.72\unit{\second}$}
 			\label{fig:gauss_impar-perio6}
 		\end{subfigure}
-		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss_impar}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Seis instantes de tiempo de la evolución temporal de  la ecuación de Burgers resuelta con tres diferentes esquemas del método de volúmenes finitos, con condiciones periódicas de frontera y condición inicial dada por la ecuación \ref{eq:gauss_impar}. \textit{Fuente: elaboración propia}}
 		\label{fig:gauss_impar-periodica}
 	\end{figure}
 	\clearpage	
@@ -1432,7 +1432,7 @@
 			\caption*{Gráficas para $t=25.50\unit{\second}$}
 %				\label{fig:step_pos-fija4}
 		\end{subfigure}
-		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con el esquema de Roe corregido, el esquema de Godunov y la solución exacta dada por la ecuación \ref{eq:sol-riemann-weak-rarefraction}, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. Gráficas generadas a través de \textbf{gnuplot.}}
+		\caption{Cuatro instantes de tiempo de la evolución temporal de la ecuación de Burgers resuelta con el esquema de Roe corregido, el esquema de Godunov y la solución exacta dada por la ecuación \ref{eq:sol-riemann-weak-rarefraction}, con condiciones de frontera fijas y condición inicial dada por la ecuación \ref{eq:step_pos}. \textit{Fuente: elaboración propia}}
 		\label{fig:step_pos-roe-fix}
 	\end{figure}
 		
