@@ -200,8 +200,8 @@ int main()
  */
 double u_inicial(double x)
 {
-    // return 0.0;
-    return exp(-0.5*pow(x-50, 2));
+    return 0.0;
+    // return exp(-0.5*pow(x-50, 2));
 }
 
 /**
@@ -215,8 +215,8 @@ double p_inicial(double x)
     double L = 100.0;
     double atm = (1.01325e2);
     // return 100*exp(-0.5*pow((x-L/2), 2));
-    // return atm*1/3*(atan(x-L/2)+4.50);
-    return atm;
+    return atm*1/12*(atan(x-L/2)+4.50);
+    // return atm;
 }
 
 /**
