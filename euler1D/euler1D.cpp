@@ -52,7 +52,7 @@ int main()
 
     // Parámetros espaciales
     int Nx = 500; // Número de puntos en el eje x
-    double L = 100.0; // Largo del dominio en metros
+    double L = (1e4); // Largo del dominio en metros
     double dx = L/(Nx-1); // Tamaño de paso en el eje x
 
     // Archivos
@@ -200,8 +200,9 @@ int main()
  */
 double u_inicial(double x)
 {
-    return 0.0;
-    // return exp(-0.5*pow(x-50, 2));
+    double L = 1e4;
+    // return 0.0;
+    return exp(-5e-6*pow(x-L/2, 2));
 }
 
 /**
@@ -213,10 +214,10 @@ double u_inicial(double x)
 double p_inicial(double x)
 {
     double L = 100.0;
-    double atm = (1.01325e2);
+    double atm = (1.01325e4);
     // return 100*exp(-0.5*pow((x-L/2), 2));
-    return atm*1/12*(atan(x-L/2)+4.50);
-    // return atm;
+    // return atm*1/12*(atan(x-L/2)+4.50);
+    return atm;
 }
 
 /**
