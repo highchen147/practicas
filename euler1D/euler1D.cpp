@@ -11,13 +11,17 @@
  */
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <cstdlib> //
 #include <cmath>
 #include <iomanip>
 #include <fstream>
 #include <vector>
+#include <sys/stat.h>
 using namespace std;
 
-
+int generateRandomNum();
+double step_pos(double x, double max, double min, double x_0);
 double rho_inicial(double x);
 double p_inicial(double x);
 double u_inicial(double x);
@@ -40,6 +44,10 @@ const double Gamma = 1.4;
 
 int main()
 {
+    // Inicializar el generador de números aleatorios
+    srand(static_cast<unsigned>(time(nullptr)));
+    int numeroAleatorio = generateRandomNum();
+
     // Parámetros temporales
     const double t_total = 10; // Tiempo total en segundos
     const double dt = 0.01; // Tamaño de paso temporal en segundos
@@ -59,9 +67,18 @@ int main()
     ofstream file_densidad;
     ofstream file_presion;
     ofstream file_velocidad;
-    file_densidad.open("data/densidad.dat", ios::out );
-    file_presion.open("data/presion.dat", ios::out);
-    file_velocidad.open("data/velocidad.dat", ios::out);
+    std::string nombreDirectorio;
+    std::cout << "Ingrese el nombre del directorio que desea crear: ";
+    std::cin >> nombreDirectorio;
+    nombreDirectorio = nombreDirectorio + to_string(numeroAleatorio);
+    int directorio = mkdir(nombreDirectorio.c_str());
+    string file_densidad_name = nombreDirectorio + "/densidad.dat";
+    string file_presion_name = nombreDirectorio + "/presion.dat";
+    string file_velocidad_name = nombreDirectorio + "/velocidad.dat";
+
+    file_densidad.open(file_densidad_name, ios::out );
+    file_presion.open(file_presion_name, ios::out);
+    file_velocidad.open(file_velocidad_name, ios::out);
      
     // Arreglos
     // Cantidades físicas
@@ -188,6 +205,22 @@ int main()
         }
         // Actualizar el tiempo
         tiempo += dt;
+    }
+    
+}
+
+int generateRandomNum() {
+    return rand() % 1000;
+}
+
+
+double step_pos(double x, double max, double min, double x_0) {
+    if (x <= x_0)
+    {
+        return min;
+    } else 
+    {
+        return max;
     }
     
 }
