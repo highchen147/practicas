@@ -42,11 +42,11 @@ def animacion(data: pd.DataFrame, subset: pd.DataFrame, cantidad: str, margen: f
     ax.set_title("{}, t={} s".format(cantidad, t))
 
 # importar datos
-data_d = pd.read_csv("data/densidad.dat", delimiter='\t', skip_blank_lines=False)
+data_d = pd.read_csv("step190/densidad.dat", delimiter='\t', skip_blank_lines=False)
 data_d.columns = ["t", "x", "u"]
-data_p = pd.read_csv("data/presion.dat", delimiter="\t", skip_blank_lines=False)
+data_p = pd.read_csv("step190/presion.dat", delimiter="\t", skip_blank_lines=False)
 data_p.columns = ["t", "x", "u"]
-data_u = pd.read_csv("data/velocidad.dat", delimiter="\t", skip_blank_lines=False)
+data_u = pd.read_csv("step190/velocidad.dat", delimiter="\t", skip_blank_lines=False)
 data_u.columns = ["t", "x", "u"]
 
 # Crear la figura con tres sub-figuras
@@ -56,7 +56,7 @@ ax2: plt.Axes
 ax3: plt.Axes
 # Primera animación
 line1, = ax1.plot([], [], lw=0.8)
-subsets_d = generar_subsets(data_d)
+subsets_densidad = generar_subsets(data_d)
 
 def init():
     line1.set_data([], [])
@@ -64,26 +64,26 @@ def init():
 # Definir animacion de densidad
 def animate_1(i):
 
-    animacion(data_d, subsets_d[i], r'Densidad $\left(\frac{kg}{m^3}\right)$', 0.25, ax1, line1)
+    animacion(data_d, subsets_densidad[i], r'Densidad $\left(\frac{kg}{m^3}\right)$', 0.25, ax1, line1)
 
     return line1,
     
-num_frames = 280
-dt = (subsets_d[1]['t'].values[0] - subsets_d[0]['t'].values[0])*1000
+num_frames = len(subsets_densidad)
+dt = (subsets_densidad[1]['t'].values[0] - subsets_densidad[0]['t'].values[0])*1000
 
 anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
 
 # Segunda animación
 line2, = ax2.plot([], [], lw=1)
 
-subsets_p = generar_subsets(data_p)
+subsets_presion = generar_subsets(data_p)
 
 def init2():
     line2.set_data([], [])
     return (line2,)
 # Definir animación de presión
 def animate_2(i):
-    animacion(data_p, subsets_p[i], r'Presión $(Pa)$', 0.25, ax2, line2)
+    animacion(data_p, subsets_presion[i], r'Presión $(Pa)$', 0.25, ax2, line2)
     return line2,
 
 
@@ -92,27 +92,19 @@ anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(n
 # Tercera animación
 line3, = ax3.plot([], [], lw=1)
 
-subsets_u = generar_subsets(data_u)
+subsets_velocidad = generar_subsets(data_u)
 
 def init3():
     line3.set_data([], [])
     return (line3,)
 # Definir animación de velocidad
 def animate_3(i):
-    animacion(data_u, subsets_u[i], r'Velocidad $\left(\frac{m}{s}\right)$', 0.25, ax3, line3)
+    animacion(data_u, subsets_velocidad[i], r'Velocidad $\left(\frac{m}{s}\right)$', 0.25, ax3, line3)
     return line3,
 
 # anim1 = animation.FuncAnimation(fig, animate_1, init_func=init, frames=(range(num_frames)), repeat=False, interval=100)
 # anim2 = animation.FuncAnimation(fig, animate_2, init_func=init2, frames=(range(num_frames)), repeat=False, interval=100)
 anim3 = animation.FuncAnimation(fig, animate_3, init_func=init3, frames=(range(num_frames)), repeat=False, interval=100)
-
-
-# # Crear el objeto FFmpegWriter
-# writer = FFMpegWriter(fps=30, metadata=dict(artist='Me'), bitrate=1800)
-
-# # Grabar la animación final en un archivo mp4
-# ani = animation.ArtistAnimation(fig, [anim1, anim2, anim3], interval=50, blit=True, repeat=False)
-# ani.save("animacion.mp4", writer=writer)
 
 
 plt.show()
