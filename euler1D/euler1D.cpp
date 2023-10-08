@@ -22,6 +22,7 @@ using namespace std;
 
 int generateRandomNum();
 double step_pos(double x, double max, double min, double x_0);
+double step_neg(double x, double max, double min, double x_0);
 double rho_inicial(double x);
 double p_inicial(double x);
 double u_inicial(double x);
@@ -213,14 +214,30 @@ int generateRandomNum() {
     return rand() % 1000;
 }
 
-
+/**
+ * @brief Función Heaviside
+ * 
+*/
 double step_pos(double x, double max, double min, double x_0) {
     if (x <= x_0)
     {
         return min;
-    } else 
+    } 
+    else 
     {
         return max;
+    }
+    
+}
+
+double step_neg(double x, double max, double min, double x_0) {
+    if (x <= x_0)
+    {
+        return max;
+    } 
+    else 
+    {
+        return min;
     }
     
 }
@@ -246,11 +263,11 @@ double u_inicial(double x)
  */
 double p_inicial(double x)
 {
-    double L = 100.0;
+    double L = 1e4;
     double atm = (1.01325e4);
     // return 100*exp(-0.5*pow((x-L/2), 2));
     // return atm*1/12*(atan(x-L/2)+4.50);
-    return atm;
+    return step_neg(x, atm*1.2, atm, L/2);
 }
 
 /**
@@ -261,9 +278,11 @@ double p_inicial(double x)
  */
 double rho_inicial(double x)
 {
+    double L = 1e4;
     // Densidad del aire en kg/m^3
     double d_aire = 1.29;
-    return 1.0*d_aire;
+    // return 1.0*d_aire;
+    return step_neg(x, d_aire*1.2, d_aire, L/2);
 }
 
 /**
