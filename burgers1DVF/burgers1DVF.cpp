@@ -29,10 +29,10 @@ double uProm(double u, double v);
 int main()
 {
     // Parámetros temporales
-    const double t_total = 132; // Tiempo total en segundos
+    const double t_total = 8; // Tiempo total en segundos
     const double dt = 0.001; // Tamaño de paso temporal en segundos
     int Niter = floor(t_total/dt); // Número total de iteraciones
-    const int num_outs = 124; // Número de gráficas de instantes temporales
+    const int num_outs = 400; // Número de gráficas de instantes temporales
     int out_cada = floor(Niter / num_outs); // Cada out_cada veces se 
                                             // imprimen los valores
     
@@ -263,7 +263,7 @@ void condicion_frontera(double *u, double *u_nueva, int N,
 
 double gauss(double x)
 {
-    double b = 0.02;
+    double b = 0.05;
     double mu = 50;
     double A = 3.5;
     return A*exp(-b*pow(x - mu,2));
