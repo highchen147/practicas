@@ -11,13 +11,18 @@
  */
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <cstdlib> //
 #include <cmath>
 #include <iomanip>
 #include <fstream>
 #include <vector>
+#include <sys/stat.h>
 using namespace std;
 
-
+int generateRandomNum();
+double step_pos(double x, double max, double min, double x_0);
+double step_neg(double x, double max, double min, double x_0);
 double rho_inicial(double x);
 double p_inicial(double x);
 double u_inicial(double x);
@@ -40,6 +45,10 @@ const double Gamma = 1.4;
 
 int main()
 {
+    // Inicializar el generador de números aleatorios
+    srand(static_cast<unsigned>(time(nullptr)));
+    int numeroAleatorio = generateRandomNum();
+
     // Parámetros temporales
     const double t_total = 10; // Tiempo total en segundos
     const double dt = 0.01; // Tamaño de paso temporal en segundos
@@ -59,9 +68,18 @@ int main()
     ofstream file_densidad;
     ofstream file_presion;
     ofstream file_velocidad;
-    file_densidad.open("data/densidad.dat", ios::out );
-    file_presion.open("data/presion.dat", ios::out);
-    file_velocidad.open("data/velocidad.dat", ios::out);
+    std::string nombreDirectorio;
+    std::cout << "Ingrese el nombre del directorio que desea crear: ";
+    std::cin >> nombreDirectorio;
+    nombreDirectorio = nombreDirectorio + to_string(numeroAleatorio);
+    int directorio = mkdir(nombreDirectorio.c_str());
+    string file_densidad_name = nombreDirectorio + "/densidad.dat";
+    string file_presion_name = nombreDirectorio + "/presion.dat";
+    string file_velocidad_name = nombreDirectorio + "/velocidad.dat";
+
+    file_densidad.open(file_densidad_name, ios::out );
+    file_presion.open(file_presion_name, ios::out);
+    file_velocidad.open(file_velocidad_name, ios::out);
      
     // Arreglos
     // Cantidades físicas
@@ -192,6 +210,38 @@ int main()
     
 }
 
+int generateRandomNum() {
+    return rand() % 1000;
+}
+
+/**
+ * @brief Función Heaviside
+ * 
+*/
+double step_pos(double x, double max, double min, double x_0) {
+    if (x <= x_0)
+    {
+        return min;
+    } 
+    else 
+    {
+        return max;
+    }
+    
+}
+
+double step_neg(double x, double max, double min, double x_0) {
+    if (x <= x_0)
+    {
+        return max;
+    } 
+    else 
+    {
+        return min;
+    }
+    
+}
+
 /**
  * @brief Función inicial de la velocidad
  * 
@@ -213,11 +263,11 @@ double u_inicial(double x)
  */
 double p_inicial(double x)
 {
-    double L = 100.0;
+    double L = 1e4;
     double atm = (1.01325e4);
     // return 100*exp(-0.5*pow((x-L/2), 2));
     // return atm*1/12*(atan(x-L/2)+4.50);
-    return atm;
+    return step_neg(x, atm*1.2, atm, L/2);
 }
 
 /**
@@ -228,9 +278,11 @@ double p_inicial(double x)
  */
 double rho_inicial(double x)
 {
+    double L = 1e4;
     // Densidad del aire en kg/m^3
     double d_aire = 1.29;
-    return 1.0*d_aire;
+    // return 1.0*d_aire;
+    return step_neg(x, d_aire*1.2, d_aire, L/2);
 }
 
 /**
